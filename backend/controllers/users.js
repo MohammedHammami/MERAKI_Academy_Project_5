@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const register = async (req, res) => {
   const { first_name, last_name, phone_no, email, password, } = req.body;
    
-    const saltRounds = parseInt(process.env.SALT);
+  const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
   const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,role_id ) VALUES ($1,$2,$3,$4,$5,$6)`;
@@ -28,8 +28,8 @@ const register = async (req, res) => {
     .catch((err) => {
       res.status(409).json({
         success: false,
-        message: "The email already exists",
-        err,
+        message: "server error",
+        err:err.message,
       });
       console.log(err.message);
     });
@@ -82,7 +82,38 @@ const login = (req, res) => {
         });
       });
   };
+
+  //new from hammami
+const updateUserById = (req,res) => {
+    const id = req.token.userId
+    const {first_name,last_name,phone_no,password} = req.body
+    // console.log(req.body);
+    const data=[first_name||null,last_name||null,phone_no||null,password||null]
+    // console.log(data);
+    const query=`UPDATE users SET first_name = COALESCE($1,first_name), last_name = COALESCE($2,last_name), phone_no =COALESCE($3,phone_no), password = COALESCE($4,password) WHERE id = ${id} RETURNING *;`
+    pool
+    .query(query,data)
+    .then((result)=>{
+      res.status(200).json({
+        success: true,
+        message:"user updated",
+        user:result.rows
+      })
+    })
+    .catch((err)=>{
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message
+      })
+    })
+  
+};
+
+// do update for user role in role file to 3
+
 module.exports={
     register,
-    login
+    login,
+    updateUserById
 }
