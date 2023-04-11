@@ -1,3 +1,4 @@
+const { query } = require("express");
 const pool = require("../models/db");
 
 const createNewPost = (req,res) => {
@@ -66,10 +67,30 @@ const updatePostById = (req,res) => {
         })
     })
 }
+const deletePostById = (req, res) =>{
+    const postId = req.params.id
+    const queryString = `DELETE FROM posts WHERE id = ${postId}`
 
+    pool.
+        query(queryString)
+        .then((result)=>{
+            res.status(200).json({
+                success: true,
+                massage: `Post with id: ${postId} deleted successfully`
+            })
+        })
+        .catch((err)=>{
+            res.status(500).json({
+                success: false,
+                message: "Server error",
+                error: err
+            })
+        })
+}
 
 module.exports = {
     createNewPost,
     getPostsByuser,
     updatePostById,
+    deletePostById,
 }
