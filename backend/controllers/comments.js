@@ -1,10 +1,11 @@
 const pool = require("../models/db")
 
 const createNewComment = (req, res) =>{
+    const postId = req.params.id
     const requester_user_id =  req.token.userId;
     const { description } = req.body
 
-    const queryString = `INSERT INTO comments( description, requester_user_id) VALUES ('${description}', ${requester_user_id});`
+    const queryString = `INSERT INTO comments( description, user_id) VALUES ('${description}', ${requester_user_id});`
 
     pool
         .query(queryString)
