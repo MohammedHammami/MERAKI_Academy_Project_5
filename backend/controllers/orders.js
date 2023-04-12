@@ -24,7 +24,30 @@ const createNewOrder = (req,res) => {
         console.log(err.message);
       });
 }
+const updateOrderById = (req,res) => {
+    const {schedule_date,order_desc,id} = req.body
+    const data=[schedule_date||null,order_desc||null]
+    const query=`UPDATE orders SET schedule_date = COALESCE($1,schedule_date), order_desc = COALESCE($2,order_desc) WHERE id = ${id} RETURNING *;`
+    pool
+    .query(query,data)
+    .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: "order update successfuly",
+          order: result.rows
+        });
+      })
+      .catch((err) => {
+        res.status(409).json({
+          success: false,
+          message: "server error",
+          err:err.message,
+        });
+        console.log(err.message);
+      });
+  }
 
 module.exports = {
     createNewOrder,
+    updateOrderById
 }
