@@ -10,15 +10,16 @@ const usersRouter = require("./routes/users");
 const craftsRouter=require('./routes/crafts') 
 const postsRouter = require("./routes/posts");
 const stateRouter =require('./routes/state')
+const reviewRouter=require('./routes/reviews')
 app.use(cors());
 app.use(express.json());
-
 
 
 app.use("/users", usersRouter);
 app.use("/crafts", craftsRouter);
 app.use("/posts", postsRouter);
 app.use('/state',stateRouter)
+app.use('/review',reviewRouter)
 
 
 
