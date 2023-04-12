@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const register = async (req, res) => {
   const { first_name, last_name, phone_no, email, password, } = req.body;
    
-  const saltRounds = parseInt(process.env.SALT);
+    const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
   const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,role_id ) VALUES ($1,$2,$3,$4,$5,$6)`;
@@ -28,8 +28,8 @@ const register = async (req, res) => {
     .catch((err) => {
       res.status(409).json({
         success: false,
-        message: "server error",
-        err:err.message,
+        message: "The email already exists",
+        err,
       });
       console.log(err.message);
     });
@@ -82,7 +82,7 @@ const login = (req, res) => {
         });
       });
   };
-
+  
   //new from hammami
 const updateUserById = (req,res) => {
     const id = req.token.userId
@@ -114,6 +114,6 @@ const updateUserById = (req,res) => {
 
 module.exports={
     register,
-    login,
-    updateUserById
+    updateUserById,
+    login
 }
