@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 const usersRouter = require("./routes/users");
 const craftsRouter=require('./routes/crafts') 
 const postsRouter = require("./routes/posts");
+const commentsRouter = require("./routes/comments")
 const stateRouter =require('./routes/state')
 app.use(cors());
 app.use(express.json());
@@ -18,7 +19,9 @@ app.use(express.json());
 app.use("/users", usersRouter);
 app.use("/crafts", craftsRouter);
 app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter)
 app.use('/state',stateRouter)
+
 
 
 
