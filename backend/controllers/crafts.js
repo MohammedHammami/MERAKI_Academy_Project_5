@@ -8,6 +8,7 @@ const getAllCrafts = (req,res) => {
       res.status(200).json({
         sucsess: true,
         result: result.rows,
+        ss:'ss'
       });
     })
     .catch((err) => {
@@ -40,6 +41,8 @@ const updatecraftById = (req,res) => {
       err: err.message
     })
   })
+
+
 
 };
 module.exports={
