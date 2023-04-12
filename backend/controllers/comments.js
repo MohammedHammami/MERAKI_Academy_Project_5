@@ -5,7 +5,7 @@ const createNewComment = (req, res) =>{
     const requester_user_id =  req.token.userId;
     const { description } = req.body
 
-    const queryString = `INSERT INTO comments( description, user_id) VALUES ('${description}', ${requester_user_id});`
+    const queryString = `INSERT INTO comments( description, user_id) VALUES ('${description}', ${requester_user_id}) RETURNING *;`
 
     pool
         .query(queryString)
@@ -23,6 +23,11 @@ const createNewComment = (req, res) =>{
                 error: err
             })
         })
+}
+
+const getCommentsByuser = (req, res) =>{
+    const userId = req.params.id
+    const queryString = `SELECT * FROM comments WHERE user_id =${userId} `
 }
 
 module.exports ={
