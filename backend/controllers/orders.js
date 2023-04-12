@@ -66,9 +66,30 @@ const getOrderById = (req,res) => {
         });
         console.log(err.message);
       });
-  }
+}
+const getAllOrder = (req,res) => {
+    const query=`SELECT * FROM orders`
+    pool
+    .query(query)
+    .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: "orders get successfuly",
+          order: result.rows
+        });
+      })
+      .catch((err) => {
+        res.status(409).json({
+          success: false,
+          message: "server error",
+          err:err.message,
+        });
+        console.log(err.message);
+      });
+}
 module.exports = {
     createNewOrder,
     updateOrderById,
     getOrderById,
+    getAllOrder,
 }
