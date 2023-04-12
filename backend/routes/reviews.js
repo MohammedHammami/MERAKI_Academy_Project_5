@@ -1,9 +1,13 @@
 const express=require('express')
-const {createNewReviews}=require('../controllers/reviws')
+const {createNewReviews,updatestateById}=require('../controllers/reviws')
 const authentication=require('../middleware/authentication')
 
 const reviewRouter=express.Router()
 
 reviewRouter.post('/', authentication,createNewReviews)
+reviewRouter.put('/:id', authentication,updatestateById
+)
+
+
 
 module.exports=reviewRouter
