@@ -17,6 +17,10 @@ created_on TIMESTAMP DEFAULT NOW(),
 role_id INT,
 
 FOREIGN KEY (role_id) REFERENCES roles(id),
+
+craft_id INT,
+
+FOREIGN KEY (craft_id) REFERENCES crafts(id),
 is_deleted SMALLINT DEFAULT 0,
 
 PRIMARY KEY (id)
@@ -25,9 +29,6 @@ PRIMARY KEY (id)
 CREATE TABLE crafts (
 id SERIAL NOT NULL,
 name VARCHAR(255),
-user_id INT,
-
-FOREIGN KEY (user_id) REFERENCES users(id),
 
 PRIMARY KEY (id)
 );
@@ -36,21 +37,30 @@ CREATE TABLE posts (
 id SERIAL NOT NULL,
 title VARCHAR(255),
 description text,
+pricing INT,
+created_on TIMESTAMP DEFAULT NOW(),
+
 user_id INT,
 
 FOREIGN KEY (user_id) REFERENCES users(id),
-pricing INT,
-created_on TIMESTAMP DEFAULT NOW(),
 
 PRIMARY KEY (id)
 );
 
 CREATE TABLE orders (
 id SERIAL NOT NULL,
-user_id INT,
 
-FOREIGN KEY (user_id) REFERENCES users(id),
 schedule_date date,
+
+order_desc VARCHAR(255),
+
+requester_user_id INT NOT NULL REFERENCES users(id),
+
+receiver_user_id INT NOT NULL REFERENCES users(id),
+
+state_id INT,
+
+FOREIGN KEY (state_id) REFERENCES state(id),
 
 PRIMARY KEY (id)
 );
@@ -61,10 +71,6 @@ id SERIAL NOT NULL,
 
 state_desc VARCHAR(255),
 
-order_id INT,
-
-FOREIGN KEY (order_id) REFERENCES orders(id),
-
 PRIMARY KEY (id)
 
 );
@@ -72,9 +78,7 @@ PRIMARY KEY (id)
 CREATE TABLE comments (
 id SERIAL NOT NULL,
 description text,
-user_id INT,
-
-FOREIGN KEY (user_id) REFERENCES users(id),
+requester_user_id INT NOT NULL REFERENCES users(id),
 created_on TIMESTAMP DEFAULT NOW(),
 
 PRIMARY KEY (id)
@@ -82,63 +86,33 @@ PRIMARY KEY (id)
 
 CREATE TABLE notifications (
 id SERIAL NOT NULL,
-user_id INT,
 
-FOREIGN KEY (user_id) REFERENCES users(id),
+description VARCHAR(255),
+
+status VARCHAR(255),
+
+receiver_user_id INT NOT NULL REFERENCES users(id),
+
 order_id INT,
 
 FOREIGN KEY (order_id) REFERENCES orders(id),
-description VARCHAR(255),
-status VARCHAR(255),
 
 PRIMARY KEY (id)
 );
 
-CREATE TABLE reviewer (
-id SERIAL NOT NULL,
-user_id INT,
-
-FOREIGN KEY (user_id) REFERENCES orders(id),
-
-PRIMARY KEY (id)
-);
+‌
 
 CREATE TABLE reviews (
 id SERIAL NOT NULL,
-user_id INT,
 
-FOREIGN KEY (user_id) REFERENCES users(id),
 rate INT,
-reviewer_id INT,
+requester_user_id INT NOT NULL REFERENCES users(id),
 
-FOREIGN KEY (reviewer_id) REFERENCES reviewer(id),
+receiver_user_id INT NOT NULL REFERENCES users(id),
+
 order_id INT,
 
 FOREIGN KEY (order_id) REFERENCES orders(id),
-
-PRIMARY KEY (id)
-);
-
-CREATE TABLE history (
-id SERIAL NOT NULL,
-
-user_id INT,
-
-FOREIGN KEY (user_id) REFERENCES users(id),
-order_id INT,
-
-FOREIGN KEY (order_id) REFERENCES orders(id),
-review_id INT,
-
-FOREIGN KEY (review_id) REFERENCES reviews(id),
-
-state_id INT,
-
-FOREIGN KEY (state_id) REFERENCES state(id),
-
-created_on date,
-
-updated_on date,
 
 PRIMARY KEY (id)
 );

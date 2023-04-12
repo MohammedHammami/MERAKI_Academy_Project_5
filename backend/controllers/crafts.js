@@ -41,9 +41,6 @@ const updatecraftById = (req,res) => {
       err: err.message
     })
   })
-
-
-
 };
 module.exports={
     getAllCrafts,
