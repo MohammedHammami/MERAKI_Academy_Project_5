@@ -53,18 +53,11 @@ const deleteCommentById = (req, res) =>{
 
     pool
         .query(queryString)
-        .then((result)=>{
-            if(result.rows.length == 0){
-                res.status(404).json({
-                    success: true,
-                    massage: `comment with id: ${id} not found`
-                })
-            }else{
+        .then((result)=>{   
             res.status(204).json({
                 success: true,
                 massage: `comment with id: ${id} deleted successfully`
             })
-        }
         })
         .catch((err)=>{
             res.status(500).json({
