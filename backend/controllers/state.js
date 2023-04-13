@@ -5,19 +5,19 @@ const getstate = (req, res) => {
   pool
     .query(`SELECT state_id FROM orders WHERE id = ${order_id}`)
     .then((result) => {
-        if (result.rows.length > 0) {
-             res.status(200).json({
-        success: true,
-        mesasge: "get state from one user",
-        state: result,
-      });
-        }else {
-            res.status(404).json({
-                success: false,
-                mesasge: "Order Not Fond",
-                state: result.rows,
-              });
-        }
+      if (result.rows.length > 0) {
+        res.status(200).json({
+          success: true,
+          mesasge: "get state from one user",
+          state: result,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          mesasge: "Order Not Fond",
+          state: result.rows,
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
@@ -54,5 +54,5 @@ const updatestateById = (req, res) => {
 };
 module.exports = {
   getstate,
-  updatestateById
+  updatestateById,
 };

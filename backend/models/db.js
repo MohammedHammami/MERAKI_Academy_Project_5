@@ -7,7 +7,6 @@ pool
   .connect()
   .then((res) => {
     console.log(`DB connected to ${res.database}`);
-console.log(10);
 
   })
 
