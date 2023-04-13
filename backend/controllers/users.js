@@ -50,6 +50,7 @@ const login = (req, res) => {
                 userId: result.rows[0].id,
                 Phone_Number: result.rows[0].phone_no,
                 role: result.rows[0].role_id,
+                first_name:result.rows[0].first_name
               };
               const options = { expiresIn: "1d" };
               const secret = process.env.SECRET;
