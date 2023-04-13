@@ -6,7 +6,7 @@ const {createNewOrder,updateOrderById,getOrderById,getAllOrder} = require("../co
 const orderRouter = express.Router();
 
 orderRouter.post('/',authentication,createNewOrder)
-orderRouter.put('/',authentication,updateOrderById)
+orderRouter.put('/:order_id',authentication,updateOrderById)
 orderRouter.get('/:id',authentication,getOrderById)
 orderRouter.get('/',authentication,getAllOrder)
 
