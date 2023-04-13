@@ -88,6 +88,8 @@ const deletePostById = (req, res) =>{
         })
 }
 
+
+
 module.exports = {
     createNewPost,
     getPostsByuser,
