@@ -47,7 +47,29 @@ const getCommentsByUser = (req, res) =>{
         })
 }
 
+const deleteCommentById = (req, res) =>{
+    const id =  req.params.id 
+    const queryString = `DELETE FROM comments where id = ${id};`
 
+    pool
+        .query(queryString)
+        .then((result)=>{
+            if(result.rows.length == 0){
+                res.status(404).json({
+                    success: true,
+                    massage: `comment with id: ${id} not found`
+                })
+            }else{
+            res.status(204).json({
+                success: true,
+                massage: `comment with id: ${id} deleted successfully`
+            })
+        }
+        })
+        .catch(()=>{
+            
+        })
+}
 
 module.exports ={
     createNewComment,
