@@ -66,12 +66,17 @@ const deleteCommentById = (req, res) =>{
             })
         }
         })
-        .catch(()=>{
-            
+        .catch((err)=>{
+            res.status(500).json({
+                success: false,
+                message: "Server error",
+                error : err
+            })              
         })
 }
 
 module.exports ={
     createNewComment,
-    getCommentsByUser
+    getCommentsByUser,
+    deleteCommentById
 }
