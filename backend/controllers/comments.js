@@ -27,13 +27,14 @@ const createNewComment = (req, res) =>{
 
 const getCommentsByUser = (req, res) =>{
     const userId = req.params.id
-    const queryString = `SELECT * FROM comments WHERE user_id =${userId}`
+    console.log(userId);
+    const queryString = `SELECT * FROM comments WHERE user_id = ${userId};`
     pool
         .query(queryString)
         .then((result)=>{
             res.status(200).json({
                 success: true,
-                message: `All comments for User: ${User_id}`,
+                message: `All comments for User: ${userId}`,
                 result: result.rows
             })
         })
@@ -45,6 +46,8 @@ const getCommentsByUser = (req, res) =>{
             })
         })
 }
+
+
 
 module.exports ={
     createNewComment,
