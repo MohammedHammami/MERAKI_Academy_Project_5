@@ -24,6 +24,31 @@ const createNewNotification = (req,res) => {
       });
 }
 
+const getNotificationById = (req,res) => {
+    const user_id  = req.params.user_id
+    const query=`SELECT * FROM notifications WHERE receiver_user_id = ${user_id };`
+    pool
+    .query(query)
+    .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: "notification get successfuly",
+          order: result.rows
+        });
+      })
+      .catch((err) => {
+        res.status(409).json({
+          success: false,
+          message: "server error",
+          err:err.message,
+        });
+        console.log(err.message);
+      });
+}
+
+
+
 module.exports={
     createNewNotification,
+    getNotificationById
 }
