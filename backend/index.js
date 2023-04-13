@@ -1,18 +1,25 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-const pg = require("./models/db");
+require('dotenv').config();
+require('./models/db')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const usersRouter = require("./routes/users");
-const craftsRouter=require('./routes/crafts') 
+const craftsRouter=require('./routes/crafts');
 const postsRouter = require("./routes/posts");
+
 const commentsRouter = require("./routes/comments")
-const stateRouter =require('./routes/state')
+const reviewRouter=require('./routes/reviews')
+const roleRouter=require('./routes/role')
+
+const stateRouter =require('./routes/state');
+const orderRouter = require("./routes/orders");
+
+const notificationsRouter = require("./routes/notifications")
+
 app.use(cors());
 app.use(express.json());
-
 
 
 app.use("/users", usersRouter);
@@ -20,6 +27,13 @@ app.use("/crafts", craftsRouter);
 app.use("/posts", postsRouter);
 app.use("/comments", commentsRouter)
 app.use('/state',stateRouter)
+
+app.use('/review',reviewRouter);
+app.use('/role', roleRouter)
+
+
+app.use("/orders", orderRouter);
+app.use("/notifications", notificationsRouter);
 
 
 
