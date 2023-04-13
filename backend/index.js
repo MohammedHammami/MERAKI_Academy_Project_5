@@ -10,6 +10,7 @@ const craftsRouter=require('./routes/crafts');
 const postsRouter = require("./routes/posts");
 const stateRouter =require('./routes/state');
 const orderRouter = require("./routes/orders");
+const notificationsRouter = require("./routes/notifications")
 app.use(cors());
 app.use(express.json());
 
@@ -20,6 +21,7 @@ app.use("/crafts", craftsRouter);
 app.use("/posts", postsRouter);
 app.use('/state',stateRouter);
 app.use("/orders", orderRouter);
+app.use("/notifications", notificationsRouter);
 
 
 

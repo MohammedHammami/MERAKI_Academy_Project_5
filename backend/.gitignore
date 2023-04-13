@@ -1,4 +1,5 @@
 .env/
+db.texst/
 node_modules/
 # Logs
 logs
@@ -42,3 +43,4 @@ build/Release
 # Dependency directories
 node_modules/
 .env/
+db.texst/
