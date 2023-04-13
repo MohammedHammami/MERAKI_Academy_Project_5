@@ -25,7 +25,8 @@ const createNewOrder = (req,res) => {
       });
 }
 const updateOrderById = (req,res) => {
-    const {schedule_date,order_desc,id} = req.body
+    const id = req.params.order_id
+    const {schedule_date,order_desc} = req.body
     const data=[schedule_date||null,order_desc||null]
     const query=`UPDATE orders SET schedule_date = COALESCE($1,schedule_date), order_desc = COALESCE($2,order_desc) WHERE id = ${id} RETURNING *;`
     pool
