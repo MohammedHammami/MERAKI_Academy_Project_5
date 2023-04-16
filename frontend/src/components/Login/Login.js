@@ -1,6 +1,31 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { useNavigate } from "react-router-dom";
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-const login = () => {
+import axios from 'axios';
+const Login = () => {
+const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [done, setDone] = useState(true);
+
+  const handelLogin = ()=>{
+  
+    const user = {
+      email: email,
+      password: password,
+      
+    };
+
+    axios
+    .post("http://localhost:5000/users/login",user )
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setDone(false)
+      });
+  }
   return (
     <>
     
@@ -37,8 +62,14 @@ const login = () => {
             <p className="text-center fw-bold mx-3 mb-0">Or</p>
           </div> */}
 
-          <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
+          <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg" onChange={(e) => {
+                      const email = e.target.value;
+                      setEmail(email);
+                    }}/>
+          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" onChange={(e) => {
+                      const password = e.target.value;
+                      setPassword(password);
+                    }}/>
 
           <div className="d-flex justify-content-between mb-4">
             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
@@ -46,8 +77,11 @@ const login = () => {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn className="mb-0 px-5" size='lg'>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger">Register</a></p>
+            <MDBBtn className="mb-0 px-5" size='lg' 
+             onClick={handelLogin}>Login</MDBBtn>
+            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger" onClick={()=>{
+navigate('/Register')
+            }}>Register</a></p>
           </div>
 
         </MDBCol>
@@ -57,7 +91,7 @@ const login = () => {
       <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
 
         <div className="text-white mb-3 mb-md-0">
-          Copyright © 2020. All rights reserved.
+          Copyright © 2023. All rights reserved.
         </div>
 
         <div>
@@ -81,6 +115,7 @@ const login = () => {
         </div>
 
       </div>
+      {done ? <></> :<><p>Register Faild</p> </> }
 
     </MDBContainer>
  
@@ -93,4 +128,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

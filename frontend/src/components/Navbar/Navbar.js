@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 const Navbar = () => {
   return (
-    <div>Navbar
+    <div>
 <Nav defaultActiveKey="/Register" as="ul">
       <Nav.Item as="li">
         <Nav.Link href="/Register">Register</Nav.Link>
