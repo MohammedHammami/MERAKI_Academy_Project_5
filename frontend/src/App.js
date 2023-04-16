@@ -11,10 +11,8 @@ function App() {
       <header className="App-header">
         <h1>Project 5 </h1>
       </header>
-      <CreateCrafte></CreateCrafte>
-      {/* <CreatePost></CreatePost> */}
+      <CreatePost></CreatePost>
       <Routes>
-
       <Route path="/Register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
