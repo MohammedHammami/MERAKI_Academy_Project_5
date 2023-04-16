@@ -1,7 +1,7 @@
 import "./App.css";
-import { Route,Routes } from "react-router-dom";
-
-import Register from './components/Register'
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Register from "./components/Register";
 import Login from "./components/Login/Login";
 function App() {
   return (
@@ -9,12 +9,10 @@ function App() {
       <header className="App-header">
         <h1>Project 5 </h1>
       </header>
-      
+<Navbar></Navbar>
       <Routes>
-
-      <Route path="/Register" element={<Register />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
       </Routes>
     </div>
   );
