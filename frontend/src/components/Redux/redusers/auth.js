@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-export const authclice=createSlice({
+export const authSlice=createSlice({
   name :'auth',
   initialState:{
     token :null,
@@ -31,6 +31,6 @@ export const authclice=createSlice({
 })
 export const {setLogin,
     setUserId,
-    setLogout}=authclice.actions
+    setLogout}=authSlice.actions
     
-export default authclice.reducer
+export default authSlice.reducer

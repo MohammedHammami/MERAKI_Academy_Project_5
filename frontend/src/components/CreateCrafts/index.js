@@ -9,7 +9,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 const CreateCrafte = () =>{
 
     const dispatch = useDispatch();
-
     const state = useSelector((state)=>{
         return{
             crafts:state.craft.craft
@@ -41,6 +40,10 @@ const CreateCrafte = () =>{
                 })}
               </Dropdown.Menu>
             </Dropdown>
+            <p>name user login</p>
+            <p>phone user login</p>
+            <button>submite</button>
+
         </div>
     )
 }
