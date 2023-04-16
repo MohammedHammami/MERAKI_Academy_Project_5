@@ -42,8 +42,8 @@ function Register() {
         console.log(result.data);
       })
       .catch((err) => {
-        console.log(err.response);
-        // handelLogin()
+        console.log(err);
+        setDone(false)
       });
   };
 
@@ -144,6 +144,7 @@ function Register() {
                 >
                   Register
                 </MDBBtn>
+              {done ? <></> :<><p>Register Faild</p> </> }
               </MDBCol>
               <MDBCol
                 md="10"
@@ -156,7 +157,6 @@ function Register() {
           </MDBCardBody>
         </MDBCard>
       </MDBContainer>
-      {done ? <></> :<><p>Register Faild</p> </> }
     </>
   );
 }
