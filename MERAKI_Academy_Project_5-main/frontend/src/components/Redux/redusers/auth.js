@@ -26,13 +26,13 @@ export const authSlice=createSlice({
         localStorage.clear()
     },
     setUserInfo :(state,action)=>{
-      state.userInfo = action.payload.token
+      state.userInfo = jwtDecode(action.payload.token)
+      console.log('state.userInfo:',state.userInfo);
     }
   }
 
 })
 export const {setLogin,
-    setUserId,
-    setLogout}=authSlice.actions
+    setLogout,setUserInfo}=authSlice.actions
     
 export default authSlice.reducer
