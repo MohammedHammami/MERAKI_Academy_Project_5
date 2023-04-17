@@ -26,7 +26,21 @@ const CreateCraft = () =>{
         })
         
       }, [])
-      
+
+    const submitFn = ()=>{
+      console.log(craft);
+      axios
+      .put(`http://localhost:5000/crafts/`,{craft_id:craft.id},{headers: {
+        Authorization: ""
+        }})
+      .then((result)=>{
+        console.log(result);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+
     return(
         <div className='create-post-container'>
             {/* <p>i am a CreateCrafte componnent</p> */}
@@ -43,7 +57,11 @@ const CreateCraft = () =>{
             </Dropdown>
             <p>name user login</p>
             <p>phone user login</p>
+
             <button>Submit</button>
+
+            <button onClick={submitFn}>Submit</button>
+
 
         </div>
     )
