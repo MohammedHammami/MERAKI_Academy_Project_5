@@ -4,7 +4,8 @@ export const authSlice=createSlice({
   initialState:{
     token :null,
     userId :null,
-    isLoggedIn :false
+    isLoggedIn :false,
+    userInfo:{}
   },
   reducers:{
     setLogin :(state,action)=>{
@@ -25,6 +26,9 @@ export const authSlice=createSlice({
         state.userId=null
         state.isLoggedIn=false
         localStorage.clear()
+    },
+    setUserInfo :(state,action)=>{
+      state.userInfo = action.payload
     }
   }
 
