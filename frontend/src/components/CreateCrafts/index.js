@@ -29,7 +29,7 @@ const CreateCraft = () =>{
     const submitFn = ()=>{
       console.log(craft);
       axios
-      .put(`http://localhost:5000/crafts/`,{craft_id:craft.id},{headers: {
+      .put(`http://localhost:5000/crafts/${token_id}`,{craft_id:craft.id},{headers: {
         Authorization: ""
         }})
       .then((result)=>{

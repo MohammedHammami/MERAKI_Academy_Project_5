@@ -12,7 +12,7 @@ function App() {
         <h1> </h1>
       </header>
     <Navbar></Navbar>
-    <CreateCraft></CreateCraft>
+    <CreatePost></CreatePost>
       <Routes>
       <Route path="/Register" element={<Register />} />
         <Route path="/Register" element={<Register />} />
