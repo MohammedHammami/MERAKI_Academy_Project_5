@@ -1,3 +1,4 @@
+import "./style.css"
 import {useDispatch,useSelector } from "react-redux"
 import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form';
@@ -8,16 +9,8 @@ import axios from "axios"
 
 const CreatePost = () =>{
     return(
-        
-        // <div className='create-post-container'>
-        //     <input type="text" placeholder="title"/>
-        //     <input type="text" placeholder="description"/>
-        //     <input type="number" placeholder="pricing"/>
-            
-        // </div>
-        <>
+        <div className="inpust-post">
          <Form>
-
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>take image from your device</Form.Label>
                 <Form.Control type="file" />
@@ -33,7 +26,10 @@ const CreatePost = () =>{
                 <Form.Control as="textarea" rows={3} placeholder="Enter description"/>
             </Form.Group>
          </Form>
-        </>
+         <p>pricing : <input type="number"/></p>
+         
+            <button>submite</button>
+         </div>
     )
 }
 export default CreatePost

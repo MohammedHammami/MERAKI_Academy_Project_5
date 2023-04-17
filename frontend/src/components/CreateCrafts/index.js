@@ -1,5 +1,5 @@
 import {useDispatch,useSelector } from "react-redux"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
 import {setCrafts} from "../Redux/redusers/crafts"
@@ -7,6 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 const CreateCrafte = () =>{
+    const [craft, setCraft] = useState({})
 
     const dispatch = useDispatch();
     const state = useSelector((state)=>{
@@ -25,7 +26,7 @@ const CreateCrafte = () =>{
         })
         
       }, [])
-
+      
     return(
         <div className='create-post-container'>
             {/* <p>i am a CreateCrafte componnent</p> */}
@@ -36,7 +37,7 @@ const CreateCrafte = () =>{
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {state.crafts.map((craft,id)=>{
-                  return (<Dropdown.Item key={id}>{craft.name}</Dropdown.Item>)
+                  return (<Dropdown.Item onClick={()=>{setCraft(craft)}} key={id}>{craft.name}</Dropdown.Item>)
                 })}
               </Dropdown.Menu>
             </Dropdown>
