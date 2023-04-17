@@ -16,7 +16,8 @@ export const authSlice=createSlice({
         state.isLoggedIn=true
         localStorage.setItem(state.token,'token')
         localStorage.setItem(state.userId,'userId')
-        console.log('done token and userId');
+
+        console.log('done token and  _userId');
     },
     
     setLogout :(state)=>{
