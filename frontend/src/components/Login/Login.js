@@ -2,11 +2,19 @@ import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import axios from 'axios';
+
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin, setUserInfo } from '../Redux/redusers/auth';
+
+
 const Login = () => {
 const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
+
+  const dispatch = useDispatch();
+
 
   const handelLogin = ()=>{
   
@@ -20,6 +28,11 @@ const navigate = useNavigate()
     .post("http://localhost:5000/users/login",user )
       .then((result) => {
         console.log(result.data);
+
+        dispatch(setLogin(result.data))
+        dispatch(setUserInfo(result.data))
+        
+
       })
       .catch((err) => {
         console.log(err);
