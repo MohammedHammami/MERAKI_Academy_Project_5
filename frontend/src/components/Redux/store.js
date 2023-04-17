@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice } from "./redusers/auth";
-import { postSlice } from "./redusers/posts";
-import {craftsSlice } from "./redusers/crafts";
-import {orderSlice } from "./redusers/order";
+import { authSlice } from "./reducers/auth";
+import { postSlice } from "./reducers/posts";
+import {craftsSlice } from "./reducers/crafts";
+import {orderSlice } from "./reducers/order";
 export default configureStore ({
     reducer :{
         auth:  authSlice.reducer,
