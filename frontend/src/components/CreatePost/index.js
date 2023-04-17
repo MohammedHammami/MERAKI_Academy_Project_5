@@ -28,7 +28,7 @@ const CreatePost = () =>{
          </Form>
          <p>pricing : <input type="number"/></p>
          
-            <button>submite</button>
+            <button>Submit</button>
          </div>
     )
 }

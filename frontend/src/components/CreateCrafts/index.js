@@ -6,7 +6,7 @@ import {setCrafts} from "../Redux/redusers/crafts"
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-const CreateCrafte = () =>{
+const CreateCraft = () =>{
     const [craft, setCraft] = useState({})
 
     const dispatch = useDispatch();
@@ -43,9 +43,9 @@ const CreateCrafte = () =>{
             </Dropdown>
             <p>name user login</p>
             <p>phone user login</p>
-            <button>submite</button>
+            <button>Submit</button>
 
         </div>
     )
 }
-export default CreateCrafte
+export default CreateCraft
