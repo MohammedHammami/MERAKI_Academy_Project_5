@@ -1,9 +1,10 @@
 const express = require("express");
-const { getAllCrafts,updatecraftById } = require("../controllers/crafts");
+const { getAllCrafts,updateUserCraft } = require("../controllers/crafts");
+const authentication=require('../middleware/authentication')
 
 const craftsRouter = express.Router();
 craftsRouter.get("/",  getAllCrafts);
-craftsRouter.put("/:id",  updatecraftById);
+craftsRouter.put("/:userId",authentication,updateUserCraft);
 
 
 

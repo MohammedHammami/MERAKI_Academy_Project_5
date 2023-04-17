@@ -87,10 +87,32 @@ const deletePostById = (req, res) =>{
             })
         })
 }
+const getAllPosts = (req, res) =>{
+    const queryString = `SELECT * FROM posts`
+
+    pool.
+        query(queryString)
+        .then((result)=>{
+            res.status(200).json({
+                success: true,
+                massage: "all posts",
+                posts:result.rows
+            })
+        })
+        .catch((err)=>{
+            res.status(500).json({
+                success: false,
+                message: "Server error",
+                error: err
+            })
+        })
+}
+
 
 module.exports = {
     createNewPost,
     getPostsByuser,
     updatePostById,
     deletePostById,
+    getAllPosts,
 }

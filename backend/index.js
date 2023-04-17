@@ -9,7 +9,7 @@ const usersRouter = require("./routes/users");
 const craftsRouter=require('./routes/crafts');
 const postsRouter = require("./routes/posts");
 
-const stateRouter =require('./routes/state')
+const commentsRouter = require("./routes/comments")
 const reviewRouter=require('./routes/reviews')
 const roleRouter=require('./routes/role')
 
@@ -25,10 +25,12 @@ app.use(express.json());
 app.use("/users", usersRouter);
 app.use("/crafts", craftsRouter);
 app.use("/posts", postsRouter);
-app.use('/state',stateRouter);
+app.use("/comments", commentsRouter)
+app.use('/state',stateRouter)
 
 app.use('/review',reviewRouter);
 app.use('/role', roleRouter)
+
 
 app.use("/orders", orderRouter);
 app.use("/notifications", notificationsRouter);
