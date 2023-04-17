@@ -7,5 +7,8 @@ export default configureStore ({
         auth:  authSlice.reducer,
         post:  postSlice.reducer,
         craft: craftsSlice.reducer
+export default configureStore ({
+    reducer :{
+        auth:  authSlice.reducer,
     }
 })
