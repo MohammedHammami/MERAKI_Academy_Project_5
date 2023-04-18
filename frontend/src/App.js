@@ -14,8 +14,6 @@ function App() {
       </header>
     <Navbar></Navbar>
 
-    <CreateOrder></CreateOrder>
-
       <Routes>
       <Route path="/Register" element={<Register />} />
         <Route path="/Register" element={<Register />} />
