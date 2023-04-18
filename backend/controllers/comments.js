@@ -1,7 +1,7 @@
 const pool = require("../models/db")
 
 const createNewComment = (req, res) =>{
-    
+
     const requester_user_id =  req.token.userId;
     const { description } = req.body
 console.log('requester_user_id:',requester_user_id);

@@ -11,6 +11,5 @@ export default configureStore ({
         post:  postSlice.reducer,
         craft: craftsSlice.reducer,
         order: orderSlice.reducer,
-
     }
 })
