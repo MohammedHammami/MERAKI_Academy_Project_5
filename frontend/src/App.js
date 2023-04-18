@@ -14,7 +14,7 @@ function App() {
       <header className="App-header">
         <h1> </h1>
       </header>
-    <CreateNotification></CreateNotification>
+    <CreateCraft></CreateCraft>
     <Navbar></Navbar>
       <Routes>
       <Route path="/Register" element={<Register />} />
