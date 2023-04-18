@@ -58,13 +58,6 @@ const Home = () => {
               </Card>
             })
         }
-        {/* <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card> */}
       </div>
     </>
   );
