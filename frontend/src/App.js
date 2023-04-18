@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login/Login";
 import CreatePost from "./components/CreatePost";
 import CreateCraft from "./components/CreateCrafts";
+import CreateOrder from "./components/CreateOrder";
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,7 @@ function App() {
       </header>
     <Navbar></Navbar>
 
-    <CreateCraft></CreateCraft>
+    <CreateOrder></CreateOrder>
 
       <Routes>
       <Route path="/Register" element={<Register />} />
