@@ -133,8 +133,8 @@ navigate('/Register')
               console.log(credentialResponse);
               const token = credentialResponse.credential;
               const userObj = jwtDecode(token);
-              dispatch(setLogin(result.data))
-        dispatch(setUserInfo(result.data))
+              dispatch(setLogin(credentialResponse.data))
+        dispatch(setUserInfo(credentialResponse.data))
               
               console.log('userObj: ',userObj);
               // handelLogingoogel(userObj);
