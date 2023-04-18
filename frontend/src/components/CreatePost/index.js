@@ -11,12 +11,7 @@ import axios from "axios"
 
 
 const CreatePost = () =>{
-  const state = useSelector((state) => {
-    console.log(state.auth);
-    return {
-	    token:state.auth.token,
-    };
-  });
+  
     const [title, setTitle] = useState("second")
     const [description, setDescription] = useState("")
     const [pricing, setPricing] = useState("")

@@ -7,6 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 const CreateCraft = () =>{
+   const token = localStorage.getItem("token")
     const [craft, setCraft] = useState({})
 
     const dispatch = useDispatch();
@@ -14,7 +15,6 @@ const CreateCraft = () =>{
     const state = useSelector((state)=>{
         return{
           userId:state.auth.userId,
-          token:state.auth.token,
           crafts:state.craft.craft,
           userInfo:state.auth.userInfo,
         }
@@ -36,7 +36,7 @@ const CreateCraft = () =>{
       console.log(craft);
       axios
       .put(`http://localhost:5000/crafts/${state.userId}`,{craft_id:craft.id},{headers: {
-        Authorization: state.token
+        Authorization: token
         }})
       .then((result)=>{
         console.log(result);
