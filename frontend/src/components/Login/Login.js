@@ -130,16 +130,14 @@ navigate('/Register')
     <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
+             
               const token = credentialResponse.credential;
               const userObj = jwtDecode(token);
-              dispatch(setLogin(result.data))
-        dispatch(setUserInfo(result.data))
+              dispatch(setLoginGoogel(credentialResponse))
+        dispatch(setUserInfo(credentialResponse))
               
               console.log('userObj: ',userObj);
-              // handelLogingoogel(userObj);
-
-             
+            
             }}
             onError={() => {
               console.log("Login Failed");

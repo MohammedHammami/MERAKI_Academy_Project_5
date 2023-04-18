@@ -20,12 +20,13 @@ export const authSlice=createSlice({
         console.log('done token and  _userId');
     },
     setLoginGoogel :(state,action)=>{
-      state.token=action.payload.token
-      state.userId=action.payload.userId
+      state.token=action.payload.credential
+      state.userId=action.payload.clientId
       state.isLoggedIn=true
-      localStorage.setItem('token',state.token)
-      localStorage.setItem('userId',state.userId)
-
+      // localStorage.setItem('token',state.token)
+      // localStorage.setItem('userId',state.userId)
+console.log('state.userId:',state.userId);
+console.log('state.token:',state.token);
       console.log('done token and  _userId');
   },
     

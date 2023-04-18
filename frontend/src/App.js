@@ -6,8 +6,7 @@ import Login from "./components/Login/Login";
 import CreatePost from "./components/CreatePost";
 import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
-import GetAllOrders from "./components/GetAllOrders";
-
+import Comments from "./components/Comments/Comments";
 
 function App() {
   return (
