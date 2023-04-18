@@ -16,6 +16,7 @@ const CreateOrder = () =>{
     const [receiver_user_id,setReceiver_user_id] = useState(4)
 
     const submitFn = ()=>{
+        console.log(localStorage.getItem("token"));
         axios
         .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id},{headers: {
             Authorization: state.token
