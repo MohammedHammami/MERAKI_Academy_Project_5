@@ -4,7 +4,7 @@ const authentication = require("../middleware/authentication")
 
 const commentsRouter = express.Router();
 
-commentsRouter.post("/:id", authentication, createNewComment)
+commentsRouter.post("/", authentication, createNewComment)
 commentsRouter.get("/:id", authentication, getCommentsByUser)
 commentsRouter.delete("/:id", authentication, deleteCommentById)
 
