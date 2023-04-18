@@ -10,8 +10,9 @@ import{ setPost } from "../Redux/redusers/posts"
 const Home = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => {
+        console.log(state.post.posts);
         return {
-          posts: state.posts.posts,
+          posts: state.post.posts.posts,
         };
       });
 
