@@ -26,7 +26,7 @@ const CreatePost = () =>{
           Authorization: state.token
           }})
         .then((result)=>{
-          console.log(result);
+          console.log(result.data);
         })
         .catch((err)=>{
           console.log(err);
