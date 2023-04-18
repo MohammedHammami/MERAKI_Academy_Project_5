@@ -1,24 +1,16 @@
 import "./style.css"
-import {useDispatch,useSelector } from "react-redux"
-
-
-import React, { useEffect, useState } from 'react'
-
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
-
-
 import axios from "axios"
-
-
 const CreatePost = () =>{
-  
+    const token = localStorage.getItem("token")
     const [title, setTitle] = useState("second")
     const [description, setDescription] = useState("")
     const [pricing, setPricing] = useState("")
     const submitFn = ()=>{
         axios
         .post(`http://localhost:5000/posts`,{title,description,pricing},{headers: {
-          Authorization: state.token
+          Authorization: token
           }})
         .then((result)=>{
           console.log(result.data);
