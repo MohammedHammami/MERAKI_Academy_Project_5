@@ -7,12 +7,14 @@ import CreatePost from "./components/CreatePost";
 import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
 import GetAllOrders from "./components/GetAllOrders";
+import CreateNotification from "./components/CreateNotification";
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1> </h1>
       </header>
+    <CreateNotification></CreateNotification>
     <Navbar></Navbar>
       <Routes>
       <Route path="/Register" element={<Register />} />
