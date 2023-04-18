@@ -6,11 +6,7 @@ import Form from 'react-bootstrap/Form';
 
 
 const CreateOrder = () =>{
-    const state = useSelector((state) => {
-        return {
-            token:state.auth.token,
-        };
-      });
+    const token = localStorage.getItem("token")
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
     const [receiver_user_id,setReceiver_user_id] = useState(4)
@@ -19,7 +15,7 @@ const CreateOrder = () =>{
         console.log(localStorage.getItem("token"));
         axios
         .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id},{headers: {
-            Authorization: state.token
+            Authorization: token
             }})
         .then((result)=>{
             console.log(result);

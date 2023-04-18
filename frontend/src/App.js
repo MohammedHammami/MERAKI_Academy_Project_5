@@ -16,12 +16,12 @@ function App() {
         <h1> </h1>
       </header>
     <Navbar></Navbar>
-    {/* <CreatePost/> */}
       <Routes>
       <Route path="/Register" element={<Register />} />
       <Route path="/CreateOrder" element={<CreateOrder />} />
       <Route path="/CreatePost" element={<CreatePost />} />
-        <Route path="/CreateCraft" element={<CreateCraft />} />
+      <Route path="/CreateCraft" element={<CreateCraft />} />
+      <Route path="/GetAllOrders" element={<CreateCraft />} />
 
         <Route path="/login" element={<Login />} />
       </Routes>
