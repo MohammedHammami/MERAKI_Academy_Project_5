@@ -1,7 +1,6 @@
 import "./style.css"
 import {useDispatch,useSelector } from "react-redux"
 
-import React, { useEffect } from 'react'
 
 import React, { useEffect, useState } from 'react'
 
@@ -58,13 +57,6 @@ const CreatePost = () =>{
          <p>pricing : <input type="number"/></p>
          
             <button>Submit</button>
-
-                <Form.Control as="textarea" rows={3} placeholder="Enter description" onChange={(e)=>{setDescription(e.target.value)}}/>
-            </Form.Group>
-         </Form>
-         <p>pricing : <input type="number" placeholder="Enter pricing" onChange={(e)=>{setPricing(e.target.value)}}/></p>
-         
-            <button onClick={submitFn}>Submit</button>
 
          </div>
     )
