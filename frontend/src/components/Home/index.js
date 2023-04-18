@@ -7,15 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import{ setPost } from "../Redux/redusers/posts"
 
 const Home = () => {
+    const dispatch = useDispatch();
+    const state = useSelector((state) => {
+        return {
+          posts: state.posts.posts,
+        };
+      });
 
     const getAllPosts = ()=>{
         axios
             .get("http://localhost:5000/posts/")
             .then((res)=>{
-
+                dispatch(setPost(res.data))
             })
-            .catch(()=>{
-
+            .catch((err)=>{
+                console.log(err);
             })
     }
   return (
