@@ -48,7 +48,7 @@ const navigate = useNavigate()
       <MDBRow>
 
         <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image" />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
         </MDBCol> 
 
         <MDBCol col='4' md='6'>
@@ -79,7 +79,7 @@ const navigate = useNavigate()
                       const email = e.target.value;
                       setEmail(email);
                     }}/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" onChange={(e) => {
+          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg1' type='password' size="lg" onChange={(e) => {
                       const password = e.target.value;
                       setPassword(password);
                     }}/>

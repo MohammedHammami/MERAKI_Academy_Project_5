@@ -47,9 +47,9 @@ const updateOrderById = (req,res) => {
         console.log(err.message);
       });
 }
-const getOrderById = (req,res) => {
-    const {id} = req.body
-    const query=`SELECT * FROM orders WHERE id = ${id};`
+const getOrderByReceiverId = (req,res) => {
+    const {receiver_user_id} = req.body
+    const query=`SELECT * FROM orders WHERE receiver_user_id = ${receiver_user_id};`
     pool
     .query(query)
     .then((result) => {
@@ -88,9 +88,10 @@ const getAllOrder = (req,res) => {
         console.log(err.message);
       });
 }
+
 module.exports = {
     createNewOrder,
     updateOrderById,
-    getOrderById,
+    getOrderByReceiverId,
     getAllOrder,
 }

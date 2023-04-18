@@ -5,6 +5,8 @@ import Register from "./components/Register";
 import Login from "./components/Login/Login";
 import CreatePost from "./components/CreatePost";
 import CreateCraft from "./components/CreateCrafts";
+import CreateOrder from "./components/CreateOrder";
+import GetAllOrders from "./components/GetAllOrders";
 function App() {
   return (
     <div className="App">
@@ -12,9 +14,6 @@ function App() {
         <h1> </h1>
       </header>
     <Navbar></Navbar>
-
-    <CreatePost></CreatePost>
-
       <Routes>
       <Route path="/Register" element={<Register />} />
         <Route path="/Register" element={<Register />} />

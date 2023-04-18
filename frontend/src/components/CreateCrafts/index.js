@@ -10,14 +10,19 @@ const CreateCraft = () =>{
     const [craft, setCraft] = useState({})
 
     const dispatch = useDispatch();
+    
     const state = useSelector((state)=>{
         return{
-            crafts:state.craft.craft
+          userId:state.auth.userId,
+          token:state.auth.token,
+          crafts:state.craft.craft,
+          userInfo:state.auth.userInfo,
         }
     })
+    console.log(state.userInfo);
     useEffect(() => {
         axios
-        .get("http://localhost:5000/crafts")
+        .get("http://localhost:5000/crafts/")
         .then((result)=>{
             dispatch(setCrafts(result.data.result))
         })
@@ -30,8 +35,8 @@ const CreateCraft = () =>{
     const submitFn = ()=>{
       console.log(craft);
       axios
-      .put(`http://localhost:5000/crafts/`,{craft_id:craft.id},{headers: {
-        Authorization: ""
+      .put(`http://localhost:5000/crafts/${state.userId}`,{craft_id:craft.id},{headers: {
+        Authorization: state.token
         }})
       .then((result)=>{
         console.log(result);
@@ -55,14 +60,9 @@ const CreateCraft = () =>{
                 })}
               </Dropdown.Menu>
             </Dropdown>
-            <p>name user login</p>
-            <p>phone user login</p>
-
-            <button>Submit</button>
-
+            <p>{state.userInfo.first_name}</p>
+            <p>{state.userInfo.Phone_number}</p>
             <button onClick={submitFn}>Submit</button>
-
-
         </div>
     )
 }

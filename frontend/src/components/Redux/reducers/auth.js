@@ -7,7 +7,7 @@ export const authSlice=createSlice({
     token :null,
     userId :null,
     isLoggedIn :false,
-    userInfo:null
+    userInfo:{}
   },
   reducers:{
     setLogin :(state,action)=>{
@@ -33,7 +33,6 @@ export const authSlice=createSlice({
   }
 
 })
-export const {setLogin,
-    setLogout,setUserInfo}=authSlice.actions
+export const {setLogin,setLogout,setUserInfo}=authSlice.actions
     
 export default authSlice.reducer
