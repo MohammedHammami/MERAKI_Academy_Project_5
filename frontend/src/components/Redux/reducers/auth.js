@@ -14,11 +14,20 @@ export const authSlice=createSlice({
         state.token=action.payload.token
         state.userId=action.payload.userId
         state.isLoggedIn=true
-        localStorage.setItem(state.token,'token')
-        localStorage.setItem(state.userId,'userId')
+        localStorage.setItem('token',state.token)
+        localStorage.setItem('userId',state.userId)
 
         console.log('done token and  _userId');
     },
+    setLoginGoogel :(state,action)=>{
+      state.token=action.payload.token
+      state.userId=action.payload.userId
+      state.isLoggedIn=true
+      localStorage.setItem('token',state.token)
+      localStorage.setItem('userId',state.userId)
+
+      console.log('done token and  _userId');
+  },
     
     setLogout :(state)=>{
         state.token =null
@@ -33,6 +42,6 @@ export const authSlice=createSlice({
   }
 
 })
-export const {setLogin,setLogout,setUserInfo}=authSlice.actions
+export const {setLogin,setLogout,setUserInfo,setLoginGoogel}=authSlice.actions
     
 export default authSlice.reducer
