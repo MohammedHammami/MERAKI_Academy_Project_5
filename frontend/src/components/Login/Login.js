@@ -1,61 +1,67 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import axios from 'axios';
+import {
+  MDBContainer,
+  MDBCol,
+  MDBRow,
+  MDBBtn,
+  MDBIcon,
+  MDBInput,
+  MDBCheckbox,
+} from "mdb-react-ui-kit";
+import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
-import jwtDecode from "jwt-decode";
-import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setUserInfo,setLoginGoogel } from '../Redux/reducers/auth';
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setLogin,
+  setUserInfo,
+  setLoginGoogel,
+  setUserInfoGoogle,
+} from "../Redux/reducers/auth";
 
 const Login = () => {
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
 
   const dispatch = useDispatch();
 
-
-  const handelLogin = ()=>{
-  
+  const handelLogin = () => {
     const user = {
       email: email,
       password: password,
-      
     };
 
     axios
-    .post("http://localhost:5000/users/login",user )
+      .post("http://localhost:5000/users/login", user)
       .then((result) => {
         console.log(result.data);
 
-        dispatch(setLogin(result.data))
-        dispatch(setUserInfo(result.data))
-        
-
+        dispatch(setLogin(result.data));
+        dispatch(setUserInfo(result.data));
       })
       .catch((err) => {
         console.log(err);
-        setDone(false)
+        setDone(false);
       });
-  }
+  };
   return (
     <>
-    
-   
-    <MDBContainer fluid className="p-3 my-5 h-custom">
+      <MDBContainer fluid className="p-3 my-5 h-custom">
+        <MDBRow>
+          <MDBCol col="10" md="6">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="img-fluid"
+              alt="Sample image"
+            />
+          </MDBCol>
 
-      <MDBRow>
-
-        <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
-        </MDBCol> 
-
-        <MDBCol col='4' md='6'>
-
-          {/* <div className="d-flex flex-row align-items-center justify-content-center">
+          <MDBCol col="4" md="6">
+            {/* <div className="d-flex flex-row align-items-center justify-content-center">
 
             <p className="lead fw-normal mb-0 me-3">Sign in with</p>
 
@@ -73,92 +79,132 @@ const navigate = useNavigate()
 
           </div> */}
 
-          {/* <div className="divider d-flex align-items-center my-4">
+            {/* <div className="divider d-flex align-items-center my-4">
             <p className="text-center fw-bold mx-3 mb-0">Or</p>
           </div> */}
 
-          <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg" onChange={(e) => {
-                      const email = e.target.value;
-                      setEmail(email);
-                    }}/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg1' type='password' size="lg" onChange={(e) => {
-                      const password = e.target.value;
-                      setPassword(password);
-                    }}/>
+            <MDBInput
+              wrapperClass="mb-4"
+              label="Email address"
+              id="formControlLg"
+              type="email"
+              size="lg"
+              onChange={(e) => {
+                const email = e.target.value;
+                setEmail(email);
+              }}
+            />
+            <MDBInput
+              wrapperClass="mb-4"
+              label="Password"
+              id="formControlLg1"
+              type="password"
+              size="lg"
+              onChange={(e) => {
+                const password = e.target.value;
+                setPassword(password);
+              }}
+            />
 
-          <div className="d-flex justify-content-between mb-4">
-            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            <a href="!#">Forgot password?</a>
+            <div className="d-flex justify-content-between mb-4">
+              <MDBCheckbox
+                name="flexCheck"
+                value=""
+                id="flexCheckDefault"
+                label="Remember me"
+              />
+              <a href="!#">Forgot password?</a>
+            </div>
+
+            <div className="text-center text-md-start mt-4 pt-2">
+              <MDBBtn className="mb-0 px-5" size="lg" onClick={handelLogin}>
+                Login
+              </MDBBtn>
+              <p className="small fw-bold mt-2 pt-1 mb-2">
+                Don't have an account?{" "}
+                <a
+                  href="#!"
+                  className="link-danger"
+                  onClick={() => {
+                    navigate("/Register");
+                  }}
+                >
+                  Register
+                </a>
+              </p>
+            </div>
+          </MDBCol>
+        </MDBRow>
+
+        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+          <div className="text-white mb-3 mb-md-0">
+            Copyright © 2023. All rights reserved.
           </div>
 
-          <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn className="mb-0 px-5" size='lg' 
-             onClick={handelLogin}>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger" onClick={()=>{
-navigate('/Register')
-            }}>Register</a></p>
+          <div>
+            <MDBBtn
+              tag="a"
+              color="none"
+              className="mx-3"
+              style={{ color: "white" }}
+            >
+              <MDBIcon fab icon="facebook-f" size="md" />
+            </MDBBtn>
+
+            <MDBBtn
+              tag="a"
+              color="none"
+              className="mx-3"
+              style={{ color: "white" }}
+            >
+              <MDBIcon fab icon="twitter" size="md" />
+            </MDBBtn>
+
+            <MDBBtn
+              tag="a"
+              color="none"
+              className="mx-3"
+              style={{ color: "white" }}
+            >
+              <MDBIcon fab icon="google" size="md" />
+            </MDBBtn>
+
+            <MDBBtn
+              tag="a"
+              color="none"
+              className="mx-3"
+              style={{ color: "white" }}
+            >
+              <MDBIcon fab icon="linkedin-in" size="md" />
+            </MDBBtn>
+
+            <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  const token = credentialResponse.credential;
+
+                  dispatch(setLoginGoogel(credentialResponse));
+                  dispatch(setUserInfoGoogle(credentialResponse));
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                auto_select
+              />
+            </GoogleOAuthProvider>
           </div>
-
-        </MDBCol>
-
-      </MDBRow>
-
-      <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-
-        <div className="text-white mb-3 mb-md-0">
-          Copyright © 2023. All rights reserved.
         </div>
-
-        <div>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white' }}>
-            <MDBIcon fab icon='facebook-f' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='twitter' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='google' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='linkedin-in' size="md"/>
-          </MDBBtn>
-
-    <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-              const token = credentialResponse.credential;
-              const userObj = jwtDecode(token);
-              dispatch(setLogin(credentialResponse.data))
-        dispatch(setUserInfo(credentialResponse.data))
-              
-              console.log('userObj: ',userObj);
-              // handelLogingoogel(userObj);
-
-             
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            auto_select
-          />
- </GoogleOAuthProvider>
-        </div>
-
-      </div>
-      {done ? <></> :<><p>Register Faild</p> </> }
-
-    </MDBContainer>
- 
-
-    
-    
+        {done ? (
+          <></>
+        ) : (
+          <>
+            <p>Register Faild</p>{" "}
+          </>
+        )}
+      </MDBContainer>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -7,6 +7,7 @@ import CreatePost from "./components/CreatePost";
 import Home from "./components/Home";
 import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
+import Comments from "./components/Comments/Comments";
 import GetAllOrders from "./components/GetAllOrders";
 
 function App() {
@@ -18,13 +19,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/Register" element={<Register />} />
-        <Route path="/Register" element={<Register />} />
         <Route path="/posts" element={<CreatePost />} />
-        <Route path="/Register" element={<Register />} />
         <Route path="/CreateOrder" element={<CreateOrder />} />
         <Route path="/CreatePost" element={<CreatePost />} />
         <Route path="/CreateCraft" element={<CreateCraft />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/Comment" element={<Comments />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
