@@ -1,6 +1,6 @@
 const express = require("express");
 const authentication=require('../middleware/authentication')
-
+const authorization=require('../middleware/authorization')
 const {
     createNewPost,
     getPostsByuser,
