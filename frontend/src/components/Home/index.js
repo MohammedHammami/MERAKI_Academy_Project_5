@@ -4,6 +4,7 @@ import "./index.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import{ setPost } from "../Redux/redusers/posts"
 
 const Home = () => {
@@ -24,6 +25,9 @@ const Home = () => {
                 console.log(err);
             })
     }
+    useEffect(() => {
+        getAllPosts();
+      }, []);
   return (
     <>
       <header style={{ paddingLeft: 0 }}>
@@ -42,52 +46,24 @@ const Home = () => {
         ></div>
       </header>
       <div className="cards">
-        <Card className="post" style={{ width: "200", height : "150"}}>
+        {
+            state.posts.map((post,i)=>{
+                return <Card className="post" style={{ width: "200", height : "150"}}>
+                <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
+                <Card.Body>
+                  <Card.Title>{post.title}</Card.Title>
+                  <Button variant="primary">order now</Button>
+                </Card.Body>
+              </Card>
+            })
+        }
+        {/* <Card className="post" style={{ width: "200", height : "150"}}>
           <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
           <Card.Body>
             <Card.Title>Card Title</Card.Title>
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
-        </Card>
-        <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <Card className="post" style={{ width: "200", height : "150"}}>
-          <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+        </Card> */}
       </div>
     </>
   );
