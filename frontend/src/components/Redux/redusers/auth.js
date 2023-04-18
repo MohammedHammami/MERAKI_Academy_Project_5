@@ -10,13 +10,13 @@ export const authSlice=createSlice({
     setLogin :(state,action)=>{
         state.token=action.payload
         state.isLoggedIn=true
-        localStorage.setItem(state.token,'token')
+        localStorage.setItem('token',state.token)
         console.log('done token');
     },
     setUserId  :(state,action)=>{
         state.userId=action.payload
         
-        localStorage.setItem(state.userId,'userId')
+        localStorage.setItem('userId',state.userId)
         console.log('done userId');
 
     },
