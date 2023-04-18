@@ -3,9 +3,21 @@ import axios from "axios";
 import "./index.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useDispatch, useSelector } from "react-redux";
+import{ setPost } from "../Redux/redusers/posts"
 
 const Home = () => {
 
+    const getAllPosts = ()=>{
+        axios
+            .get("http://localhost:5000/posts/")
+            .then((res)=>{
+
+            })
+            .catch(()=>{
+
+            })
+    }
   return (
     <>
       <header style={{ paddingLeft: 0 }}>
