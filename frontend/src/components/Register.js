@@ -14,6 +14,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 
+
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

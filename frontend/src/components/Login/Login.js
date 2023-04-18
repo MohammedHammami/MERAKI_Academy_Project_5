@@ -2,9 +2,11 @@ import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import axios from 'axios';
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setUserInfo } from '../Redux/reducers/auth';
+import { setLogin, setUserInfo,setLoginGoogel } from '../Redux/reducers/auth';
 
 
 const Login = () => {
@@ -125,6 +127,26 @@ navigate('/Register')
             <MDBIcon fab icon='linkedin-in' size="md"/>
           </MDBBtn>
 
+    <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              const token = credentialResponse.credential;
+              const userObj = jwtDecode(token);
+              dispatch(setLogin(result.data))
+        dispatch(setUserInfo(result.data))
+              
+              console.log('userObj: ',userObj);
+              // handelLogingoogel(userObj);
+
+             
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+            auto_select
+          />
+ </GoogleOAuthProvider>
         </div>
 
       </div>
@@ -132,8 +154,6 @@ navigate('/Register')
 
     </MDBContainer>
  
-
-
 
     
     
