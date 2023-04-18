@@ -12,8 +12,7 @@ function App() {
         <h1> </h1>
       </header>
     <Navbar></Navbar>
-
-    <CreatePost></CreatePost>
+    
 
       <Routes>
       <Route path="/Register" element={<Register />} />
