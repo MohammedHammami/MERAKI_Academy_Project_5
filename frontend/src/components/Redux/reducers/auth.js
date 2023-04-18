@@ -4,8 +4,8 @@ import jwtDecode from "jwt-decode";
 export const authSlice=createSlice({
   name :'auth',
   initialState:{
-    token :null,
-    userId :null,
+    token :null || localStorage.getItem('token'),
+    userId :null|| localStorage.getItem('userId'),
     isLoggedIn :false,
     userInfo:{}
   },
@@ -23,10 +23,9 @@ export const authSlice=createSlice({
       state.token=action.payload.credential
       state.userId=action.payload.clientId
       state.isLoggedIn=true
-      // localStorage.setItem('token',state.token)
-      // localStorage.setItem('userId',state.userId)
-console.log('state.userId:',state.userId);
-console.log('state.token:',state.token);
+      localStorage.setItem('token',state.token)
+      localStorage.setItem('userId',state.userId)
+
       console.log('done token and  _userId');
   },
     
@@ -39,10 +38,14 @@ console.log('state.token:',state.token);
     setUserInfo :(state,action)=>{
       state.userInfo = jwtDecode(action.payload.token)
       console.log('state.userInfo:',state.userInfo);
+    },
+    setUserInfoGoogle :(state,action)=>{
+      state.userInfo = jwtDecode(action.payload.credential)
+      console.log('state.userInfo:',state.userInfo);
     }
   }
 
 })
-export const {setLogin,setLogout,setUserInfo,setLoginGoogel}=authSlice.actions
+export const {setLogin,setLogout,setUserInfo,setLoginGoogel,setUserInfoGoogle}=authSlice.actions
     
 export default authSlice.reducer

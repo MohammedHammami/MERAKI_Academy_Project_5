@@ -4,9 +4,9 @@ import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } f
 import axios from 'axios';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
-import jwtDecode from "jwt-decode";
+
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setUserInfo,setLoginGoogel } from '../Redux/reducers/auth';
+import { setLogin, setUserInfo,setLoginGoogel,setUserInfoGoogle } from '../Redux/reducers/auth';
 
 
 const Login = () => {
@@ -130,13 +130,13 @@ navigate('/Register')
     <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
-             
+              console.log(credentialResponse);
               const token = credentialResponse.credential;
-              const userObj = jwtDecode(token);
-              dispatch(setLoginGoogel(credentialResponse))
-        dispatch(setUserInfo(credentialResponse))
               
-              console.log('userObj: ',userObj);
+              dispatch(setLoginGoogel(credentialResponse))
+        dispatch(setUserInfoGoogle(credentialResponse))
+              
+              
             
             }}
             onError={() => {
