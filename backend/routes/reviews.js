@@ -6,7 +6,7 @@ const reviewRouter=express.Router()
 
 reviewRouter.post('/', authentication,createNewReviews)
 reviewRouter.put('/:id', authentication,updatestateById)
-reviewRouter.get('/:order_id', authentication,getREviewsByuser)
+reviewRouter.get('/:order_id',getREviewsByuser)
 
 
 module.exports=reviewRouter
