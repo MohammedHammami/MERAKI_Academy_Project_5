@@ -61,7 +61,7 @@ const CreateCraft = () =>{
               </Dropdown.Menu>
             </Dropdown>
             <p>{state.userInfo.first_name}</p>
-            <p>{state.userInfo.Phone_Number}</p>
+            <p>{state.userInfo.Phone_number}</p>
             <button onClick={submitFn}>Submit</button>
         </div>
     )

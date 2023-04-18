@@ -7,7 +7,7 @@ export const authSlice=createSlice({
     token :null,
     userId :null,
     isLoggedIn :false,
-    userInfo:null
+    userInfo:{}
   },
   reducers:{
     setLogin :(state,action)=>{
