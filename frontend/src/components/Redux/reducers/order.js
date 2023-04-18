@@ -13,5 +13,5 @@ export const orderSlice = createSlice({
 
 })
 
-export const {setOrder} = postSlice.actions
+export const {setOrder} = orderSlice.actions
 export default orderSlice.reducers

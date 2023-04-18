@@ -4,7 +4,7 @@ import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } f
 import axios from 'axios';
 
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setUserInfo } from '../Redux/redusers/auth';
+import { setLogin, setUserInfo } from '../Redux/reducers/auth';
 
 
 const Login = () => {
