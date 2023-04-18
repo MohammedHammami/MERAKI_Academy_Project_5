@@ -5,17 +5,9 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import{ setPost } from "../Redux/redusers/posts"
+import{ setPost } from "../Redux/reducers/posts"
 
 const Home = () => {
-    const dispatch = useDispatch();
-    const state = useSelector((state) => {
-        console.log(state.post.posts);
-        return {
-          posts: state.post.posts.posts,
-        };
-      });
-
     const getAllPosts = ()=>{
         axios
             .get("http://localhost:5000/posts/")
@@ -29,6 +21,16 @@ const Home = () => {
     useEffect(() => {
         getAllPosts();
       }, []);
+
+    const dispatch = useDispatch();
+    const state = useSelector((state) => {
+        console.log(state.post.posts);
+        return {
+          posts: state.post.posts.posts,
+        };
+      });
+
+   
   return (
     <>
       <header style={{ paddingLeft: 0 }}>

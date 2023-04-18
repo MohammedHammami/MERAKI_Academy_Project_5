@@ -9,7 +9,6 @@ export const postSlice = createSlice({
         setPost:(state,action)=>{
             state.posts = action.payload;
         }
-        
     }
 
 })

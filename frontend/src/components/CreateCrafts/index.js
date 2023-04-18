@@ -2,22 +2,27 @@ import {useDispatch,useSelector } from "react-redux"
 import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
-import {setCrafts} from "../Redux/redusers/crafts"
+import {setCrafts} from "../Redux/reducers/crafts"
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-const CreateCrafte = () =>{
+const CreateCraft = () =>{
     const [craft, setCraft] = useState({})
 
     const dispatch = useDispatch();
+    
     const state = useSelector((state)=>{
         return{
-            crafts:state.craft.craft
+          userId:state.auth.userId,
+          token:state.auth.token,
+          crafts:state.craft.craft,
+          userInfo:state.auth.userInfo,
         }
     })
+    console.log(state.userInfo);
     useEffect(() => {
         axios
-        .get("http://localhost:5000/crafts")
+        .get("http://localhost:5000/crafts/")
         .then((result)=>{
             dispatch(setCrafts(result.data.result))
         })
@@ -26,7 +31,21 @@ const CreateCrafte = () =>{
         })
         
       }, [])
-      
+
+    const submitFn = ()=>{
+      console.log(craft);
+      axios
+      .put(`http://localhost:5000/crafts/${state.userId}`,{craft_id:craft.id},{headers: {
+        Authorization: state.token
+        }})
+      .then((result)=>{
+        console.log(result);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+
     return(
         <div className='create-post-container'>
             {/* <p>i am a CreateCrafte componnent</p> */}
@@ -41,11 +60,10 @@ const CreateCrafte = () =>{
                 })}
               </Dropdown.Menu>
             </Dropdown>
-            <p>name user login</p>
-            <p>phone user login</p>
-            <button>submite</button>
-
+            <p>{state.userInfo.first_name}</p>
+            <p>{state.userInfo.Phone_number}</p>
+            <button onClick={submitFn}>Submit</button>
         </div>
     )
 }
-export default CreateCrafte
+export default CreateCraft

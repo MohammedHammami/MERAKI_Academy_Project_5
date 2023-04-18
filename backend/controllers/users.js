@@ -78,8 +78,8 @@ const login = (req, res) => {
         res.status(403).json({
           success: false,
           message:
-            "The email doesn’t exist or the password you’ve entered is incorrect",
-          err,
+            "server erro",
+          err:err.message,
         });
       });
   };

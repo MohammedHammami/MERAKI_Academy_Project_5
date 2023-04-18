@@ -1,6 +1,6 @@
 const express = require("express");
 const authentication=require('../middleware/authentication')
-
+const authorization=require('../middleware/authorization')
 const {
     createNewPost,
     getPostsByuser,
@@ -12,7 +12,7 @@ const {
 const postsRouter = express.Router();
 
 postsRouter.post('/',authentication,createNewPost)
-postsRouter.get('/:user_id',authentication,getPostsByuser)
+postsRouter.get('/:user_id',getPostsByuser)
 postsRouter.put('/:postId',authentication,updatePostById)
 postsRouter.delete("/:id", authentication, deletePostById)
 postsRouter.get('/',getAllPosts)

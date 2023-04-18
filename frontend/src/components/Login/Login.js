@@ -2,11 +2,21 @@ import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import axios from 'axios';
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin, setUserInfo,setLoginGoogel } from '../Redux/reducers/auth';
+
+
 const Login = () => {
 const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
+
+  const dispatch = useDispatch();
+
 
   const handelLogin = ()=>{
   
@@ -20,6 +30,11 @@ const navigate = useNavigate()
     .post("http://localhost:5000/users/login",user )
       .then((result) => {
         console.log(result.data);
+
+        dispatch(setLogin(result.data))
+        dispatch(setUserInfo(result.data))
+        
+
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +50,7 @@ const navigate = useNavigate()
       <MDBRow>
 
         <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image" />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
         </MDBCol> 
 
         <MDBCol col='4' md='6'>
@@ -66,7 +81,7 @@ const navigate = useNavigate()
                       const email = e.target.value;
                       setEmail(email);
                     }}/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" onChange={(e) => {
+          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg1' type='password' size="lg" onChange={(e) => {
                       const password = e.target.value;
                       setPassword(password);
                     }}/>
@@ -112,6 +127,26 @@ navigate('/Register')
             <MDBIcon fab icon='linkedin-in' size="md"/>
           </MDBBtn>
 
+    <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              const token = credentialResponse.credential;
+              const userObj = jwtDecode(token);
+              dispatch(setLogin(credentialResponse.data))
+        dispatch(setUserInfo(credentialResponse.data))
+              
+              console.log('userObj: ',userObj);
+              // handelLogingoogel(userObj);
+
+             
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+            auto_select
+          />
+ </GoogleOAuthProvider>
         </div>
 
       </div>
@@ -119,8 +154,6 @@ navigate('/Register')
 
     </MDBContainer>
  
-
-
 
     
     
