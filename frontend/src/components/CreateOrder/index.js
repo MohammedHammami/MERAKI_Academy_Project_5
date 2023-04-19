@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react'
 
 import axios from "axios"
 import Form from 'react-bootstrap/Form';
+import { createBrowserHistory } from 'history';
+
 
 
 const CreateOrder = () =>{
+    const history = createBrowserHistory({ preserveScroll: true });
+    console.log(history);
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
