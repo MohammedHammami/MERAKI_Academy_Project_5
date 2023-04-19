@@ -3,11 +3,13 @@ import axios from "axios";
 import "./index.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import{ setPost } from "../Redux/reducers/posts"
 
 const Home = () => {
+    const navigate = useNavigate();
     const getAllPosts = ()=>{
         axios
             .get("http://localhost:5000/posts/")
@@ -29,7 +31,9 @@ const Home = () => {
           posts: state.post.posts,
         };
       });
-
+      const toOrder = ()=>{
+        navigate("/CreateOrder")
+      }
    
   return (
     <>
@@ -55,7 +59,7 @@ const Home = () => {
                 <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
-                  <Button variant="primary">order now</Button>
+                  <Button variant="primary" onClick={toOrder}>order now</Button>
                 </Card.Body>
               </Card>
             })
