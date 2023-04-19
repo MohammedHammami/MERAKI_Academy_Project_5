@@ -132,11 +132,14 @@ navigate('/Register')
             onSuccess={(credentialResponse) => {
               console.log(credentialResponse);
               const token = credentialResponse.credential;
-              const userObj = jwtDecode(token);
-              dispatch(setLogin(credentialResponse.data))
+              // const userObj = jwtDecode(token);
+              console.log("sss",credentialResponse);
+              dispatch(setLogin(credentialResponse.credential
+                
+                 ))
         dispatch(setUserInfo(credentialResponse.data))
               
-              console.log('userObj: ',userObj);
+              // console.log('userObj: ',userObj);
               // handelLogingoogel(userObj);
 
              

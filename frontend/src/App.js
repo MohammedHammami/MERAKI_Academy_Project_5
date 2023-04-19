@@ -21,7 +21,7 @@ function App() {
       <Route path="/CreateOrder" element={<CreateOrder />} />
       <Route path="/CreatePost" element={<CreatePost />} />
       <Route path="/CreateCraft" element={<CreateCraft />} />
-      <Route path="/GetAllOrders" element={<CreateCraft />} />
+      <Route path="/GetAllOrders" element={<GetAllOrders />} />
 
         <Route path="/login" element={<Login />} />
       </Routes>

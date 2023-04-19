@@ -30,7 +30,7 @@ const CreateCraft = () =>{
           console.log(err);
         })
         
-      }, [])
+      }, [])  
 
     const submitFn = ()=>{
       console.log(craft);
