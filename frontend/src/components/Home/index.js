@@ -26,7 +26,6 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const state = useSelector((state) => {
-        console.log("sssss",state.post.posts);
         return {
           posts: state.post.posts,
         };
