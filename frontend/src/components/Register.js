@@ -13,9 +13,11 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 
 function Register() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -41,13 +43,16 @@ function Register() {
       .post("http://localhost:5000/users/register", newUser)
       .then((result) => {
         console.log(result.data);
+        tologin()
       })
       .catch((err) => {
         console.log(err);
         setDone(false)
       });
   };
-
+  const tologin = ()=>{
+    navigate("/login")
+  }
   return (
     <>
       <MDBContainer fluid>

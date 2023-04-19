@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import{ setPost } from "../Redux/reducers/posts"
 
+
 const Home = () => {
     const navigate = useNavigate();
     const getAllPosts = ()=>{
@@ -30,8 +31,12 @@ const Home = () => {
           posts: state.post.posts,
         };
       });
-      const toOrder = ()=>{
-        navigate("/CreateOrder")
+      const toOrder = (id)=>{
+        
+        navigate({
+          pathname: '/CreateOrder',
+          state: { value: id}
+        });
       }
    
   return (
@@ -58,7 +63,7 @@ const Home = () => {
                 <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
-                  <Button variant="primary" onClick={toOrder}>order now</Button>
+                  <Button variant="primary" onClick={()=>{toOrder(post.id)}}>order now</Button>
                 </Card.Body>
               </Card>
             })
