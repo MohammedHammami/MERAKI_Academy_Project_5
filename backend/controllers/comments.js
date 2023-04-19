@@ -5,12 +5,10 @@ const receiver_user_id =req.params.id
     const requester_user_id =  req.token.userId;
     const { description } = req.body
     const data =[description,requester_user_id,receiver_user_id]
-console.log('requester_user_id:',requester_user_id);
-console.log('description:',description);
     const queryString = `INSERT INTO comments( description, requester_user_id,receiver_user_id) VALUES ($1, $2,$3) RETURNING *;`
 
     pool
-        .query(queryString)
+        .query(queryString,data)
         .then((result)=>{
             res.status(201).json({
                 success: true,
@@ -30,7 +28,8 @@ console.log('description:',description);
 const getCommentsByUser = (req, res) =>{
     const userId = req.params.id
     console.log(userId);
-    const queryString = `SELECT * FROM comments WHERE user_id = ${userId};`
+    const queryString = `SELECT * FROM comments WHERE receiver_user_id = ${userId};`
+    
     pool
         .query(queryString)
         .then((result)=>{
