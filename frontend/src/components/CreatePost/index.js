@@ -16,12 +16,13 @@ const CreatePost = () =>{
 	    token:state.auth.token,
     };
   });
-    const [title, setTitle] = useState("second")
+    const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [pricing, setPricing] = useState("")
+    const [image,setImage] = useState(" ")
     const submitFn = ()=>{
         axios
-        .post(`http://localhost:5000/posts`,{title,description,pricing},{headers: {
+        .post(`http://localhost:5000/posts`,{title,description,pricing,post_image:image},{headers: {
           Authorization: state.token
           }})
         .then((result)=>{
@@ -37,7 +38,7 @@ const CreatePost = () =>{
          <Form>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>take image from your device</Form.Label>
-                <Form.Control type="file" />
+                <Form.Control type="file" onChange={(e)=>{setImage(e.target.value)}}/>
             </Form.Group>
             
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

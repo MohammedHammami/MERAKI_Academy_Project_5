@@ -18,7 +18,6 @@ const CreateOrder = () =>{
             token:state.auth.token,
         };
     });
-      
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
     const [receiver_user_id,setReceiver_user_id] = useState(4)
@@ -27,8 +26,8 @@ const CreateOrder = () =>{
         axios
         .get(`http://localhost:5000/posts/post/${location.state.id}`)
         .then((result)=>{
-            console.log(result);
-            setPostInfo(result.data.posts)
+            console.log(result.data.posts[0]);
+            setPostInfo(result.data.posts[0])
         })
         .catch((err)=>{
             console.log("err");
@@ -52,6 +51,10 @@ const CreateOrder = () =>{
     }
     return(
         <div className="inpust-post">
+            
+        <h3>title: {postInfo.title}</h3>
+        <p>description: {postInfo.description}</p>
+        <p>date created: {postInfo.created_on}</p>
          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>schedule_date</Form.Label>
