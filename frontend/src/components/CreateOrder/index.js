@@ -4,12 +4,15 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import { createBrowserHistory } from 'history';
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 
 
 const CreateOrder = () =>{
     const history = createBrowserHistory({ preserveScroll: true });
-    console.log(history);
+    const location = useLocation();
+    console.log(location.state);
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
