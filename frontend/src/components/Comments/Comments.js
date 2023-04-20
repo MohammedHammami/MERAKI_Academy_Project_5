@@ -5,7 +5,7 @@ const Comments = () => {
   const [comments, setComments] = useState("");
   const token = useSelector((state) => state.auth.token);
   const getComment = () => {
-    // console.log(token);
+    
     axios
       .get(`http://localhost:5000/comments/1`, {
         headers: {
@@ -29,7 +29,7 @@ const Comments = () => {
   return (
     <div>
       <h1>COMMENT</h1>
-      <h2>jj</h2>
+      
     </div>
   );
 };

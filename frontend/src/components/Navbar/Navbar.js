@@ -20,6 +20,7 @@ const Navbar = () => {
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
+            <Link to="/CreatePost"> post </Link>
             <Link ></Link>
           </div>
         </>
