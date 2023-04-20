@@ -41,8 +41,7 @@ const DashboardProvider = () =>{
   };
   const getAllOrder = () =>{
     axios
-    .get(`http://localhost:5000/orders/`,{receiver_user_id:"5"},
-    {headers: {Authorization: state.token}})
+    .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
       console.log(result);
     })
