@@ -23,7 +23,13 @@ const Navbar = () => {
         </>
       ) : (
         <>
-        
+          <div className="navbar">
+            <Link to="/Register"> Register </Link>
+            <Link to="/login"> login </Link>
+            <Link to="/CreateCraft"> Craft </Link>
+            <Link to="/Comment"> Comment </Link>
+            <Link ></Link>
+          </div>
         </>
       )}
     </>

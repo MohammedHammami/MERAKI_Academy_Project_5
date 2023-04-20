@@ -9,13 +9,12 @@ import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
 import Comments from "./components/Comments/Comments";
 import GetAllOrders from "./components/GetAllOrders";
+import DashboardProvider from "./components/DashboardProvider";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1> </h1>
-      </header>
+      
       <Navbar />
       <Routes>
         <Route path="/Register" element={<Register />} />
@@ -26,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Dashboard/provider" element={<DashboardProvider />} />
       </Routes>
     </div>
   );
