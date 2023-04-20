@@ -10,9 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 
 const CreateOrder = () =>{
-    const history = createBrowserHistory({ preserveScroll: true });
     const location = useLocation();
-    //console.log(location.state.id);
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
@@ -20,13 +18,11 @@ const CreateOrder = () =>{
     });
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
-    const [receiver_user_id,setReceiver_user_id] = useState(4)
     const [postInfo, setPostInfo] = useState({})
     const getPostById = ()=>{
         axios
         .get(`http://localhost:5000/posts/post/${location.state.id}`)
         .then((result)=>{
-            console.log(result.data.posts[0]);
             setPostInfo(result.data.posts[0])
         })
         .catch((err)=>{
@@ -39,7 +35,7 @@ const CreateOrder = () =>{
     const submitFn = ()=>{
         console.log(localStorage.getItem("token"));
         axios
-        .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id},{headers: {
+        .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id:postInfo.user_id},{headers: {
             Authorization: state.token
             }})
         .then((result)=>{
