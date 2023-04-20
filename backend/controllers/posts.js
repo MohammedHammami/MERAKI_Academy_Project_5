@@ -4,11 +4,11 @@ const pool = require("../models/db");
 const createNewPost = (req,res) => {
     const userId = req.token.userId
     
-    const {title,description,pricing} = req.body
+    const {title,description,pricing,post_image} = req.body
 
     pool
-    .query(`INSERT INTO posts (title, description, user_id, pricing) VALUES ($1,$2,$3,$4) RETURNING *`,
-    [title,description,userId,pricing])
+    .query(`INSERT INTO posts (title, description, user_id, pricing,post_image) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
+    [title,description,userId,pricing,post_image])
     .then((result)=>{
         res.status(200).json({
             success: true,

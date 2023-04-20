@@ -30,7 +30,7 @@ const register = async (req, res) => {
         success: false,
         message: "server error",
         err:err.message,
-      });
+      }); 
     });
 };
 const login = (req, res) => {

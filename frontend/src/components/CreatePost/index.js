@@ -12,7 +12,6 @@ import axios from "axios"
 
 const CreatePost = () =>{
   const state = useSelector((state) => {
-    console.log(state.auth);
     return {
 	    token:state.auth.token,
     };
