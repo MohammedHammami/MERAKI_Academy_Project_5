@@ -43,6 +43,25 @@ const getPostsByuser = (req,res) => {
         })
     })
 }
+const getPostsById = (req,res) => {
+    const post_id = req.params.post_id
+    pool
+    .query(`SELECT * FROM posts WHERE id = ${post_id}`)
+    .then((result)=>{
+        res.status(200).json({
+            success: true,
+            mesasge:"get post",
+            posts: result.rows
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+            err: err.message
+        })
+    })
+}
 const updatePostById = (req,res) => {
     const id = req.params.postId
     const {title,description,pricing} = req.body
@@ -115,4 +134,5 @@ module.exports = {
     updatePostById,
     deletePostById,
     getAllPosts,
+    getPostsById
 }

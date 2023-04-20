@@ -12,16 +12,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 const CreateOrder = () =>{
     const history = createBrowserHistory({ preserveScroll: true });
     const location = useLocation();
-    console.log(location.state);
+    //console.log(location.state.id);
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
         };
-      });
+    });
+      
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
     const [receiver_user_id,setReceiver_user_id] = useState(4)
-
+    
     const submitFn = ()=>{
         console.log(localStorage.getItem("token"));
         axios
