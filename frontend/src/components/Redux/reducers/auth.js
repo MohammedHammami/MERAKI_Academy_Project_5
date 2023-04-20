@@ -7,7 +7,7 @@ export const authSlice=createSlice({
     token :null || localStorage.getItem('token'),
     userId :null|| localStorage.getItem('userId'),
     isLoggedIn :false,
-    userInfo:{}
+    userInfo:{}|| localStorage.getItem('userInfo')
   },
   reducers:{
     setLogin :(state,action)=>{
@@ -37,6 +37,7 @@ export const authSlice=createSlice({
     },
     setUserInfo :(state,action)=>{
       state.userInfo = jwtDecode(action.payload.token)
+      localStorage.setItem('userInfo',state.userInfo)
       console.log('state.userInfo:',state.userInfo);
     },
     setUserInfoGoogle :(state,action)=>{
