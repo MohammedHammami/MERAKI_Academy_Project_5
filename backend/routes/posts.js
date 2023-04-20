@@ -6,16 +6,18 @@ const {
     getPostsByuser,
     updatePostById,
     deletePostById,
-    getAllPosts
+    getAllPosts,
+    getPostsById,
 } = require("../controllers/posts");
 
 const postsRouter = express.Router();
 
 postsRouter.post('/',authentication,createNewPost)
-postsRouter.get('/:user_id',getPostsByuser)
+postsRouter.get('/user/:user_id',getPostsByuser)
 postsRouter.put('/:postId',authentication,updatePostById)
 postsRouter.delete("/:id", authentication, deletePostById)
 postsRouter.get('/',getAllPosts)
+postsRouter.get(`/post/:post_id`,getPostsById)
 
 
 module.exports = postsRouter;

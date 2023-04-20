@@ -32,11 +32,7 @@ const Home = () => {
         };
       });
       const toOrder = (id)=>{
-        
-        navigate({
-          pathname: '/CreateOrder',
-          state: { value: id}
-        });
+        navigate('/CreateOrder',{ state:{id}})
       }
    
   return (

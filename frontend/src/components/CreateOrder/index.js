@@ -4,25 +4,37 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import { createBrowserHistory } from 'history';
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 
 
 const CreateOrder = () =>{
-    const history = createBrowserHistory({ preserveScroll: true });
-    console.log(history);
+    const location = useLocation();
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
         };
-      });
+    });
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
-    const [receiver_user_id,setReceiver_user_id] = useState(4)
-
-    const submitFn = ()=>{
-        console.log(localStorage.getItem("token"));
+    const [postInfo, setPostInfo] = useState({})
+    const getPostById = ()=>{
         axios
-        .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id},{headers: {
+        .get(`http://localhost:5000/posts/post/${location.state.id}`)
+        .then((result)=>{
+            setPostInfo(result.data.posts[0])
+        })
+        .catch((err)=>{
+            console.log("err");
+        })
+    }
+    useEffect(()=>{
+        getPostById()
+    },[])
+    const submitFn = ()=>{
+        axios
+        .post(`http://localhost:5000/orders`,{schedule_date,order_desc,receiver_user_id:postInfo.user_id},{headers: {
             Authorization: state.token
             }})
         .then((result)=>{
@@ -34,6 +46,10 @@ const CreateOrder = () =>{
     }
     return(
         <div className="inpust-post">
+            
+        <h3>title: {postInfo.title}</h3>
+        <p>description: {postInfo.description}</p>
+        <p>date created: {postInfo.created_on}</p>
          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>schedule_date</Form.Label>
