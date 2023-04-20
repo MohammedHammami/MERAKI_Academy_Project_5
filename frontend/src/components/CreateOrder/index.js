@@ -22,7 +22,19 @@ const CreateOrder = () =>{
     const [schedule_date, setSchedule_date] = useState("")
     const [order_desc, setOrder_desc] = useState("")
     const [receiver_user_id,setReceiver_user_id] = useState(4)
-    
+    const getPostById = ()=>{
+        axios
+        .get(`http://localhost:5000/posts/post/${location.state.id}`)
+        .then((result)=>{
+            console.log(result);
+        })
+        .catch((err)=>{
+            console.log("err");
+        })
+    }
+    useEffect(()=>{
+        getPostById()
+    },[])
     const submitFn = ()=>{
         console.log(localStorage.getItem("token"));
         axios
