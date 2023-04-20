@@ -81,7 +81,7 @@ const DashboardProvider = () =>{
 
         </div>
       </div>
-        {/* <ChartComponent/> */} 
+        <ChartComponent/> 
     </div>
   )
 }
