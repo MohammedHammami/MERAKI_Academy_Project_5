@@ -4,12 +4,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const state = useSelector((state) => {
-    console.log(state);
     return {
       isLoggedIn: state.auth.isLoggedIn,
     };
   });
-  console.log(state.isLoggedIn);
 
   return (
     <>
