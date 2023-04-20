@@ -1,9 +1,10 @@
 import "./style.css"
 import {useSelector } from "react-redux"
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState} from "react";
 import Chart from "chart.js/auto";
 import axios from "axios"
 const DashboardProvider = () =>{
+  const [orders, setOrders] = useState([])
   const state = useSelector((state)=>{
     return{
       userId:state.auth.userId,
@@ -43,7 +44,7 @@ const DashboardProvider = () =>{
     axios
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
-      console.log(result);
+      setOrders(result.data.order)
     })
     .catch((err)=>{
       console.log(err);
