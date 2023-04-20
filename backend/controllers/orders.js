@@ -48,7 +48,7 @@ const updateOrderById = (req,res) => {
       });
 }
 const getOrderByReceiverId = (req,res) => {
-    const {receiver_user_id} = req.body
+    const {receiver_user_id} = req.params.user_id
     const query=`SELECT * FROM orders WHERE receiver_user_id = ${receiver_user_id};`
     pool
     .query(query)
