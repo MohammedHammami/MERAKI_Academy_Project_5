@@ -64,7 +64,7 @@ function Register() {
                 lg="6"
                 className="order-2 order-lg-1 d-flex flex-column align-items-center"
               >
-                <p classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                   Sign up
                 </p>
 
