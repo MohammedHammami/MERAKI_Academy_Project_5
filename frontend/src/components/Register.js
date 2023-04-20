@@ -85,7 +85,7 @@ function Register() {
                   <MDBIcon fas icon="user me-3" size="lg" />
                   <MDBInput
                     label="Last Name"
-                    id="form5"
+                    id="form5 "
                     type="text"
                     className="w-100"
                     onChange={(e) => {
