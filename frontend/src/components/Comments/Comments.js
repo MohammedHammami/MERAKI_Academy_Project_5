@@ -17,13 +17,14 @@ const Comments = () => {
   const state = useSelector((state) => {
     return {
 	    token:state.auth.token,
-      userInfo:state.auth.userInfo
+      userInfo:state.auth.userInfo,
+      userId:state.auth.userId
     }
   });
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState('')
   const token = state.token
-  
+  const userId=state.userId
   const getComment = (id) => {
     
     axios
@@ -113,6 +114,7 @@ const newresult= result.data.result[0]
                       /> */}
                       <p className="small text-muted mb-4 created_on">{comment.created_on && comment.created_on.split("").splice(0,10)}</p>
                     </div>
+                    {userId == comment.requester_user_id ? <button>delet</button> : <></>}
                   </div>
                  
       
@@ -128,7 +130,7 @@ const newresult= result.data.result[0]
           </MDBCol>
       </MDBRow>
      </MDBContainer>
-     {console.log('2023-04-20T17:30:02.716Z'.split("").splice(0,8))}
+     
     </div>
   );
 };
