@@ -19,6 +19,9 @@ const Navbar = () => {
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
             <Link to="/CreatePost"> post </Link>
+            <Link to="/Dashboard/provider"> Dashboard </Link>
+
+            
             <Link ></Link>
           </div>
         </>
@@ -29,6 +32,7 @@ const Navbar = () => {
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
+            
             <Link ></Link>
           </div>
         </>
