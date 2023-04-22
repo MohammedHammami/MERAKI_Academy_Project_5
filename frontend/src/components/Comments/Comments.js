@@ -23,6 +23,7 @@ const Comments = () => {
   });
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState('')
+  const [update, setUpdate] = useState(false)
   const token = state.token
   const userId=state.userId
   const getComment = (id) => {
@@ -81,8 +82,30 @@ const newresult= comments.filter(comment=>{
         console.log(err);
       });
   };
+  const updateComment = (id) => {
+    
+    axios
+      .put(`http://localhost:5000/comments/${id}`,{description: description }, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        console.log(result.data.comment);
+        const newComments = comments.map((comment) => {
+         
+          if (comment.id == result.data.comment[0].id) {
+            comment.description =  result.data.comment[0].description;
+          }
+          return comment;
+        });
+        setComments(newComments)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
-    // console.log('state.userInfo',state.userInfo.first_name);
     getComment(3);
   }, []);
 
@@ -132,14 +155,21 @@ const newresult= comments.filter(comment=>{
                         style={{ marginTop: "-0.16rem" }}
                       /> */}
                       <p className="small text-muted mb-4 created_on">{comment.created_on && comment.created_on.split("").splice(0,10)}</p>
-                    </div>
-                    {userId == comment.requester_user_id ? <button onClick={()=>{
-                      deleteComment(comment.id)
-                    }}>delet</button> : <></>}
-                  </div>
                  
       
 
+                    </div>
+                    {userId == comment.requester_user_id ?<> <button onClick={()=>{
+                      deleteComment(comment.id)
+                    }}>delet</button> <button onClick={()=>{
+setUpdate(!update)
+                    }}>update</button> {update ?<> <input
+                    placeholder='new comment' onChange={(e)=>{
+setDescription(e.target.value)
+                    }}></input> <button onClick={()=>{
+                      updateComment(comment.id)
+                    }}>done</button></>: <></>} </>: <></>}
+                  </div>
       </MDBCardBody>
       </div>
     </MDBCard>
