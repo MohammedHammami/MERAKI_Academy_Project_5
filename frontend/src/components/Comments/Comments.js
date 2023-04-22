@@ -34,7 +34,7 @@ const Comments = () => {
         },
       })
       .then((result) => {
-        console.log(result.data.result);
+        // console.log(result.data.result);
         setComments(result.data.result);
       })
       .catch((err) => {
@@ -50,7 +50,7 @@ const Comments = () => {
         },
       })
       .then((result) => {
-        console.log(result.data.result);
+        // console.log(result.data.result);
 const newresult= result.data.result[0]
         const newComment =[...comments,newresult]
         console.log(newComment);
@@ -60,10 +60,29 @@ const newresult= result.data.result[0]
         console.log(err);
       });
   };
-
+  const deleteComment = (id) => {
+    
+    axios
+      .delete(`http://localhost:5000/comments/${id}`,{
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        console.log(result.data.result);
+const newresult= comments.filter(comment=>{
+ return result.data.result.id !== comment.id
+}) 
+        
+        console.log('newresult: ',newresult);
+        setComments(newresult)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
-    console.log('state.userInfo',state.userInfo.first_name
-    );
+    // console.log('state.userInfo',state.userInfo.first_name);
     getComment(3);
   }, []);
 
@@ -91,7 +110,7 @@ const newresult= result.data.result[0]
                     <MDBCard className="mb-4">
                   <div className="comment" key={comment.id}>
                   <MDBCardBody>
-                    {console.log(comment.description)}
+                    {/* {console.log(comment.description)} */}
                   <p>{comment.description}</p>
       
                   <div className="d-flex justify-content-between">
@@ -114,7 +133,9 @@ const newresult= result.data.result[0]
                       /> */}
                       <p className="small text-muted mb-4 created_on">{comment.created_on && comment.created_on.split("").splice(0,10)}</p>
                     </div>
-                    {userId == comment.requester_user_id ? <button>delet</button> : <></>}
+                    {userId == comment.requester_user_id ? <button onClick={()=>{
+                      deleteComment(comment.id)
+                    }}>delet</button> : <></>}
                   </div>
                  
       
