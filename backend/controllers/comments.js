@@ -55,7 +55,7 @@ const deleteCommentById = (req, res) =>{
          if (result1.rows.length==0) {
             console.log(60);
             res.status(404).json({
-                success: false +'5',
+                success: false ,
                 message: `comment with id: ${id} Not Found`,
                 
             }) 
@@ -71,7 +71,7 @@ const deleteCommentById = (req, res) =>{
             })
             .catch((err)=>{
                 res.status(500).json({
-                    success: false+ '6',
+                    success: false,
                     message: "Server error",
                     error : err
                 })              
@@ -85,9 +85,42 @@ const deleteCommentById = (req, res) =>{
                 error : err
             })    })       
 }
+const updateCommentById = (req,res) => {
+    const id = req.params.id
+    const {description} = req.body
+    const data=[description||null,id]
+    const query=`UPDATE comments SET description = COALESCE($1,description)  WHERE id = $2 RETURNING *;`
+    
+
+    pool
+    .query(query,data)
+    .then((result)=>{
+        if (result.rows.length == 0) {
+            res.status(404).json({
+                success: false,
+                mesasge:"comment Not found",
+                comment: result.rows
+            }) 
+        }else{
+        res.status(200).json({
+            success: true,
+            mesasge:"comment updated",
+            comment: result.rows
+        })
+    }
+    })
+    .catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+            err: err.message
+        })
+    })
+}
 
 module.exports ={
     createNewComment,
     getCommentsByUser,
-    deleteCommentById
+    deleteCommentById,
+    updateCommentById
 }
