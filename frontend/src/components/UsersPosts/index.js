@@ -7,9 +7,6 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 const UserPost = () => {
   const state = useSelector((state) => {
-
-    
-    console.log(state.post.posts, "hhhh");
     return {
       token: state.auth.token,
       posts: state.post.posts,
@@ -53,6 +50,19 @@ const UserPost = () => {
         console.log(err);
       });
   };
+
+  const updateSelectedPost =(id)=>{
+    axios
+        .put(`http://localhost:5000/posts/${id}`)
+        .then((res)=>{
+            if(res.data.success === true){
+                dispatch()
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+  }
 
   useEffect(() => {
     getUserPosts();
