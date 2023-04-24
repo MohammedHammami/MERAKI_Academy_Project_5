@@ -50,10 +50,14 @@ const UserPost = () => {
 
   const updateSelectedPost = (id) => {
     axios
-      .put(`http://localhost:5000/posts/${id}`)
+      .put(`http://localhost:5000/posts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((res) => {
         if (res.data.success === true) {
-          dispatch(updatePost());
+          dispatch(updatePost(res.data));
         }
       })
       .catch((err) => {
