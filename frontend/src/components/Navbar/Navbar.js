@@ -1,14 +1,23 @@
-import React from "react";
+import React,{useState} from "react";
 import Nav from "react-bootstrap/Nav";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Form from 'react-bootstrap/Form'; 
+import { changeMood } from "../Redux/reducers/mood";
 const Navbar = () => {
+  const [moodstate, setMoodstate] = useState(false)
+const dispath=useDispatch()
   const state = useSelector((state) => {
     return {
       isLoggedIn: state.auth.isLoggedIn,
-    };
-  });
+      mood:state.Mood.mood
 
+    };
+    
+  });
+  const mood=state.mood
+  let newTheme= moodstate? 'lightMood':'darkMood'
+console.log(mood);
   return (
     <>
       {state.isLoggedIn ? (
@@ -32,6 +41,15 @@ const Navbar = () => {
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
+            <Form.Check onChange={(e)=>{
+        console.log('value:', e.target.value);
+        setMoodstate(!moodstate)
+        dispath(changeMood(newTheme))
+      }}
+        type="switch"
+        id="custom-switch"
+        label="Check this switch"
+      />
             
             <Link ></Link>
           </div>

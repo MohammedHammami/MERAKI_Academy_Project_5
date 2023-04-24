@@ -1,6 +1,7 @@
 .comment{
     padding-bottom: 1vh;
     color: var(--words);
+    background-color: var(--background);
     /* background-color: var(--red); */
 }
 .created_on{

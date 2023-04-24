@@ -7,7 +7,7 @@ export const MoodSlice = createSlice({
     },
     reducers:{
         changeMood:(state,action)=>{
-            state.mood = 'darkMood';
+            state.mood = action.payload;
 
         }
     }
