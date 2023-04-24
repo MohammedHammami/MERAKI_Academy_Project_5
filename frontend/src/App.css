@@ -3,4 +3,14 @@ body{
    
     font-family: Roboto, Helvetica, Arial, sans-serif;
     
+    
+}
+.lightMood{
+    --words:blue ;
+    --background:white ;
+}
+
+.darkMood{
+    --words:pink ;
+    --background:black ;
 }

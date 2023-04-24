@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Comment.css' 
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {
   MDBCard,
   MDBCardBody,
@@ -16,19 +16,25 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import Button from 'react-bootstrap/Button';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import ReplyIcon from '@mui/icons-material/Reply';
+
+
 const Comments = () => {
+  const them="dark"
   const state = useSelector((state) => {
     return {
 	    token:state.auth.token,
       userInfo:state.auth.userInfo,
-      userId:state.auth.userId
+      userId:state.auth.userId,
+      mood:state.Mood.mood
     }
   });
+  // const dispa
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState('')
   const [update, setUpdate] = useState(false)
   const token = state.token
   const userId=state.userId
+  const mood=state.mood
   const getComment = (id) => {
     
     axios
@@ -133,8 +139,8 @@ const newresult= comments.filter(comment=>{
                 <button onClick={()=>{CreateComment(3)}}>send </button>
                 {comments && comments.map(comment =>{
                   return (
-                    <MDBCard className="mb-4">
-                    <div className="comment" key={comment.id}>
+                    <MDBCard className="mb-4"  key={comment.id}>
+                    <div className= {them==="dark"?"darkMood comment":"lightMood comment"}>
                   <MDBCardBody>
                   <p>{comment.description}</p>
       
@@ -167,10 +173,10 @@ const newresult= comments.filter(comment=>{
                       size="sm" onClick={()=>{
                       deleteComment(comment.id)
                     }}>{<DeleteForeverOutlinedIcon/>}</Button>{' '}
-                    <Button variant="outline-warning"size="sm" onClick={()=>{
+                    <Button variant="outline-warning" size="sm" onClick={()=>{
 setUpdate(!update)
                     }}><ReplyIcon/></Button>{' '}
-                  
+                 
                      {update ?<> 
                     <MDBInput
               wrapperClass="mb-4"

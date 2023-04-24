@@ -4,6 +4,8 @@ import { authSlice } from "./reducers/auth";
 import { postSlice } from "./reducers/posts";
 import {craftsSlice } from "./reducers/crafts";
 import {orderSlice } from "./reducers/order";
+import {commentSlice} from "./reducers/comment";
+import { MoodSlice } from "./reducers/mood";
 
 export default configureStore ({
     reducer :{
@@ -11,5 +13,7 @@ export default configureStore ({
         post:  postSlice.reducer,
         craft: craftsSlice.reducer,
         order: orderSlice.reducer,
+        comments:commentSlice.reducer,
+        Mood:MoodSlice.reducer
     }
 })
