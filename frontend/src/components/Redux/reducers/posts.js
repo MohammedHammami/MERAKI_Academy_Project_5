@@ -17,7 +17,7 @@ export const postSlice = createSlice({
       });
     },updatePost : (state, action)=>{
         state.post.map((post, i)=>{
-            if(post.id == action.payload.id){
+            if(post.id == action.payload){
                 return {}
             }
         })
