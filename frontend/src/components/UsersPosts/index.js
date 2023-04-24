@@ -34,7 +34,19 @@ const UserPost = () => {
       });
   };
   const deleteSelectedPost = (id) => {
-    dispatch(deletePost(id));
+    axios.
+    delete(`http://localhost:5000/posts/${id}`,{
+        headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+    })
+    .then((res)=>{
+        dispatch(deletePost(id));
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+    
   };
 
   useEffect(() => {
