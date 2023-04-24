@@ -3,9 +3,11 @@ import {useSelector } from "react-redux"
 import React, { useEffect, useRef, useState} from "react";
 import Chart from "chart.js/auto";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 const DashboardProvider = () =>{
   const [orders, setOrders] = useState([])
-  const state = useSelector((state)=>{
+    const navigate = useNavigate();
+    const state = useSelector((state)=>{
     return{
       userId:state.auth.userId,
       token:state.auth.token,
@@ -54,15 +56,18 @@ const DashboardProvider = () =>{
   useEffect(()=>{
   getAllOrder()
   },[])
+  const to_notivication = ()=>{
+    navigate('/getAllNotivication')
+  }
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
-        <p>menu</p>
-        <p>profile</p>
-        <p>posts</p>
-        <p>order</p>
-        <p>notification</p>
-        <p>createPost</p>
+        <p><button className="go_to">menu</button></p>
+        <p><button className="go_to">profile</button></p>
+        <p><button className="go_to">posts</button></p>
+        <p><button className="go_to">order</button></p>
+        <p><button className="go_to" onClick={to_notivication}>notification</button></p>
+        <p><button className="go_to">createPost</button></p>
       </div>
       <div className="body_container">
         <div className="order_info__cotainer_div">

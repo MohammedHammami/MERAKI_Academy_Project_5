@@ -31,4 +31,7 @@
 }
 .card_order_info:hover {
     transform: rotateY(10deg);
-  }
+}
+.go_to{
+    background-color: lightblue;
+}
