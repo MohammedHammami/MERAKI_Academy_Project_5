@@ -4,7 +4,7 @@ const {createNewNotification,getNotificationById} = require("../controllers/noti
 
 const notificationsRouter = express.Router();
 notificationsRouter.post('/:order_id',createNewNotification)
-notificationsRouter.get('/:user_id',authentication,getNotificationById)
+notificationsRouter.get('/',authentication,getNotificationById)
 
 
 
