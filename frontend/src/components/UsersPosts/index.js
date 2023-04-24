@@ -34,19 +34,20 @@ const UserPost = () => {
       });
   };
   const deleteSelectedPost = (id) => {
-    axios.
-    delete(`http://localhost:5000/posts/${id}`,{
+    axios
+      .delete(`http://localhost:5000/posts/${id}`, {
         headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-    })
-    .then((res)=>{
-        dispatch(deletePost(id));
-    })
-    .catch((err)=>{
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.success === true) {
+          dispatch(deletePost(id));
+        }
+      })
+      .catch((err) => {
         console.log(err);
-    })
-    
+      });
   };
 
   useEffect(() => {
