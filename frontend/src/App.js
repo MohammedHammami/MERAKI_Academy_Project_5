@@ -10,6 +10,7 @@ import CreateOrder from "./components/CreateOrder";
 import Comments from "./components/Comments/Comments";
 import GetAllOrders from "./components/GetAllOrders";
 import DashboardProvider from "./components/DashboardProvider";
+import GetAllNotification from "./components/GetNotification";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
+        <Route path="/getAllNotification" element={<GetAllNotification/>} />
       </Routes>
     </div>
   );

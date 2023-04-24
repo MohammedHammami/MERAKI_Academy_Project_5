@@ -56,8 +56,8 @@ const DashboardProvider = () =>{
   useEffect(()=>{
   getAllOrder()
   },[])
-  const to_notivication = ()=>{
-    navigate('/getAllNotivication')
+  const to_notification = ()=>{
+    navigate('/getAllNotification')
   }
   return (
     <div className="container_dashboard_provider">
@@ -66,7 +66,7 @@ const DashboardProvider = () =>{
         <p><button className="go_to">profile</button></p>
         <p><button className="go_to">posts</button></p>
         <p><button className="go_to">order</button></p>
-        <p><button className="go_to" onClick={to_notivication}>notification</button></p>
+        <p><button className="go_to" onClick={to_notification}>notification</button></p>
         <p><button className="go_to">createPost</button></p>
       </div>
       <div className="body_container">
