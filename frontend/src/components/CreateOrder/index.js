@@ -36,15 +36,20 @@ const CreateOrder = () =>{
             }})
         .then((result)=>{
             // console.log(result.data.order[0]);
-            createNotivication(result.data.order[0].id)
+            createNotivication(
+                result.data.order[0].id,
+                result.data.order[0].order_desc,
+                result.data.order[0].schedule_date)
         })
         .catch((err)=>{
             console.log(err);
         })
     }
-    const createNotivication = (order_id)=>{
+    const createNotivication = (order_id,order_desc,order_schedule)=>{
+        let newTime =order_schedule.split("T").splice(0,1)
+        console.log(newTime);
         axios
-        .post(`http://localhost:5000/notifications/${order_id}`,{description:"you have new order",status:1,receiver_user_id:location.state.user_id})
+        .post(`http://localhost:5000/notifications/${order_id}`,{description:`description:${order_desc} time:${newTime}`,status:1,receiver_user_id:location.state.user_id})
         .then((result)=>{console.log(result);})
         .catch((err)=>{console.log(err);})
     }

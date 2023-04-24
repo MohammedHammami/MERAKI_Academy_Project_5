@@ -2,8 +2,11 @@ import { useEffect, useState } from "react"
 import "./style.css"
 import axios from "axios"
 import { useSelector } from "react-redux";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const GetAllNotification = ()=>{
+    const [notifications, setNotifications] = useState([])
     const state = useSelector((state) => {
         return {
             token:state.auth.token,
@@ -15,7 +18,8 @@ const GetAllNotification = ()=>{
             Authorization: state.token
             }})
         .then((result)=>{
-            console.log(result);
+            console.log(result.data.notification);
+            setNotifications(result.data.notification)
         })
         .catch((err)=>{
             console.log(err);
@@ -24,11 +28,24 @@ const GetAllNotification = ()=>{
     useEffect(()=>{
         getNotifications()
     },[])
-    return (
+    return (    
     <div className="all-notification-div">
-        <p>i am all notification</p>
+        {
+            notifications.map((noti,i)=>{
+                return(
+                <Card key={i}>
+                    
+                    <Card.Body>
+                        <Card.Title>{noti.description}</Card.Title>
+                        <Button>Accept</Button>
+                        <Button>Cancel</Button>
+                    </Card.Body>
+                </Card>
+                )
+            })
+        }
     </div>
-    )
+    )   
 }
 
 export default GetAllNotification

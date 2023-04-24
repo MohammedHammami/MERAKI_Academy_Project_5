@@ -22,11 +22,11 @@ const DashboardProvider = () =>{
         const myChart = new Chart(chartCanvas, {
           type: "bar",//bar,
           data: {
-              labels: [],
+              labels: ["sada","dasdasd"],
               datasets: [
               {
                   label: "My First Dataset",
-                  data: [],
+                  data: [3,4],
                   backgroundColor: "rgb(255, 99, 132)",
                   borderColor: "rgba(255, 99, 132, 0.2)"
               }
