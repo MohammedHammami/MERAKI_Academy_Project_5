@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Comment.css";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import {
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBCol,
   MDBContainer,
-  MDBIcon,
   MDBRow,
   MDBInput,
 } from "mdb-react-ui-kit";
@@ -16,7 +15,7 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import Button from "react-bootstrap/Button";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import ReplyIcon from "@mui/icons-material/Reply";
-
+import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 const Comments = () => {
   const state = useSelector((state) => {
     return {
@@ -26,7 +25,6 @@ const Comments = () => {
       mood: state.Mood.mood,
     };
   });
-  const dispath = useDispatch();
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState("");
   const [update, setUpdate] = useState(false);
@@ -121,9 +119,6 @@ const Comments = () => {
 
   return (
     <div>
-      <h1>COMMENT</h1>
-
-      <div>{console.log(mood)}</div>
       <MDBContainer className="mt-5" style={{ maxWidth: "1000px" }}>
         <MDBRow className="justify-content-center">
           <MDBCol md="8" lg="6">
@@ -132,9 +127,9 @@ const Comments = () => {
               style={{ backgroundColor: "#f0f2f5" }}
             >
               <MDBCardBody>
+                <div className="createComment">
                 <MDBInput
                   wrapperClass="mb"
-                  placeholder="Type comment..."
                   label="+ Add youer comment"
                   onChange={(e) => {
                     console.log(e.target.value);
@@ -147,8 +142,9 @@ const Comments = () => {
                     CreateComment(3);
                   }}
                 >
-                  send{" "}
+                 <IosShareOutlinedIcon/>{" "}
                 </Button>
+                </div>
                 {comments &&
                   comments.map((comment) => {
                     return (
@@ -177,12 +173,6 @@ const Comments = () => {
                               </div>
 
                               <div className="d-flex flex-row align-items-center">
-                                {/* <p className="small text-muted mb-0">created_on</p> */}
-                                {/* <MDBIcon
-                        far
-                        icon="thumbs-up mx-2 fa-xs text-black"
-                        style={{ marginTop: "-0.16rem" }}
-                      /> */}
                                 <p className="small text-muted mb-4 created_on">
                                   {comment.created_on &&
                                     comment.created_on.split("").splice(0, 10)}

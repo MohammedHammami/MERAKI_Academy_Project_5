@@ -48,7 +48,7 @@ console.log(mood);
       }}
         type="switch"
         id="custom-switch"
-        label="Check this switch"
+        label=" switch Mood"
       />
             
             <Link ></Link>
