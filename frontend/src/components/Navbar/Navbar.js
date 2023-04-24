@@ -20,12 +20,17 @@ const Navbar = () => {
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
-            <Link ></Link>
+            <Link to="/user">my posts</Link>
           </div>
         </>
       ) : (
         <>
-        
+        <div className="navbar">
+            <Link to="/Register"> Register </Link>
+            <Link to="/login"> login </Link>
+            <Link to="/CreateCraft"> Craft </Link>
+            <Link to="/Comment"> Comment </Link>
+          </div>
         </>
       )}
     </>

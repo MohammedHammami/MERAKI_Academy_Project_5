@@ -9,6 +9,7 @@ import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
 import Comments from "./components/Comments/Comments";
 import GetAllOrders from "./components/GetAllOrders";
+import UserPost from "./components/UsersPosts"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user" element={<UserPost/>}/>
       </Routes>
     </div>
   );
