@@ -9,7 +9,8 @@ import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
 const UserPost = () => {
   const [show, setShow] = useState(false);
-
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
