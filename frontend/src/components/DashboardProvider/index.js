@@ -45,6 +45,7 @@ const DashboardProvider = () =>{
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
       setOrders(result.data.order)
+      console.log(orders);
     })
     .catch((err)=>{
       console.log(err);
@@ -81,7 +82,7 @@ const DashboardProvider = () =>{
 
         </div>
       </div>
-        <ChartComponent/> 
+        {/* <ChartComponent/>  */}
     </div>
   )
 }

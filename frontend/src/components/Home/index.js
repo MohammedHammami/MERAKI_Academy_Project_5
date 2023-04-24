@@ -31,8 +31,8 @@ const Home = () => {
           posts: state.post.posts,
         };
       });
-      const toOrder = (id)=>{
-        navigate('/CreateOrder',{ state:{id}})
+      const toOrder = (id,user_id)=>{
+        navigate('/CreateOrder',{ state:{id,user_id}})
       }
    
   return (
@@ -59,7 +59,7 @@ const Home = () => {
                 <Card.Img variant="top" src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg" />
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
-                  <Button variant="primary" onClick={()=>{toOrder(post.id)}}>order now</Button>
+                  <Button variant="primary" onClick={()=>{toOrder(post.id,post.user_id)}}>order now</Button>
                 </Card.Body>
               </Card>
             })
