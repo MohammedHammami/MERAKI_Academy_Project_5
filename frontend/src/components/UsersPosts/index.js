@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { setPost, deletePost } from "../Redux/reducers/posts";
+import { setPost, deletePost, updatePost } from "../Redux/reducers/posts";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 const UserPost = () => {
@@ -13,7 +13,6 @@ const UserPost = () => {
       userId: state.auth.userId,
     };
   });
-
 
   const dispatch = useDispatch();
 
@@ -32,8 +31,6 @@ const UserPost = () => {
       });
   };
 
-
-
   const deleteSelectedPost = (id) => {
     axios
       .delete(`http://localhost:5000/posts/${id}`, {
@@ -51,18 +48,18 @@ const UserPost = () => {
       });
   };
 
-  const updateSelectedPost =(id)=>{
+  const updateSelectedPost = (id) => {
     axios
-        .put(`http://localhost:5000/posts/${id}`)
-        .then((res)=>{
-            if(res.data.success === true){
-                dispatch()
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-  }
+      .put(`http://localhost:5000/posts/${id}`)
+      .then((res) => {
+        if (res.data.success === true) {
+          dispatch(updatePost());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getUserPosts();
@@ -91,7 +88,13 @@ const UserPost = () => {
                 delete post
               </Button>
               <br />
-              <Button>update post</Button>
+              <Button
+                onClick={(e) => {
+                    updateSelectedPost(post.id);
+                }}
+              >
+                update post
+              </Button>
             </Card.Body>
           </Card>
         );

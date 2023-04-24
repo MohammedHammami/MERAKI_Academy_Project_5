@@ -16,9 +16,11 @@ export const postSlice = createSlice({
         }
       });
     },updatePost : (state, action)=>{
-        state.post.map((post, i)=>{
-            if(post.id == action.payload){
-                return {}
+        state.posts.map((post, i)=>{
+            if(post.id == action.payload.id){
+                post.title = action.payload.title
+                post.description = action.payload.description
+                return post
             }
         })
     }
