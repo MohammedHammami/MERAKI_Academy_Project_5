@@ -7,7 +7,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 const UserPost = () => {
   const state = useSelector((state) => {
-    // console.log(state.auth.userId, "3333");
+
+    
     console.log(state.post.posts, "hhhh");
     return {
       token: state.auth.token,
@@ -16,7 +17,7 @@ const UserPost = () => {
     };
   });
 
-  //   console.log(state.auth.userId, "77");
+
   const dispatch = useDispatch();
 
   const getUserPosts = () => {
@@ -33,6 +34,9 @@ const UserPost = () => {
         console.log(err);
       });
   };
+
+
+
   const deleteSelectedPost = (id) => {
     axios
       .delete(`http://localhost:5000/posts/${id}`, {

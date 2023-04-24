@@ -15,7 +15,13 @@ export const postSlice = createSlice({
           state.posts.splice(i, 1);
         }
       });
-    },
+    },updatePost : (state, action)=>{
+        state.post.map((post, i)=>{
+            if(post.id == action.payload.id){
+                return {}
+            }
+        })
+    }
   },
 });
 
