@@ -25,7 +25,7 @@ const createNewNotification = (req,res) => {
 }
 
 const getNotificationById = (req,res) => {
-    const user_id  = req.params.user_id
+    const user_id  = req.token.userId
     const query=`SELECT * FROM notifications WHERE receiver_user_id = ${user_id };`
     pool
     .query(query)
@@ -33,7 +33,7 @@ const getNotificationById = (req,res) => {
         res.status(200).json({
           success: true,
           message: "notification get successfuly",
-          order: result.rows
+          notification: result.rows
         });
       })
       .catch((err) => {

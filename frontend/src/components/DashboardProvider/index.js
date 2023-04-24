@@ -3,9 +3,11 @@ import {useSelector } from "react-redux"
 import React, { useEffect, useRef, useState} from "react";
 import Chart from "chart.js/auto";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 const DashboardProvider = () =>{
   const [orders, setOrders] = useState([])
-  const state = useSelector((state)=>{
+    const navigate = useNavigate();
+    const state = useSelector((state)=>{
     return{
       userId:state.auth.userId,
       token:state.auth.token,
@@ -20,11 +22,11 @@ const DashboardProvider = () =>{
         const myChart = new Chart(chartCanvas, {
           type: "bar",//bar,
           data: {
-              labels: [],
+              labels: ["sada","dasdasd"],
               datasets: [
               {
                   label: "My First Dataset",
-                  data: [],
+                  data: [3,4],
                   backgroundColor: "rgb(255, 99, 132)",
                   borderColor: "rgba(255, 99, 132, 0.2)"
               }
@@ -45,6 +47,7 @@ const DashboardProvider = () =>{
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
       setOrders(result.data.order)
+      console.log(orders);
     })
     .catch((err)=>{
       console.log(err);
@@ -53,15 +56,18 @@ const DashboardProvider = () =>{
   useEffect(()=>{
   getAllOrder()
   },[])
+  const to_notification = ()=>{
+    navigate('/getAllNotification')
+  }
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
-        <p>menu</p>
-        <p>profile</p>
-        <p>posts</p>
-        <p>order</p>
-        <p>notification</p>
-        <p>createPost</p>
+        <p><button className="go_to">menu</button></p>
+        <p><button className="go_to">profile</button></p>
+        <p><button className="go_to">posts</button></p>
+        <p><button className="go_to">order</button></p>
+        <p><button className="go_to" onClick={to_notification}>notification</button></p>
+        <p><button className="go_to">createPost</button></p>
       </div>
       <div className="body_container">
         <div className="order_info__cotainer_div">
@@ -81,7 +87,7 @@ const DashboardProvider = () =>{
 
         </div>
       </div>
-        <ChartComponent/> 
+        {/* <ChartComponent/>  */}
     </div>
   )
 }

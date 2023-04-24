@@ -5,10 +5,6 @@ import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import { createBrowserHistory } from 'history';
 import { useLocation, useNavigate } from "react-router-dom";
-
-
-
-
 const CreateOrder = () =>{
     const location = useLocation();
     const state = useSelector((state) => {
@@ -20,6 +16,7 @@ const CreateOrder = () =>{
     const [order_desc, setOrder_desc] = useState("")
     const [postInfo, setPostInfo] = useState({})
     const getPostById = ()=>{
+        // console.log(location);
         axios
         .get(`http://localhost:5000/posts/post/${location.state.id}`)
         .then((result)=>{
@@ -38,11 +35,23 @@ const CreateOrder = () =>{
             Authorization: state.token
             }})
         .then((result)=>{
-            console.log(result);
+            // console.log(result.data.order[0]);
+            createNotivication(
+                result.data.order[0].id,
+                result.data.order[0].order_desc,
+                result.data.order[0].schedule_date)
         })
         .catch((err)=>{
             console.log(err);
         })
+    }
+    const createNotivication = (order_id,order_desc,order_schedule)=>{
+        let newTime =order_schedule.split("T").splice(0,1)
+        console.log(newTime);
+        axios
+        .post(`http://localhost:5000/notifications/${order_id}`,{description:`description:${order_desc} time:${newTime}`,status:1,receiver_user_id:location.state.user_id})
+        .then((result)=>{console.log(result);})
+        .catch((err)=>{console.log(err);})
     }
     return(
         <div className="inpust-post">
