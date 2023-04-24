@@ -33,7 +33,7 @@ const getNotificationById = (req,res) => {
         res.status(200).json({
           success: true,
           message: "notification get successfuly",
-          order: result.rows
+          notification: result.rows
         });
       })
       .catch((err) => {
