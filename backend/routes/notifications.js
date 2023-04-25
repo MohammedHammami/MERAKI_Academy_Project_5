@@ -5,7 +5,7 @@ const {createNewNotification,getNotificationById,updateStatusNotifivationById} =
 const notificationsRouter = express.Router();
 notificationsRouter.post('/:order_id',createNewNotification)
 notificationsRouter.get('/',authentication,getNotificationById)
-notificationsRouter.get('/:notification_id',updateStatusNotifivationById)
+notificationsRouter.put('/:notification_id',updateStatusNotifivationById)
 
 
 

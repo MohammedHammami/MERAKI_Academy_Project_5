@@ -28,20 +28,26 @@ const GetAllNotification = ()=>{
     useEffect(()=>{
         getNotifications()
     },[])
+    const acceptFn = (id) => {
+        axios
+        .put(`http://localhost:5000/notifications/${id}`,{status:"accept_order"})
+        .then((result)=>{console.log(result);})
+        .catch((err)=>{console.log(err);})
+    }
     return (    
     <div className="all-notification-div">
         {
             notifications.map((noti,i)=>{
+                if(noti.status==="create_order"){
                 return(
                 <Card key={i}>
-                    
                     <Card.Body>
                         <Card.Title>{noti.description}</Card.Title>
-                        <Button>Accept</Button>
+                        <Button onClick={()=>{acceptFn(noti.id)}}>Accept</Button>
                         <Button>Cancel</Button>
                     </Card.Body>
                 </Card>
-                )
+                )}
             })
         }
     </div>
