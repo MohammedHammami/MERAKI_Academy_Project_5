@@ -41,7 +41,7 @@ function Register() {
       phone_no: phone_no,
       role_id: role,
       craft_id: "",
-      user_image:user_image
+      user_image:img
     };
 
     axios
