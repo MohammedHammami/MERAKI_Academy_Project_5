@@ -49,7 +49,7 @@ const CreateOrder = () =>{
         let newTime =order_schedule.split("T").splice(0,1)
         console.log(newTime);
         axios
-        .post(`http://localhost:5000/notifications/${order_id}`,{description:`description:${order_desc} time:${newTime}`,status:1,receiver_user_id:location.state.user_id})
+        .post(`http://localhost:5000/notifications/${order_id}`,{description:`description:${order_desc} time:${newTime}`,status:"create-order",receiver_user_id:location.state.user_id})
         .then((result)=>{console.log(result);})
         .catch((err)=>{console.log(err);})
     }
