@@ -28,6 +28,16 @@ const GetAllNotification = ()=>{
     useEffect(()=>{
         getNotifications()
     },[])
+    const createNotivication = (order_id)=>{
+        axios
+        .get()
+        .then((result)=>{})
+        .catch((err)=>{})
+        axios
+        .post(`http://localhost:5000/notifications/${order_id}`,{description:`description:${order_desc} time:${newTime}`,status:"create_order",receiver_user_id:location.state.user_id})
+        .then((result)=>{console.log(result);})
+        .catch((err)=>{console.log(err);})
+    }
     const acceptFn = (id) => {
         axios
         .put(`http://localhost:5000/notifications/${id}`,{status:"accept_order"})

@@ -87,10 +87,30 @@ const getAllOrder = (req,res) => {
         console.log(err.message);
       });
 }
-
+const getOrderById = (req,res) => {
+  const id = req.params.order_id
+  const query=`SELECT * FROM orders WHERE id = ${id};`
+  pool
+  .query(query)
+  .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "order get successfuly",
+        order: result.rows
+      });
+    })
+    .catch((err) => {
+      res.status(409).json({
+        success: false,
+        message: "server error",
+        err:err.message,
+      });
+    });
+}
 module.exports = {
     createNewOrder,
     updateOrderById,
     getOrderByReceiverId,
     getAllOrder,
+    getOrderById,
 }
