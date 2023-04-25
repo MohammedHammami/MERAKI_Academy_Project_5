@@ -25,9 +25,11 @@ function Register() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [role, setRole] = useState("2");
+  const [user_image, setUser_image] = useState("2");
   const [phone_no, setPhone_no] = useState("");
+  const [files, setFiles] = useState(null);
   const [done, setDone] = useState(true);
-
+  const [img, setImg] = useState('')
   const handelRegister = () => {
     const newUser = {
       email: email,
@@ -37,6 +39,7 @@ function Register() {
       phone_no: phone_no,
       role_id: role,
       craft_id: "",
+      user_image:user_image
     };
 
     axios
@@ -53,8 +56,23 @@ function Register() {
   const tologin = ()=>{
     navigate("/login")
   }
+  useEffect(() => {
+    if (files){
+      const reader= new FileReader()
+      reader.onload=()=>{
+        setImg(reader.result)
+      }
+      reader.readAsDataURL(files[0])
+    }else{
+      setImg(null)
+    }
+  
+    
+  }, [files])
+  
   return (
     <>
+    
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
@@ -133,13 +151,34 @@ function Register() {
                     }}
                   />
                 </div>
+                {img ? <img src={img} className="img"/>:
+                <div className="d-flex flex-row align-items-center mb-4" onDragOver={(e)=>{
+e.preventDefault();
+                }}
+                onDrop={(e)=>{
+e.preventDefault()
+console.log(e.dataTransfer.files);
+setFiles(e.dataTransfer.files)
+                }}>
+                  <MDBIcon fas icon="key me-3" size="lg" />
+                  <MDBInput
+                    label=""
+                    id="form4"
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files);
+                      setFiles(e.target.files)
+                      console.log('files:',files);
+                    }}
+                  />
+                </div>}
 
                 <MDBBtn
                   className="mb-4"
                   size="lg"
                   onClick={() => {
                     password1 !== password2 ? (
-                      setPassword(password1)
+                      setDone(!done)
                     ) : (
                       <>
                         {setPassword(password1)}

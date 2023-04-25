@@ -23,8 +23,15 @@ console.log(mood);
       {state.isLoggedIn ? (
         <>
           <div className="navbar">
-            <Link to="/Register"> Register </Link>
-            <Link to="/login"> login </Link>
+          <Form.Check onChange={(e)=>{
+        console.log('value:', e.target.value);
+        setMoodstate(!moodstate)
+        dispath(changeMood(newTheme))
+      }}
+        type="switch"
+        id="custom-switch"
+        label=" switch Mood"
+      />
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
             <Link to="/CreatePost"> post </Link>
@@ -41,15 +48,7 @@ console.log(mood);
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
-            <Form.Check onChange={(e)=>{
-        console.log('value:', e.target.value);
-        setMoodstate(!moodstate)
-        dispath(changeMood(newTheme))
-      }}
-        type="switch"
-        id="custom-switch"
-        label=" switch Mood"
-      />
+            
             
             <Link ></Link>
           </div>

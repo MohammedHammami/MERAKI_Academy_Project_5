@@ -1,3 +1,6 @@
+body{
+    background-color: var(--background);
+}
 .comment{
     padding-bottom: 1vh;
     color: var(--words);
