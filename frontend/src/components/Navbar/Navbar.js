@@ -1,22 +1,26 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form'; 
+import Form from "react-bootstrap/Form";
 import { changeMood } from "../Redux/reducers/mood";
 const Navbar = () => {
-  const [moodstate, setMoodstate] = useState(false)
-const dispath=useDispatch()
+  const [moodstate, setMoodstate] = useState(false);
+  const dispath = useDispatch();
   const state = useSelector((state) => {
     return {
       isLoggedIn: state.auth.isLoggedIn,
-      mood:state.Mood.mood
-
+      mood: state.Mood.mood,
     };
-    
   });
+
   const mood=state.mood
   let newTheme= moodstate? 'lightMood':'darkMood'
+
+  const mood = state.mood;
+  let newTheme = moodstate ? "lightMood" : "darkMood";
+  console.log(mood);
+
   return (
     <>
       {state.isLoggedIn ? (
@@ -26,11 +30,10 @@ const dispath=useDispatch()
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
+            <Link to="/user">my posts</Link>
             <Link to="/CreatePost"> post </Link>
             <Link to="/Dashboard/provider"> Dashboard </Link>
-
-            
-            <Link ></Link>
+            <Link></Link>
           </div>
         </>
       ) : (
@@ -40,17 +43,18 @@ const dispath=useDispatch()
             <Link to="/login"> login </Link>
             <Link to="/CreateCraft"> Craft </Link>
             <Link to="/Comment"> Comment </Link>
-            <Form.Check onChange={(e)=>{
-        console.log('value:', e.target.value);
-        setMoodstate(!moodstate)
-        dispath(changeMood(newTheme))
-      }}
-        type="switch"
-        id="custom-switch"
-        label=" switch Mood"
-      />
-            
-            <Link ></Link>
+            <Form.Check
+              onChange={(e) => {
+                console.log("value:", e.target.value);
+                setMoodstate(!moodstate);
+                dispath(changeMood(newTheme));
+              }}
+              type="switch"
+              id="custom-switch"
+              label=" switch Mood"
+            />
+
+            <Link></Link>
           </div>
         </>
       )}

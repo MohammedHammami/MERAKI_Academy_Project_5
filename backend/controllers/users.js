@@ -119,4 +119,8 @@ module.exports = {
   register,
   updateUserById,
   login,
+
 };
+
+};
+

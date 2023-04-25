@@ -34,7 +34,11 @@ function Register() {
       password: password,
       first_name: first_name,
       last_name: last_name,
+
       // phone_no: phone_no,
+
+      phone_no: phone_no,
+
       role_id: role,
       craft_id: "",
     };
