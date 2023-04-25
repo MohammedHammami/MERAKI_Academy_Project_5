@@ -6,7 +6,7 @@ body{
     color: var(--words);
     background-color: var(--background);
    border-radius: 12px;
-
+}
 .created_on {
   font-size: 14px;
   font-style: italic;

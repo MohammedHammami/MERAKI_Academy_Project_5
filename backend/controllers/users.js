@@ -7,14 +7,13 @@ const register = async (req, res) => {
   const { first_name, last_name, phone_no, email, password, user_image } =
     req.body;
 
-  const { first_name, last_name, phone_no, email, password } = req.body;
+ 
 
   const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
 
-  const saltRounds = parseInt(process.env.SALT);
-  const encryptedPassword = await bcrypt.hash(password, 5);
+  
 
   const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,user_image,role_id ) VALUES ($1,$2,$3,$4,$5,$6,$7)`;
   const VALUES = [
@@ -134,8 +133,8 @@ module.exports = {
 
 };
 
-};
 
-};
+
+
 
 
