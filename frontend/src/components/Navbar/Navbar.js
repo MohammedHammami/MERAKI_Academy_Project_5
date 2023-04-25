@@ -14,8 +14,8 @@ const Navbar = () => {
     };
   });
 
-  const mood=state.mood
-  let newTheme= moodstate? 'lightMood':'darkMood'
+  // const mood=state.mood
+  // let newTheme= moodstate? 'lightMood':'darkMood'
 
   const mood = state.mood;
   let newTheme = moodstate ? "lightMood" : "darkMood";
