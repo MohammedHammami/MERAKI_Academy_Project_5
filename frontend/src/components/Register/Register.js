@@ -1,5 +1,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import "./Register.css";
+import React, { useEffect, useState } from "react";
+import "./Register/Register.css";
 import axios from "axios";
 import {
   MDBBtn,
@@ -20,6 +22,12 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 function Register() {
   const navigate = useNavigate();
   const fileInputRef =useRef()
+
+
+
+function Register() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -27,21 +35,37 @@ function Register() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [role, setRole] = useState("2");
+
   const [user_image, setUser_image] = useState("2");
   const [phone_no, setPhone_no] = useState("");
   const [files, setFiles] = useState(null);
   const [done, setDone] = useState(true);
   const [img, setImg] = useState('')
   const handelRegister = (password) => {
+  const [phone_no, setPhone_no] = useState("");
+  const [done, setDone] = useState(true);
+
+  const handelRegister = () => {
+
     const newUser = {
       email: email,
       password: password,
       first_name: first_name,
       last_name: last_name,
+
       phone_no: phone_no,
       role_id: role,
       craft_id: "",
       user_image:img
+
+
+      // phone_no: phone_no,
+
+      phone_no: phone_no,
+
+      role_id: role,
+      craft_id: "",
+
     };
 
     axios
@@ -58,6 +82,7 @@ function Register() {
   const tologin = ()=>{
     navigate("/login")
   }
+
   useEffect(() => {
     if (files){
       const reader= new FileReader()
@@ -75,6 +100,10 @@ function Register() {
   return (
     <>
     
+
+  return (
+    <>
+
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
@@ -140,8 +169,6 @@ function Register() {
                     }}
                   />
                 </div>
-                
-             
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
@@ -154,6 +181,7 @@ function Register() {
                     }}
                   />
                 </div>
+
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="phone-alt me-3" size="lg" />
                   <MDBInput
@@ -201,11 +229,19 @@ fileInputRef.current.click()
                   size="lg"
                   onClick={() => {
                     password1 !== password2 ? (
+
                       setDone(!done)
                     ) : (
                       <>
                         {setPassword(password1)}
                         {handelRegister(password1)}
+
+                      setPassword(password1)
+                    ) : (
+                      <>
+                        {setPassword(password1)}
+                        {handelRegister()}
+
                       </>
                     );
                   }}

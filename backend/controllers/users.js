@@ -3,8 +3,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
+
   const { first_name, last_name, phone_no, email, password, user_image } =
     req.body;
+
+  const { first_name, last_name, phone_no, email, password } = req.body;
+
+  const saltRounds = parseInt(process.env.SALT);
+  const encryptedPassword = await bcrypt.hash(password, saltRounds);
+
 
   const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, 5);
@@ -16,8 +23,10 @@ const register = async (req, res) => {
     phone_no,
     email.toLowerCase(),
     encryptedPassword,
+
     user_image ||
       "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=",
+
     2,
   ];
   pool
@@ -122,4 +131,11 @@ module.exports = {
   register,
   updateUserById,
   login,
+
 };
+
+};
+
+};
+
+
