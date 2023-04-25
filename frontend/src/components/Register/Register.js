@@ -1,3 +1,5 @@
+import React, { useEffect, useState,useRef } from "react";
+import "./Register.css";
 import React, { useEffect, useState } from "react";
 import "./Register/Register.css";
 import axios from "axios";
@@ -14,10 +16,18 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+
+function Register() {
+  const navigate = useNavigate();
+  const fileInputRef =useRef()
+
 
 
 function Register() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -25,15 +35,29 @@ function Register() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [role, setRole] = useState("2");
+
+  const [user_image, setUser_image] = useState("2");
+  const [phone_no, setPhone_no] = useState("");
+  const [files, setFiles] = useState(null);
+  const [done, setDone] = useState(true);
+  const [img, setImg] = useState('')
+  const handelRegister = (password) => {
   const [phone_no, setPhone_no] = useState("");
   const [done, setDone] = useState(true);
 
   const handelRegister = () => {
+
     const newUser = {
       email: email,
       password: password,
       first_name: first_name,
       last_name: last_name,
+
+      phone_no: phone_no,
+      role_id: role,
+      craft_id: "",
+      user_image:img
+
 
       // phone_no: phone_no,
 
@@ -41,6 +65,7 @@ function Register() {
 
       role_id: role,
       craft_id: "",
+
     };
 
     axios
@@ -57,8 +82,28 @@ function Register() {
   const tologin = ()=>{
     navigate("/login")
   }
+
+  useEffect(() => {
+    if (files){
+      const reader= new FileReader()
+      reader.onload=()=>{
+        setImg(reader.result)
+      }
+      reader.readAsDataURL(files[0])
+    }else{
+      setImg(null)
+    }
+  
+    
+  }, [files])
+  
   return (
     <>
+    
+
+  return (
+    <>
+
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
@@ -124,7 +169,6 @@ function Register() {
                     }}
                   />
                 </div>
-
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
@@ -138,16 +182,66 @@ function Register() {
                   />
                 </div>
 
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="phone-alt me-3" size="lg" />
+                  <MDBInput
+                    label="your phone"
+                    id="form3"
+                    type="tel"
+                    onChange={(e) => {
+                      const phone = e.target.value;
+                      setPhone_no(phone);
+                    }}
+                  />
+                </div>
+                {img ? <img src={img} className="img"/>:
+                <div className="d-flex flex-row align-items-center mb-4" onDragOver={(e)=>{
+e.preventDefault();
+                }}
+                onDrop={(e)=>{
+e.preventDefault()
+console.log(e.dataTransfer.files);
+setFiles(e.dataTransfer.files)
+                }}>
+                  <MDBIcon  fas icon="camera-retro me-3"size="lg" />
+                  <button className="imgbtn" onClick={(e)=>{
+e.preventDefault()
+fileInputRef.current.click()
+                  }}>Drag and Drop or Add picture 
+                  <br></br>
+                  <MDBIcon fas  size ='lg'icon="plus-circle me-3" /></button>
+                  <MDBInput
+                    label=""
+                    id="form4"
+                    type="file"
+                    style={{display:'none'}}
+                    ref={fileInputRef}
+                    onChange={(e) => {
+                      console.log(e.target.files);
+                      setFiles(e.target.files)
+                      console.log('files:',files);
+                    }}
+                  />
+                </div>}
+
                 <MDBBtn
                   className="mb-4"
                   size="lg"
                   onClick={() => {
                     password1 !== password2 ? (
+
+                      setDone(!done)
+                    ) : (
+                      <>
+                        {setPassword(password1)}
+                        {handelRegister(password1)}
+
                       setPassword(password1)
                     ) : (
                       <>
                         {setPassword(password1)}
                         {handelRegister()}
+
                       </>
                     );
                   }}

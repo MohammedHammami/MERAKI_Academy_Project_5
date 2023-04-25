@@ -4,3 +4,19 @@ justify-content: center;
 flex-direction: column;
 min-height: 80vh;
 } */
+
+.img{
+   width: 50vw;
+   height: 40vh; 
+   border-radius: 12px;
+margin-bottom: 2vh;
+}
+
+.imgbtn{
+    color: #0088F8;
+    border-style: dotted;
+    border-radius: 12px;
+    height: 40vh;
+   width: 25vw;
+
+}

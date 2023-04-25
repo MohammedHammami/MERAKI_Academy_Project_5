@@ -162,7 +162,7 @@ const Comments = () => {
                             <div className="d-flex justify-content-between">
                               <div className="d-flex flex-row align-items-center">
                                 <MDBCardImage
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
+                                  src="8c3925ac-3e1b-49ce-ac4c-1b9545a5d945.png"
                                   alt="avatar"
                                   width="25"
                                   height="25"

@@ -140,6 +140,22 @@ const Login = () => {
           </MDBCol>
         </MDBRow>
 
+            <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                  const token = credentialResponse.credential;
+
+                  dispatch(setLoginGoogel(credentialResponse));
+                  dispatch(setUserInfoGoogle(credentialResponse));
+                  toHome()
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                auto_select
+              />
+            </GoogleOAuthProvider>
         <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
           <div className="text-white mb-3 mb-md-0">
             Copyright © 2023. All rights reserved.
@@ -182,21 +198,6 @@ const Login = () => {
               <MDBIcon fab icon="linkedin-in" size="md" />
             </MDBBtn>
 
-            <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                  const token = credentialResponse.credential;
-
-                  dispatch(setLoginGoogel(credentialResponse));
-                  dispatch(setUserInfoGoogle(credentialResponse));
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-                auto_select
-              />
-            </GoogleOAuthProvider>
           </div>
         </div>
         {done ? (

@@ -3,18 +3,30 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
+
+  const { first_name, last_name, phone_no, email, password, user_image } =
+    req.body;
+
   const { first_name, last_name, phone_no, email, password } = req.body;
 
   const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
-  const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,role_id ) VALUES ($1,$2,$3,$4,$5,$6)`;
+
+  const saltRounds = parseInt(process.env.SALT);
+  const encryptedPassword = await bcrypt.hash(password, 5);
+
+  const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,user_image,role_id ) VALUES ($1,$2,$3,$4,$5,$6,$7)`;
   const VALUES = [
     first_name,
     last_name,
     phone_no,
     email.toLowerCase(),
     encryptedPassword,
+
+    user_image ||
+      "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=",
+
     2,
   ];
   pool
@@ -29,8 +41,8 @@ const register = async (req, res) => {
       res.status(409).json({
         success: false,
         message: "server error",
-        err:err.message,
-      }); 
+        err: err.message,
+      });
     });
 };
 const login = (req, res) => {
@@ -123,4 +135,7 @@ module.exports = {
 };
 
 };
+
+};
+
 

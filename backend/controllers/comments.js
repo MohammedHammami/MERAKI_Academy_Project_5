@@ -28,7 +28,7 @@ const receiver_user_id =req.params.id
 const getCommentsByUser = (req, res) =>{
     const userId = req.params.id
     const queryString = `SELECT * FROM comments WHERE receiver_user_id = ${userId};`
-    
+    console.log(31);
     pool
         .query(queryString)
         .then((result)=>{
