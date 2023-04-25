@@ -83,39 +83,7 @@ const UserPost = () => {
       {state.posts.map((post, i) => {
         return (
           <>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form.Control
-                className="mb-2"
-                  type="text"
-                  id="text"
-                  placeholder="new title"
-                  onChange={(e)=>{setTitle(e.target.value)}}
-                />
-                <Form.Control
-                  type="text"
-                  id="text"
-                  placeholder="new description"
-                  onChange={(e)=>{setDescription(e.target.value)}}
-                />
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={
-                    (e)=>{
-                        handleClose()
-                        updateSelectedPost(id)
-                    }
-                }>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
-            </Modal>
+            
             <Card
               className="post"
               style={{ width: "200", height: "150" }}
@@ -144,6 +112,40 @@ const UserPost = () => {
                 </Button>
               </Card.Body>
             </Card>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form.Control
+                className="mb-2"
+                  type="text"
+                  id="text"
+                  placeholder="new title"
+                  onChange={(e)=>{setTitle(e.target.value)}}
+                />
+                <Form.Control
+                  type="text"
+                  id="text"
+                  placeholder="new description"
+                  onChange={(e)=>{setDescription(e.target.value)}}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={
+                    (e)=>{
+                        handleClose()
+                        updateSelectedPost(post.id)
+                    }
+                }>
+                  Save Changes
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </>
         );
       })}

@@ -28,10 +28,9 @@ const register = async (req, res) => {
     .catch((err) => {
       res.status(409).json({
         success: false,
-        message: "The email already exists",
-        err,
-      });
-      console.log(err.message);
+        message: "server error",
+        err:err.message,
+      }); 
     });
 };
 const login = (req, res) => {

@@ -1,0 +1,37 @@
+/* #D5E2F2  #e7ecf8  #B4C4D9 #8FA4BF */
+.container_dashboard_provider{
+    display: grid;
+    grid-template-columns: 11% 87%;
+    margin: 0.5%;
+    height: 100vh;
+}
+
+.menu{
+    background-color: #e7ecf8;
+    border-radius: 25px;
+}
+.body_container{
+    background-color: #e7ecf8;
+    margin: 0.5%;
+    margin-top: 0;
+    border-radius: 40px;
+    
+}
+
+.order_info__cotainer_div{
+    display: flex;
+    
+}
+.card_order_info{
+    margin: 3%;
+    width: 30%;
+    background-color: #D5E2F2;
+    border-radius: 35px;
+    padding: 1%;
+}
+.card_order_info:hover {
+    transform: rotateY(10deg);
+}
+.go_to{
+    background-color: lightblue;
+}
