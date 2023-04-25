@@ -9,3 +9,12 @@ min-height: 80vh;
    width: 50vw;
    height: 40vh; 
 }
+
+.imgbtn{
+    color: #0088F8;
+    border-style: dotted;
+    border-radius: 12px;
+    height: 40vh;
+   width: 25vw;
+
+}

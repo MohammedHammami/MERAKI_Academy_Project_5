@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import "./Register/Register.css";
 import axios from "axios";
 import {
@@ -14,10 +14,12 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 
 function Register() {
   const navigate = useNavigate();
+  const fileInputRef =useRef()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -160,11 +162,17 @@ e.preventDefault()
 console.log(e.dataTransfer.files);
 setFiles(e.dataTransfer.files)
                 }}>
-                  <MDBIcon fas icon="key me-3" size="lg" />
+                  <MDBIcon  fas icon="camera-retro me-3"size="lg" />
+                  <button className="imgbtn" onClick={(e)=>{
+e.preventDefault()
+fileInputRef.current.click()
+                  }}>Uplod img or drop</button>
                   <MDBInput
                     label=""
                     id="form4"
                     type="file"
+                    style={{display:'none'}}
+                    ref={fileInputRef}
                     onChange={(e) => {
                       console.log(e.target.files);
                       setFiles(e.target.files)
