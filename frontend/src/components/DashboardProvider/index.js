@@ -6,6 +6,9 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 const DashboardProvider = () =>{
   const [orders, setOrders] = useState([])
+  const [completed, setCompleted] = useState(0)
+  const [pending, setPending] = useState(0)
+  const [canceled, setCanceled] = useState(0)
     const navigate = useNavigate();
     const state = useSelector((state)=>{
     return{
@@ -47,7 +50,7 @@ const DashboardProvider = () =>{
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
       setOrders(result.data.order)
-      console.log(orders);
+      // console.log(result.data.order);
     })
     .catch((err)=>{
       console.log(err);
@@ -55,9 +58,18 @@ const DashboardProvider = () =>{
   }
   useEffect(()=>{
   getAllOrder()
+  descOrder(orders)
   },[])
   const to_notification = ()=>{
     navigate('/getAllNotification')
+  }
+
+  const descOrder = (array)=>{
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].state_id===1){setPending(pending+1)}
+      if(array[i].state_id===2){setCompleted(completed+1)}
+      if(array[i].state_id===3){setCanceled(canceled+1)}
+    }
   }
   return (
     <div className="container_dashboard_provider">
