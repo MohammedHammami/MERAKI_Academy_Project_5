@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Comment.css";
 import axios from "axios";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import {
   MDBCard,
   MDBCardBody,
@@ -15,7 +15,7 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import Button from "react-bootstrap/Button";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import ReplyIcon from "@mui/icons-material/Reply";
-import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
+import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
 const Comments = () => {
   const state = useSelector((state) => {
     return {
@@ -128,22 +128,22 @@ const Comments = () => {
             >
               <MDBCardBody>
                 <div className="createComment">
-                <MDBInput
-                  wrapperClass="mb"
-                  label="+ Add youer comment"
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    setDescription(e.target.value);
-                  }}
-                />
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    CreateComment(3);
-                  }}
-                >
-                 <IosShareOutlinedIcon/>{" "}
-                </Button>
+                  <MDBInput
+                    wrapperClass="mb"
+                    label="+ Add youer comment"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setDescription(e.target.value);
+                    }}
+                  />
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      CreateComment(3);
+                    }}
+                  >
+                    <IosShareOutlinedIcon />{" "}
+                  </Button>
                 </div>
                 {comments &&
                   comments.map((comment) => {

@@ -22,7 +22,6 @@ import {
 } from "../Redux/reducers/auth";
 
 const Login = () => {
-  
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,16 +42,16 @@ const Login = () => {
 
         dispatch(setLogin(result.data));
         dispatch(setUserInfo(result.data));
-        toHome()
+        toHome();
       })
       .catch((err) => {
         console.log(err);
         setDone(false);
       });
   };
-  const toHome = ()=>{
-    navigate("/")
-  }
+  const toHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <MDBContainer fluid className="p-3 my-5 h-custom">
