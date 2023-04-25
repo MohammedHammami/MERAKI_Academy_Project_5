@@ -17,7 +17,6 @@ const dispath=useDispatch()
   });
   const mood=state.mood
   let newTheme= moodstate? 'lightMood':'darkMood'
-console.log(mood);
   return (
     <>
       {state.isLoggedIn ? (

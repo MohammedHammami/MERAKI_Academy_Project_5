@@ -9,6 +9,7 @@ export const orderSlice = createSlice({
         setOrder:(state,action)=>{
             state.order = action.payload;
         }
+        
     }
 
 })

@@ -45,12 +45,22 @@ const DashboardProvider = () =>{
     
       return <canvas ref={chartRef} />;
   };
+  const descOrder = (array)=>{
+    let a = 0;
+    let b = 0;
+    let c = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].state_id==1){a++;setPending(a)}
+      if(array[i].state_id==2){b++;setCompleted(b)}
+      if(array[i].state_id==3){c++;setCanceled(c)}
+    }
+  } 
   const getAllOrder = () =>{
     axios
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
       setOrders(result.data.order)
-      // console.log(result.data.order);
+      descOrder(result.data.order)
     })
     .catch((err)=>{
       console.log(err);
@@ -58,19 +68,12 @@ const DashboardProvider = () =>{
   }
   useEffect(()=>{
   getAllOrder()
-  descOrder(orders)
   },[])
   const to_notification = ()=>{
     navigate('/getAllNotification')
   }
 
-  const descOrder = (array)=>{
-    for (let i = 0; i < array.length; i++) {
-      if(array[i].state_id===1){setPending(pending+1)}
-      if(array[i].state_id===2){setCompleted(completed+1)}
-      if(array[i].state_id===3){setCanceled(canceled+1)}
-    }
-  }
+  
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
@@ -85,16 +88,18 @@ const DashboardProvider = () =>{
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
             <h3>no: of order Completed</h3>
-            <p>sssssssss</p>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Completed : {completed}</p>
           </div>
           <div className="card_order_info">
             <h3>no: of order Pending</h3>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Pending : {pending}</p>
           </div>
           <div className="card_order_info">
             <h3>no: of order Canceled</h3>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Canceled : {canceled}</p>
           </div>
 
         </div>
