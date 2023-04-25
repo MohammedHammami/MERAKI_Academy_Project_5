@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from "react";
-import "./Register/Register.css";
+import "./Register.css";
 import axios from "axios";
 import {
   MDBBtn,
@@ -32,7 +32,7 @@ function Register() {
   const [files, setFiles] = useState(null);
   const [done, setDone] = useState(true);
   const [img, setImg] = useState('')
-  const handelRegister = () => {
+  const handelRegister = (password) => {
     const newUser = {
       email: email,
       password: password,
@@ -140,7 +140,8 @@ function Register() {
                     }}
                   />
                 </div>
-
+                
+             
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
@@ -150,6 +151,18 @@ function Register() {
                     onChange={(e) => {
                       const Password2 = e.target.value;
                       setPassword2(Password2);
+                    }}
+                  />
+                </div>
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="phone-alt me-3" size="lg" />
+                  <MDBInput
+                    label="your phone"
+                    id="form3"
+                    type="tel"
+                    onChange={(e) => {
+                      const phone = e.target.value;
+                      setPhone_no(phone);
                     }}
                   />
                 </div>
@@ -168,7 +181,7 @@ e.preventDefault()
 fileInputRef.current.click()
                   }}>Drag and Drop or Add picture 
                   <br></br>
-                  <MDBIcon fas  size ='lg'icon="plus-circle" /></button>
+                  <MDBIcon fas  size ='lg'icon="plus-circle me-3" /></button>
                   <MDBInput
                     label=""
                     id="form4"
@@ -192,7 +205,7 @@ fileInputRef.current.click()
                     ) : (
                       <>
                         {setPassword(password1)}
-                        {handelRegister()}
+                        {handelRegister(password1)}
                       </>
                     );
                   }}
