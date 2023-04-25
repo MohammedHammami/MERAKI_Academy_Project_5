@@ -166,7 +166,9 @@ setFiles(e.dataTransfer.files)
                   <button className="imgbtn" onClick={(e)=>{
 e.preventDefault()
 fileInputRef.current.click()
-                  }}>Uplod img or drop</button>
+                  }}>Drag and Drop or Add picture 
+                  <br></br>
+                  <MDBIcon fas  size ='lg'icon="plus-circle" /></button>
                   <MDBInput
                     label=""
                     id="form4"
