@@ -3,18 +3,19 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
-  const { first_name, last_name, phone_no, email, password, } = req.body;
+  const { first_name, last_name, phone_no, email, password,user_image } = req.body;
    
     const saltRounds = parseInt(process.env.SALT);
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
-  const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,role_id ) VALUES ($1,$2,$3,$4,$5,$6)`;
+  const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,user_image,role_id ) VALUES ($1,$2,$3,$4,$5,$6.$7)`;
   const VALUES = [
     first_name,
     last_name,
     phone_no,
     email.toLowerCase(),
     encryptedPassword,
+    user_image,
     2
   ];
   pool
@@ -49,7 +50,8 @@ const login = (req, res) => {
                 userId: result.rows[0].id,
                 Phone_Number: result.rows[0].phone_no,
                 role: result.rows[0].role_id,
-                first_name:result.rows[0].first_name
+                first_name:result.rows[0].first_name,
+                user_image:result.rows[0].user_image
               };
               const options = { expiresIn: "1d" };
               const secret = process.env.SECRET;
