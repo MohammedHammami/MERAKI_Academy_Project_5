@@ -13,9 +13,14 @@ const Navbar = () => {
       mood: state.Mood.mood,
     };
   });
+
+  const mood=state.mood
+  let newTheme= moodstate? 'lightMood':'darkMood'
+
   const mood = state.mood;
   let newTheme = moodstate ? "lightMood" : "darkMood";
   console.log(mood);
+
   return (
     <>
       {state.isLoggedIn ? (

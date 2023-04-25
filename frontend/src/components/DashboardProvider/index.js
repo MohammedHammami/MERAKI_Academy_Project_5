@@ -4,6 +4,21 @@ import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+const DashboardProvider = () =>{
+  const [orders, setOrders] = useState([])
+  const [completed, setCompleted] = useState(0)
+  const [pending, setPending] = useState(0)
+  const [canceled, setCanceled] = useState(0)
+    const navigate = useNavigate();
+    const state = useSelector((state)=>{
+    return{
+      userId:state.auth.userId,
+      token:state.auth.token,
+      userInfo:state.auth.userInfo
+    }
+})
+
 const DashboardProvider = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
@@ -14,6 +29,7 @@ const DashboardProvider = () => {
       userInfo: state.auth.userInfo,
     };
   });
+
   const ChartComponent = (props) => {
     const chartRef = useRef(null);
 
@@ -42,6 +58,36 @@ const DashboardProvider = () => {
 
     return <canvas ref={chartRef} />;
   };
+
+  const descOrder = (array)=>{
+    let a = 0;
+    let b = 0;
+    let c = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].state_id==1){a++;setPending(a)}
+      if(array[i].state_id==2){b++;setCompleted(b)}
+      if(array[i].state_id==3){c++;setCanceled(c)}
+    }
+  } 
+  const getAllOrder = () =>{
+    axios
+    .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
+    .then((result)=>{
+      setOrders(result.data.order)
+      descOrder(result.data.order)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+  useEffect(()=>{
+  getAllOrder()
+  },[])
+  const to_notification = ()=>{
+    navigate('/getAllNotification')
+  }
+
+
   const getAllOrder = () => {
     axios
       .get(`http://localhost:5000/orders/${state.userId}`, {
@@ -61,6 +107,7 @@ const DashboardProvider = () => {
   const to_notification = () => {
     navigate("/getAllNotification");
   };
+
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
@@ -89,16 +136,18 @@ const DashboardProvider = () => {
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
             <h3>no: of order Completed</h3>
-            <p>sssssssss</p>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Completed : {completed}</p>
           </div>
           <div className="card_order_info">
             <h3>no: of order Pending</h3>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Pending : {pending}</p>
           </div>
           <div className="card_order_info">
             <h3>no: of order Canceled</h3>
-            <p>sssssssss</p>
+            <p>All order : {orders.length}</p>
+            <p>Canceled : {canceled}</p>
           </div>
         </div>
       </div>
