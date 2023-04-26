@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrder } from "../Redux/reducers/order";
+import Card from "react-bootstrap/Card";
 import "axios";
 
 import "./style.css";
@@ -8,32 +8,49 @@ import axios from "axios";
 
 const GetAllOrders = () => {
   const dispatch = useDispatch();
-
-
-  const [receiver_user_id, setReceiver_user_id] = useState(3);
-  const fm = () => {
+  const [orders, setOrders] = useState([])
+  const state = useSelector((state) => {
+    return {
+      token: state.auth.token,
+      userId: state.auth.userId
+    };
+  });
+  useEffect(()=>{
     axios
-      .get(
-        `http://localhost:5000/orders/`,
-        { receiver_user_id },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((result) => {
-        console.log(result);
-        dispatch(setOrder(result.data.result));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    .get(
+      `http://localhost:5000/orders/${state.userId}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((result) => {
+      console.log(result);
+      setOrders(result.data.order)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[])
+
   return (
     <div className="all-orders-div">
-      <p>i am here</p>
-      <button onClick={fm}>onClick</button>
+      {
+        orders.map((order,i)=>{
+          return(<div>
+            <Card.Body>
+              <h5>order number : {i+1}</h5>
+                <Card.Title>{order.order_desc}</Card.Title>
+                <Card.Title>{order.schedule_date}</Card.Title>
+                <Card.Title>state : {order.state_id===1&&"Pending"}
+                {order.state_id===2&&"Completed"}
+                {order.state_id===3&&"Canceled"}
+                </Card.Title>
+              </Card.Body>
+          </div>)
+        })
+      }
     </div>
   );
 };

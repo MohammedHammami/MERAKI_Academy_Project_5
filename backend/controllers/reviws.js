@@ -57,7 +57,7 @@ const updatestateById = (req, res) => {
       });
     });
 };
-const getREviewsByuser = (req, res) => {
+const getREviewsByOrder = (req, res) => {
   const order_id = req.params.order_id;
   pool
     .query(`SELECT * FROM reviews WHERE order_id = ${order_id}`)
@@ -76,8 +76,28 @@ const getREviewsByuser = (req, res) => {
       });
     });
 };
+const getREviewsByuser = (req, res) => {
+  const userId = req.token.userId
+  pool
+    .query(`SELECT * FROM reviews WHERE receiver_user_id = ${userId}`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        mesasge: `get Reviews`,
+        Reviews: result.rows
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
 module.exports = {
   createNewReviews,
   updatestateById,
+  getREviewsByOrder,
   getREviewsByuser,
 };
