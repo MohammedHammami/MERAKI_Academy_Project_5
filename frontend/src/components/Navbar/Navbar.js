@@ -13,9 +13,15 @@ import {
   MDBBtn,
   MDBInputGroup
 } from 'mdb-react-ui-kit';
-import { red } from "@mui/material/colors";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import './Navbar.css'
+import { Button } from "react-bootstrap";
+const pages = ['home', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbars = () => {
+  
+  
+    
   const [moodstate, setMoodstate] = useState(false);
   const dispath = useDispatch();
   const state = useSelector((state) => {
@@ -26,14 +32,22 @@ const Navbars = () => {
   });
   const mood = state.mood;
   let newTheme = moodstate ? "lightMood" : "darkMood";
-  console.log(state.isLoggedIn);
+  console.log(mood);
 
   return (
     <>
       {!state.isLoggedIn ? (
         <>
-          <div className="navbar mood">
-            <Navbar.Brand href="/" style={{color:'red'}}>Home</Navbar.Brand>
+          <div className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          }>
+            <Navbar.Brand  className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } href="/" >Home</Navbar.Brand>
           <Form.Check onChange={(e)=>{
         console.log('value:', e.target.value);
         setMoodstate(!moodstate)
@@ -45,63 +59,112 @@ const Navbars = () => {
       />
       
       
-        <MDBInputGroup tag="form" className='d-flex w-auto mb-3'>
+        <MDBInputGroup tag="form" className='d-flex w-auto mb-3 search'>
           <input className='form-control' placeholder="Search .." aria-label="Search" type='Search' />
-          <MDBBtn>Search</MDBBtn>
+          <Button className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar "
+                          }><SearchOutlinedIcon className="btnsearch"/></Button>
         </MDBInputGroup>
      
   
-            <Link to="/user">my posts</Link>
-            <Link to="/CreatePost"> post </Link>
-            <Link to="/Dashboard/provider"> Dashboard </Link>
+            <Link className= {
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } to="/user">my posts</Link>
+            <Link  className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } to="/CreatePost"> post </Link>
+            <Link  className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } to="/Dashboard/provider"> Dashboard </Link>
           
           </div>
         </>
       ) : (
         <>
-          <div className={
+         
+            <div  className={
                             mood === "darkMood"
                               ? "darkMood navbar"
                               : "lightMood navbar"
                           }>
-            <Navbar bg="light" expand="lg" className={
+     
+        <Navbar.Brand className={
                             mood === "darkMood"
                               ? "darkMood navbar"
                               : "lightMood navbar"
+                          } href="/">Home</Navbar.Brand>
+        
+        
+          
+          <Link className= {
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } to="/login"> login</Link>
+            <Link  className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } to="/Register"> Register </Link>
+                          <Nav className={
+                            mood === "darkMood"
+                              ? "darkMood "
+                              : "lightMood "
                           }>
-      <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/Register">Register</Nav.Link>
-            <Nav.Link href="/login">login</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Dashboard/provider">Dashboard</NavDropdown.Item>
-              <NavDropdown.Item href="/CreateCraft">
+            <NavDropdown title="seting" className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          }id="basic-nav-dropdown">
+              <NavDropdown.Item className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } href="/Dashboard/provider">Dashboard</NavDropdown.Item>
+              <NavDropdown.Item className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          } href="/CreateCraft">
               CreateCraft
               </NavDropdown.Item>
-              <NavDropdown.Item href="Comment">Comment</NavDropdown.Item>
+              <NavDropdown.Item href="Comment" className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          }>Comment</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/logout">
+              <NavDropdown.Item href="/logout" className={
+                            mood === "darkMood"
+                              ? "darkMood navbar"
+                              : "lightMood navbar"
+                          }>
               logout
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-        </Navbar.Collapse>
+       
             <Form.Check
-              onChange={(e) => {
-                console.log("value:", e.target.value);
+              onChange={() => {
                 setMoodstate(!moodstate);
                 dispath(changeMood(newTheme));
               }}
               type="switch"
               id="custom-switch"
-              label=" switch Mood"
+              label=""
             />
-      </Container>
-    </Navbar>
-          </div>
+      
+    </div>
+    
+         
         </>
       )}
     </>

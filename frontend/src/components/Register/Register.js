@@ -27,9 +27,7 @@ function Register() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [role, setRole] = useState("2");
-  const [user_image, setUser_image] = useState("2");
   const [phone_no, setPhone_no] = useState("");
-  const [files, setFiles] = useState(null);
   const [done, setDone] = useState(true);
   const [image, setImage] = useState('')
   const [ url, setUrl ] = useState("");
@@ -46,7 +44,7 @@ body: data
 .then(resp => resp.json())
 .then(data => {
   console.log(data.url);
-  handelRegister(pas,data.url)
+  handelRegister(pas)
   setUrl(data.url)
 })
 .catch(err => console.log(err))
@@ -69,8 +67,8 @@ body: data
 .catch(err => console.log(err))
 }
 
-  const handelRegister = async(password,url) => {
-    console.log(password,url);
+  const handelRegister = async(password) => {
+    console.log(password);
     const newUser = {
       email: email,
       password: password,
@@ -216,6 +214,7 @@ uploadImage2(e.dataTransfer.files[0])
                     onChange={(e) => {
                       // console.log(e.target.files[0]);
                       setImage(e.target.files[0])
+                      uploadImage2(e.target.files[0])
                       
                     }}
                   />

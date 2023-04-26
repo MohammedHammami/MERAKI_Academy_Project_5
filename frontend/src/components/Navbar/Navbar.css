@@ -1,9 +1,20 @@
 .navbar {
-  display: flex;
-  gap: 16px;
+  /* display: flex; */
+  padding: 1px;
+  padding-left: 6px;
   background-color: var(--background);
-  color: red;
+  color: var(--words);
+  border-radius: 10px;
 }
- a{
-  color: #dbce1c;
-}
+ .search{
+  padding: 0;
+ }
+ .btnsearch{
+  background-color: blue;
+  color: whitesmoke;
+ padding: 0;
+
+ }
+ NavDropdown{
+  background-color: red;
+ }
