@@ -9,6 +9,8 @@ const DashboardProvider = () => {
   const [completed, setCompleted] = useState(0)
   const [pending, setPending] = useState(0)
   const [canceled, setCanceled] = useState(0)
+  const [coulmName,setCoulmName] = useState([])
+  const [coulmValue,setCoulmValue] = useState([])
   const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
@@ -17,11 +19,28 @@ const DashboardProvider = () => {
       userInfo: state.auth.userInfo,
     };
   });
-  const fillterRate = () =>{
+  const fillterRate = (array) =>{
+    let rate1 = 0;
+    let rate2 = 0;
+    let rate3 = 0;
+    let rate4 = 0;
+    let rate5 = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].rate === 5){rate5++}
+      if(array[i].rate === 4){rate4++}
+      if(array[i].rate === 3){rate3++}
+      if(array[i].rate === 2){rate2++}
+      if(array[i].rate === 1){rate1++}
+    }
+    setCoulmName(["rate5","rate4","rate3","rate2","rate1"])
+    setCoulmValue([rate5,rate4,rate3,rate2,rate1])
+  }
+  const getRate = () =>{
     axios
     .get(`http://localhost:5000/review/`,{headers: {Authorization: state.token}})
     .then((result)=>{
-      console.log(result);
+      console.log(result.data.Reviews);
+      fillterRate(result.data.Reviews)
     })
     .catch((err)=>{
       console.log(err);
@@ -34,11 +53,11 @@ const DashboardProvider = () => {
       const myChart = new Chart(chartCanvas, {
         type: "bar", //bar,
         data: {
-          labels: ["sada", "dasdasd"],
+          labels: coulmName,
           datasets: [
             {
               label: "My First Dataset",
-              data: [3, 4],
+              data: coulmValue,
               backgroundColor: "rgb(255, 99, 132)",
               borderColor: "rgba(255, 99, 132, 0.2)",
             },
@@ -78,7 +97,7 @@ const DashboardProvider = () => {
   }
   useEffect(()=>{
   getAllOrder()
-  fillterRate()
+  getRate()
   },[])
   const to_notification = ()=>{
     navigate('/getAllNotification')
@@ -154,7 +173,7 @@ const toOrder = ()=>{
           </div>
         </div>
       </div>
-      {/* <ChartComponent/>  */}
+      <ChartComponent/> 
       
     </div>
   );
