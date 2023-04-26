@@ -113,7 +113,7 @@ const GetAllNotification = () => {
                     <Card.Body>
                         <Card.Title>{noti.description}</Card.Title>
                         <p>the provider canceld order</p>
-                        <Button>Cancel</Button>
+                        <Button onClick={()=>{updateNotificationFn(noti.id,"finale_order-canceld")}}>Cancel</Button>
                     </Card.Body>
                 </Card>
                 )}
