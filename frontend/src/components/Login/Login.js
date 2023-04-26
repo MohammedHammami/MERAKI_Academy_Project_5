@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
-
+import "./Login.css"
 import { useDispatch, useSelector } from "react-redux";
 import {
   setLogin,
@@ -136,70 +136,29 @@ const Login = () => {
                   Register
                 </a>
               </p>
+              <hr/>
+              <div className="google">
+              <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    console.log(credentialResponse);
+                    const token = credentialResponse.credential;
+
+                    dispatch(setLoginGoogel(credentialResponse));
+                    dispatch(setUserInfoGoogle(credentialResponse));
+                    toHome()
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                  auto_select
+                />
+              </GoogleOAuthProvider>
+            </div>
             </div>
           </MDBCol>
         </MDBRow>
-
-            <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                  const token = credentialResponse.credential;
-
-                  dispatch(setLoginGoogel(credentialResponse));
-                  dispatch(setUserInfoGoogle(credentialResponse));
-                  toHome()
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-                auto_select
-              />
-            </GoogleOAuthProvider>
-        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-          <div className="text-white mb-3 mb-md-0">
-            Copyright © 2023. All rights reserved.
-          </div>
-
-          <div>
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="mx-3"
-              style={{ color: "white" }}
-            >
-              <MDBIcon fab icon="facebook-f" size="md" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="mx-3"
-              style={{ color: "white" }}
-            >
-              <MDBIcon fab icon="twitter" size="md" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="mx-3"
-              style={{ color: "white" }}
-            >
-              <MDBIcon fab icon="google" size="md" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="mx-3"
-              style={{ color: "white" }}
-            >
-              <MDBIcon fab icon="linkedin-in" size="md" />
-            </MDBBtn>
-
-          </div>
-        </div>
+            
         {done ? (
           <></>
         ) : (
