@@ -104,6 +104,9 @@ const DashboardProvider = () => {
 const toCreatePost = ()=>{
   navigate("/CreatePost")
 }
+const toOrder = ()=>{
+  navigate("/orders")
+}
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
@@ -117,7 +120,7 @@ const toCreatePost = ()=>{
           <button className="go_to">posts</button>
         </p>
         <p>
-          <button className="go_to">order</button>
+          <button className="go_to" onClick={toOrder}>order</button>
         </p>
         <p>
           <button className="go_to" onClick={to_notification}>

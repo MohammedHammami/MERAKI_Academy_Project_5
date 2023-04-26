@@ -8,7 +8,12 @@ import axios from "axios";
 
 const GetAllOrders = () => {
   const dispatch = useDispatch();
-
+  const state = useSelector((state) => {
+    console.log(state);
+    return {
+      token: state.auth.token,
+    };
+  });
 
   const [receiver_user_id, setReceiver_user_id] = useState(3);
   const fm = () => {

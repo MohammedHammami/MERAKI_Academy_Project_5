@@ -29,6 +29,7 @@ function App() {
         <Route path="/user" element={<UserPost />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
+        <Route path="/orders" element={<GetAllOrders />} />
       </Routes>
     </div>
   );
