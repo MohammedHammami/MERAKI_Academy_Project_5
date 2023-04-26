@@ -4,12 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-
-  
-  
-    
-
 const DashboardProvider = () => {
   const [orders, setOrders] = useState([]);
   const [completed, setCompleted] = useState(0)
@@ -23,10 +17,18 @@ const DashboardProvider = () => {
       userInfo: state.auth.userInfo,
     };
   });
-
+  const fillterRate = () =>{
+    axios
+    .get(`http://localhost:5000/review/`,{headers: {Authorization: state.token}})
+    .then((result)=>{
+      console.log(result);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   const ChartComponent = (props) => {
     const chartRef = useRef(null);
-
     useEffect(() => {
       const chartCanvas = chartRef.current.getContext("2d");
       const myChart = new Chart(chartCanvas, {
@@ -76,6 +78,7 @@ const DashboardProvider = () => {
   }
   useEffect(()=>{
   getAllOrder()
+  fillterRate()
   },[])
   const to_notification = ()=>{
     navigate('/getAllNotification')
