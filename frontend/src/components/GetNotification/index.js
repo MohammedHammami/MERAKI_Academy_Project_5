@@ -5,8 +5,11 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 
 const GetAllNotification = () => {
+  const navigate = useNavigate();
+  const [smShow, setSmShow] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const state = useSelector((state) => {
     return {
@@ -67,7 +70,8 @@ const GetAllNotification = () => {
             Authorization: state.token
         }})
         .then((result)=>{
-            console.log(result);
+            updateNotificationFn(idNoti,"order_end")
+            navigate("/Dashboard/provider")
         })
         .catch((err)=>{
             console.log(err);
@@ -109,7 +113,22 @@ const GetAllNotification = () => {
                         <Card.Title>{noti.description}</Card.Title>
                         <p>the provider accepted</p>
                         <p>please rate the provider</p>
-                        <Button>rate</Button>
+                        <Button onClick={() => setSmShow(true)} className="me-2">Rate</Button>
+                        <Modal size="sm" show={smShow} onHide={() => setSmShow(false)} aria-labelledby="example-modal-sizes-title-sm">
+                            <Modal.Header closeButton>
+                                <Modal.Title id="example-modal-sizes-title-sm"> Rate order </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <p>please rate your order</p>
+                                <div className="rating">
+                                    <span className="star" data-rating="5" onClick={()=>{RateFn(5,noti.receiver_user_id,noti.order_id,noti.id)}}></span>
+                                    <span className="star" data-rating="4" onClick={()=>{RateFn(4,noti.receiver_user_id,noti.order_id,noti.id)}}></span>
+                                    <span className="star" data-rating="3" onClick={()=>{RateFn(3,noti.receiver_user_id,noti.order_id,noti.id)}}></span>
+                                    <span className="star" data-rating="2" onClick={()=>{RateFn(2,noti.receiver_user_id,noti.order_id,noti.id)}}></span>
+                                    <span className="star" data-rating="1" onClick={()=>{RateFn(1,noti.receiver_user_id,noti.order_id,noti.id)}}></span>
+                                </div>
+                            </Modal.Body>
+                        </Modal>
                     </Card.Body>
                 </Card>
                 )}

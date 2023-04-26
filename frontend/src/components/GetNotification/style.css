@@ -2,3 +2,25 @@
     background-color: lightblue;
     margin: 5%;
 }
+.rating {
+    font-size: 0;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .star {
+    display: inline-block;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .star:before {
+    content: "\2605";
+  }
+  
+  .star:hover:before,
+  .star:hover ~ .star:before,
+  .star.active:before {
+    color: #FFD700;
+  }
