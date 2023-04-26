@@ -6,7 +6,7 @@ body{
     
 }
 .lightMood{
-    --words:blue ;
+    --words:#0476f8 ;
     --background:whitesmoke ;
 }
 
