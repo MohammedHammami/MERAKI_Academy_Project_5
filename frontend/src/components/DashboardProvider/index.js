@@ -101,7 +101,9 @@ const DashboardProvider = () => {
   // const to_notification = () => {
   //   navigate("/getAllNotification");
   // };
-
+const toCreatePost = ()=>{
+  navigate("/CreatePost")
+}
   return (
     <div className="container_dashboard_provider">
       <div className="menu">
@@ -123,13 +125,13 @@ const DashboardProvider = () => {
           </button>
         </p>
         <p>
-          <button className="go_to">createPost</button>
+          <button className="go_to" onClick={toCreatePost}>createPost</button>
         </p>
       </div>
       <div className="body_container">
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
-            <h3>no: of order Completed</h3>
+            <h3>no: of order Accept</h3>
             <p>All order : {orders.length}</p>
             <p>Completed : {completed}</p>
           </div>

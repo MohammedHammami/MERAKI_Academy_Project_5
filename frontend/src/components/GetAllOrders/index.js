@@ -9,9 +9,9 @@ import axios from "axios";
 const GetAllOrders = () => {
   const dispatch = useDispatch();
 
+
   const [receiver_user_id, setReceiver_user_id] = useState(3);
   const fm = () => {
-    console.log(localStorage.getItem("token"));
     axios
       .get(
         `http://localhost:5000/orders/`,

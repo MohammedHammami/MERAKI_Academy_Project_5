@@ -12,20 +12,6 @@ const GetAllNotification = () => {
       token: state.auth.token,
     };
   });
-  // const getNotifications = () => {
-  //   axios
-  //     .get(`http://localhost:5000/notifications`, {
-  //       headers: {
-  //         Authorization: state.token,
-  //       },
-  //     })
-  //     .then((result) => {
-  //       console.log(result.data.notification);
-  //       setNotifications(result.data.notification);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
 
     const getNotifications = ()=>{
         axios
@@ -62,6 +48,18 @@ const GetAllNotification = () => {
         .then((result)=>{console.log(result);})
         .catch((err)=>{console.log(err);})
     }
+    const updateOrderState = (order_id,state_id) => {
+        axios
+        .put(`http://localhost:5000/orders/state/${order_id}`,{state_id},{headers: {
+            Authorization: state.token
+        }})
+        .then((result)=>{
+            console.log(result);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     return (    
     <div className="all-notification-div">
         <div className="notification">
@@ -75,10 +73,12 @@ const GetAllNotification = () => {
                         <Card.Title>{noti.description}</Card.Title>
                         <Button onClick={()=>{
                             createNotivication(noti.order_id,"your order accepted from provider","accept_order");
-                            updateNotificationFn(noti.id,"accepted_order")}}>Accept</Button>
+                            updateNotificationFn(noti.id,"accepted_order")
+                            updateOrderState(noti.order_id,2)}}>Accept</Button>
                         <Button onClick={()=>{
                             createNotivication(noti.order_id,"your order canceld from provider","canceld_order");
-                            updateNotificationFn(noti.id,"order_canceld")}}>Cancel</Button>
+                            updateNotificationFn(noti.id,"order_canceld")
+                            updateOrderState(noti.order_id,3)}}>Cancel</Button>
                     </Card.Body>
                 </Card>
                 )}
@@ -113,7 +113,7 @@ const GetAllNotification = () => {
                     <Card.Body>
                         <Card.Title>{noti.description}</Card.Title>
                         <p>the provider canceld order</p>
-                        <Button>Cancel</Button>
+                        <Button onClick={()=>{updateNotificationFn(noti.id,"finale_order-canceld")}}>Cancel</Button>
                     </Card.Body>
                 </Card>
                 )}
