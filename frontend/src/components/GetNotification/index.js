@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from 'react-bootstrap/Modal';
 
 const GetAllNotification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -51,6 +52,18 @@ const GetAllNotification = () => {
     const updateOrderState = (order_id,state_id) => {
         axios
         .put(`http://localhost:5000/orders/state/${order_id}`,{state_id},{headers: {
+            Authorization: state.token
+        }})
+        .then((result)=>{
+            console.log(result);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+    const RateFn = (rate,receiver_user_id,order_id,idNoti)=>{
+        axios
+        .post(`http://localhost:5000/review`,{rate,receiver_user_id,order_id},{headers: {
             Authorization: state.token
         }})
         .then((result)=>{
@@ -120,25 +133,6 @@ const GetAllNotification = () => {
             })
         }
         </div>
-
-  
-  {/* useEffect(() => {
-    getNotifications();
-  }, []);
-  return (
-    <div className="all-notification-div">
-      {notifications.map((noti, i) => {
-        return (
-          <Card key={i}>
-            <Card.Body>
-              <Card.Title>{noti.description}</Card.Title>
-              <Button>Accept</Button>
-              <Button>Cancel</Button>
-            </Card.Body>
-          </Card>
-        );
-      })} */}
-
     </div>
   );
 };

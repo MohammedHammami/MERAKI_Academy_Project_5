@@ -109,12 +109,13 @@ const toOrder = ()=>{
 }
   return (
     <div className="container_dashboard_provider">
+      
       <div className="menu">
         <p>
           <button className="go_to">menu</button>
         </p>
         <p>
-          <button className="go_to">profile</button>
+          <button className="go_to">profile settings</button>
         </p>
         <p>
           <button className="go_to">posts</button>
@@ -151,6 +152,7 @@ const toOrder = ()=>{
         </div>
       </div>
       {/* <ChartComponent/>  */}
+      
     </div>
   );
 };
