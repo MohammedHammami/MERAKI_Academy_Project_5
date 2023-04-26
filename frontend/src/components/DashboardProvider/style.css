@@ -5,7 +5,10 @@
     margin: 0.5%;
     height: 100vh;
 }
-
+.ChartComponent{
+    width: 80%;
+    margin-left: 10%;
+}
 .menu{
     background-color: #e7ecf8;
     border-radius: 25px;

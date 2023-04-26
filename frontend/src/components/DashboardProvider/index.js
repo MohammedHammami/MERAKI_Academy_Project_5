@@ -56,9 +56,9 @@ const DashboardProvider = () => {
           labels: coulmName,
           datasets: [
             {
-              label: "My First Dataset",
+              label: "no: rated",
               data: coulmValue,
-              backgroundColor: "rgb(255, 99, 132)",
+              backgroundColor: "rgb(110, 99, 132)",
               borderColor: "rgba(255, 99, 132, 0.2)",
             },
           ],
@@ -172,8 +172,9 @@ const toOrder = ()=>{
             <p>Canceled : {canceled}</p>
           </div>
         </div>
+        <div className="ChartComponent"><ChartComponent/></div>
       </div>
-      <ChartComponent/> 
+       
       
     </div>
   );
