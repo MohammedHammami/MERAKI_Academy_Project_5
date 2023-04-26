@@ -66,16 +66,21 @@ const GetAllNotification = () => {
     }
     const RateFn = (rate,receiver_user_id,order_id,idNoti)=>{
         axios
-        .post(`http://localhost:5000/review`,{rate,receiver_user_id,order_id},{headers: {
-            Authorization: state.token
-        }})
+        .get(`http://localhost:5000/orders/order_id/${order_id}`)
         .then((result)=>{
-            updateNotificationFn(idNoti,"order_end")
-            navigate("/Dashboard/provider")
+            console.log(result);
+            axios
+            .post(`http://localhost:5000/review`,{rate,receiver_user_id:result.data.order[0].receiver_user_id,order_id},{headers: {
+            Authorization: state.token
+            }})
+            .then((result)=>{
+                updateNotificationFn(idNoti,"order_end")
+                navigate("/Dashboard/provider")
+            })
+            .catch((err)=>{console.log(err);})
+
         })
-        .catch((err)=>{
-            console.log(err);
-        })
+        .catch((err)=>{console.log(err);})
     }
     return (    
     <div className="all-notification-div">
