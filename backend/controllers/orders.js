@@ -107,10 +107,32 @@ const getOrderById = (req,res) => {
       });
     });
 }
+const updateStateOrderById = (req,res) => {
+  const id = req.params.order_id
+  const {state_id} = req.body
+  const query=`UPDATE orders SET state_id = COALESCE($1,state_id) WHERE id = ${id} RETURNING *;`
+  pool
+  .query(query,[state_id])
+  .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "order update successfuly",
+        order: result.rows
+      });
+    })
+    .catch((err) => {
+      res.status(409).json({
+        success: false,
+        message: "server error",
+        err:err.message,
+      });
+    });
+}
 module.exports = {
     createNewOrder,
     updateOrderById,
     getOrderByReceiverId,
     getAllOrder,
     getOrderById,
+    updateStateOrderById,
 }
