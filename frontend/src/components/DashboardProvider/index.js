@@ -58,7 +58,7 @@ const DashboardProvider = () => {
             {
               label: "no: rated",
               data: coulmValue,
-              backgroundColor: "rgb(110, 99, 132)",
+              backgroundColor: "rgb(173, 216, 230)",
               borderColor: "rgba(255, 99, 132, 0.2)",
             },
           ],
@@ -157,19 +157,16 @@ const toOrder = ()=>{
       <div className="body_container">
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
-            <h3>no: of order Accept</h3>
-            <p>All order : {orders.length}</p>
-            <p>Completed : {completed}</p>
+            <h3>order Accept</h3>
+            <p>{completed}</p>
           </div>
           <div className="card_order_info">
-            <h3>no: of order Pending</h3>
-            <p>All order : {orders.length}</p>
-            <p>Pending : {pending}</p>
+            <h3>order Pending</h3>
+            <p>{pending}</p>
           </div>
           <div className="card_order_info">
-            <h3>no: of order Canceled</h3>
-            <p>All order : {orders.length}</p>
-            <p>Canceled : {canceled}</p>
+            <h3>order Canceled</h3>
+            <p>{canceled}</p>
           </div>
         </div>
         <div className="ChartComponent"><ChartComponent/></div>

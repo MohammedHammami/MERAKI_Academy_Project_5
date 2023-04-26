@@ -28,7 +28,7 @@
 .card_order_info{
     margin: 3%;
     width: 30%;
-    background-color: #D5E2F2;
+    background-color: lightblue;
     border-radius: 35px;
     padding: 1%;
 }
@@ -37,4 +37,6 @@
 }
 .go_to{
     background-color: lightblue;
+    width: 100%;
+    border-radius: 20px;
 }
