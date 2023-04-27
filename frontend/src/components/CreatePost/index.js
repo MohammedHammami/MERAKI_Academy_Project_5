@@ -53,6 +53,7 @@ const CreatePost = () => {
   
 
   const submitFn = () => {
+    console.log(title, description, pricing,state.token);
     axios
       .post(
         `http://localhost:5000/posts`,
@@ -111,7 +112,11 @@ const CreatePost = () => {
                     label="Title"
                     id="form1"
                     type="text"
-                    className="w-100"
+                    className={
+                      mood === "darkMood"
+                        ? "darkMood w-100"
+                        : "lightMood w-100"
+                    }
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
@@ -157,7 +162,12 @@ const CreatePost = () => {
                     label="Pricing"
                     id="form1"
                     type="text"
-                    className="w-100"
+                    className={
+                      mood === "darkMood"
+                        ? "darkMood w-100"
+                        : "lightMood w-100"
+                    }
+                    
                     onChange={(e) => {
                       setPricing(e.target.value);
                     }}
@@ -174,7 +184,12 @@ const CreatePost = () => {
                     uploadImage(e.dataTransfer.files[0]);
                   }}
                 >
-                  <MDBIcon fas icon="camera-retro me-3" size="lg" />
+                  <MDBIcon fas icon="camera-retro me-3" size="lg" 
+                  className={
+                    mood === "darkMood"
+                      ? "darkMood"
+                      : "lightMood"
+                  }/>
                   <button className="imgbtn" onClick={(e) => { fileInputRef.current.click()}}>
                     take image from your device
                     <br></br>
@@ -185,6 +200,7 @@ const CreatePost = () => {
                     id="form4"
                     type="file"
                     style={{ display: "none" }}
+                    ref={fileInputRef}
                     onChange={(e) => {
                       setImage(e.target.files[0]);
                       uploadImage(e.target.files[0]);
