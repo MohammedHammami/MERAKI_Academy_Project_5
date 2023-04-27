@@ -27,12 +27,48 @@ function Register() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [role, setRole] = useState("2");
-  const [user_image, setUser_image] = useState("2");
   const [phone_no, setPhone_no] = useState("");
-  const [files, setFiles] = useState(null);
   const [done, setDone] = useState(true);
-  const [img, setImg] = useState('')
-  const handelRegister = (password) => {
+  const [image, setImage] = useState('')
+  const [ url, setUrl ] = useState("");
+const uploadImage = (pas) => {
+  console.log(image);
+const data = new FormData()
+data.append("file", image)
+data.append("upload_preset", "n9udcnak")
+data.append("cloud_name","dh2mazipf")
+fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload",{
+method:"post",
+body: data
+})
+.then(resp => resp.json())
+.then(data => {
+  console.log(data.url);
+  handelRegister(pas)
+  setUrl(data.url)
+})
+.catch(err => console.log(err))
+}
+const uploadImage2 = async(i) => {
+  console.log(i);
+const data = new FormData()
+data.append("file", i)
+data.append("upload_preset", "n9udcnak")
+data.append("cloud_name","dh2mazipf")
+await fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload",{
+method:"post",
+body: data
+})
+.then(resp => resp.json())
+.then(data => {
+  console.log(data.url);
+  setUrl(data.url)
+})
+.catch(err => console.log(err))
+}
+
+  const handelRegister = async(password) => {
+    console.log(password);
     const newUser = {
       email: email,
       password: password,
@@ -41,38 +77,26 @@ function Register() {
       phone_no: phone_no,
       role_id: role,
       craft_id: "",
-      user_image:img
+      user_image:url
     };
-
-    axios
+console.log(newUser);
+    
+      try{
+        const result= await axios
       .post("http://localhost:5000/users/register", newUser)
-      .then((result) => {
         console.log(result.data);
         tologin()
-      })
-      .catch((err) => {
+      }
+      
+      catch(err){
         console.log(err);
         setDone(false)
-      });
+      };
   };
   const tologin = ()=>{
     navigate("/login")
   }
-  useEffect(() => {
-    if (files){
-      const reader= new FileReader()
-      reader.onload=()=>{
-        setImg(reader.result)
-      }
-      reader.readAsDataURL(files[0])
-    }else{
-      setImg(null)
-    }
-  
-    
-  }, [files])
-  
-  return (
+ return (
     <>
     
       <MDBContainer fluid>
@@ -141,7 +165,6 @@ function Register() {
                   />
                 </div>
                 
-             
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
@@ -166,19 +189,19 @@ function Register() {
                     }}
                   />
                 </div>
-                {img ? <img src={img} className="img"/>:
+                {image ? <img src={url} className="img"/>:
                 <div className="d-flex flex-row align-items-center mb-4" onDragOver={(e)=>{
 e.preventDefault();
                 }}
                 onDrop={(e)=>{
 e.preventDefault()
-console.log(e.dataTransfer.files);
-setFiles(e.dataTransfer.files)
+setImage(e.dataTransfer.files[0])
+uploadImage2(e.dataTransfer.files[0])
+
                 }}>
                   <MDBIcon  fas icon="camera-retro me-3"size="lg" />
                   <button className="imgbtn" onClick={(e)=>{
-e.preventDefault()
-fileInputRef.current.click()
+                    fileInputRef.current.click()
                   }}>Drag and Drop or Add picture 
                   <br></br>
                   <MDBIcon fas  size ='lg'icon="plus-circle me-3" /></button>
@@ -189,9 +212,10 @@ fileInputRef.current.click()
                     style={{display:'none'}}
                     ref={fileInputRef}
                     onChange={(e) => {
-                      console.log(e.target.files);
-                      setFiles(e.target.files)
-                      console.log('files:',files);
+                      // console.log(e.target.files[0]);
+                      setImage(e.target.files[0])
+                      uploadImage2(e.target.files[0])
+                      
                     }}
                   />
                 </div>}
@@ -205,7 +229,7 @@ fileInputRef.current.click()
                     ) : (
                       <>
                         {setPassword(password1)}
-                        {handelRegister(password1)}
+                        {uploadImage(password1)}
                       </>
                     );
                   }}
@@ -226,7 +250,7 @@ fileInputRef.current.click()
         </MDBCard>
       </MDBContainer>
     </>
-  );
+  )
 }
 
 export default Register;

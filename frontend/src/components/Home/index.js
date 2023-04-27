@@ -61,7 +61,7 @@ const Home = () => {
             >
               <Card.Img
                 variant="top"
-                src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg"
+                src={post.post_image}
               />
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>

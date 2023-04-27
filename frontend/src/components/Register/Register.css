@@ -6,17 +6,19 @@ min-height: 80vh;
 } */
 
 .img{
-   width: 50vw;
-   height: 40vh; 
+   width: 20vw;
+   height: 25vh; 
    border-radius: 12px;
 margin-bottom: 2vh;
 }
 
 .imgbtn{
-    color: #0088F8;
+    color: var(--background);
     border-style: dotted;
+    border-color: var(--background);
     border-radius: 12px;
-    height: 40vh;
-   width: 25vw;
-
+    height: 25vh;
+   width: 20vw;
+background-color: var(--words);
 }
+

@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const MoodSlice = createSlice({
   name: "mood",
   initialState: {
-    mood: "lightMood",
+    mood: null || localStorage.getItem("mood"),
   },
   reducers: {
     changeMood: (state, action) => {
       state.mood = action.payload;
+      localStorage.setItem("mood", state.mood);
+
     },
   },
 });
