@@ -1,201 +1,97 @@
-import React, { useState } from "react";
+import "./Navbar.css"
+import { BsFillHouseFill,BsPersonCheckFill } from 'react-icons/bs';
+import { useEffect, useState } from "react";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import { changeMood } from "../Redux/reducers/mood";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {
-  MDBContainer,
-  MDBNavbar,
-  MDBBtn,
-  MDBInputGroup,
-} from "mdb-react-ui-kit";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import "./Navbar.css";
-import { Button } from "react-bootstrap";
 import { setLogout } from "../Redux/reducers/auth";
-const Navbars = () => {
-  const [moodstate, setMoodstate] = useState(false);
-  const dispath = useDispatch();
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+// import { BsFillHouseFill } from "react-icons/bs";
 
+
+const Navbars = () => {
+  const [imageP,setImageP] = useState("")
+  const [craft,setCraft] = useState("")
+  const [moodstate, setMoodstate] = useState(false);
+  const navigate = useNavigate();
+  const dispath = useDispatch();
   const logout = () => {
     dispath(setLogout());
   };
   const state = useSelector((state) => {
+    // console.log(state);
     return {
       isLoggedIn: state.auth.isLoggedIn,
-      mood: state.Mood.mood,
+      token: state.auth.token,
     };
   });
-  const mood = state.mood;
+  
   let newTheme = moodstate ? "lightMood" : "darkMood";
-  console.log(mood);
-
+  const getImage = ()=>{
+    axios
+      .get(`http://localhost:5000/users/`,{headers:{Authorization: state.token}})
+      .then((result)=>{
+        setCraft(result.data.user[0].craft_id);
+        setImageP(result.data.user[0].user_image);
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+  }
+  useEffect(()=>{
+    getImage()
+  },[])
   return (
-    <>
-      {state.isLoggedIn ? (
-        <>
-          <div
-            className={
-              mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
+    <div className="navBar-container">
+      <Navbar collapseOnSelect expand="lg"  className="background-navbar">
+      <Navbar.Brand style={{marginLeft:"1%"}}>
+        Maintenance services <BsFillHouseFill style={{marginLeft:"10px"}}
+        onClick={()=>{
+          navigate('/')
+        }}
+        /></Navbar.Brand>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Form className="d-flex leeft-margin-search">
+              <Form.Control type="search" placeholder="Search" className="me-2"
+                aria-label="Search"/>
+              <Button variant="danger">Search</Button>
+              {/* primary secondary success  danger warning  info light dark */}
+            </Form>
+          </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="to-left">
+            {state.isLoggedIn?
+            <>
+            <img
+              src={imageP}
+              alt="Profile Pic"
+              style={{ width: '55px', height: '55px', borderRadius: '50%', marginRight: '10px' }}
+            />
+            <NavDropdown id="collasible-nav-dropdown">
+              <NavDropdown.Item onClick={()=>{
+                navigate("/Dashboard/provider")
+              }}>DashBoard</NavDropdown.Item>
+              {craft?
+                <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
+                :
+                <NavDropdown.Item onClick={()=>{navigate("/CreateCrafts")}}>Become a service provider</NavDropdown.Item>
+              }
+              <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
+            </NavDropdown>
+            </>
+            :
+            <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/login`)}}>login <BsPersonCheckFill/></Nav.Link>
             }
-          >
-            <div className="dropdown">
-              <button
-                className={
-                  mood === "darkMood" ? "darkMood dropbtn" : "lightMood dropbtn"
-                }
-              >
-                {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-              </button>
-              <div
-                className={
-                  mood === "darkMood"
-                    ? "darkMood dropdown-content"
-                    : "lightMood dropdown-content"
-                }
-              >
-                <a href="/Dashboard">Dashboard</a>
-                <a href="/CreatePost">post</a>
-                <a href="/user">my posts</a>
-                <a href="#" onClick={logout}>
-                  logout
-                </a>
-              </div>
-            </div>
-
-            <MDBInputGroup tag="form" className="d-flex w-auto mb-3 search">
-              <input
-                className="form-control"
-                placeholder="Search .."
-                aria-label="Search"
-                type="Search"
-              />
-              <Button
-                className={
-                  mood === "darkMood"
-                    ? "darkMood btnsearch"
-                    : "lightMood  btnsearch"
-                }
-              >
-                <SearchOutlinedIcon className="btnsearch" />
-              </Button>
-            </MDBInputGroup>
-
-            <div>
-              <input
-                type="checkbox"
-                className="checkbox"
-                id="checkbox"
-                onChange={() => {
-                  setMoodstate(!moodstate);
-                  dispath(changeMood(newTheme));
-                }}
-              />
-              <label htmlFor="checkbox" className="checkbox-label">
-                <i className="fas fa-moon"></i>
-                <i className="fas fa-sun"></i>
-                <span className="ball"></span>
-              </label></div>
-              <Navbar.Brand
-                className={
-                  mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                }
-                href="/"
-              >
-                <img
-                  src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=
-                                "
-                  className="img2"
-                />
-              </Navbar.Brand>
-            
-          </div>
-        </>
-      ) : (
-        <>
-          <div
-            className={
-              mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-            }
-          >
-            <Navbar.Brand
-              className={
-                mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-              }
-              href="/"
-            >
-              Home
-            </Navbar.Brand>
-
-            <Link
-              className={
-                mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-              }
-              to="/login"
-            >
-              {" "}
-              login
-            </Link>
-            <Link
-              className={
-                mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-              }
-              to="/Register"
-            >
-              {" "}
-              Register{" "}
-            </Link>
-            <Nav className={mood === "darkMood" ? "darkMood " : "lightMood "}>
-              <NavDropdown
-                title="seting"
-                className={
-                  mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                }
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item
-                  className={
-                    mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                  }
-                  href="/Dashboard/provider"
-                >
-                  Dashboard
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  className={
-                    mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                  }
-                  href="/CreateCraft"
-                >
-                  CreateCraft
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  href="Comment"
-                  className={
-                    mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                  }
-                >
-                  Comment
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  href="/logout"
-                  className={
-                    mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
-                  }
-                >
-                  logout
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
-          </div>
-        </>
-      )}
-    </>
+        </Navbar.Collapse>
+    </Navbar>
+    </div>
   );
 };
 

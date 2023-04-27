@@ -116,8 +116,29 @@ const updateUserById = (req, res) => {
       });
     });
 };
+const getInfoUser = (req,res) =>{
+  const id = req.token.userId;
+  const query = `SELECT * FROM users WHERE id = ${id}`
+  pool
+    .query(query)
+    .then((result)=>{
+      res.status(200).json({
+        success: true,
+        mesasge:"get user",
+        user: result.rows
+    })
+    })
+    .catch((err)=>{
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message
+       })
+    })
+}
 module.exports = {
   register,
   updateUserById,
   login,
+  getInfoUser
 };

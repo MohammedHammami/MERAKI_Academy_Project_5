@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BsBorderWidth ,BsFilePost,BsFillHouseGearFill,BsFillBellFill,BsFillPlusSquareFill} from 'react-icons/bs';
 const DashboardProvider = () => {
   const [orders, setOrders] = useState([]);
   const [completed, setCompleted] = useState(0)
@@ -164,21 +165,21 @@ const toOrder = ()=>{
       <div className="menu">
         
         <p>
-          <button className="go_to">Settings</button>
+          <button className="go_to"><BsFillHouseGearFill/> Settings</button>
         </p><br/>
         <p>
-          <button className="go_to">My Posts</button>
+          <button className="go_to"><BsFilePost/> My Posts</button>
         </p><br/>
         <p>
-          <button className="go_to" onClick={toOrder}>Orders</button>
+          <button className="go_to" onClick={toOrder}><BsBorderWidth/> Orders</button>
         </p><br/>
         <p>
           <button className="go_to" onClick={to_notification}>
-            Notifications
+            <BsFillBellFill/> Notifications
           </button>
         </p><br/>
         <p>
-          <button className="go_to" onClick={toCreatePost}>Create Announcement</button>
+          <button className="go_to" onClick={toCreatePost}><BsFillPlusSquareFill/> Create Announcement</button>
         </p><br/>
       </div>
       <div className="body_container">
