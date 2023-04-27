@@ -12,6 +12,7 @@ import GetAllOrders from "./components/GetAllOrders";
 import UserPost from "./components/UsersPosts";
 import DashboardProvider from "./components/DashboardProvider";
 import GetAllNotification from "./components/GetNotification";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }
