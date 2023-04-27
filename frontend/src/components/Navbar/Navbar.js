@@ -23,7 +23,7 @@ const Navbars = () => {
     dispath(setLogout());
   };
   const state = useSelector((state) => {
-    // console.log(state);
+    
     return {
       isLoggedIn: state.auth.isLoggedIn,
       token: state.auth.token,
@@ -37,6 +37,7 @@ const Navbars = () => {
       .then((result)=>{
         setCraft(result.data.user[0].craft_id);
         setImageP(result.data.user[0].user_image);
+        console.log(result.data.user[0].user_image);
       })
       .catch((err)=>{
           console.log(err);
@@ -44,6 +45,7 @@ const Navbars = () => {
   }
   useEffect(()=>{
     getImage()
+ 
   },[])
   return (
     <div className="navBar-container">
