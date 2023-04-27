@@ -22,6 +22,12 @@
   cursor: pointer;
   border-radius: 10px;
 }
+.img2 {
+  width: 9vw;
+  height: 10vh; 
+  border-radius: 12px;
+
+}
 .custom-switch{
   color: var(--words);
 
