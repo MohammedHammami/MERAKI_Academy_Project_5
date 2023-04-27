@@ -43,13 +43,13 @@ const Navbars = () => {
               mood === "darkMood" ? "darkMood navbar" : "lightMood navbar"
             }
           >
-            <div class="dropdown">
+            <div className="dropdown">
               <button
                 className={
                   mood === "darkMood" ? "darkMood dropbtn" : "lightMood dropbtn"
                 }
               >
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
               </button>
               <div
                 className={
@@ -88,17 +88,17 @@ const Navbars = () => {
             <div>
               <input
                 type="checkbox"
-                class="checkbox"
+                className="checkbox"
                 id="checkbox"
                 onChange={() => {
                   setMoodstate(!moodstate);
                   dispath(changeMood(newTheme));
                 }}
               />
-              <label for="checkbox" class="checkbox-label">
-                <i class="fas fa-moon"></i>
-                <i class="fas fa-sun"></i>
-                <span class="ball"></span>
+              <label htmlFor="checkbox" className="checkbox-label">
+                <i className="fas fa-moon"></i>
+                <i className="fas fa-sun"></i>
+                <span className="ball"></span>
               </label></div>
               <Navbar.Brand
                 className={
