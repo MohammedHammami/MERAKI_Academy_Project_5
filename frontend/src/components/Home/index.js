@@ -42,7 +42,7 @@ const Home = () => {
           className="p-5 text-center bg-image mt-2"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1534398079543-7ae6d016b86a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80')",
+              "url('https://img.freepik.com/premium-vector/plumbing-service-with-plumber-workers-repair-maintenance-fix-home-cleaning-bathroom-equipment-flat-background-illustration_2175-2497.jpg?w=2000')",
             height: "50vh",
             width: "50%",
             marginLeft: "25%",

@@ -28,7 +28,6 @@ const receiver_user_id =req.params.id
 const getCommentsByUser = (req, res) =>{
     const userId = req.params.id
     const queryString = `SELECT * FROM comments WHERE receiver_user_id = ${userId};`
-    console.log(31);
     pool
         .query(queryString)
         .then((result)=>{
@@ -53,7 +52,6 @@ const deleteCommentById = (req, res) =>{
         .query( ` SELECT * FROM "comments" WHERE id=${id}`)
         .then((result1)=>{ 
          if (result1.rows.length==0) {
-            console.log(60);
             res.status(404).json({
                 success: false ,
                 message: `comment with id: ${id} Not Found`,

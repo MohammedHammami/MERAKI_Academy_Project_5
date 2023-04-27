@@ -1,7 +1,6 @@
 const pool = require("../models/db");
 const createNewReviews = (req, res) => {
   const requester_user_id = req.token.userId;
-  console.log();
   const { rate, receiver_user_id, order_id } = req.body;
   const data = [rate, receiver_user_id, order_id, requester_user_id];
   const query = `INSERT INTO reviews (rate,

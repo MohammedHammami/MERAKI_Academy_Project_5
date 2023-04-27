@@ -42,7 +42,6 @@ const getNotificationById = (req,res) => {
           message: "server error",
           err:err.message,
         });
-        console.log(err.message);
       });
 }
 const updateStatusNotifivationById = (req,res) => {

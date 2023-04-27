@@ -25,7 +25,6 @@ const getstate = (req, res) => {
         message: "Server Error",
         err: err.message,
       });
-      console.log(err.mesasge);
     });
 };
 const updatestateById = (req, res) => {
