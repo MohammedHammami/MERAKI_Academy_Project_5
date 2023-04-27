@@ -91,14 +91,15 @@ const register = async (req, res) => {
 };
 const updateUserById = (req, res) => {
   const id = req.token.userId;
-  const { first_name, last_name, phone_no, password } = req.body;
+  const { first_name, last_name, phone_no, password,user_image } = req.body;
   const data = [
     first_name || null,
     last_name || null,
     phone_no || null,
     password || null,
+    user_image|| null,
   ];
-  const query = `UPDATE users SET first_name = COALESCE($1,first_name), last_name = COALESCE($2,last_name), phone_no =COALESCE($3,phone_no), password = COALESCE($4,password) WHERE id = ${id} RETURNING *;`;
+  const query = `UPDATE users SET first_name = COALESCE($1,first_name), last_name = COALESCE($2,last_name), phone_no =COALESCE($3,phone_no), password = COALESCE($4,password),user_image = COALESCE($5,user_image) WHERE id = ${id} RETURNING *;`;
   pool
     .query(query, data)
     .then((result) => {
