@@ -13,6 +13,7 @@ const DashboardProvider = () => {
   const [coulmValue,setCoulmValue] = useState([])
   const navigate = useNavigate();
   const state = useSelector((state) => {
+    console.log(state.auth);
     return {
       userId: state.auth.userId,
       token: state.auth.token,
@@ -32,14 +33,13 @@ const DashboardProvider = () => {
       if(array[i].rate === 2){rate2++}
       if(array[i].rate === 1){rate1++}
     }
-    setCoulmName(["rate5","rate4","rate3","rate2","rate1"])
-    setCoulmValue([rate5,rate4,rate3,rate2,rate1])
+    setCoulmName(["Very Poor","Poor","Fair","Good","Excellent"])
+    setCoulmValue([rate1,rate2,rate3,rate4,rate5])
   }
   const getRate = () =>{
     axios
     .get(`http://localhost:5000/review/`,{headers: {Authorization: state.token}})
     .then((result)=>{
-      console.log(result.data.Reviews);
       fillterRate(result.data.Reviews)
     })
     .catch((err)=>{
@@ -51,14 +51,41 @@ const DashboardProvider = () => {
     useEffect(() => {
       const chartCanvas = chartRef.current.getContext("2d");
       const myChart = new Chart(chartCanvas, {
-        type: "bar", //bar,
+        type: "bar", //bar,pie
+        data: {
+          labels: ["Total Orders","Pending Orders","Accepted  Orders","Canceled  Orders"],
+          datasets: [
+            {
+              label: "",
+              data: [orders.length,pending,completed,canceled],
+              backgroundColor: ["rgb(220,235,252)", "rgb(251, 175, 175)", "#c3e6e1", "rgb(211, 211, 255)"],
+              // borderColor: ["#36A2EB", "#FFCE56", "#FF6384", "#FFCE56", "#FF6384"],
+            },
+          ],
+        },
+        options: { scales: { y: { beginAtZero: true } } },
+      });
+
+      return () => {
+        myChart.destroy();
+      };
+    }, [props]);
+
+    return <canvas ref={chartRef} />;
+  };
+  const ChartComponent1 = (props) => {
+    const chartRef = useRef(null);
+    useEffect(() => {
+      const chartCanvas = chartRef.current.getContext("2d");
+      const myChart = new Chart(chartCanvas, {
+        type: "doughnut", //bar,pie
         data: {
           labels: coulmName,
           datasets: [
             {
               label: "no: rated",
               data: coulmValue,
-              backgroundColor: "rgb(173, 216, 230)",
+              backgroundColor: ["green", "rgb(211, 211, 255)", "#c3e6e1", "rgb(251, 175, 175)", "rgb(68, 67, 67)"],
               borderColor: "rgba(255, 99, 132, 0.2)",
             },
           ],
@@ -85,6 +112,7 @@ const DashboardProvider = () => {
     }
   } 
   const getAllOrder = () =>{
+    console.log(state.userId);
     axios
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
     .then((result)=>{
@@ -129,47 +157,58 @@ const toCreatePost = ()=>{
 const toOrder = ()=>{
   navigate("/orders")
 }
+//Service Statistics
   return (
     <div className="container_dashboard_provider">
       
       <div className="menu">
+        
         <p>
-          <button className="go_to">menu</button>
-        </p>
+          <button className="go_to">Settings</button>
+        </p><br/>
         <p>
-          <button className="go_to">profile settings</button>
-        </p>
+          <button className="go_to">My Posts</button>
+        </p><br/>
         <p>
-          <button className="go_to">posts</button>
-        </p>
-        <p>
-          <button className="go_to" onClick={toOrder}>order</button>
-        </p>
+          <button className="go_to" onClick={toOrder}>Orders</button>
+        </p><br/>
         <p>
           <button className="go_to" onClick={to_notification}>
-            notification
+            Notifications
           </button>
-        </p>
+        </p><br/>
         <p>
-          <button className="go_to" onClick={toCreatePost}>createPost</button>
-        </p>
+          <button className="go_to" onClick={toCreatePost}>Create Announcement</button>
+        </p><br/>
       </div>
       <div className="body_container">
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
-            <h3>order Accept</h3>
-            <p>{completed}</p>
+            <h3>Total Orders</h3>
+            <p className="number-order">{orders.length}</p>
           </div>
-          <div className="card_order_info">
-            <h3>order Pending</h3>
-            <p>{pending}</p>
+          <div className="card_order_info light-blue">
+            <h3>Pending Orders</h3>
+            <p className="number-order">{pending}</p>
           </div>
-          <div className="card_order_info">
-            <h3>order Canceled</h3>
-            <p>{canceled}</p>
+          <div className="card_order_info light-green">
+            <h3>Accepted Orders</h3>
+            <p className="number-order">{completed}</p>
+          </div>
+          <div className="card_order_info light-red">
+            <h3>Canceled Orders</h3>
+            <p className="number-order">{canceled}</p>
           </div>
         </div>
-        <div className="ChartComponent"><ChartComponent/></div>
+        <hr className="hr2"/>
+        <div className="display-flex ChartComponent-div">
+          <div className="ChartComponent">
+            <h2>Orders</h2>
+            <ChartComponent/></div>
+          <div className="ChartComponent ChartComponent1">
+            <h2 className="h2">Rate</h2>
+            <ChartComponent1/></div>
+        </div>
       </div>
        
       

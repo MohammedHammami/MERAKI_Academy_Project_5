@@ -136,7 +136,7 @@ const Login = () => {
                   Register
                 </a>
               </p>
-              <hr/>
+              <hr className="hr1"/>
               <div className="google">
               <GoogleOAuthProvider clientId="623758713896-qs98f7ph84a1pgflgvg84up6i825a8mv.apps.googleusercontent.com">
                 <GoogleLogin
