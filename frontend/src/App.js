@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<><Home /></>} />
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<UserPost />} />
+        <Route path="/user/mypost" element={<UserPost />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
@@ -37,7 +37,6 @@ function App() {
         <Route path="/Chat" element={<Chat/>} />
         <Route path="/aboutus" element={<Aboutus/>}/>
       </Routes>
-{/* <UpdateUser/> */}
       <Footer/>
     </div>
   );
