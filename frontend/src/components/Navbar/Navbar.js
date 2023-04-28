@@ -43,7 +43,6 @@ const Navbars = () => {
       .get(`http://localhost:5000/users/`,{headers:{Authorization: state.token}})
       .then((result)=>{
         setCraft(result.data.user[0].craft_id);
-        setImageP(result.data.user[0].user_image);
       })
       .catch((err)=>{
           console.log(err);
