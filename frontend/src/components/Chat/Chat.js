@@ -73,11 +73,20 @@ setContent(value)
         ></input>
         <Button size="sm" className="submit-btn" onClick={ChatNow}>
           {" "}
-          sibmit
+          Submit
+        </Button>
+        <Button size="sm" className="submit-btn" onClick={()=>{
+            setOutput('')
+        }}>
+          {" "}
+          Clear
         </Button>
       </div>
-      <div className="reply-content ">
-        <p>{output} </p>
+      
+      <div className="reply-content " style={{  overflow: 'auto' }}>
+      <div style={{ maxHeight: '100%', overflow: 'scroll' }}>
+        {output} 
+       </div>
       </div>
     </div>
   );

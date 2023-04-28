@@ -85,7 +85,7 @@ const Navbars = () => {
               }}>Update</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{
                 navigate("/Chat")
-              }}>Chat</NavDropdown.Item>
+              }}>Chat AI</NavDropdown.Item>
               {craft?
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
                 :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}>Join us</NavDropdown.Item>
