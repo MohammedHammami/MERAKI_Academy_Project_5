@@ -185,19 +185,19 @@ const toOrder = ()=>{
       <div className="body_container">
         <div className="order_info__cotainer_div">
           <div className="card_order_info">
-            <h3>Total Orders</h3>
+            <h5>Total Orders</h5>
             <p className="number-order">{orders.length}</p>
           </div>
           <div className="card_order_info light-blue">
-            <h3>Pending Orders</h3>
+            <h5>Pending Orders</h5>
             <p className="number-order">{pending}</p>
           </div>
           <div className="card_order_info light-green">
-            <h3>Accepted Orders</h3>
+            <h5>Accepted Orders</h5>
             <p className="number-order">{completed}</p>
           </div>
           <div className="card_order_info light-red">
-            <h3>Canceled Orders</h3>
+            <h5>Canceled Orders</h5>
             <p className="number-order">{canceled}</p>
           </div>
         </div>
