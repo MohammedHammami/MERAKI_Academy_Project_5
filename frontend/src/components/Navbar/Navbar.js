@@ -57,8 +57,8 @@ const Navbars = () => {
                 navigate("/Dashboard/provider")
               }}>Dashboard</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{
-                navigate("/Update")
-              }}>Update</NavDropdown.Item>
+                navigate("/update/profile")
+              }}>Account</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{
                 navigate("/Chat")
               }}>Chat AI</NavDropdown.Item>

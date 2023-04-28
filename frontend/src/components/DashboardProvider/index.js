@@ -163,7 +163,7 @@ const toOrder = ()=>{
       <div className="menu">
         
         <p>
-          <button className="go_to" onClick={()=>{navigate("/update/profile")}}><BsFillHouseGearFill/> Settings</button>
+          <button className="go_to" onClick={()=>{navigate("/update/profile")}}><BsFillHouseGearFill/> Account</button>
         </p><br/>
         <p>
           <button className="go_to" onClick={()=>{navigate("/user/mypost")}}><BsFilePost/> My Posts</button>

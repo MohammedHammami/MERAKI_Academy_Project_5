@@ -26,7 +26,8 @@
   .header-title-profile {
 	margin: 0;
 	font-size: 2rem;
-  }
+	font-family: 'Agrandir,Helvetica Neue,Helvetica,Arial,sans-serif';
+}
   
   .card-body-profile {
 	padding: 10px;
@@ -41,6 +42,7 @@
 	font-size: 1.2rem;
 	font-weight: bold;
 	margin-bottom: 5px;
+	text-align: left;
   }
   .input-profile{
 	font-size: 1rem;
