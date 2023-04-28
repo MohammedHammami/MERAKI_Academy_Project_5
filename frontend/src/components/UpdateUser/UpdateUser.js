@@ -1,39 +1,40 @@
-import React, { useEffect, useState, useRef } from "react";
-import "./Register.css";
-import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 import {
-  MDBBtn,
   MDBContainer,
-  MDBRow,
   MDBCol,
+  MDBRow,
+  MDBBtn,
+  MDBIcon,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBInput,
-  MDBIcon,
+  MDBCardImage,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import Spinner from "../Spinner/Spinner.js";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
-function Register() {
-  const navigate = useNavigate();
+const UpdateUser = () => {
   const fileInputRef = useRef();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
-  const [role, setRole] = useState("2");
   const [phone_no, setPhone_no] = useState("");
-  const [done, setDone] = useState(true);
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState("");
-  const uploadImage = (pas) => {
+  const [craft_id, setCraft_id] = useState("");
+  const [crafts, setCrafts] = useState("");
+  const state = useSelector((state) => {
+    return {
+      token: state.auth.token,
+      userInfo: state.auth.userInfo,
+      userId: state.auth.userId,
+      mood: state.Mood.mood,
+    };
+  });
+  const token = state.token;
+
+  const uploadImage = () => {
     console.log(image);
     const data = new FormData();
     data.append("file", image);
@@ -46,7 +47,6 @@ function Register() {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data.url);
-        handelRegister(pas);
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
@@ -64,21 +64,32 @@ function Register() {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data.url);
+        UpdateUser();
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
   };
+useEffect(() => {
+  axios
+  .get("http://localhost:5000/crafts/")
+  .then((result) => {
+    console.log(result.data.result);
+   setCrafts(result.data.result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-  const handelRegister = async (password) => {
-    console.log(password);
+  
+}, [])
+
+  const UpdateUser = async () => {
+    
     const newUser = {
-      email: email,
-      password: password,
       first_name: first_name,
       last_name: last_name,
       phone_no: phone_no,
-      role_id: role,
-      craft_id: "",
+      craft_id: craft_id,
       user_image: url,
     };
     console.log(newUser);
@@ -86,13 +97,18 @@ function Register() {
     try {
       const result = await axios.post(
         "http://localhost:5000/users/register",
-        newUser
+        newUser,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(result.data);
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-      tologin();
+        tologin();
       }, 3000);
       return () => clearTimeout(timeout);
     } catch (err) {
@@ -100,7 +116,6 @@ function Register() {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        
       }, 3000);
 
       setDone(false);
@@ -111,7 +126,7 @@ function Register() {
     navigate("/login");
   };
   return (
-    <>
+    <div>
       <div>{isLoading && <Spinner />}</div>
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
@@ -123,7 +138,7 @@ function Register() {
                 className="order-2 order-lg-1 d-flex flex-column align-items-center"
               >
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                  Sign up
+                  Update you information
                 </p>
 
                 <div className="d-flex flex-row align-items-center mb-4 ">
@@ -134,8 +149,7 @@ function Register() {
                     type="text"
                     className="w-100"
                     onChange={(e) => {
-                      const name = e.target.value;
-                      setFirst_name(name);
+                      setFirst_name(e.target.value);
                     }}
                   />
                 </div>
@@ -147,47 +161,7 @@ function Register() {
                     type="text"
                     className="w-100"
                     onChange={(e) => {
-                      const name = e.target.value;
-                      setLast_name(name);
-                    }}
-                  />
-                </div>
-
-                <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="envelope me-3" size="lg" />
-                  <MDBInput
-                    label="Your Email"
-                    id="form2"
-                    type="email"
-                    onChange={(e) => {
-                      const email = e.target.value;
-                      setEmail(email);
-                    }}
-                  />
-                </div>
-
-                <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="lock me-3" size="lg" />
-                  <MDBInput
-                    label="Password"
-                    id="form3"
-                    type="password"
-                    onChange={(e) => {
-                      const Password1 = e.target.value;
-                      setPassword1(Password1);
-                    }}
-                  />
-                </div>
-
-                <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="key me-3" size="lg" />
-                  <MDBInput
-                    label="Repeat your Password"
-                    id="form4"
-                    type="password"
-                    onChange={(e) => {
-                      const Password2 = e.target.value;
-                      setPassword2(Password2);
+                      setLast_name(e.target.value);
                     }}
                   />
                 </div>
@@ -198,11 +172,27 @@ function Register() {
                     id="form3"
                     type="tel"
                     onChange={(e) => {
-                      const phone = e.target.value;
-                      setPhone_no(phone);
+                      setPhone_no(e.target.value);
                     }}
                   />
-                </div>
+                </div >
+                <div className="d-flex flex-row align-items-center mb-4">
+                <label className="labelc"> crafts:</label>
+          <select
+          className="select"
+            name="category"
+            id="category"
+            onClick={(e) => {
+             setCraft_id(e.target.value)
+            }}>
+            {crafts &&  crafts.map((craft,i) => {
+              console.log('craft:',craft.name);
+                return(
+                 <option key={craft.id} value={craft.id} >{craft.name}</option>
+                 )
+            })}
+          </select>
+          </div>
                 {image ? (
                   <img src={url} className="img" />
                 ) : (
@@ -242,44 +232,20 @@ function Register() {
                     />
                   </div>
                 )}
-
-                <MDBBtn
-                  className="mb-4"
-                  size="lg"
-                  onClick={() => {
-                    password1 !== password2 ? (
-                      setDone(!done)
-                    ) : (
-                      <>
-                        {setPassword(password1)}
-                        {uploadImage(password1)}
-                      </>
-                    );
-                  }}
-                >
-                  Register
-                </MDBBtn>
-                {done ? (
-                  <></>
-                ) : (
-                  <>
-                    <p>Register Faild</p>{" "}
-                  </>
-                )}
-              </MDBCol>
-              <MDBCol
-                md="10"
-                lg="6"
-                className="order-1 order-lg-2 d-flex align-items-center"
-              >
-                <MDBCardImage src="./media/Maintenance-bro.png" fluid />
+                <MDBBtn className="mb-0 px-5" size="lg" onClick={UpdateUser}>
+                update
+              </MDBBtn>
+                <MDBCardImage
+                  src="https://img.freepik.com/premium-photo/man-with-wrench-background-air-conditioner_96743-296.jpg?w=826"
+                  fluid
+                />
               </MDBCol>
             </MDBRow>
           </MDBCardBody>
         </MDBCard>
       </MDBContainer>
-    </>
+    </div>
   );
-}
+};
 
-export default Register;
+export default UpdateUser;
