@@ -66,7 +66,7 @@ const Navbars = () => {
           letterSpacing:"0.8px",
           fontWeight:"999",
           lineHeight: "1",fontSize:"35px"
-          }}>TasLee7<span className ="for-the-dot">.</span></h3> </Navbar.Brand>
+          }} onClick={()=>{navigate('/')}}>TasLee7<span className ="for-the-dot">.</span></h3> </Navbar.Brand>
         <Navbar.Collapse id="responsive-navbar-nav" style={{ justifyContent: "flex-end" }}  >
           
           <Nav>
@@ -75,7 +75,7 @@ const Navbars = () => {
              <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
              
              <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">Support </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">About us </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar">About us </Nav.Link>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
                 navigate("/Dashboard/provider")
@@ -103,7 +103,7 @@ const Navbars = () => {
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/register`)}}className="each-navbar">Register </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/login`)}}className="each-navbar">Login </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">Support </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">About us </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar about-us">About us </Nav.Link>
             </>
             }
           </Nav>

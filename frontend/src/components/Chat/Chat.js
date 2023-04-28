@@ -6,7 +6,7 @@ const Chat = () => {
   const [content, setContent] = useState("");
   const [output, setOutput] = useState("");
   const ChatNow = async () => {
-    const apiKey = "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";
+    const apiKey = "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";
     const requset = {
       model: "gpt-3.5-turbo",
       messages: [
@@ -22,7 +22,7 @@ const Chat = () => {
       .post(`https://api.openai.com/v1/chat/completions`, requset, {
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${apiKey} `,
+          authorization: `Bearer ${apiKey}`,
         },
       })
       .then((result) => {
@@ -61,7 +61,7 @@ const Chat = () => {
         </Button>
       </div>
       <div className="reply-content " style={{ overflow: "auto" }}>
-        <div style={{ maxHeight: "100%", overflow: "scroll" }}>{output}</div>
+        <div style={{ maxHeight: "100%"}}>{output}</div>
       </div>
     </div>
   );
