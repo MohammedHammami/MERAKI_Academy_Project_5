@@ -16,7 +16,7 @@
 .each-navbar:hover{
   background-color: rgb(241, 241, 241)
 }
-span {
+.for-the-dot {
   font-size: 30px;
   display: block;
   font-weight: 800;

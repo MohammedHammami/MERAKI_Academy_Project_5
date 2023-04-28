@@ -55,7 +55,7 @@ const Footer = () => {
 
 <div className="container mt-4">
   <div className="copyright">
-    &copy; Copyright <strong><span>Taslee7</span></strong>. 
+    &copy; Copyright <strong><span>Taslee7</span></strong>
   </div>
   <div className="credits">
     {/* <!-- All the links in the footer should remain intact. -->
