@@ -149,6 +149,7 @@ const Login = () => {
                     dispatch(setLoginGoogel(credentialResponse));
                     dispatch(setUserInfoGoogle(credentialResponse));
                     // toHome()
+                    navigate('/')
                   }}
                   onError={() => {
                     console.log("Login Failed");
