@@ -9,7 +9,7 @@ import CreateCraft from "./components/CreateCrafts";
 import CreateOrder from "./components/CreateOrder";
 import Comments from "./components/Comments/Comments";
 import GetAllOrders from "./components/GetAllOrders";
-// import UserPost from "./components/UsersPosts";
+import UserPosts from "./components/UsersPosts";
 import DashboardProvider from "./components/DashboardProvider";
 import GetAllNotification from "./components/GetNotification";
 import Footer from "./components/Footer";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<><Home /></>} />
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/user/mypost" element={<UserPost />} /> */}
+        <Route path="/user/mypost" element={<UserPosts />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
