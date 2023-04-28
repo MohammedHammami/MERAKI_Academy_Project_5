@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPost } from "../Redux/reducers/posts";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -51,30 +59,21 @@ const Home = () => {
           }}
         ></div>
       </header>
-      <div className="cards">
+      <div class="container1">
         {state.posts.map((post, i) => {
           return (
-            <Card
-              className="post"
-              style={{ width: "200", height: "150" }}
-              key={i}
-            >
-              <Card.Img
-                variant="top"
-                src={post.post_image}
-              />
-              <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    toOrder(post.id, post.user_id);
-                  }}
-                >
-                  order now
-                </Button>
-              </Card.Body>
-            </Card>
+            <>
+              <MDBCard className="car">
+                <MDBCardImage src={post.post_image} position="top" alt="..." />
+                <MDBCardBody>
+                  <MDBCardTitle>{post.title}</MDBCardTitle>
+                  {/* <MDBCardText className="mb-0">
+                    {oneAd.rentPrice + " JOD"}
+                  </MDBCardText> */}
+                  <MDBBtn href="#">view</MDBBtn>
+                </MDBCardBody>
+              </MDBCard>
+            </>
           );
         })}
       </div>
