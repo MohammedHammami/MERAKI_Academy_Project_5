@@ -177,7 +177,7 @@ const toOrder = ()=>{
           </button>
         </p><br/>
         <p>
-          <button className="go_to" onClick={toCreatePost}><BsFillPlusSquareFill/> Create Announcement</button>
+          <button className="go_to" onClick={toCreatePost}><BsFillPlusSquareFill/> Post an Ad</button>
         </p><br/>
       </div>
       <div className="body_container">

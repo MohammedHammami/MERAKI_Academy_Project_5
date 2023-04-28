@@ -17,8 +17,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import Spinner from "../Spinner/Spinner.js";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Register() {
+  ///////////////////////
   const navigate = useNavigate();
   const fileInputRef = useRef();
   const [email, setEmail] = useState("");
@@ -92,23 +94,56 @@ function Register() {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-      tologin();
+        handleClickS()
+        tologin()
       }, 3000);
       return () => clearTimeout();
     } catch (err) {
+      console.log("sssssss");
       console.log(err);
+      
+      
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        
+        handleClickF();
       }, 3000);
-
+      
       setDone(false);
       return () => clearTimeout();
     }
   };
   const tologin = () => {
+    
+    setTimeout(() => {
+      
     navigate("/login");
+    }, 3000);
+    return () => clearTimeout();
+  };
+  ////////////////////////////////
+  // const initializeToaster = () => {
+  //   setToaster(
+  //     toast.error({
+  //       position: 'top-right',
+  //       autoClose: 3000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progressStyle: { backgroundColor: 'red' },
+  //     })
+  //   );
+  // };
+  const handleClickF = () => {
+    toast.error('Register Failed');
+  };
+  const handleClickS = () => {
+    toast.success('Registered Successfully', {
+      position: 'top-right',
+      autoClose: 2000,
+      hideProgressBar: true, 
+    });
   };
   return (
     <>
@@ -182,7 +217,7 @@ function Register() {
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
-                    label="Repeat your Password"
+                    label="Confirm Password"
                     id="form4"
                     type="password"
                     onChange={(e) => {
@@ -242,7 +277,11 @@ function Register() {
                     />
                   </div>
                 )}
-
+                <div>
+                
+     
+      
+    
                 <MDBBtn
                   className="mb-4"
                   size="lg"
@@ -253,19 +292,16 @@ function Register() {
                       <>
                         {setPassword(password1)}
                         {uploadImage(password1)}
+                        
                       </>
                     );
+                    
                   }}
                 >
                   Register
-                </MDBBtn>
-                {done ? (
-                  <></>
-                ) : (
-                  <>
-                    <p>Register Faild</p>{" "}
-                  </>
-                )}
+                </MDBBtn><ToastContainer />
+                </div>
+               
               </MDBCol>
               <MDBCol
                 md="10"
@@ -278,6 +314,7 @@ function Register() {
           </MDBCardBody>
         </MDBCard>
       </MDBContainer>
+      
     </>
   );
 }
