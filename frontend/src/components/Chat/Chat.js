@@ -13,25 +13,8 @@ const openai = new OpenAIApi(configuration);
 
   const [content, setContent] = useState("");
   const [output, setOutput] = useState("");
-  const handleMessageSubmit = async () => {
-    const apiKey = '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';
-    const endpoint = 'https://api.chatgpt.com/v1/chat';
-
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        message: content
-      })
-    });
-}
-  const ChatNow = async() => { 
-    
-    const apiKey = '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';
-
+  const ChatNow = async () => {
+    const apiKey = "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";
     const requset = {
       model: "gpt-3.5-turbo",
       messages: [
@@ -44,11 +27,11 @@ const openai = new OpenAIApi(configuration);
       max_tokens: 200,
     };
     axios
-      .post(`https://api.openai.com/v1/chat/completions`,requset, {
-        headers:{
-            'Content-Type': 'application/json',
-            authorization: `Bearer : ${apiKey} `
-        }
+      .post(`https://api.openai.com/v1/chat/completions`, requset, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${apiKey}`,
+        },
       })
       .then((result) => {
         console.log(result);
@@ -82,11 +65,8 @@ setContent(value)
           Clear
         </Button>
       </div>
-      
-      <div className="reply-content " style={{  overflow: 'auto' }}>
-      <div style={{ maxHeight: '100%', overflow: 'scroll' }}>
-        {output} 
-       </div>
+      <div className="reply-content " style={{ overflow: "auto" }}>
+        <div style={{ maxHeight: "100%"}}>{output}</div>
       </div>
     </div>
   );
