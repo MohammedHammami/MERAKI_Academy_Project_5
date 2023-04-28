@@ -33,7 +33,6 @@ function Register() {
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState("");
-  const [timeout, setTimeout] = useState('')
   const uploadImage = (pas) => {
     console.log(image);
     const data = new FormData();
@@ -95,7 +94,7 @@ function Register() {
         setIsLoading(false);
       tologin();
       }, 3000);
-      return () => clearTimeout(timeout);
+      return () => clearTimeout();
     } catch (err) {
       console.log(err);
       setIsLoading(true);
@@ -105,7 +104,7 @@ function Register() {
       }, 3000);
 
       setDone(false);
-      return () => clearTimeout(timeout);
+      return () => clearTimeout();
     }
   };
   const tologin = () => {

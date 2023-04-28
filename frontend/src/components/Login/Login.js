@@ -29,7 +29,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [timeout, setTimeout] = useState('')
   const dispatch = useDispatch();
 
   const handelLogin = () => {
@@ -51,7 +50,7 @@ const Login = () => {
           navigate("/");
         }, 3000); 
       
-        return () => clearTimeout(timeout);
+        return () => clearTimeout();
       })
       .catch((err) => {
         console.log(err);
@@ -61,7 +60,7 @@ const Login = () => {
           setDone(false);
         }, 3000); 
       
-        return () => clearTimeout(timeout);
+        return () => clearTimeout();
       
       });
   };
