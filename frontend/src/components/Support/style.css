@@ -15,6 +15,9 @@
 	display: flex;
 	flex-direction: row;
 }
+.contect-us{
+	text-align: left;
+}
 
 .img1 {
 	width: 45%;

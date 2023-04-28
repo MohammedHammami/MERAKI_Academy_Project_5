@@ -61,10 +61,10 @@ const Home = () => {
           }}
         ></div>
       </header>
-      <div class="container1">
+      <div className="container1">
         {state.posts.map((post, i) => {
           return (
-            <>
+            <div key={i}>
               <MDBCard className="car">
                 <MDBCardImage src={post.post_image} position="top" alt="..." />
                 <MDBCardBody>
@@ -72,10 +72,12 @@ const Home = () => {
                   {/* <MDBCardText className="mb-0">
                     {oneAd.rentPrice + " JOD"}
                   </MDBCardText> */}
-                  <MDBBtn href="#">view</MDBBtn>
+                  <MDBBtn onClick={()=>{
+                    toOrder(post.id, post.user_id);
+                  }}>order now</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
-            </>
+            </div>
           );
         })}
       </div>

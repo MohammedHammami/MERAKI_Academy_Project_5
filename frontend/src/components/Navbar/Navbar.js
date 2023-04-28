@@ -1,8 +1,5 @@
 import "./Navbar.css"
-import { BsFillHouseFill,BsPersonCheckFill } from 'react-icons/bs';
 import { useEffect, useState } from "react";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -10,49 +7,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../Redux/reducers/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Spinner from '../Spinner/Spinner.js'
-// import { BsFillHouseFill } from "react-icons/bs";
-
-
 const Navbars = () => {
-  const [imageP,setImageP] = useState("")
-  const [craft,setCraft] = useState("")
   const [moodstate, setMoodstate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispath = useDispatch();
+
   const logout = () => {
-    
     setIsLoading(true);
-         
-      
     dispath(setLogout())
   };
   const state = useSelector((state) => {
-
+    console.log();
     return {
       isLoggedIn: state.auth.isLoggedIn,
       token: state.auth.token,
       user_image: state.auth.user_image,
+      craft: state.auth.userInfo.craft_id,
     };
   });
   
   let newTheme = moodstate ? "lightMood" : "darkMood";
-  const getCraft = ()=>{
-    axios
-      .get(`http://localhost:5000/users/`,{headers:{Authorization: state.token}})
-      .then((result)=>{
-        setCraft(result.data.user[0].craft_id);
-        setImageP(result.data.user[0].user_image);
-      })
-      .catch((err)=>{
-          console.log(err);
-      })
-  }
-  useEffect(()=>{    
-  setImageP(state.user_image)
-    getCraft()
-  },[])
+  
 
   return (
     <>
@@ -74,7 +50,7 @@ const Navbars = () => {
             <>
              <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
              
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">Support </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar">About us </Nav.Link>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
@@ -86,14 +62,15 @@ const Navbars = () => {
               <NavDropdown.Item onClick={()=>{
                 navigate("/Chat")
               }}>Chat AI</NavDropdown.Item>
-              {craft?
+              {state.craft?
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
                 :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}>Join us</NavDropdown.Item>
               }
               <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             </NavDropdown>
+            
             <img
-              src={imageP}
+              src={state.user_image}
               alt="Profile Pic"
               style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '20px', }}
             />
@@ -102,7 +79,7 @@ const Navbars = () => {
              <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/register`)}}className="each-navbar">Register </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/login`)}}className="each-navbar">Login </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">Support </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar about-us">About us </Nav.Link>
             </>
             }
