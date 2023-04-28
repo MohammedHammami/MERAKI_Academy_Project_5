@@ -33,7 +33,7 @@ function App() {
         <Route path="/orders" element={<GetAllOrders />} />
         <Route path="/Update" element={<UpdateUser />} />
       </Routes>
-
+<UpdateUser/>
       <Footer/>
     </div>
   );
