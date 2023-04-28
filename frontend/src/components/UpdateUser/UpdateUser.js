@@ -13,6 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 const UpdateUser = () => {
   const fileInputRef = useRef();
@@ -122,7 +123,7 @@ useEffect(() => {
     }
   };
   const tologin = () => {
-    navigate("/login");
+    // navigate("/login");
   };
   return (
     <div>

@@ -55,7 +55,7 @@ const Home = () => {
             width: "70%",
             // marginLeft:"32.5%",
             marginLeft: "15%",
-            marginTop:"0",
+            marginTop: "0",
             marginRight: 300,
             borderRadius: 30,
           }}
@@ -72,7 +72,13 @@ const Home = () => {
                   {/* <MDBCardText className="mb-0">
                     {oneAd.rentPrice + " JOD"}
                   </MDBCardText> */}
-                  <MDBBtn href="#">view</MDBBtn>
+                  <MDBBtn
+                    onClick={() => {
+                      toOrder(post.id, post.user_id);
+                    }}
+                  >
+                    order now
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </>

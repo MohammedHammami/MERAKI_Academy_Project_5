@@ -1,5 +1,12 @@
 const pool = require("../models/db");
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+const client = require("twilio")(accountSid, authToken)
+
+
+
 const createNewOrder = (req,res) => {
     const requester_user_id = req.token.userId
     const {schedule_date,order_desc,receiver_user_id} = req.body
