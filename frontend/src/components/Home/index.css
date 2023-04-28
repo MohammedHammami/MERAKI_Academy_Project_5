@@ -1,13 +1,17 @@
-.cards{
+.container1{
     margin-top: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-right: 100px;
     margin-left: 100px;
 }
-.post{
+.car{
     margin-top: 10px;
     margin-left: 50px;
     margin-bottom: 20px;
     margin-right: 50px;
+}
+.img{
+    width: 340px;
+    height : 255px;
 }

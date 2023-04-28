@@ -34,9 +34,7 @@ function App() {
         <Route path="/orders" element={<GetAllOrders />} />
         <Route path="/Update" element={<UpdateUser />} />
         <Route path="/Chat" element={<Chat/>} />
-        
       </Routes>
-{/* <UpdateUser/> */}
       <Footer/>
     </div>
   );
