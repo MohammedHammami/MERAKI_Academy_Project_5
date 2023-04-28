@@ -42,10 +42,12 @@ const Home = () => {
           className="p-5 text-center bg-image mt-2"
           style={{
             backgroundImage:
-              "url('https://img.freepik.com/premium-vector/plumbing-service-with-plumber-workers-repair-maintenance-fix-home-cleaning-bathroom-equipment-flat-background-illustration_2175-2497.jpg?w=2000')",
-            height: "50vh",
-            width: "50%",
-            marginLeft: "25%",
+              "url('https://i.pinimg.com/564x/d3/8b/ef/d38bef8a67263e30642165a11965555f.jpg')",
+            height: "93vh",
+            width: "70%",
+            // marginLeft:"32.5%",
+            marginLeft: "15%",
+            marginTop:"0",
             marginRight: 300,
             borderRadius: 30,
           }}
