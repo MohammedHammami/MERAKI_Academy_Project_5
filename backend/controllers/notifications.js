@@ -25,7 +25,7 @@ const createNewNotification = (req,res) => {
 }
 
 const getNotificationById = (req,res) => {
-    const user_id  = req.params.user_id
+    const user_id  = req.token.userId
     const query=`SELECT * FROM notifications WHERE receiver_user_id = ${user_id };`
     pool
     .query(query)
@@ -33,7 +33,7 @@ const getNotificationById = (req,res) => {
         res.status(200).json({
           success: true,
           message: "notification get successfuly",
-          order: result.rows
+          notification: result.rows
         });
       })
       .catch((err) => {
@@ -42,13 +42,33 @@ const getNotificationById = (req,res) => {
           message: "server error",
           err:err.message,
         });
-        console.log(err.message);
       });
 }
-
-
+const updateStatusNotifivationById = (req,res) => {
+  const id = req.params.notification_id
+  const {status} = req.body
+  const data=[status||null]
+  const query=`UPDATE notifications SET status = COALESCE($1,status) WHERE id = ${id} RETURNING *;`
+  pool
+  .query(query,data)
+  .then((result)=>{
+    res.status(200).json({
+      success: true,
+      message:"notification updated",
+      notification:result.rows
+    })
+  })
+  .catch((err)=>{
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      err: err.message
+    })
+  })
+}
 
 module.exports={
     createNewNotification,
-    getNotificationById
+    getNotificationById,
+    updateStatusNotifivationById
 }
