@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   MDBContainer,
   MDBCol,
@@ -12,6 +12,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const UpdateUser = () => {
   const fileInputRef = useRef();
@@ -22,6 +23,7 @@ const UpdateUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [craft_id, setCraft_id] = useState("");
+  const [crafts, setCrafts] = useState("");
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
@@ -45,7 +47,6 @@ const UpdateUser = () => {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data.url);
-        handelRegister(pas);
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
@@ -63,12 +64,27 @@ const UpdateUser = () => {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data.url);
+        UpdateUser();
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
   };
-  const handelRegister = async (password) => {
-    console.log(password);
+useEffect(() => {
+  axios
+  .get("http://localhost:5000/crafts/")
+  .then((result) => {
+    console.log(result.data.result);
+   setCrafts(result.data.result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+  
+}, [])
+
+  const UpdateUser = async () => {
+    
     const newUser = {
       first_name: first_name,
       last_name: last_name,
@@ -159,7 +175,24 @@ const UpdateUser = () => {
                       setPhone_no(e.target.value);
                     }}
                   />
-                </div>
+                </div >
+                <div className="d-flex flex-row align-items-center mb-4">
+                <label className="labelc"> crafts:</label>
+          <select
+          className="select"
+            name="category"
+            id="category"
+            onClick={(e) => {
+             setCraft_id(e.target.value)
+            }}>
+            {crafts &&  crafts.map((craft,i) => {
+              console.log('craft:',craft.name);
+                return(
+                 <option key={craft.id} value={craft.id} >{craft.name}</option>
+                 )
+            })}
+          </select>
+          </div>
                 {image ? (
                   <img src={url} className="img" />
                 ) : (
@@ -199,6 +232,9 @@ const UpdateUser = () => {
                     />
                   </div>
                 )}
+                <MDBBtn className="mb-0 px-5" size="lg" onClick={UpdateUser}>
+                update
+              </MDBBtn>
                 <MDBCardImage
                   src="https://img.freepik.com/premium-photo/man-with-wrench-background-air-conditioner_96743-296.jpg?w=826"
                   fluid
