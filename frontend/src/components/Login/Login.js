@@ -29,6 +29,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [timeout, setTimeout] = useState('')
   const dispatch = useDispatch();
 
   const handelLogin = () => {
@@ -148,7 +149,8 @@ const Login = () => {
 
                     dispatch(setLoginGoogel(credentialResponse));
                     dispatch(setUserInfoGoogle(credentialResponse));
-                    toHome()
+                    // toHome()
+                    navigate('/')
                   }}
                   onError={() => {
                     console.log("Login Failed");

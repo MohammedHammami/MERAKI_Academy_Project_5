@@ -33,6 +33,7 @@ function Register() {
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState("");
+  const [timeout, setTimeout] = useState('')
   const uploadImage = (pas) => {
     console.log(image);
     const data = new FormData();
