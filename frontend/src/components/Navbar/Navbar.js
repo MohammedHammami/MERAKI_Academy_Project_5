@@ -73,12 +73,19 @@ const Navbars = () => {
             {state.isLoggedIn?
             <>
              <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
+             
              <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">Support </Nav.Link>
              <Nav.Link style={{ fontSize: '18px' }} className="each-navbar">About us </Nav.Link>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
                 navigate("/Dashboard/provider")
               }}>Dashboard</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>{
+                navigate("/Update")
+              }}>Update</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>{
+                navigate("/Chat")
+              }}>Chat AI</NavDropdown.Item>
               {craft?
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
                 :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}>Join us</NavDropdown.Item>
