@@ -39,6 +39,8 @@ export const authSlice = createSlice({
       state.token = null;
       state.userId = null;
       state.isLoggedIn = false;
+      state.user_image = null;
+      console.log("tesssssssssssssssst");
       localStorage.clear();
     },
     setUserInfo: (state, action) => {
