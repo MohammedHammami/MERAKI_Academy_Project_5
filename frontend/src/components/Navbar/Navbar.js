@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../Redux/reducers/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Spinner from '../Spinner/Spinner.js'
 // import { BsFillHouseFill } from "react-icons/bs";
 
 
@@ -17,10 +18,15 @@ const Navbars = () => {
   const [imageP,setImageP] = useState("")
   const [craft,setCraft] = useState("")
   const [moodstate, setMoodstate] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispath = useDispatch();
   const logout = () => {
-    dispath(setLogout());
+    
+    setIsLoading(true);
+         
+      
+    dispath(setLogout())
   };
   const state = useSelector((state) => {
     
@@ -48,6 +54,8 @@ const Navbars = () => {
  
   },[])
   return (
+    <>
+     
     <div className="navBar-container">
       <Navbar collapseOnSelect expand="lg"  className="background-navbar">
       <Navbar.Brand style={{marginLeft:"1%"}}>
@@ -82,6 +90,7 @@ const Navbars = () => {
               {craft?
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
                 :
+               
                 <NavDropdown.Item onClick={()=>{navigate("/CreateCrafts")}}>Become a service provider</NavDropdown.Item>
               }
               <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
@@ -94,6 +103,7 @@ const Navbars = () => {
         </Navbar.Collapse>
     </Navbar>
     </div>
+    </>
   );
 };
 

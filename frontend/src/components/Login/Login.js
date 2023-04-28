@@ -51,12 +51,17 @@ const Login = () => {
         }, 3000); 
       
         return () => clearTimeout(timeout);
-      
-        // toHome();
       })
       .catch((err) => {
         console.log(err);
-        setDone(false);
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          setDone(false);
+        }, 3000); 
+      
+        return () => clearTimeout(timeout);
+      
       });
   };
   // const toHome = () => {
