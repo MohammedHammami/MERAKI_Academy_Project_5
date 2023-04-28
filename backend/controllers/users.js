@@ -3,13 +3,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
-  const { first_name, last_name, phone_no, email, password, user_image } =
+  const { first_name, last_name, phone_no, email, password, user_image,craft_id } =
     req.body;
   const saltRounds = parseInt(process.env.SALT);
 
   try {
     const encryptedPassword = await bcrypt.hash(password, saltRounds);
-    const query = `INSERT INTO users (first_name, last_name, phone_no,  email, password,user_image,role_id ) VALUES ($1,$2,$3,$4,$5,$6,$7)`;
+    const query = `INSERT INTO users (first_name, last_name, phone_no, 
+       email, password,user_image,role_id,craft_id ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
     const VALUES = [
       first_name,
       last_name,
@@ -19,6 +20,7 @@ const register = async (req, res) => {
       user_image ||
         "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=",
       2,
+      craft_id
     ];
     
     pool
@@ -91,15 +93,16 @@ const register = async (req, res) => {
 };
 const updateUserById = (req, res) => {
   const id = req.token.userId;
-  const { first_name, last_name, phone_no, password,user_image } = req.body;
+  const { first_name, last_name, phone_no, password,user_image,craft_id } = req.body;
   const data = [
     first_name || null,
     last_name || null,
     phone_no || null,
     password || null,
     user_image|| null,
+    craft_id || null ,
   ];
-  const query = `UPDATE users SET first_name = COALESCE($1,first_name), last_name = COALESCE($2,last_name), phone_no =COALESCE($3,phone_no), password = COALESCE($4,password),user_image = COALESCE($5,user_image) WHERE id = ${id} RETURNING *;`;
+  const query = `UPDATE users SET first_name = COALESCE($1,first_name), last_name = COALESCE($2,last_name), phone_no =COALESCE($3,phone_no), password = COALESCE($4,password),user_image = COALESCE($5,user_image),craft_id = COALESCE($6,craft_id) WHERE id = ${id} RETURNING *;`;
   pool
     .query(query, data)
     .then((result) => {
