@@ -125,7 +125,7 @@ useEffect(() => {
     }
   };
   const tologin = () => {
-    navigate("/login");
+    // navigate("/login");
   };
   return (
     <div>
