@@ -133,10 +133,10 @@ const updateStateOrderById = (req,res) => {
 
 
 const sendUserOrederBooking = (req, res) =>{
-  
+  const{ schedule_date } =  req.body
   client.messages
   .create({
-     body: `you have an order booked on day `,
+     body: `you have an order booked on day ${schedule_date}`,
      from: '+15403849963',
      to: '+962779582933'
    })
