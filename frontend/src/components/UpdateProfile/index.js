@@ -37,21 +37,21 @@ return(
     <div className="container-profile">
 		<div className="card-profile">
 		  <div className="card-header-profile">
-			<h1 className="header-title-profile">Update Profil Informaition</h1>
+			<h1 className="header-title-profile">Personal Information</h1>
 		  </div>
 		  <div className="card-body-profile">
 			<form>
 			  <div className="form-group-profile">
-				<label htmlFor="firstName" 	className="label-profile">First Name : {first_name}</label>
-				<input onChange={(e)=>{setFirst_name(e.target.value)}} className="input-profile" type="text" id="firstName" name="firstName" placeholder="Enter your new first name" required/>
+				<label htmlFor="firstName" 	className="label-profile">First Name </label>
+				<input onChange={(e)=>{setFirst_name(e.target.value)}} className="input-profile" type="text" id="firstName" name="firstName" placeholder={first_name} required/>
 			  </div>
 			  <div className="form-group-profile">
-				<label htmlFor="lastName"className="label-profile">Last Name : {last_name}</label>
-				<input onChange={(e)=>{setLast_name(e.target.value)}} className="input-profile" type="text" id="lastName" name="lastName" placeholder="Enter your new last name" required/>
+				<label htmlFor="lastName"className="label-profile">Last Name </label>
+				<input onChange={(e)=>{setLast_name(e.target.value)}} className="input-profile" type="text" id="lastName" name="lastName" placeholder={last_name} required/>
 			  </div>
 			  <div className="form-group-profile">
-				<label htmlFor="phone" className="label-profile">Phone : {phone_no}</label>
-				<input onChange={(e)=>{setPhone_no(e.target.value)}} className="input-profile" type="tel" id="phone" name="phone" placeholder="Enter your new phone number" required/>
+				<label htmlFor="phone" className="label-profile">Phone </label>
+				<input onChange={(e)=>{setPhone_no(e.target.value)}} className="input-profile" type="tel" id="phone" name="phone" placeholder={phone_no} required/>
 			  </div>
 			  <div className="form-group-profile">
 				<label htmlFor="image"className="label-profile">Upload Image</label>
