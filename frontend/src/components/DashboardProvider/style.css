@@ -8,7 +8,7 @@
 .ChartComponent{
     width: 80%;
     margin-left: 6%;
-    margin-top: 10%;
+    margin-top: 7%;
 }
 .ChartComponent1{
     width: 100%;
@@ -52,16 +52,19 @@
     width: 100%;
     border-radius: 20px;
     border: none;
-    font-size: 35px;
+    font-size: 20px;
+    text-align: left;
 }
-h3{
+h5{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-size: 18px;
 }
 .number-order{
-    font-size: 80px;
+    font-size: 30px;
     margin-top: 8%;
-    
+    /* text-align: left;
+    margin-left: 10%; */
 }
 .light-red{
     background-color: rgb(211, 211, 255);

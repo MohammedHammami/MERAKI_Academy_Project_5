@@ -1,19 +1,24 @@
 .navBar-container{
-  background-color: #e2e0e0;
-  margin-bottom: 1%;
+  background-color: rgb(217, 222, 245);
+  /* margin-bottom: 1%; */
+  /* border-radius: 60px; */
 }
 .leeft-margin-search{
   margin-left: 25vw;
   width: 20vw;
 }
-.to-left{
-  display: right;
-  margin-left: 55%;
+.each-navbar{
+  /* box-shadow:0px 2px 2px rgba(250, 175, 175, 0.2); */
+  /* border-radius: 20px; */
+  margin-right: 8%;
+  font-weight: bold;
 }
-.test{
-
-  background-color: red;
+.each-navbar:hover{
+  background-color: rgb(241, 241, 241)
 }
-.background-navbar{
-  padding: 0.5%;
+span {
+  font-size: 30px;
+  display: block;
+  font-weight: 800;
+  color: #3872bd;
 }

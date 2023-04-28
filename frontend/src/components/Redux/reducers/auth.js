@@ -7,6 +7,7 @@ export const authSlice = createSlice({
     token: null || localStorage.getItem("token"),
     userId: null || localStorage.getItem("userId"),
     isLoggedIn: null|| localStorage.getItem("isLoggedIn"),
+    user_image: null || localStorage.getItem("user_image"),
     userInfo: null || JSON.parse(localStorage.getItem("userInfo")) || {},
   },
   reducers: {
@@ -14,8 +15,10 @@ export const authSlice = createSlice({
       console.log(action.payload);
       state.token = action.payload.token;
       state.userId = action.payload.userId;
+      state.user_image = action.payload.user_image;
       state.isLoggedIn = true;
       localStorage.setItem("isLoggedIn",  state.isLoggedIn);
+      localStorage.setItem("user_image",  state.user_image);
       localStorage.setItem("token", state.token);
       localStorage.setItem("userId", state.userId);
 
