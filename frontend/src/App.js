@@ -17,6 +17,7 @@ import UpdateUser from "./components/UpdateUser/UpdateUser";
 import Chat from "./components/Chat/Chat";
 import Aboutus from "./components/Aboutus";
 import Support from "./components/Support";
+import UpdateProfile from "./components/UpdateProfile";
 function App() {
   return (
     <div className="App">
@@ -38,6 +39,7 @@ function App() {
         <Route path="/Chat" element={<Chat/>} />
         <Route path="/aboutus" element={<Aboutus/>}/>
         <Route path="/support" element={<Support/>}/>
+        <Route path="/update/profile" element={<UpdateProfile/>}/>
       </Routes>
       <Footer/>
     </div>
