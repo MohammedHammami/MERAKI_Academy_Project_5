@@ -15,6 +15,7 @@ import GetAllNotification from "./components/GetNotification";
 import Footer from "./components/Footer";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
 import Chat from "./components/Chat/Chat";
+import Aboutus from "./components/Aboutus";
 function App() {
   return (
     <div className="App">
@@ -34,7 +35,7 @@ function App() {
         <Route path="/orders" element={<GetAllOrders />} />
         <Route path="/Update" element={<UpdateUser />} />
         <Route path="/Chat" element={<Chat/>} />
-        
+        <Route path="/aboutus" element={<Aboutus/>}/>
       </Routes>
 {/* <UpdateUser/> */}
       <Footer/>
