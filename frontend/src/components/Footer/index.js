@@ -13,7 +13,7 @@ const Footer = () => {
   <div className="row gy-4">
     <div className="col-lg-5 col-md-12 footer-info">
       <a href="index.html" className="logo d-flex align-items-center">
-        <span>Taslee7</span>
+        <span>TasLee7</span>
       </a>
       <p>
       We provide comprehensive solutions to keep your equipment and facilities in top condition. Our experienced team of professionals offers a range of services, including preventative maintenance, repairs, and upgrades to ensure your equipment operates efficiently and safely.</p>
