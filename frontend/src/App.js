@@ -14,6 +14,7 @@ import DashboardProvider from "./components/DashboardProvider";
 import GetAllNotification from "./components/GetNotification";
 import Footer from "./components/Footer";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
+import Chat from "./components/Chat/Chat";
 function App() {
   return (
     <div className="App">
@@ -32,6 +33,8 @@ function App() {
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
         <Route path="/Update" element={<UpdateUser />} />
+        <Route path="/Chat" element={<Chat/>} />
+        
       </Routes>
 {/* <UpdateUser/> */}
       <Footer/>
