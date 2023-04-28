@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -20,13 +20,15 @@ import {
   setLoginGoogel,
   setUserInfoGoogle,
 } from "../Redux/reducers/auth";
-
+// import { Spinner } from "react-bootstrap";
+import Home from '../Home/index'
+import Spinner from '../Spinner/Spinner.js'
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handelLogin = () => {
@@ -42,18 +44,34 @@ const Login = () => {
 
         dispatch(setLogin(result.data));
         dispatch(setUserInfo(result.data));
-        toHome();
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          navigate("/");
+        }, 3000); 
+      
+        return () => clearTimeout(timeout);
+      
+        // toHome();
       })
       .catch((err) => {
         console.log(err);
         setDone(false);
       });
   };
-  const toHome = () => {
-    navigate("/");
-  };
+  // const toHome = () => {
+  //   navigate("/");
+  // };
+  
+    
+      
+  
+  
   return (
     <>
+    <div>
+    {isLoading && <Spinner /> }
+  </div>
       <MDBContainer fluid className="p-3 my-5 h-custom">
         <MDBRow>
           <MDBCol col="10" md="6">
