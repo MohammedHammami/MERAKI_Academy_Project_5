@@ -13,7 +13,8 @@ import UserPost from "./components/UsersPosts";
 import DashboardProvider from "./components/DashboardProvider";
 import GetAllNotification from "./components/GetNotification";
 import Footer from "./components/Footer";
-
+import UpdateUser from "./components/UpdateUser/UpdateUser";
+import Chat from "./components/Chat/Chat";
 function App() {
   return (
     <div className="App">
@@ -24,15 +25,17 @@ function App() {
         <Route path="/CreateOrder" element={<CreateOrder />} />
         <Route path="/CreatePost" element={<CreatePost />} />
         <Route path="/CreateCraft" element={<CreateCraft />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<><Home /></>} />
         <Route path="/Comment" element={<Comments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<UserPost />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
+        <Route path="/Update" element={<UpdateUser />} />
+        <Route path="/Chat" element={<Chat/>} />
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

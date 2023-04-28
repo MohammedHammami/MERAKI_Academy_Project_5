@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -20,13 +20,15 @@ import {
   setLoginGoogel,
   setUserInfoGoogle,
 } from "../Redux/reducers/auth";
-
+// import { Spinner } from "react-bootstrap";
+import Home from '../Home/index'
+import Spinner from '../Spinner/Spinner.js'
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [done, setDone] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handelLogin = () => {
@@ -42,18 +44,39 @@ const Login = () => {
 
         dispatch(setLogin(result.data));
         dispatch(setUserInfo(result.data));
-        toHome();
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          navigate("/");
+        }, 3000); 
+      
+        return () => clearTimeout(timeout);
       })
       .catch((err) => {
         console.log(err);
-        setDone(false);
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          setDone(false);
+        }, 3000); 
+      
+        return () => clearTimeout(timeout);
+      
       });
   };
-  const toHome = () => {
-    navigate("/");
-  };
+  // const toHome = () => {
+  //   navigate("/");
+  // };
+  
+    
+      
+  
+  
   return (
     <>
+    <div>
+    {isLoading && <Spinner /> }
+  </div>
       <MDBContainer fluid className="p-3 my-5 h-custom">
         <MDBRow>
           <MDBCol col="10" md="6">
@@ -65,28 +88,7 @@ const Login = () => {
           </MDBCol>
 
           <MDBCol col="4" md="6">
-            {/* <div className="d-flex flex-row align-items-center justify-content-center">
-
-            <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-
-            <MDBBtn floating size='md' tag='a' className='me-2'>
-              <MDBIcon fab icon='facebook-f' />
-            </MDBBtn>
-
-            <MDBBtn floating size='md' tag='a'  className='me-2'>
-              <MDBIcon fab icon='twitter' />
-            </MDBBtn>
-
-            <MDBBtn floating size='md' tag='a'  className='me-2'>
-              <MDBIcon fab icon='linkedin-in' />
-            </MDBBtn>
-
-          </div> */}
-
-            {/* <div className="divider d-flex align-items-center my-4">
-            <p className="text-center fw-bold mx-3 mb-0">Or</p>
-          </div> */}
-
+            
             <MDBInput
               wrapperClass="mb-4"
               label="Email address"

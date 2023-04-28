@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Register.css";
 import axios from "axios";
 import {
@@ -15,11 +15,12 @@ import {
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import Spinner from "../Spinner/Spinner.js";
 
 function Register() {
   const navigate = useNavigate();
-  const fileInputRef =useRef()
+  const fileInputRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -29,45 +30,46 @@ function Register() {
   const [role, setRole] = useState("2");
   const [phone_no, setPhone_no] = useState("");
   const [done, setDone] = useState(true);
-  const [image, setImage] = useState('')
-  const [ url, setUrl ] = useState("");
-const uploadImage = (pas) => {
-  console.log(image);
-const data = new FormData()
-data.append("file", image)
-data.append("upload_preset", "n9udcnak")
-data.append("cloud_name","dh2mazipf")
-fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload",{
-method:"post",
-body: data
-})
-.then(resp => resp.json())
-.then(data => {
-  console.log(data.url);
-  handelRegister(pas)
-  setUrl(data.url)
-})
-.catch(err => console.log(err))
-}
-const uploadImage2 = async(i) => {
-  console.log(i);
-const data = new FormData()
-data.append("file", i)
-data.append("upload_preset", "n9udcnak")
-data.append("cloud_name","dh2mazipf")
-await fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload",{
-method:"post",
-body: data
-})
-.then(resp => resp.json())
-.then(data => {
-  console.log(data.url);
-  setUrl(data.url)
-})
-.catch(err => console.log(err))
-}
+  const [image, setImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [url, setUrl] = useState("");
+  const uploadImage = (pas) => {
+    console.log(image);
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "n9udcnak");
+    data.append("cloud_name", "dh2mazipf");
+    fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data.url);
+        handelRegister(pas);
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+  const uploadImage2 = async (i) => {
+    console.log(i);
+    const data = new FormData();
+    data.append("file", i);
+    data.append("upload_preset", "n9udcnak");
+    data.append("cloud_name", "dh2mazipf");
+    await fetch("https://api.cloudinary.com/v1_1/dh2mazipf/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data.url);
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  const handelRegister = async(password) => {
+  const handelRegister = async (password) => {
     console.log(password);
     const newUser = {
       email: email,
@@ -77,28 +79,40 @@ body: data
       phone_no: phone_no,
       role_id: role,
       craft_id: "",
-      user_image:url
+      user_image: url,
     };
-console.log(newUser);
-    
-      try{
-        const result= await axios
-      .post("http://localhost:5000/users/register", newUser)
-        console.log(result.data);
-        tologin()
-      }
-      
-      catch(err){
-        console.log(err);
-        setDone(false)
-      };
+    console.log(newUser);
+
+    try {
+      const result = await axios.post(
+        "http://localhost:5000/users/register",
+        newUser
+      );
+      console.log(result.data);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      tologin();
+      }, 3000);
+      return () => clearTimeout(timeout);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        
+      }, 3000);
+
+      setDone(false);
+      return () => clearTimeout(timeout);
+    }
   };
-  const tologin = ()=>{
-    navigate("/login")
-  }
- return (
+  const tologin = () => {
+    navigate("/login");
+  };
+  return (
     <>
-    
+      <div>{isLoading && <Spinner />}</div>
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
@@ -164,7 +178,7 @@ console.log(newUser);
                     }}
                   />
                 </div>
-                
+
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="key me-3" size="lg" />
                   <MDBInput
@@ -189,36 +203,45 @@ console.log(newUser);
                     }}
                   />
                 </div>
-                {image ? <img src={url} className="img"/>:
-                <div className="d-flex flex-row align-items-center mb-4" onDragOver={(e)=>{
-e.preventDefault();
-                }}
-                onDrop={(e)=>{
-e.preventDefault()
-setImage(e.dataTransfer.files[0])
-uploadImage2(e.dataTransfer.files[0])
-
-                }}>
-                  <MDBIcon  fas icon="camera-retro me-3"size="lg" />
-                  <button className="imgbtn" onClick={(e)=>{
-                    fileInputRef.current.click()
-                  }}>Drag and Drop or Add picture 
-                  <br></br>
-                  <MDBIcon fas  size ='lg'icon="plus-circle me-3" /></button>
-                  <MDBInput
-                    label=""
-                    id="form4"
-                    type="file"
-                    style={{display:'none'}}
-                    ref={fileInputRef}
-                    onChange={(e) => {
-                      // console.log(e.target.files[0]);
-                      setImage(e.target.files[0])
-                      uploadImage2(e.target.files[0])
-                      
+                {image ? (
+                  <img src={url} className="img" />
+                ) : (
+                  <div
+                    className="d-flex flex-row align-items-center mb-4"
+                    onDragOver={(e) => {
+                      e.preventDefault();
                     }}
-                  />
-                </div>}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setImage(e.dataTransfer.files[0]);
+                      uploadImage2(e.dataTransfer.files[0]);
+                    }}
+                  >
+                    <MDBIcon fas icon="camera-retro me-3" size="lg" />
+                    <button
+                      className="imgbtn"
+                      onClick={(e) => {
+                        fileInputRef.current.click();
+                      }}
+                    >
+                      Drag and Drop or Add picture
+                      <br></br>
+                      <MDBIcon fas size="lg" icon="plus-circle me-3" />
+                    </button>
+                    <MDBInput
+                      label=""
+                      id="form4"
+                      type="file"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        // console.log(e.target.files[0]);
+                        setImage(e.target.files[0]);
+                        uploadImage2(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                )}
 
                 <MDBBtn
                   className="mb-4"
@@ -236,7 +259,13 @@ uploadImage2(e.dataTransfer.files[0])
                 >
                   Register
                 </MDBBtn>
-              {done ? <></> :<><p>Register Faild</p> </> }
+                {done ? (
+                  <></>
+                ) : (
+                  <>
+                    <p>Register Faild</p>{" "}
+                  </>
+                )}
               </MDBCol>
               <MDBCol
                 md="10"
@@ -250,7 +279,7 @@ uploadImage2(e.dataTransfer.files[0])
         </MDBCard>
       </MDBContainer>
     </>
-  )
+  );
 }
 
 export default Register;
