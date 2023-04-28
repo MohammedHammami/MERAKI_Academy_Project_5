@@ -82,7 +82,7 @@ const UserPost = () => {
     <div className="cards">
       {state.posts.map((post, i) => {
         return (
-          <>
+          <div key={i}>
             
             <Card
               className="post"
@@ -146,7 +146,7 @@ const UserPost = () => {
                 </Button>
               </Modal.Footer>
             </Modal>
-          </>
+          </div>
         );
       })}
     </div>
