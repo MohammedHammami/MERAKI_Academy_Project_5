@@ -66,7 +66,7 @@ const Navbars = () => {
           letterSpacing:"0.8px",
           fontWeight:"999",
           lineHeight: "1",fontSize:"35px"
-          }}>TasLee7<span>.</span></h3> </Navbar.Brand>
+          }}>TasLee7<span className ="for-the-dot">.</span></h3> </Navbar.Brand>
         <Navbar.Collapse id="responsive-navbar-nav" style={{ justifyContent: "flex-end" }}  >
           
           <Nav>
