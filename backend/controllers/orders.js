@@ -130,6 +130,30 @@ const updateStateOrderById = (req,res) => {
       });
     });
 }
+
+
+const sendUserOrederBooking = (req, res) =>{
+  
+  client.messages
+  .create({
+     body: `you have an order booked on day `,
+     from: '+15403849963',
+     to: '+962779582933'
+   })
+  .then((res)=>{
+    res.status(200).json({
+      success : true,
+      message : "message has been sent successfuly",
+      result : res
+    })
+  })
+  .catch((err)=>{
+    res.status(500).json({
+      success : false,
+      message : "message hasn't been sent"
+    })
+  })
+}
 module.exports = {
     createNewOrder,
     updateOrderById,
@@ -137,4 +161,5 @@ module.exports = {
     getAllOrder,
     getOrderById,
     updateStateOrderById,
+    sendUserOrederBooking
 }
