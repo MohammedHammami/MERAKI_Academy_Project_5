@@ -99,7 +99,7 @@ const UserPosts = () => {
               />
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
-                <Button
+                <Button className="mb-2"
                   onClick={(e) => {
                     deleteSelectedPost(post.id);
                   }}
