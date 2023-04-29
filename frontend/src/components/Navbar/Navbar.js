@@ -42,18 +42,17 @@ const Navbars = () => {
           display:'flex',
           fontFamily: "Roboto",
           letterSpacing:"0.8px",
-          fontWeight:"999",
-          lineHeight: "1",fontSize:"35px"
-          }} onClick={()=>{navigate('/')}}>TasLee7<span className ="for-the-dot">.</span></h3> </Navbar.Brand>
-        <Navbar.Collapse id="responsive-navbar-nav" style={{ justifyContent: "flex-end" }}  >
+          lineHeight: "1",fontSize:"40px"
+          }} onClick={()=>{navigate('/')}}>Tas<h3 className ='the-L-letter'>L</h3>ee7<span className ="for-the-dot">.</span></h3> </Navbar.Brand>
+        <Navbar.Collapse id="responsive-navbar-nav" style={{ justifyContent: "flex-end",  }}  >
           
           <Nav>
             {state.isLoggedIn?
             <>
-             <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%" ,color:"white"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
              
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar">About us </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' ,color:"white"}} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar darkss" >About us </Nav.Link>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
                 navigate("/Dashboard/provider")
@@ -68,7 +67,7 @@ const Navbars = () => {
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}><BsFillPlusSquareFill/> Post an Ad</NavDropdown.Item>
                 :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}><BsFillPlusCircleFill/> Join us</NavDropdown.Item>
               }
-              <NavDropdown.Item onClick={logout}><BsBoxArrowInLeft/> Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={logout} ><BsBoxArrowInLeft /> Logout</NavDropdown.Item>
             </NavDropdown>
             
             <img
@@ -78,11 +77,11 @@ const Navbars = () => {
             />
             </>
             :<>
-             <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/register`)}}className="each-navbar">Register </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/login`)}}className="each-navbar">Login </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
-             <Nav.Link style={{ fontSize: '18px' }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar about-us">About us </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%",color:"white"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/register`)}}className="each-navbar">Register </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/login`)}}className="each-navbar">Login </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px' ,color:"white"}} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
+             <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar about-us">About us </Nav.Link>
             </>
             }
           </Nav>

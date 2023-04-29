@@ -1,7 +1,9 @@
 .navBar-container{
-  background-color: rgb(217, 222, 245);
+  background-color: #223d66;
   /* margin-bottom: 1%; */
   /* border-radius: 60px; */
+  /* opacity: .3; */
+  color: white;
 }
 .leeft-margin-search{
   margin-left: 25vw;
@@ -9,14 +11,15 @@
 }
 .each-navbar{
   /* box-shadow:0px 2px 2px rgba(250, 175, 175, 0.2); */
-  /* border-radius: 20px; */
+color: white;
   margin-right: 8%;
   font-weight: bold;
 }
+
 .each-navbar:hover{
   background-color: rgb(208, 210, 251)
 }
-.for-the-dot {
+.for-the-dot,.the-L-letter {
   font-size: 30px;
   display: block;
   font-weight: 800;
@@ -26,6 +29,21 @@
   width: 150px;
   margin-left: -4%;
 }
+.header-logo{
+  font-weight: bolder;
+  font-size: 20px;
+  color: white;
+}
 .header-logo:hover{
   cursor: pointer;
 }
+.the-L-letter{
+  font-size:35px;
+}
+.background-navbar{
+  color: white;
+  
+  }
+  #collasible-nav-dropdown{
+    color: white;
+  }
