@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css"
+
 import { useState,useRef } from "react";
 import axios from "axios";
 import {
@@ -64,11 +65,13 @@ const UpdateProfile = () => {
 		  })
 		  .catch((err) => console.log(err));
 	  };
+
 	const logout = () => {
 		setIsLoading(true);
 		dispath(setLogout())
 		navigate('/login')
 	};
+
 	const updateFn = (url2) =>{
 		axios
 		.put('http://localhost:5000/users/updateUser',
@@ -79,7 +82,7 @@ const UpdateProfile = () => {
 		} catch (error) {
 			console.log(error)
 		}
-		
+
 	}
 return(
     <div className="container-profile">
@@ -144,7 +147,6 @@ return(
                   </div>
                 )}
 			  </div>
-			  
 			</form>
 			<button onClick={()=>{updateFn(url)}}type="submit" className="button-profile">Submit</button>
 		  </div>
