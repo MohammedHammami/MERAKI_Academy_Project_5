@@ -5,8 +5,16 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { createBrowserHistory } from "history";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./style.css"
-
+import "./style.css";
+import {
+  MDBContainer,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon,
+  MDBTextArea,
+  MDBFile,
+} from "mdb-react-ui-kit";
 const CreateOrder = () => {
   const location = useLocation();
   const state = useSelector((state) => {
@@ -93,29 +101,39 @@ const CreateOrder = () => {
           </div>
         </div>
       </div>
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>schedule_date</Form.Label>
-          <Form.Control
-            type="date"
-            placeholder="Enter Title"
-            onChange={(e) => {
-              setSchedule_date(e.target.value);
-            }}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description order</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Enter description"
-            onChange={(e) => {
-              setOrder_desc(e.target.value);
-            }}
-          />
-        </Form.Group>
-      </Form>
+      <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+        <Form>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>schedule_date</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Enter Title"
+              onChange={(e) => {
+                setSchedule_date(e.target.value);
+              }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Description order</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Enter description"
+              onChange={(e) => {
+                setOrder_desc(e.target.value);
+              }}
+            />
+          </Form.Group>
+        </Form>
+        <MDBBtn
+          wrapperClass="mb-4 mt-4"
+          onClick={(e) => {
+            submitFn();
+          }}
+        >
+          Submit
+        </MDBBtn>
+      </MDBContainer>
       <button onClick={submitFn}>Submit</button>
     </div>
   );
