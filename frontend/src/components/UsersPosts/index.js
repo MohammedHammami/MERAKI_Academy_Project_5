@@ -18,11 +18,16 @@ import {
 import "./index.css"
 const UserPosts = () => {
   const [show, setShow] = useState(false);
+  const [deleteshow, setDeleteShow] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  const handleDeleteClose = () => setShow(false);
+  const handleDeleteShow = () => setShow(true);
 
   const state = useSelector((state) => {
     return {
@@ -104,7 +109,8 @@ const UserPosts = () => {
                 <MDBCardText>${" "}{post.pricing}</MDBCardText>
                 <MDBBtn 
                   onClick={(e) => {
-                    deleteSelectedPost(post.id);
+                    handleDeleteShow()
+                    
                   }}
                 >
                   delete post
@@ -150,6 +156,29 @@ const UserPosts = () => {
                     }
                 }>
                   Save Changes
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+                
+              </Modal.Header>
+              <Modal.Body>
+                
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={
+                    (e)=>{
+                        handleDeleteClose()
+                        deleteSelectedPost(post.id);
+                    }
+                }>
+                  Delete
                 </Button>
               </Modal.Footer>
             </Modal>
