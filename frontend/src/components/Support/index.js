@@ -1,27 +1,64 @@
 import "./style.css"
 
 const Support = () => {
-    return (
-        <div className="about-us-container">
-            <header className="header1">
-                <h1 className="h1">Support</h1>
-                <div class="content">
-                    <div>
-                    <p className="p1">{`We hope that you do not encounter any problems, but you can contact us if you encounter any problem on the site`}</p>
-                    <p className="p1">{`to contact us you can send email on:`}</p>
-                    <li className="contect-us">Mohammed@taslee7.com</li>
-                    <li className="contect-us">Ahmad@taslee7.com</li>
-                    <li className="contect-us">Omar@taslee7.com</li>
-                    <li className="contect-us">Anas@taslee7.com</li>
-                    <br/><p className="p1">{`or you can call us on:`}</p>
-                    <li className="contect-us">+9620799999999</li>
-                    <li className="contect-us">+9620788888888</li>
-                    <li className="contect-us">+9620777777777</li>
-                    </div>
-                    <img className="img1" src="https://i.pinimg.com/564x/2a/94/e3/2a94e33f7afe6600fe9c97eda3a386b3.jpg"/>
-                </div>
-            </header>
+    return ( 
+    <section id="team" className="team section-bg" style={{paddingTop:"0"}}>
+    <div className="container" data-aos="fade-up" >
+      <div className="section-title">
+        <h2>Support Team</h2>
+      </div>
+
+      <div className="row">
+
+        <div className="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+          <div className="member d-flex align-items-start">
+            <div className="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeG_CmfdRLB25vH5qf42wHKwOsWLH7YpUuLg&usqp=CAU" className="img-fluid" alt=""/></div>
+            <div className="member-info">
+              <h4>Anas bajawi</h4>
+              <span>Chief Executive Officer</span>
+              <p>Anas@taslee7.com</p>
+            </div>
+          </div>
         </div>
+
+        <div className="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+          <div className="member d-flex align-items-start">
+            <div className="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeG_CmfdRLB25vH5qf42wHKwOsWLH7YpUuLg&usqp=CAU" className="img-fluid" alt=""/></div>
+            <div className="member-info">
+              <h4>Omar rayyan</h4>
+              <span>Product Manager</span>
+              <p>Omar@taslee7.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
+          <div className="member d-flex align-items-start">
+            <div className="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeG_CmfdRLB25vH5qf42wHKwOsWLH7YpUuLg&usqp=CAU" className="img-fluid" alt=""/></div>
+            <div className="member-info">
+              <h4>Mohammed hammami</h4>
+              <span>CTO</span>
+              <p>Mohammed@taslee7.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+          <div className="member d-flex align-items-start">
+            <div className="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeG_CmfdRLB25vH5qf42wHKwOsWLH7YpUuLg&usqp=CAU" className="img-fluid" alt=""/></div>
+            <div className="member-info">
+              <h4>Ahmad shehada</h4>
+              <span>Accountant</span>
+              <p>Ahmad@taslee7.com</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+       
     )
 }
 export default Support
