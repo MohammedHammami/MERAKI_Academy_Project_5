@@ -134,7 +134,6 @@ const CreateOrder = () => {
           Submit
         </MDBBtn>
       </MDBContainer>
-      <button onClick={submitFn}>Submit</button>
     </div>
   );
 };
