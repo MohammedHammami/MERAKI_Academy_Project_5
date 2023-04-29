@@ -9,16 +9,19 @@ import GraphDashboard from "../GraphDashboard";
 import CreatePost from "../CreatePost";
 import GetAllOrders from "../GetAllOrders";
 import UserPosts from "../UsersPosts";
+import GetAllOrdersRequester from "../GetAllOrdersRequester";
 const DashboardProvider = () => {
   const [toAccount, setToAccount] = useState(false)
   const [toNotifications, setToNotifications] = useState(false)
   const [toMyPosts, setToMyPosts] = useState(false)
   const [toMyOrder, setToMyOrder] = useState(false)
+  const [toMyOrderR, setToMyOrderR] = useState(false)
   const [toCreatePost, setToCreatePost] = useState(false)
   const [toDashboard, setToDashboard] = useState(false)
 
   const navigate = useNavigate();
   const state = useSelector((state) => {
+    // console.log(state.auth.userInfo.craft_id);
     return {
       userId: state.auth.userId,
       token: state.auth.token,
@@ -27,23 +30,30 @@ const DashboardProvider = () => {
   });
   
   const account = () => {
-    setToNotifications(false);setToCreatePost(false);setToMyOrder(false);setToMyPosts(false);
+    setToNotifications(false);setToMyOrderR(false);setToCreatePost(false);setToMyOrder(false);setToMyPosts(false);
     if (!toAccount){setToAccount(true)}else{setToAccount(false)}}
   const Notification = () => {
-    setToAccount(false);setToCreatePost(false);setToMyOrder(false);setToMyPosts(false);setToDashboard(false)
+    setToAccount(false);setToMyOrderR(false);setToCreatePost(false);setToMyOrder(false);setToMyPosts(false);setToDashboard(false)
     if (!toNotifications){setToNotifications(true)}else{setToNotifications(false)}}  
   const myPosts = () => {
-    setToNotifications(false);setToCreatePost(false);setToMyOrder(false);setToAccount(false);setToDashboard(false)
+    setToNotifications(false);setToMyOrderR(false);setToCreatePost(false);setToMyOrder(false);setToAccount(false);setToDashboard(false)
     if (!toMyPosts){setToMyPosts(true)}else{setToMyPosts(false)}}  
   const myOrder = () => {
-    setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false)
+    setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false);setToMyPosts(false)
     if (!toMyOrder){setToMyOrder(true)}else{setToMyOrder(false)}}
   const createPost = () => {
-    setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrder(false);setToDashboard(false)
+    setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrderR(false);setToMyOrder(false);setToDashboard(false)
     if (!toCreatePost){setToCreatePost(true)}else{setToCreatePost(false)}}
   const dashboard = () => {
-    setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrder(false);setToCreatePost(false);
+    setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrder(false);setToMyOrderR(false);setToCreatePost(false);
     if (!toDashboard){setToDashboard(true)}else{setToDashboard(false)}}
+
+
+
+    const myOrderR = () => {
+      setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false);setToMyPosts(false)
+      if (!toMyOrderR){setToMyOrderR(true)}else{setToMyOrderR(false)}}
+
   return (
     <div className="container_dashboard_provider">
       
@@ -55,7 +65,10 @@ const DashboardProvider = () => {
           <button className="go_to" onClick={()=>{Notification()} } disabled={toNotifications}><BsFillBellFill style={{marginRight:"3%"}}/> Notification</button>
           </li>
           <li>
+            {state.userInfo.craft_id!=null?
           <button className="go_to" onClick={()=>{createPost();}} disabled={toCreatePost}><BsFillPlusSquareFill style={{marginRight:"3%"}}/> Post an Ad</button>
+          :<button className="go_to" onClick={()=>{navigate("/CreateCraft")}} ><BsFillPlusSquareFill style={{marginRight:"3%" , marginLeft:"-19%"}}/> Join us</button>
+          }
           </li>
         </ul>
         <ul className="ul-menu">SETTINGS
@@ -66,25 +79,19 @@ const DashboardProvider = () => {
         </ul>
         <ul className="ul-menu">PERFORMANCE
           <li style={{marginTop:"3%"}}>
+            {state.userInfo.craft_id!=null&&
             <button className="go_to" onClick={()=>{myPosts();}} disabled={toMyPosts}><BsFilePost style={{marginRight:"3%",marginLeft:"-10%"}}/> My Posts</button>
-          </li>
+            }
+            </li>
           <li>
+            {state.userInfo.craft_id!=null?
           <button className="go_to" onClick={()=>{myOrder();}} disabled={toMyOrder}><BsBorderWidth style={{marginRight:"3%",marginLeft:"-15%"}}/> Orders</button>
+          :
+          <button className="go_to" onClick={()=>{myOrderR();}} disabled={toMyOrderR}><BsBorderWidth style={{marginRight:"3%",marginLeft:"-15%"}}/> Orders</button>
+        
+        }
           </li>
         </ul>
-
-
-
-        <p>
-        </p><br/>
-        <p>
-        </p><br/>
-        <p>
-        </p><br/>
-        <p>
-        </p><br/>
-        <p>
-        </p><br/>
       </div>
       {/* <GraphDashboard/> */}
       {/* <div className="body_container">
@@ -121,7 +128,9 @@ const DashboardProvider = () => {
       {toCreatePost&&<CreatePost/>}
       {toMyOrder&&<GetAllOrders/>}
       {toMyPosts&&<UserPosts/>}
-      {(toAccount||toNotifications||toCreatePost||toMyOrder||toMyPosts)===false&&
+      {toMyOrderR&&<GetAllOrdersRequester/>}
+      
+      {(toAccount||toNotifications||toCreatePost||toMyOrder||toMyPosts||toMyOrderR)===false&&
       <GraphDashboard/>}
     </div>
   );

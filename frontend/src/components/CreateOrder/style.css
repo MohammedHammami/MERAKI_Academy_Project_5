@@ -12,7 +12,8 @@
     max-width: 900px;
     margin-bottom: 6vh;
     /* border : 10px solid red; */
-    background-color: #3b71ca;
+    /* background-color: #3b71ca; */
+    background: linear-gradient(to right, #2c3e55, #385075,#4e6384);
     border-radius: 25px;
     margin-left: 20%;
     padding: 50px 30px 50px 30px;

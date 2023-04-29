@@ -51,12 +51,13 @@ const Home = () => {
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
           <div style={{display:'flex'}}>
-        <h2 data-aos="fade-up" style={{color :'#223d66'}}>Maintenance </h2>
+        <h2 data-aos="fade-up" style={{color :'#08244f'}}>Maintenance </h2>
+        {/* //223d66 */}
 <p style={{opacity:0}}>ss</p>
         <h2 data-aos="fade-up">is</h2>
         </div>
           <h2 data-aos="fade-up">  Easier Than Before</h2>
-          <p data-aos="fade-up" data-aos-delay="100">A well trained aramy of Craftsmen ready for your services</p>
+          <p data-aos="fade-up" data-aos-delay="100" style={{color:"white"}}>A well-trained army of craftsmen is ready to serve you</p>
           <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#book-a-table" className="btn-book-a-table">Book an Appointment</a>
             <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" className="glightbox btn-watch-video d-flex align-items-center"><i className="bi bi-play-circle"></i><span>Watch Video</span></a>

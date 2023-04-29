@@ -4,34 +4,68 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector, useDispatch } from "react-redux";
-import { setLogout } from "../Redux/reducers/auth";
+import { setLogout, setNotification } from "../Redux/reducers/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaBell } from "react-icons/fa";
 import { BsFillHouseGearFill,BsFillBarChartFill,BsChatDotsFill,BsFillPlusSquareFill,BsFillPlusCircleFill,BsBoxArrowInLeft} from 'react-icons/bs';
-
 const Navbars = () => {
-  const [moodstate, setMoodstate] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispath = useDispatch();
-
-  const logout = () => {
-    setIsLoading(true);
-    dispath(setLogout())
-  };
-  const state = useSelector((state) => {
-    console.log();
-    return {
-      isLoggedIn: state.auth.isLoggedIn,
-      token: state.auth.token,
-      user_image: state.auth.user_image,
-      craft: state.auth.userInfo.craft_id,
+    const [moodstate, setMoodstate] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [notiShow, setNotiShow] = useState(false)
+    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const logout = () => {
+      setIsLoading(true);
+      setNotificationsCount(0)
+      dispatch(setLogout())
     };
-  });
-  
-  let newTheme = moodstate ? "lightMood" : "darkMood";
-  
+    const state = useSelector((state) => {
+      return {
+        isLoggedIn: state.auth.isLoggedIn,
+        token: state.auth.token,
+        user_image: state.auth.user_image,
+        craft: state.auth.userInfo.craft_id,
+        noNotification:state.auth.noNoti
+      };
+    });
+    const [notificationsCount, setNotificationsCount] = useState(state.noNotification)
+    
+    let newTheme = moodstate ? "lightMood" : "darkMood";
 
+  const getNotifications = ()=>{
+      axios
+      .get(`http://localhost:5000/notifications`,{headers: {
+          Authorization: state.token
+          }})
+      .then((result)=>{
+        fillterNoti(result.data.notification)
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+  }
+  const fillterNoti = (array) =>{
+    let a = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].status == 'create_order'||
+      array[i].status =='accept_order'||
+      array[i].status =='accepted_order'||
+      array[i].status =='canceld_order'||
+      array[i].status =='order_canceld'
+      ){
+        a++
+      }
+    }
+    dispatch(setNotification(a))
+    
+  }
+  useEffect(()=>{
+    
+      getNotifications()
+    
+  },[])
   return (
     <>
      
@@ -53,6 +87,10 @@ const Navbars = () => {
              
              <Nav.Link style={{ fontSize: '18px' ,color:"white"}} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
              <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar darkss" >About us </Nav.Link>
+             <div style={{color:"white"}} onClick={()=>{navigate('/getAllNotification')}}>
+              <FaBell size={22} color="gray" style={{color:"white",marginTop:"12px"}}/>
+               <span style={{marginTop:"12px"}}>{localStorage.getItem('noNoti')}</span>
+            </div>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
                 navigate("/Dashboard/provider")
@@ -67,6 +105,7 @@ const Navbars = () => {
                 <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}><BsFillPlusSquareFill/> Post an Ad</NavDropdown.Item>
                 :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}><BsFillPlusCircleFill/> Join us</NavDropdown.Item>
               }
+              
               <NavDropdown.Item onClick={logout} ><BsBoxArrowInLeft /> Logout</NavDropdown.Item>
             </NavDropdown>
             
@@ -75,6 +114,8 @@ const Navbars = () => {
               alt="Profile Pic"
               style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '20px', }}
             />
+            
+            
             </>
             :<>
              <Nav.Link style={{ fontSize: '18px',marginLeft:"-30%",color:"white"}} onClick={()=>{navigate(`/`)}}className="each-navbar">Home </Nav.Link>
