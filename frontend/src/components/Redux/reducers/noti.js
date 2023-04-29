@@ -24,11 +24,17 @@ export const notiSlice = createSlice({
       }
       }
       state.counterNotification = a
-      console.log(state.counterNotification);
+      // console.log(state.counterNotification);
+    },
+    cancelNotification: (state, action) => {
+      // console.log("ssssssssssssss",action.payload);
+      state.notification = state.notification.filter((notification, index) => {
+        return notification.id != action.payload;
+      });
     },
   },
 });
 
 
-export const { setNotification ,setCounterNotification} = notiSlice.actions;
+export const { setNotification ,setCounterNotification,cancelNotification} = notiSlice.actions;
 export default notiSlice.reducers;

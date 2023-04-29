@@ -8,15 +8,15 @@ import Modal from 'react-bootstrap/Modal';
 import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
 import { ToastContainer, toast } from 'react-toastify';
 import {MDBInput} from "mdb-react-ui-kit";
-import { setNotification } from "../Redux/reducers/noti";
+import { setNotification ,cancelNotification} from "../Redux/reducers/noti";
 const GetAllNotification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [smShow, setSmShow] = useState(false);
   const [description, setDescription] = useState("");
   const [rate, setRate] = useState(0)
-  const state = useSelector((state) => {
-    console.log(state.noti.notification);
+  const{token,userInfo,userId,notifications} = useSelector((state) => {
+    // console.log(state.noti.notification);
     return {
       token: state.auth.token,
       userInfo: state.auth.userInfo,
@@ -24,15 +24,16 @@ const GetAllNotification = () => {
       notifications:state.noti.notification
     };
   });
-  const [notifications, setNotifications] = useState(state.notifications);
+  console.log(notifications);
+  // const [notifications, setNotifications] = useState(state.notifications);
 
     const getNotifications = ()=>{
         axios
         .get(`http://localhost:5000/notifications`,{headers: {
-            Authorization: state.token
+            Authorization: token
             }})
         .then((result)=>{
-            setNotifications(result.data.notification)
+            // setNotifications(result.data.notification)
             dispatch(setNotification(result.data.notification))
         })
         .catch((err)=>{
@@ -56,13 +57,16 @@ const GetAllNotification = () => {
     const updateNotificationFn = (id,status) => {
         axios
         .put(`http://localhost:5000/notifications/${id}`,{status:status})
-        .then((result)=>{console.log(result);})
+        .then((result)=>{console.log(result);
+          console.log(id);
+          dispatch(cancelNotification(id))
+        })
         .catch((err)=>{console.log(err);})
     }
     const updateOrderState = (order_id,state_id) => {
         axios
         .put(`http://localhost:5000/orders/state/${order_id}`,{state_id},{headers: {
-            Authorization: state.token
+            Authorization: token
         }})
         .then((result)=>{
             console.log(result);
@@ -78,7 +82,7 @@ const GetAllNotification = () => {
             console.log(result);
             axios
             .post(`http://localhost:5000/review`,{rate,receiver_user_id:result.data.order[0].receiver_user_id,order_id},{headers: {
-            Authorization: state.token
+            Authorization:token
             }})
             .then((result)=>{
                 updateNotificationFn(idNoti,"order_end")
@@ -98,7 +102,7 @@ const GetAllNotification = () => {
             { description: description },
             {
               headers: {
-                authorization: `Bearer ${state.token}`,
+                authorization: `Bearer ${token}`,
               },
             }
           )
@@ -126,20 +130,20 @@ const GetAllNotification = () => {
         {/* <h1 style={{textAlign:"center",marginTop:"50px",fontSize:"36px"}}>New order cumming to you</h1> */}
         <div className="logos">
             {
-            state.notifications.map((noti,i)=>{
+           notifications?.map((noti,i)=>{
             if(noti.status==="create_order"){
                 const value = noti.description.split(':')
                 const description = value[1].split('time')[0]
                 const time = value[2]
             return(
                 <div className="logo" key={i}>
-                    <p>Hello Mr : {state.userInfo.first_name}</p>
+                    <p>Hello Mr : {userInfo.first_name}</p>
                     <p>Someone has created a new request for one of your posts</p>
                     <p>requester said : {description}</p>
                     <p>in time : {time}</p>
                     <p>Please accept or canceld</p>
                     <Button onClick={()=>{
-                        const info = state.userInfo
+                        const info = userInfo
                     createNotivication(noti.order_id,info.first_name+" "+info.last_name+" "+info.Phone_Number,"accept_order");
                     updateNotificationFn(noti.id,"accepted_order_done")
                     updateOrderState(noti.order_id,2)}} className="button_noti">Accept
@@ -165,7 +169,7 @@ const GetAllNotification = () => {
                 const value = noti.description.split(' ')
                 return(
                 <div className="logo" key={i}>
-                    <p>Hello Mr : {state.userInfo.first_name}</p>
+                    <p>Hello Mr : {userInfo.first_name}</p>
                     <p>We hope you are well</p>
                     <p>provider {value[0]} accepted your request</p>
                     <p>You can now contact him through the phone number: {value[2]}</p>
@@ -201,7 +205,7 @@ const GetAllNotification = () => {
                          <Button
                            size="sm"
                            onClick={() => {
-                             CreateComment(state.userId);
+                             CreateComment(userId);
                              RateFn(rate,noti.receiver_user_id,noti.order_id,noti.id)
                            }}
                          >
@@ -230,7 +234,7 @@ const GetAllNotification = () => {
                     <p>{noti.description}</p>
                     <p>{noti.description}</p>
                         <p>the provider canceld order</p>
-                        <Button onClick={()=>{updateNotificationFn(noti.id,"finale_order-canceld");navigate("/Dashboard/provider")}} className="button_noti">Cancel</Button>
+                        <Button onClick={()=>{updateNotificationFn(noti.id,"finale_order-canceld");}} className="button_noti">Cancel</Button>
                 </div>
             )
             }

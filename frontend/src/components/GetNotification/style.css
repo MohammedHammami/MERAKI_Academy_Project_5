@@ -53,25 +53,7 @@
     margin: 1%;
     /* margin-left: 0; */
   }
-  .logos {
-    /* background: linear-gradient(to left, #2c3e55, #385075,#4e6384); */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-    margin-top: 50px;
-  }
   
-  .logo {
-    background-color: #f0f0f0;
-    /* background-color: #fff; */
-  /* border: 1px solid #385075; */
-  /* box-shadow: 1px 1px 1px rgba(244, 60, 4, 0.1); */
-  margin: 20px;
-  padding: 20px;
-  text-align: left;
-  min-width: 200px;
-  max-width: 30%;
-  }
   
   .logo img {
   max-width: 100%;

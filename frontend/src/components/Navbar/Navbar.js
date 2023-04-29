@@ -22,7 +22,7 @@ const Navbars = () => {
       dispatch(setLogout())
     };
     const state = useSelector((state) => {
-      console.log(state.noti);
+      // console.log(state.noti);
       return {
         isLoggedIn: state.auth.isLoggedIn,
         token: state.auth.token,
