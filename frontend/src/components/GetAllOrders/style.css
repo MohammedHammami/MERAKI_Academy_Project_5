@@ -1,0 +1,16 @@
+.shadow-0{
+    /* filter: brightness(130%); */
+    background-image: linear-gradient(to right, #223d66, #5577aa, #4e5d74);
+    color: #223d66;
+    font-size: 40px;
+    font-family: Tahoma cursive;
+    font-weight: bold;
+}
+.cardOrderBody{
+    margin: 5px;
+    box-shadow: 0 4px 15px #2c6ec6;
+    /* box-shadow: 0 10px 25px #223d66; */
+}
+.cardOrderheader{
+    margin:2vh;
+}

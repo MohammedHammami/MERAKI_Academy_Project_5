@@ -13,8 +13,6 @@ export const postSlice = createSlice({
     setMyPost: (state, action) => {
       state.myPosts = action.payload;
       console.log(state.myPosts);
-      // localStorage.setItem('myPosts',state.myPosts)
-
     },
     deletePost:(state, action) => {
      state.myPosts= state.myPosts.filter((post, i) => post.id != action.payload);
