@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Configuration, OpenAIApi } from "openai";
-
 import "./Chat.css";
 import axios from "axios";
 const Chat = () => {
-const configuration = new Configuration({
-    organization: "org-FZee788mL02ULw9DVXe7MJ7F",
-    apiKey: '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',
-});
-const openai = new OpenAIApi(configuration);
-
-  const [content, setContent] = useState("");
+ const [content, setContent] = useState("");
   const [output, setOutput] = useState("");
   const ChatNow = async () => {
     const apiKey = "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";
