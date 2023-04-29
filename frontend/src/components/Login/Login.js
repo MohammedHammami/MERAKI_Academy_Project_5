@@ -21,7 +21,7 @@ import {
   setUserInfoGoogle,
 } from "../Redux/reducers/auth";
 // import { Spinner } from "react-bootstrap";
-import Home from '../Home/index'
+import { ToastContainer, toast } from 'react-toastify';
 import Spinner from '../Spinner/Spinner.js'
 const Login = () => {
   const navigate = useNavigate();
@@ -47,7 +47,11 @@ const Login = () => {
         setIsLoading(true);
         setTimeout(() => {
           setIsLoading(false);
-          navigate("/");
+          handleClickS()
+          setTimeout(() => {
+            navigate("/");
+            }, 2000);
+            return () => clearTimeout();
         }, 3000); 
       
         return () => clearTimeout();
@@ -58,8 +62,8 @@ const Login = () => {
         setTimeout(() => {
           setIsLoading(false);
           setDone(false);
+          handleClickF()
         }, 3000); 
-      
         return () => clearTimeout();
       
       });
@@ -67,7 +71,16 @@ const Login = () => {
   // const toHome = () => {
   //   navigate("/");
   // };
-  
+  const handleClickF = () => {
+    toast.error('Login Failed');
+  };
+  const handleClickS = () => {
+    toast.success('Login Successfully', {
+      position: 'top-right',
+      autoClose: 2000,
+      hideProgressBar: true, 
+    });
+  };
     
       
   
@@ -123,9 +136,13 @@ const Login = () => {
             </div>
 
             <div className="text-center text-md-start mt-4 pt-2">
-              <MDBBtn className="mb-0 px-5" size="lg" onClick={handelLogin}>
-                Login
-              </MDBBtn>
+              <div>
+                <MDBBtn className="mb-0 px-5" size="lg" onClick={handelLogin}>
+                  Login
+                </MDBBtn>
+                <ToastContainer/>
+              </div>
+              
               <p className="small fw-bold mt-2 pt-1 mb-2">
                 Don't have an account?{" "}
                 <a
@@ -162,13 +179,7 @@ const Login = () => {
           </MDBCol>
         </MDBRow>
             
-        {done ? (
-          <></>
-        ) : (
-          <>
-            <p>Register Faild</p>{" "}
-          </>
-        )}
+        
       </MDBContainer>
     </>
   );

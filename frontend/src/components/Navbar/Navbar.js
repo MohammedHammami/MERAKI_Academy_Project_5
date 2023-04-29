@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../Redux/reducers/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BsFillHouseGearFill,BsFillBarChartFill,BsChatDotsFill,BsFillPlusSquareFill,BsFillPlusCircleFill,BsBoxArrowInLeft} from 'react-icons/bs';
 const Navbars = () => {
   const [moodstate, setMoodstate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,18 +56,18 @@ const Navbars = () => {
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{
                 navigate("/Dashboard/provider")
-              }}>Dashboard</NavDropdown.Item>
+              }}><BsFillBarChartFill/> Dashboard</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{
-                navigate("/Update")
-              }}>Update</NavDropdown.Item>
+                navigate("/update/profile")
+              }}><BsFillHouseGearFill/> Account</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{
                 navigate("/Chat")
-              }}>Chat AI</NavDropdown.Item>
+              }}><BsChatDotsFill/> Chat AI</NavDropdown.Item>
               {state.craft?
-                <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}>Create Announcement</NavDropdown.Item>
-                :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}>Join us</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{navigate("/CreatePost")}}><BsFillPlusSquareFill/> Post an Ad</NavDropdown.Item>
+                :<NavDropdown.Item onClick={()=>{navigate("/CreateCraft")}}><BsFillPlusCircleFill/> Join us</NavDropdown.Item>
               }
-              <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={logout}><BsBoxArrowInLeft/> Logout</NavDropdown.Item>
             </NavDropdown>
             
             <img
