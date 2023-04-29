@@ -113,6 +113,7 @@ const CreateOrder = () => {
               onChange={(e) => {
                 setSchedule_date(e.target.value);
               }}
+              style={{textAlign:"center"}}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -128,7 +129,7 @@ const CreateOrder = () => {
           </Form.Group>
         </Form>
         <MDBBtn
-          wrapperClass="mb-4 mt-4"
+          wrapperclass="mb-4 mt-4"
           onClick={(e) => {
             submitFn();
           }}

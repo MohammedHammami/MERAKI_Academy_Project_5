@@ -22,7 +22,6 @@ const Navbars = () => {
       dispatch(setLogout())
     };
     const state = useSelector((state) => {
-      console.log(state.auth.noNoti);
       return {
         isLoggedIn: state.auth.isLoggedIn,
         token: state.auth.token,
@@ -88,7 +87,7 @@ const Navbars = () => {
              
              <Nav.Link style={{ fontSize: '18px' ,color:"white"}} className="each-navbar" onClick={()=>{navigate("/support")}}>Support </Nav.Link>
              <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar darkss" >About us </Nav.Link>
-             <div style={{color:"white"}}>
+             <div style={{color:"white"}} onClick={()=>{navigate('/getAllNotification')}}>
               <FaBell size={22} color="gray" style={{color:"white",marginTop:"12px"}}/>
                <span style={{marginTop:"12px"}}>{localStorage.getItem('noNoti')}</span>
             </div>

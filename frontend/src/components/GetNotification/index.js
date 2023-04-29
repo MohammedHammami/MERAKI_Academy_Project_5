@@ -98,11 +98,11 @@ const GetAllNotification = () => {
                                         <Card.Title>{noti.description}</Card.Title>
                                         <Button onClick={()=>{
                                             createNotivication(noti.order_id,"your order accepted from provider","accept_order");
-                                            updateNotificationFn(noti.id,"accepted_order")
+                                            updateNotificationFn(noti.id,"accepted_order_done")
                                             updateOrderState(noti.order_id,2)}} className="button_noti">Accept</Button>
                                         <Button onClick={()=>{
                                             createNotivication(noti.order_id,"your order canceld from provider","canceld_order");
-                                            updateNotificationFn(noti.id,"order_canceld")
+                                            updateNotificationFn(noti.id,"order_canceld_done")
                                             updateOrderState(noti.order_id,3)}} className="button_noti">Cancel</Button>
                                     </Card.Body>
                                 </Card>
