@@ -141,7 +141,7 @@ const Login = () => {
                 <MDBBtn className="mb-0 px-5" size="lg" onClick={handelLogin}>
                   Login
                 </MDBBtn>
-                <ToastContainer/>
+                
               </div>
               
               <p className="small fw-bold mt-2 pt-1 mb-2">
