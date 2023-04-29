@@ -2,8 +2,8 @@
     margin-top: 80px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-right: 100px;
-    margin-left: 100px;
+    /* margin-right: 100px;
+    margin-left: 100px; */
     /* background-color: rgb(244, 246, 249); */
 }
 .car{
