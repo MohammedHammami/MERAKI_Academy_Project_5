@@ -1,3 +1,4 @@
+
 .container{
     margin-top: 100px;
     grid-template-rows: 1fr 1fr 1fr;
@@ -42,4 +43,22 @@
 }
 .user-card p{
     color: aliceblue;
+}
+.inputCreteOrder{
+    display:inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   border: 2px #223d66 double;
+   margin-top: 1vh;
+   margin-bottom: 1vh;
+  width: 70vw;
+   border-radius: 13px;
+ 
+}
+.labelCreatOrder{
+    font-size: 30px;
+    font-weight: bold;
+    color: #223d66;
+    font-family: "Poppins", sans-serif;
 }

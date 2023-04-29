@@ -50,7 +50,7 @@ const GetAllOrders = () => {
         <MDBCol md="8" lg="10">
           <MDBCard
             className="shadow-0 border"
-            style={{ backgroundColor: "#223d66" }}
+            style={{ backgroundColor: "" }}
           >
             <MDBCardBody className="">
       {
