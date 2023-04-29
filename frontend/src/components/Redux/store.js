@@ -14,6 +14,6 @@ export default configureStore ({
         craft: craftsSlice.reducer,
         order: orderSlice.reducer,
         comments:commentSlice.reducer,
-        Mood:MoodSlice.reducer
+        Mood:MoodSlice.reducer,
     }
 })
