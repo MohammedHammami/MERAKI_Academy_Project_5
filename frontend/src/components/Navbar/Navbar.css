@@ -19,12 +19,15 @@
   font-weight: bold;
   border-radius: 20px;
 }
+
 .each-navbar :hover{
+ /*background-color: #1e194f*/
   border-radius: 20px;
   color: var(--words);
 }
 .navBar-container:hover{
   color:#223d66;
+
 }
 .for-the-dot,.the-L-letter {
   font-size: 30px;

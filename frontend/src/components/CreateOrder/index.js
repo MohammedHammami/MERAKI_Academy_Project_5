@@ -5,6 +5,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { createBrowserHistory } from "history";
 import { useLocation, useNavigate } from "react-router-dom";
+import { setPooster } from "../Redux/reducers/auth";
 import "./style.css";
 import {
   MDBContainer,
@@ -15,8 +16,14 @@ import {
   MDBTextArea,
   MDBFile,
 } from "mdb-react-ui-kit";
+import Comments from "../Comments/Comments";
 const CreateOrder = () => {
+  const [timer,setTimer]=useState(false)
+  setTimeout(() => {
+    setTimer(true)
+    }, 1000);
   const location = useLocation();
+  const dispatch = useDispatch()
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
@@ -25,6 +32,7 @@ const CreateOrder = () => {
   const [schedule_date, setSchedule_date] = useState("");
   const [order_desc, setOrder_desc] = useState("");
   const [postInfo, setPostInfo] = useState({});
+  const [userId,setUserId] = useState("")
   const sendSmsNotifaction = () => {
     axios
       .post("http://localhost:5000/orders/sms", {
@@ -44,7 +52,9 @@ const CreateOrder = () => {
     axios
       .get(`http://localhost:5000/posts/post/${location.state.id}`)
       .then((result) => {
+        setUserId(result.data.posts[0].user_id);
         setPostInfo(result.data.posts[0]);
+        dispatch(setPooster(result.data.posts[0].user_id))
       })
       .catch((err) => {
         console.log("err");
@@ -93,58 +103,63 @@ const CreateOrder = () => {
       });
   };
   return (
-    <div className="inpust-post">
-      <div className="container">
-        <div className="user-card">
-          <img className="image" src={postInfo.post_image} />
-          <div>
-            <h2>{postInfo.title}</h2>
-            <p>{postInfo.description}</p>
+    <div>
+      <div className="inpust-post">
+        <div className="container-div">
+          <div className="user-card">
+            <img className="image" src={postInfo.post_image} />
+            <div>
+              <h2>{postInfo.title}</h2>
+              <p>{postInfo.description}</p>
+            </div>
           </div>
         </div>
+
+        <div  className="inputCreteOrder">
+
+        <MDBContainer className="p-2 my-2 flex-column w-40">
+          <Form>
+            <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
+              <label className="labelCreatOrder">Schedule a date with the service provider </label>
+              
+              <MDBInput
+                type="date"
+                placeholder="Enter Title"
+                className="inputCreteOrder"
+                onChange={(e) => {
+                  setSchedule_date(e.target.value);
+
+                  }}
+                  style={{textAlign:"center",width:'40vw'}} 
+              />
+            </Form.Group>
+            <br></br>
+            <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
+              <label className="labelCreatOrder">Your Order Description</label>
+              <Form.Control
+              className="mb-1"
+                as="textarea"
+                rows={3}
+                placeholder="Enter description"
+                onChange={(e) => {
+                  setOrder_desc(e.target.value);
+                }}
+              />
+            </Form.Group>
+          </Form></MDBContainer>
+          <MDBBtn
+            size="lg"
+            wrapperclass="mb-4 mt-4"
+            onClick={(e) => {
+              submitFn();
+            }}
+          >
+            Submit Order
+          </MDBBtn>
+        </div>
       </div>
-
-      <div  className="inputCreteOrder">
-
-      <MDBContainer className="p-2 my-2 flex-column w-40">
-        <Form>
-          <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
-            <label className="labelCreatOrder">Schedule a date with the service provider </label>
-            
-            <MDBInput
-              type="date"
-              placeholder="Enter Title"
-              className="inputCreteOrder"
-              onChange={(e) => {
-                setSchedule_date(e.target.value);
-
-                 }}
-                 style={{textAlign:"center",width:'40vw'}} 
-            />
-          </Form.Group>
-          <br></br>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
-            <label className="labelCreatOrder">Your Order Description</label>
-            <Form.Control
-            className="mb-1"
-              as="textarea"
-              rows={3}
-              placeholder="Enter description"
-              onChange={(e) => {
-                setOrder_desc(e.target.value);
-              }}
-            />
-          </Form.Group>
-        </Form></MDBContainer>
-        <MDBBtn
-          size="lg"
-          wrapperclass="mb-4 mt-4"
-          onClick={(e) => {
-            submitFn();
-          }}
-        >
-          Submit Order
-        </MDBBtn>
+      <div>
+        {timer&&<Comments value={userId}/>}
       </div>
     </div>
   );

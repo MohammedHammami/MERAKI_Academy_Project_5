@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout, setNotification } from "../Redux/reducers/auth";
+import { setCounterNotification } from "../Redux/reducers/noti";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
@@ -54,6 +55,7 @@ const Navbars = () => {
         headers: {
           Authorization: state.token,
         },
+
       })
       .then((result) => {
         fillterNoti(result.data.notification);
@@ -290,6 +292,7 @@ const Navbars = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
+
     </>
   );
 };

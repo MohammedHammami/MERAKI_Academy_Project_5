@@ -1,3 +1,4 @@
+
 .container1 {
   margin-top: 80px;
   display: grid;
@@ -16,13 +17,16 @@
 .car:hover {
   box-shadow: 0 8px 16px #223d66;
 }
-.imgecard:hover {
+
+/* .imgecard:hover{
+  
   height: 45vh;
   width: 24vw;
-}
-.img {
-  width: 340px;
-  height: 255px;
+
+} */
+.img{
+    width: 340px;
+    height : 255px;
 }
 .img-fluid {
   border-radius: 20px;

@@ -9,7 +9,7 @@ export const authSlice = createSlice({
     isLoggedIn: null|| localStorage.getItem("isLoggedIn"),
     user_image: null || localStorage.getItem("user_image"),
     userInfo: null || JSON.parse(localStorage.getItem("userInfo")) || {},
-    noNoti : null || localStorage.getItem("noNoti")
+    pooster : null || localStorage.getItem("pooster")
   },
   reducers: {
     setLogin: (state, action) => {
@@ -55,10 +55,10 @@ export const authSlice = createSlice({
       state.userInfo = jwtDecode(action.payload.credential);
       console.log("state.userInfo:", state.userInfo);
     },
-    setNotification: (state,action) => {
-      state.noNoti = action.payload
-      localStorage.setItem("noNoti",state.noNoti)
-    }
+    setPooster: (state,action) => {
+      state.pooster = action.payload
+      localStorage.setItem("pooster",state.pooster)
+    },
   },
 });
 export const {
@@ -67,7 +67,8 @@ export const {
   setUserInfo,
   setLoginGoogel,
   setUserInfoGoogle,
-  setNotification
+  setNotification,
+  setPooster
 } = authSlice.actions;
 
 export default authSlice.reducer;
