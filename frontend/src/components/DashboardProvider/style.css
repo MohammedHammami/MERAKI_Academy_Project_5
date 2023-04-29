@@ -1,9 +1,9 @@
 /* #D5E2F2  #e7ecf8  #B4C4D9 #8FA4BF */
 .container_dashboard_provider{
     display: grid;
-    grid-template-columns: 15% 83%;
+    grid-template-columns: 18% 83%;
     margin: 0.5%;
-    height: 100vh;
+    height: auto;
 }
 .ChartComponent{
     width: 80%;
@@ -20,8 +20,9 @@
     display: flex;
 }
 .menu{
-    background-color: #F5F5F5;
-    border-radius: 25px;
+    background: linear-gradient(to right, #2c3e55, #52616b);
+    border-radius: 1px;
+    
 }
 .body_container{
     /* background-color: #e7ecf8; */
@@ -48,13 +49,21 @@
     transform: rotateY(10deg);
 }
 .go_to{
-    /* background-color: #DCEBFC; */
-    width: 100%;
+    /* background-color: #2c3e55;
+     */
+    background-color: transparent;
+    border: none;
+
+    width: 80%;
     border-radius: 20px;
     border: none;
-    font-size: 20px;
-    text-align: left;
+    font-size: 14px;
+    color: white;
+    margin: 3%;
+    margin-left: -5%;
+    /* text-align: left; */
 }
+/* rgp(44,62,85) */
 h5{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
@@ -91,3 +100,16 @@ h5{
     text-align: left;
     margin-left: 27%;
 }
+.ul-menu{
+    margin-top: 4%;
+    margin-bottom: 0%;
+    color: white;
+    text-align: left;
+    margin-left: -5%;
+    font-size: 13px;
+    font-weight: bold;
+    
+}
+li {
+    list-style-type: none;
+  }

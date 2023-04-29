@@ -1,0 +1,159 @@
+import "./style.css"
+import axios from "axios";
+import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";//
+import Chart from "chart.js/auto";
+
+
+const GraphDashboard = () =>{
+  const [orders, setOrders] = useState([]);
+  const [completed, setCompleted] = useState(0)
+  const [pending, setPending] = useState(0)
+  const [canceled, setCanceled] = useState(0)
+  const [coulmName,setCoulmName] = useState([])
+  const [coulmValue,setCoulmValue] = useState([])
+  const state = useSelector((state) => {
+    return {
+      userId: state.auth.userId,
+      token: state.auth.token,
+      userInfo: state.auth.userInfo,
+    };
+  });
+    const getAllOrder = () =>{
+    axios
+    .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
+    .then((result)=>{
+      setOrders(result.data.order)
+      descOrder(result.data.order)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+    }
+    const descOrder = (array)=>{
+    let a = 0;
+    let b = 0;
+    let c = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].state_id==1){a++;setPending(a)}
+      if(array[i].state_id==2){b++;setCompleted(b)}
+      if(array[i].state_id==3){c++;setCanceled(c)}
+    }
+    } 
+    const ChartComponent = (props) => {
+    const chartRef = useRef(null);
+    useEffect(() => {
+    const chartCanvas = chartRef.current.getContext("2d");
+    const myChart = new Chart(chartCanvas, {
+        type: "bar", //bar,pie
+        data: {
+        labels: ["Total Orders","Pending Orders","Accepted  Orders","Canceled  Orders"],
+        datasets: [
+            {
+            label: "",
+            data: [orders.length,pending,completed,canceled],
+            backgroundColor: ["rgb(220,235,252)", "rgb(251, 175, 175)", "#c3e6e1", "rgb(211, 211, 255)"],
+            // borderColor: ["#36A2EB", "#FFCE56", "#FF6384", "#FFCE56", "#FF6384"],
+            },
+        ],
+        },
+        options: { scales: { y: { beginAtZero: true } } },
+    });
+
+    return () => {
+        myChart.destroy();
+    };
+    }, [props]);
+
+    return <canvas ref={chartRef} />;
+    };
+    const ChartComponent1 = (props) => {
+        const chartRef = useRef(null);
+        useEffect(() => {
+        const chartCanvas = chartRef.current.getContext("2d");
+        const myChart = new Chart(chartCanvas, {
+            type: "doughnut", //bar,pie
+            data: {
+            labels: coulmName,
+            datasets: [
+                {
+                label: "no: rated",
+                data: coulmValue,
+                backgroundColor: ["green", "rgb(211, 211, 255)", "#c3e6e1", "rgb(251, 175, 175)", "rgb(68, 67, 67)"],
+                borderColor: "rgba(255, 99, 132, 0.2)",
+                },
+            ],
+            },
+            options: { scales: { y: { beginAtZero: true } } },
+        });
+
+        return () => {
+            myChart.destroy();
+        };
+        }, [props]);
+
+        return <canvas ref={chartRef} />;
+    };
+    const fillterRate = (array) =>{
+        let rate1 = 0;
+        let rate2 = 0;
+        let rate3 = 0;
+        let rate4 = 0;
+        let rate5 = 0;
+        for (let i = 0; i < array.length; i++) {
+          if(array[i].rate === 5){rate5++}
+          if(array[i].rate === 4){rate4++}
+          if(array[i].rate === 3){rate3++}
+          if(array[i].rate === 2){rate2++}
+          if(array[i].rate === 1){rate1++}
+        }
+        setCoulmName(["Very Poor","Poor","Fair","Good","Excellent"])
+        setCoulmValue([rate1,rate2,rate3,rate4,rate5])
+    }
+    const getRate = () =>{
+        axios
+        .get(`http://localhost:5000/review/`,{headers: {Authorization: state.token}})
+        .then((result)=>{
+          fillterRate(result.data.Reviews)
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+    }
+    useEffect(()=>{
+        getAllOrder()
+        getRate()
+        },[])
+    return(
+        <div className="body_container">
+            <div className="order_info__cotainer_div">
+            <div className="card_order_info">
+                <h5>Total Orders</h5>
+                <p className="number-order">{orders.length}</p>
+            </div>
+            <div className="card_order_info light-blue">
+                <h5>Pending Orders</h5>
+                <p className="number-order">{pending}</p>
+            </div>
+            <div className="card_order_info light-green">
+                <h5>Accepted Orders</h5>
+                <p className="number-order">{completed}</p>
+            </div>
+            <div className="card_order_info light-red">
+                <h5>Canceled Orders</h5>
+                <p className="number-order">{canceled}</p>
+            </div>
+            </div>
+            <hr className="hr2"/>
+            <div className="display-flex ChartComponent-div">
+            <div className="ChartComponent">
+                <h2>Orders</h2>
+                <ChartComponent/></div>
+            <div className="ChartComponent ChartComponent1">
+                <h2 className="h2">Rate</h2>
+                <ChartComponent1/></div>
+            </div>
+        </div>
+    )
+}
+export default GraphDashboard

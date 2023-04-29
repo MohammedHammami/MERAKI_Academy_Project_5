@@ -45,6 +45,7 @@ const Home = () => {
   return (
     <>
       <header style={{ paddingLeft: 0 }}>
+
       <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
       <div class="row justify-content-between gy-5">
@@ -56,9 +57,9 @@ const Home = () => {
         </div>
           <h2 data-aos="fade-up">  Easier Than Before</h2>
           <p data-aos="fade-up" data-aos-delay="100">A well trained aramy of Craftsmen ready for your services</p>
-          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#book-a-table" class="btn-book-a-table">Book an Appointment</a>
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="#book-a-table" className="btn-book-a-table">Book an Appointment</a>
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" className="glightbox btn-watch-video d-flex align-items-center"><i className="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">

@@ -18,6 +18,7 @@ import Chat from "./components/Chat/Chat";
 import Aboutus from "./components/Aboutus";
 import Support from "./components/Support";
 import UpdateProfile from "./components/UpdateProfile";
+import GraphDashboard from "./components/GraphDashboard";
 function App() {
   return (
     <div className="App">
@@ -40,6 +41,7 @@ function App() {
         <Route path="/aboutus" element={<Aboutus/>}/>
         <Route path="/support" element={<Support/>}/>
         <Route path="/update/profile" element={<UpdateProfile/>}/>
+        <Route path="/dashboard/graph" element={<GraphDashboard/>}/>
       </Routes>
       <Footer/>
     </div>
