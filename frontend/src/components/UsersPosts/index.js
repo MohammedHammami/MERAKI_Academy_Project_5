@@ -7,6 +7,14 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 import "./index.css"
 const UserPosts = () => {
   const [show, setShow] = useState(false);
@@ -83,43 +91,46 @@ const UserPosts = () => {
   }, []);
 
   return (
-    <div className="cards">
+    <div className="container1">
       {state.posts.map((post, i) => {
         return (
           <div key={i}>
             
-            <Card
-              className="post cards1"
-              style={{ width: "200", height: "150" }}
-              key={i}
-            >
-              <Card.Img
+            <MDBCard className="car">
+              {/* <Card.Img
                 variant="top"
                 src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg"
-              />
-              <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Button className="mb-2"
+              /> */}
+                <MDBCardImage className="imgecard2" src={post.post_image} position="top" alt="..." />
+
+                <MDBCardBody>
+                <MDBCardTitle>{post.title}</MDBCardTitle>
+               
+                <MDBCardText>{post.pricing}</MDBCardText>
+                <MDBBtn 
                   onClick={(e) => {
                     deleteSelectedPost(post.id);
                   }}
                 >
                   delete post
-                </Button>
-                <br />
-                <Button
+                </MDBBtn>
+                 {" "}
+                <MDBBtn
                   onClick={(e) => {
                     handleShow();
                   }}
                 >
                   update post
-                </Button>
-              </Card.Body>
-            </Card>
+                </MDBBtn>
+               
+              </MDBCardBody>
+            </MDBCard>
 
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
+
+                
               </Modal.Header>
               <Modal.Body>
                 <Form.Control

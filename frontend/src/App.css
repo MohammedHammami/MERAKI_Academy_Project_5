@@ -6,7 +6,7 @@ body{
     
 }
 .lightMood{
-    --words:#0476f8 ;
+    --words:#223d66 ;
     --background:whitesmoke ;
     background-color: var(--background);
     color: var(--words);

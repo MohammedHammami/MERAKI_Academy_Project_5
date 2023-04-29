@@ -95,6 +95,7 @@
     font-size: 48px;
     font-weight: 400;
     font-family: var(--font-primary);
+ 
   }
   
   .section-header p span {
@@ -126,10 +127,11 @@
   
   .hero p {
     /* color: #4f4f5a; */
-    font-weight: 400;
+    font-weight: 1000;
     margin-bottom: 30px;
-color: #191919;
+color: #223d66;
 
+font-family: var(--font-primary);
   }
   
   .hero .btn-book-a-table {
@@ -179,7 +181,7 @@ color: #191919;
     color: rgba(206, 18, 18, 0.8);
   }
   .imgecard{
-    width: 20vw;
+    width: 23.5vw;
     height: 40vh;
   }
   @media (max-width: 640px) {
