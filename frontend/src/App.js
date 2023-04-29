@@ -19,6 +19,7 @@ import Aboutus from "./components/Aboutus";
 import Support from "./components/Support";
 import UpdateProfile from "./components/UpdateProfile";
 import GraphDashboard from "./components/GraphDashboard";
+import GetAllOrdersRequester from "./components/GetAllOrdersRequester";
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
         <Route path="/orders" element={<GetAllOrders />} />
+        <Route path="/myorder" element={<GetAllOrdersRequester />} />
         <Route path="/Update" element={<UpdateUser />} />
         <Route path="/Chat" element={<Chat/>} />
         <Route path="/aboutus" element={<Aboutus/>}/>

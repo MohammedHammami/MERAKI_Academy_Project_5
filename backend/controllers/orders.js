@@ -70,6 +70,25 @@ const getOrderByReceiverId = (req,res) => {
         });
       });
 }
+const getOrderByRequesterId = (req,res) => {
+  const query=`SELECT * FROM orders WHERE requester_user_id = ${req.token.userId};`
+  pool
+  .query(query)
+  .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "order get successfuly",
+        order: result.rows
+      });
+    })
+    .catch((err) => {
+      res.status(409).json({
+        success: false,
+        message: "server error",
+        err:err.message,
+      });
+    });
+}
 const getAllOrder = (req,res) => {
     const query=`SELECT * FROM orders`
     pool
@@ -161,5 +180,6 @@ module.exports = {
     getAllOrder,
     getOrderById,
     updateStateOrderById,
-    sendUserOrederBooking
+    sendUserOrederBooking,
+    getOrderByRequesterId
 }

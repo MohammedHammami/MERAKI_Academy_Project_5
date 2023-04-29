@@ -4,6 +4,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     margin-right: 100px;
     margin-left: 100px;
+    /* background-color: rgb(244, 246, 249); */
 }
 .car{
     margin-top: 10px;
@@ -69,9 +70,12 @@
   }
   
   .section-bg {
-    background-image: linear-gradient(to bottom left, #223d66, #ff9900);
-      filter: brightness(130%);
-      background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
+    filter: brightness(130%);
+    /* background-image: linear-gradient(to bottom left, #223d66, #223d66); */
+    background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
+    /* background: linear-gradient(to TOP, #2c3e55, #385075,#4e6384); */
+    
+
     }  
   
   .section-header {

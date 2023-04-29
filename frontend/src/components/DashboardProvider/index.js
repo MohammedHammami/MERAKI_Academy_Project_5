@@ -19,6 +19,7 @@ const DashboardProvider = () => {
 
   const navigate = useNavigate();
   const state = useSelector((state) => {
+    // console.log(state.auth.userInfo.craft_id);
     return {
       userId: state.auth.userId,
       token: state.auth.token,
@@ -36,7 +37,7 @@ const DashboardProvider = () => {
     setToNotifications(false);setToCreatePost(false);setToMyOrder(false);setToAccount(false);setToDashboard(false)
     if (!toMyPosts){setToMyPosts(true)}else{setToMyPosts(false)}}  
   const myOrder = () => {
-    setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false)
+    setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false);setToMyPosts(false)
     if (!toMyOrder){setToMyOrder(true)}else{setToMyOrder(false)}}
   const createPost = () => {
     setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrder(false);setToDashboard(false)
@@ -44,6 +45,8 @@ const DashboardProvider = () => {
   const dashboard = () => {
     setToNotifications(false);setToAccount(false);setToMyPosts(false);setToMyOrder(false);setToCreatePost(false);
     if (!toDashboard){setToDashboard(true)}else{setToDashboard(false)}}
+
+
   return (
     <div className="container_dashboard_provider">
       
@@ -55,7 +58,10 @@ const DashboardProvider = () => {
           <button className="go_to" onClick={()=>{Notification()} } disabled={toNotifications}><BsFillBellFill style={{marginRight:"3%"}}/> Notification</button>
           </li>
           <li>
+            {state.userInfo.craft_id!=null?
           <button className="go_to" onClick={()=>{createPost();}} disabled={toCreatePost}><BsFillPlusSquareFill style={{marginRight:"3%"}}/> Post an Ad</button>
+          :<button className="go_to" onClick={()=>{navigate("/CreateCraft")}} ><BsFillPlusSquareFill style={{marginRight:"3%" , marginLeft:"-19%"}}/> Join us</button>
+          }
           </li>
         </ul>
         <ul className="ul-menu">SETTINGS
