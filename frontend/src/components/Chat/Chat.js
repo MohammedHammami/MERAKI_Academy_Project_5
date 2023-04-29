@@ -47,13 +47,13 @@ setContent(value)
           }}
         ></input>
         <Button size="sm" className="submit-btn" onClick={ChatNow}>
-          {" "}
+          {"  "}
           Submit
         </Button>
         <Button size="sm" className="submit-btn" onClick={()=>{
             setOutput('')
         }}>
-          {" "}
+          {"  "}
           Clear
         </Button>
       </div>
