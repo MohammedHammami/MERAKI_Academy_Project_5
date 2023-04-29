@@ -20,9 +20,10 @@
     display: flex;
 }
 .menu{
-    background: linear-gradient(to right, #2c3e55, #52616b);
+    background: linear-gradient(to right, #2c3e55, #385075,#4e6384);
     border-radius: 1px;
-    
+    margin-left: -2%;
+    margin-top: -2%;
 }
 .body_container{
     /* background-color: #e7ecf8; */
@@ -31,6 +32,7 @@
     border-radius: 40px;
     
 }
+
 
 .order_info__cotainer_div{
     display: flex;
