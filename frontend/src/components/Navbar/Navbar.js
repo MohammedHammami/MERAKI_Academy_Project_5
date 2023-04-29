@@ -8,6 +8,7 @@ import { setLogout, setNotification } from "../Redux/reducers/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
+import { changeMood } from "../Redux/reducers/mood";
 import {
   BsFillHouseGearFill,
   BsFillBarChartFill,
@@ -35,8 +36,11 @@ const Navbars = () => {
       user_image: state.auth.user_image,
       craft: state.auth.userInfo.craft_id,
       noNotification: state.auth.noNoti,
+      mood: state.Mood.mood,
     };
   });
+  const mood = state.mood;
+  
   const [notificationsCount, setNotificationsCount] = useState(
     state.noNotification
   );
@@ -76,9 +80,12 @@ const Navbars = () => {
     getNotifications();
   }, []);
   return (
-    <>
-      <div className="navBar-container">
-        <Navbar collapseOnSelect className="background-navbar">
+    < >
+   
+      <div  className={
+      mood === "darkMood" ? "darkMood navBar-container" : "lightMood navBar-container"
+    }>
+        <Navbar collapseOnSelect expand="lg" className="background-navbar">
           <Navbar.Brand style={{ marginLeft: "5%" }}>
             <h3
               className="header-logo"
@@ -101,20 +108,42 @@ const Navbars = () => {
             id="responsive-navbar-nav"
             style={{ justifyContent: "flex-end" }}
           >
-            <Nav>
+            <Nav >
               {state.isLoggedIn ? (
                 <>
+                <div>
+              <input
+                type="checkbox"
+                className="checkbox"
+                id="checkbox"
+                onChange={() => {
+                  setMoodstate(!moodstate);
+                  dispatch(changeMood(newTheme));
+                }}
+              />
+              <label htmlFor="checkbox" className="checkbox-label">
+                <i className="fas fa-moon"></i>
+                <i className="fas fa-sun"></i>
+                <span className="ball"></span>
+              </label>
+              </div>
                   <Nav.Link
+                  style={{
+                    fontSize: "18px",
+                    marginLeft: "-30%",
+                    color: "white",
+                  }}
                     onClick={() => {
                       navigate(`/`);
                     }}
                     className="each-navbar"
+                    
                   >
-                    <p className="red-p">Home</p>{" "}
+                    Home{" "}
                   </Nav.Link>
 
                   <Nav.Link
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "18px",color: "white" }}
                     className="each-navbar"
                     onClick={() => {
                       navigate("/support");
@@ -204,6 +233,7 @@ const Navbars = () => {
                 </>
               ) : (
                 <>
+
                   <Nav.Link
                     style={{
                       fontSize: "18px",
