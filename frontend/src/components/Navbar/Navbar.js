@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout, setNotification } from "../Redux/reducers/auth";
+import { setCounterNotification } from "../Redux/reducers/noti";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
@@ -12,7 +13,6 @@ import { BsFillHouseGearFill,BsFillBarChartFill,BsChatDotsFill,BsFillPlusSquareF
 const Navbars = () => {
     const [moodstate, setMoodstate] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [notiShow, setNotiShow] = useState(false)
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,12 +22,13 @@ const Navbars = () => {
       dispatch(setLogout())
     };
     const state = useSelector((state) => {
+      console.log(state.noti);
       return {
         isLoggedIn: state.auth.isLoggedIn,
         token: state.auth.token,
         user_image: state.auth.user_image,
         craft: state.auth.userInfo.craft_id,
-        noNotification:state.auth.noNoti
+        counterNotification:state.noti.counterNotification
       };
     });
     const [notificationsCount, setNotificationsCount] = useState(state.noNotification)
@@ -40,27 +41,28 @@ const Navbars = () => {
           Authorization: state.token
           }})
       .then((result)=>{
-        fillterNoti(result.data.notification)
+        // fillterNoti(result.data.notification)
+        dispatch(setCounterNotification(result.data.notification))
       })
       .catch((err)=>{
           console.log(err);
       })
   }
-  const fillterNoti = (array) =>{
-    let a = 0;
-    for (let i = 0; i < array.length; i++) {
-      if(array[i].status == 'create_order'||
-      array[i].status =='accept_order'||
-      array[i].status =='accepted_order'||
-      array[i].status =='canceld_order'||
-      array[i].status =='order_canceld'
-      ){
-        a++
-      }
-    }
-    dispatch(setNotification(a))
+  // const fillterNoti = (array) =>{
+  //   let a = 0;
+  //   for (let i = 0; i < array.length; i++) {
+  //     if(array[i].status == 'create_order'||
+  //     array[i].status =='accept_order'||
+  //     array[i].status =='accepted_order'||
+  //     array[i].status =='canceld_order'||
+  //     array[i].status =='order_canceld'
+  //     ){
+  //       a++
+  //     }
+  //   }
+  //   dispatch(setNotification(a))
     
-  }
+  // }
   useEffect(()=>{
     
       getNotifications()
@@ -89,7 +91,7 @@ const Navbars = () => {
              <Nav.Link style={{ fontSize: '18px',color:"white" }} onClick={()=>{navigate(`/aboutus`)}}className="each-navbar darkss" >About us </Nav.Link>
              <div style={{color:"white"}} onClick={()=>{navigate('/getAllNotification')}}>
               <FaBell size={22} color="gray" style={{color:"white",marginTop:"12px"}}/>
-               <span style={{marginTop:"12px"}}>{localStorage.getItem('noNoti')}</span>
+               <span style={{marginTop:"12px"}}>{state.counterNotification}</span>
             </div>
             <NavDropdown id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={()=>{

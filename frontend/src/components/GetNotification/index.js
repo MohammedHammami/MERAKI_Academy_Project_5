@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
 import { ToastContainer, toast } from 'react-toastify';
 import {MDBInput} from "mdb-react-ui-kit";
+import { setNotification } from "../Redux/reducers/noti";
 const GetAllNotification = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [smShow, setSmShow] = useState(false);
   const [description, setDescription] = useState("");
-  const [notifications, setNotifications] = useState([]);
   const [rate, setRate] = useState(0)
   const state = useSelector((state) => {
+    console.log(state.noti.notification);
     return {
       token: state.auth.token,
       userInfo: state.auth.userInfo,
-      userId:state.auth.userId
+      userId:state.auth.userId,
+      notifications:state.noti.notification
     };
   });
+  const [notifications, setNotifications] = useState(state.notifications);
 
     const getNotifications = ()=>{
         axios
@@ -29,6 +33,7 @@ const GetAllNotification = () => {
             }})
         .then((result)=>{
             setNotifications(result.data.notification)
+            dispatch(setNotification(result.data.notification))
         })
         .catch((err)=>{
             console.log(err);
@@ -114,19 +119,20 @@ const GetAllNotification = () => {
       };
       useEffect(()=>{
         getNotifications()
+        console.log(notifications);
     },[])
     return (    
     <div>
         {/* <h1 style={{textAlign:"center",marginTop:"50px",fontSize:"36px"}}>New order cumming to you</h1> */}
-        <div class="logos">
+        <div className="logos">
             {
-            notifications.map((noti,i)=>{
+            state.notifications.map((noti,i)=>{
             if(noti.status==="create_order"){
                 const value = noti.description.split(':')
                 const description = value[1].split('time')[0]
                 const time = value[2]
             return(
-                <div className="logo">
+                <div className="logo" key={i}>
                     <p>Hello Mr : {state.userInfo.first_name}</p>
                     <p>Someone has created a new request for one of your posts</p>
                     <p>requester said : {description}</p>
@@ -151,14 +157,14 @@ const GetAllNotification = () => {
             
         </div>
 
-        <div class="logos">
+        <div className="logos">
             {/* <h1 style={{textAlign:"center",marginTop:"50px",fontSize:"36px"}}>Provider aceppt your order</h1> */}
             {
             notifications.map((noti,i)=>{
                 if(noti.status==="accept_order"){
                 const value = noti.description.split(' ')
                 return(
-                <div className="logo">
+                <div className="logo" key={i}>
                     <p>Hello Mr : {state.userInfo.first_name}</p>
                     <p>We hope you are well</p>
                     <p>provider {value[0]} accepted your request</p>
@@ -214,13 +220,13 @@ const GetAllNotification = () => {
             
         </div>
 
-        <div class="logos">
+        <div className="logos">
             {/* <h1 style={{textAlign:"center",marginTop:"50px",fontSize:"36px"}}>Provider aceppt your order</h1> */}
             {
             notifications.map((noti,i)=>{
             if(noti.status==="canceld_order"){
             return(
-                <div className="logo">
+                <div className="logo" key={i}>
                     <p>{noti.description}</p>
                     <p>{noti.description}</p>
                         <p>the provider canceld order</p>

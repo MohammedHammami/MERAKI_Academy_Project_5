@@ -23,6 +23,7 @@ import {
 // import { Spinner } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import Spinner from '../Spinner/Spinner.js'
+import { setCounterNotification } from "../Redux/reducers/noti";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -40,6 +41,17 @@ const Login = () => {
     axios
       .post("http://localhost:5000/users/login", user)
       .then((result) => {
+        axios
+      .get(`http://localhost:5000/notifications`,{headers: {
+          Authorization: result.data.token
+          }})
+      .then((result)=>{
+        // fillterNoti(result.data.notification)
+        dispatch(setCounterNotification(result.data.notification))
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
         console.log(result.data);
 
         dispatch(setLogin(result.data));
@@ -141,7 +153,7 @@ const Login = () => {
                 <MDBBtn className="mb-0 px-5" size="lg" onClick={handelLogin}>
                   Login
                 </MDBBtn>
-                
+                <ToastContainer/>
               </div>
               
               <p className="small fw-bold mt-2 pt-1 mb-2">
