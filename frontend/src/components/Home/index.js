@@ -49,15 +49,20 @@ const Home = () => {
     <div class="container">
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-          <h2 data-aos="fade-up">Maintenance Is<br/>Easier Than Before</h2>
+          <div style={{display:'flex'}}>
+        <h2 data-aos="fade-up" style={{color :'#223d66'}}>Maintenance </h2>
+<p style={{opacity:0}}>ss</p>
+        <h2 data-aos="fade-up">is</h2>
+        </div>
+          <h2 data-aos="fade-up">  Easier Than Before</h2>
           <p data-aos="fade-up" data-aos-delay="100">A well trained aramy of Craftsmen ready for your services</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#book-a-table" class="btn-book-a-table">Book an Appointment</a>
             <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
-        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-          <img src="https://img.freepik.com/free-vector/illustration-characters-fixing-cogwheel_53876-40796.jpg?w=2000" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300"/>
+        <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+          <img src="https://buildinglinkau.com.au/wp-content/uploads/2021/09/AdobeStock_263924753-min-scaled.jpeg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300"/>
         </div>
       </div>
     </div>
@@ -68,7 +73,7 @@ const Home = () => {
           return (
             <div key={i}>
               <MDBCard className="car">
-                <MDBCardImage src={post.post_image} position="top" alt="..." />
+                <MDBCardImage className="imgecard" src={post.post_image} position="top" alt="..." />
                 <MDBCardBody>
                   <MDBCardTitle>{post.title}</MDBCardTitle>
                   <MDBBtn onClick={()=>{

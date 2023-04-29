@@ -10,12 +10,20 @@
     margin-left: 50px;
     margin-bottom: 20px;
     margin-right: 50px;
+    /* box-shadow: 0 8px 28px #3872bd; */
 }
 .img{
     width: 340px;
     height : 255px;
 }
+.img-fluid{
+  border-radius: 20px;
+  /* background-color: #223d66; */
+  height:  60vh;
+  width: 100vw;
+  filter: brightness(85%);
 
+}
 :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-primary: "Amatic SC", sans-serif;
@@ -61,8 +69,10 @@
   }
   
   .section-bg {
-    background-color: rgb(217, 222, 245);
-  }
+    background-image: linear-gradient(to bottom left, #223d66, #ff9900);
+      filter: brightness(130%);
+      background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
+    }  
   
   .section-header {
     text-align: center;
@@ -90,21 +100,23 @@
   .section-header p span {
     color: var(--color-primary);
   }
-
+.maintenance{
+  color: #223d66;
+}
 
   .hero {
     width: 100%;
     background-size: cover;
-    position: relative;
+    /* position: relative; */
     min-height: 60vh;
-    padding: 160px 0 60px 0;
+    padding: 20px 0 60px 0;
   }
   
   .hero h2 {
-    font-size: 64px;
+    font-size: 60px;
     font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--color-secondary);
+    margin-bottom: 0px;
+    color: rgb(192, 192, 192);
     font-family: var(--font-primary);
   }
   
@@ -113,9 +125,11 @@
   }
   
   .hero p {
-    color: #4f4f5a;
+    /* color: #4f4f5a; */
     font-weight: 400;
     margin-bottom: 30px;
+color: #191919;
+
   }
   
   .hero .btn-book-a-table {
@@ -128,7 +142,7 @@
     transition: 0.5s;
     color: #fff;
     background: #3872bd;
-    box-shadow: 0 8px 28px #3872bd;
+    box-shadow: 0 0px 0px #3872bd;
   }
   
   .hero .btn-book-a-table:hover {
@@ -140,8 +154,9 @@
     font-size: 16px;
     transition: 0.5s;
     margin-left: 25px;
-    color: var(--font-secondary);
+    /* color: var(--font-secondary); */
     font-weight: 600;
+    color: white;
   }
   
   .hero .btn-watch-video i {
@@ -153,13 +168,20 @@
   }
   
   .hero .btn-watch-video:hover {
-    color: var(--color-primary);
+    /* color: var(--color-primary); */
+    /* color: black; */
+    background: #3872bd;
+    box-shadow: 0 0px 8px #135ec0;
+    border-radius:40px ;
   }
   
   .hero .btn-watch-video:hover i {
     color: rgba(206, 18, 18, 0.8);
   }
-  
+  .imgecard{
+    width: 20vw;
+    height: 40vh;
+  }
   @media (max-width: 640px) {
     .hero h2 {
       font-size: 36px;
