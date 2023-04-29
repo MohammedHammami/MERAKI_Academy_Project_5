@@ -43,7 +43,7 @@ const openai = new OpenAIApi(configuration);
   };
   return (
     <div className="main-container">
-      <p className="main-title">Talk to me - تحدث إلي</p>
+      <p className="main-title">Good Day, Ask Me Please! </p>
       <div className="main-content">
         <input
           className="word-input"
