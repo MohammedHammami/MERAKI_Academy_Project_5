@@ -103,21 +103,29 @@ const CreateOrder = () => {
           </div>
         </div>
       </div>
-      <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+
+      <div  className="inputCreteOrder">
+
+      <MDBContainer className="p-2 my-2 flex-column w-40">
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>schedule_date</Form.Label>
-            <Form.Control
+          <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
+            <label className="labelCreatOrder">Schedule a date with the service provider </label>
+            
+            <MDBInput
               type="date"
               placeholder="Enter Title"
+              className="inputCreteOrder"
               onChange={(e) => {
                 setSchedule_date(e.target.value);
-              }}
+                 }}
+                 style={{textAlign:"center",width:'40vw'}} 
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Description order</Form.Label>
+          <br></br>
+          <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
+            <label className="labelCreatOrder">Your Order Description</label>
             <Form.Control
+            className="mb-1"
               as="textarea"
               rows={3}
               placeholder="Enter description"
@@ -126,16 +134,17 @@ const CreateOrder = () => {
               }}
             />
           </Form.Group>
-        </Form>
+        </Form></MDBContainer>
         <MDBBtn
+size="lg"
           wrapperClass="mb-4 mt-4"
           onClick={(e) => {
             submitFn();
           }}
         >
-          Submit
+          Submit Order
         </MDBBtn>
-      </MDBContainer>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "react-bootstrap/Card";
 import "axios";
-
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBInput,
+  MDBRow,
+} from "mdb-react-ui-kit";
 import "./style.css";
 import axios from "axios";
 
@@ -21,7 +30,7 @@ const GetAllOrders = () => {
       `http://localhost:5000/orders/${state.userId}`,
       {
         headers: {
-          Authorization: localStorage.getItem("token"),
+          Authorization: state.token,
         },
       }
     )
@@ -36,21 +45,47 @@ const GetAllOrders = () => {
 
   return (
     <div className="all-orders-div">
+       <MDBContainer className="mt-5" style={{ maxWidth: "1000px" }}>
+      <MDBRow className="justify-content-center">
+        <MDBCol md="8" lg="10">
+          <MDBCard
+            className="shadow-0 border"
+            style={{ backgroundColor: "" }}
+          >
+            <MDBCardBody className="">
       {
         orders.map((order,i)=>{
-          return(<div>
-            <Card.Body>
-              <h5>order number : {i+1}</h5>
-                <Card.Title>{order.order_desc}</Card.Title>
-                <Card.Title>{order.schedule_date}</Card.Title>
-                <Card.Title>state : {order.state_id===1&&"Pending"}
+          return(<div key={order.id}>
+           
+              <MDBCard className="mb-4 cardOrderBody">
+              <h5 className='cardOrderheader'>order number : {i+1}</h5>
+              <Card.Title>{order.schedule_date && order.schedule_date.split("").splice(0, 10)}</Card.Title>
+                <MDBCardBody>
+                  <p>{order.order_desc}</p>
+                  <Card.Title>state : {order.state_id===1&&"Pending"}
                 {order.state_id===2&&"Completed"}
                 {order.state_id===3&&"Canceled"}
                 </Card.Title>
-              </Card.Body>
+                 
+                </MDBCardBody>
+                </MDBCard>
+                
+                
+             
           </div>)
         })
       }
+     
+
+             
+              
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+  
+
     </div>
   );
 };
