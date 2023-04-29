@@ -1,3 +1,4 @@
+
 .container{
     margin-top: 100px;
     grid-template-rows: 1fr 1fr 1fr;
@@ -9,7 +10,7 @@
     align-items: center;
     width: 50vw;
     max-width: 900px;
-    margin-bottom: 100px;
+    margin-bottom: 6vh;
     /* border : 10px solid red; */
     /* background-color: #3b71ca; */
     background: linear-gradient(to right, #2c3e55, #385075,#4e6384);
@@ -44,3 +45,27 @@
 .user-card p{
     color: aliceblue;
 }
+.inputCreteOrder{
+    display:inline-block;
+    justify-content: center;
+    align-items: center;
+    /* text-align: left; */
+   /* border: 2px #223d66 double; */
+   margin-top: 0vh;
+   padding-bottom: 9vh;
+  /* width: 70vw; */
+   border-radius: 13px;
+   /* padding-bottom: 5vh; */
+ 
+}
+.labelCreatOrder{
+   justify-content: left;
+    font-size: 20px;
+    /* font-weight: bold; */
+    color: #223d66;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 1vh;
+}
+/* .dd{
+    width: 60vh;
+} */
