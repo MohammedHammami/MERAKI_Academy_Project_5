@@ -27,6 +27,7 @@ const Navbars = () => {
   const logout = () => {
     setIsLoading(true);
     setNotificationsCount(0);
+    navigate(`/`)
     dispatch(setLogout());
   };
   const state = useSelector((state) => {
