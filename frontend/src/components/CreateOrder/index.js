@@ -29,6 +29,7 @@ const CreateOrder = () => {
     axios
       .post("http://localhost:5000/orders/sms", {
         schedule_date,
+
       })
       .then((res) => {
         console.log(res);
@@ -36,6 +37,7 @@ const CreateOrder = () => {
       .catch((err) => {
         console.log(err);
       });
+
   };
   const getPostById = () => {
     // console.log(location);
@@ -138,3 +140,4 @@ const CreateOrder = () => {
   );
 };
 export default CreateOrder;
+

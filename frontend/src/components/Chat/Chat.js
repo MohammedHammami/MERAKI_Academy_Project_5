@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import "./Chat.css";
 import axios from "axios";
 const Chat = () => {
-  const [content, setContent] = useState("");
+ const [content, setContent] = useState("");
   const [output, setOutput] = useState("");
   const ChatNow = async () => {
     const apiKey = "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";
@@ -26,37 +26,34 @@ const Chat = () => {
         },
       })
       .then((result) => {
-        setOutput(result.data.choices[0].message.content);
+        console.log(result);
+        setOutput(result.data.choices[0].message.content)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.error.message);
       });
   };
   return (
     <div className="main-container">
-      <p className="main-title">Talk to me - تحدث إلي</p>
+      <p className="main-title">Good Day, Ask Me Please! </p>
       <div className="main-content">
         <input
           className="word-input"
           type="search"
           placeholder="Inquire about services & maintenance"
-          onChange={(e) => {
-            const value = e.target.value;
-            setContent(value);
+          onChange={(e)=>{
+const value=e.target.value
+setContent(value)
           }}
         ></input>
         <Button size="sm" className="submit-btn" onClick={ChatNow}>
-          {" "}
+          {"  "}
           Submit
         </Button>
-        <Button
-          size="sm"
-          className="submit-btn"
-          onClick={() => {
-            setOutput("");
-          }}
-        >
-          {" "}
+        <Button size="sm" className="submit-btn" onClick={()=>{
+            setOutput('')
+        }}>
+          {"  "}
           Clear
         </Button>
       </div>
