@@ -92,21 +92,16 @@ const UserPosts = () => {
 
   return (
     <div className="container1">
+    { console.log(state.posts)}
       {state.posts.map((post, i) => {
         return (
           <div key={i}>
             
             <MDBCard className="car">
-              {/* <Card.Img
-                variant="top"
-                src="https://www.shutterstock.com/image-photo/roofer-carpenter-working-on-roof-260nw-748292161.jpg"
-              /> */}
                 <MDBCardImage className="imgecard2" src={post.post_image} position="top" alt="..." />
-
                 <MDBCardBody>
-                <MDBCardTitle>{post.title}</MDBCardTitle>
-               
-                <MDBCardText>{post.pricing}</MDBCardText>
+                <MDBCardTitle>{post.title}</MDBCardTitle>              
+                <MDBCardText>${" "}{post.pricing}</MDBCardText>
                 <MDBBtn 
                   onClick={(e) => {
                     deleteSelectedPost(post.id);
@@ -114,22 +109,19 @@ const UserPosts = () => {
                 >
                   delete post
                 </MDBBtn>
-                 {" "}
+                {" "}
                 <MDBBtn
                   onClick={(e) => {
                     handleShow();
                   }}
                 >
                   update post
-                </MDBBtn>
-               
+                </MDBBtn>               
               </MDBCardBody>
             </MDBCard>
-
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
-
                 
               </Modal.Header>
               <Modal.Body>
