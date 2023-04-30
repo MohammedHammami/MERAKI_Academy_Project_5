@@ -196,7 +196,6 @@ const CreateOrder = () => {
               } else {
                 handleShow();
               }
-              // navigate("/Dashboard/provider");
             }}
           >
             Submit Order
