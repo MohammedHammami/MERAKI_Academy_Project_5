@@ -2,12 +2,11 @@ import "./style.css"
 
 const Support = () => {
     return (   
-        <section id="contact" className="contact" style={{paddingTop:"0"}}>
+        <section id="contact" className="contact" style={{paddingTop:"40px"}}>
 
         <div className="container" data-aos="fade-up" style={{paddingTop:"0"}}>
   
           <header className="section-header">
-            <h2>Contact</h2>
             <p>Contact Us</p>
           </header>
   
