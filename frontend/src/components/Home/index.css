@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-right: 100px;
-    margin-left: 100px;
+    margin-left: 3%;
     /* background-color: rgb(244, 246, 249); */
 }
 .btn-pg{
@@ -14,21 +14,13 @@
     margin-left: 50px;
     margin-bottom: 20px;
     margin-right: 50px;
-    box-shadow: 2px 8px 15px #223d66;
+    box-shadow:  2px 2px 2px 2px #dadada;
 }
 .car:hover{
-  box-shadow: 0 8px 16px #223d66;
+  /* box-shadow: 0 0px 0px #223d66; */
 }
-.car {
-  margin-top: 10px;
-  margin-left: 50px;
-  margin-bottom: 20px;
-  margin-right: 50px;
-  box-shadow: 2px 8px 15px #223d66;
-}
-.car:hover {
-  box-shadow: 0 8px 16px #223d66;
-}
+
+
 
 /* .imgecard:hover{
   

@@ -26,7 +26,7 @@ const Comments = (s) => {
       userpostId: state.comments.userpostId,
     };
   });
-  console.log(state.userpostId);
+  // console.log(state.userpostId);
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState("");
   const [userpostId, setUserpostId] = useState(state.userpostId);
@@ -38,13 +38,13 @@ const Comments = (s) => {
   const user_image = state.user_image;
 
   const getComment = () => {
-    console.log(state.pooster);
+    // console.log(state.pooster);
     axios
       .get(`http://localhost:5000/comments/${userpostId}`, {
         headers: { Authorization: state.token },
       })
       .then((result) => {
-        console.log(result.data.result);
+        // console.log(result.data.result);
         setComments(result.data.result);
       })
       .catch((err) => {
@@ -100,13 +100,13 @@ const Comments = (s) => {
     getComment();
   }, []);
   return (
-    <div className="all-orders-div">
-      <MDBContainer className="mt-5" style={{ maxWidth: "1000px" }}>
+    <div className="all-orders-div" style={{marginLeft:"0"}}>
+      <MDBContainer className="mt-5" style={{ width: "100%",textAlign:"center" }}>
         <MDBRow className="justify-content-center">
           <MDBCol md="8" lg="6">
             <MDBCard
               className="shadow-0 border"
-              style={{ backgroundColor: "#c6c6c6" }}
+              style={{ backgroundColor: "#c6c6c6",margin:"0",textAlign:"center",widows:"80%",marginLeft:"10%" }}
             >
               <MDBCardBody >
                 {comments.map((comment, i) => {

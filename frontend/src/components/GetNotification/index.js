@@ -27,7 +27,6 @@ const GetAllNotification = () => {
       };
     }
   );
-  console.log(userpostId);
   // const [notifications, setNotifications] = useState(state.notifications);
 
   const getNotifications = () => {
@@ -68,18 +67,20 @@ const GetAllNotification = () => {
         console.log(err);
       });
   };
-  const updateNotificationFn = (id, status) => {
+
+  const deleteNotificationFn = (id, status) => {
     axios
-      .put(`http://localhost:5000/notifications/${id}`, { status: status })
+      .put(`http://localhost:5000/notifications/${id}`)
       .then((result) => {
         console.log(result);
-        console.log(id);
-        dispatch(cancelNotification(id));
+        // console.log(id);
+        // dispatch(cancelNotification(id));
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
+  
   const updateOrderState = (order_id, state_id) => {
     axios
       .put(
@@ -98,6 +99,7 @@ const GetAllNotification = () => {
         console.log(err);
       });
   };
+
   const RateFn = (rate, receiver_user_id, order_id, idNoti) => {
     axios
       .get(`http://localhost:5000/orders/order_id/${order_id}`)
@@ -118,7 +120,7 @@ const GetAllNotification = () => {
             }
           )
           .then((result) => {
-            updateNotificationFn(idNoti, "order_end");
+            deleteNotificationFn(idNoti, "order_end");
             setTimeout(() => {
               navigate("/Dashboard/provider");
             }, 1000);
@@ -131,6 +133,7 @@ const GetAllNotification = () => {
         console.log(err);
       });
   };
+
   const CreateComment = (receiver_user_id) => {
     axios
       .post(
@@ -150,6 +153,7 @@ const GetAllNotification = () => {
         console.log(err);
       });
   };
+  
   const handleClick = () => {
     toast.success("Commented Successfully", {
       position: "top-right",
@@ -157,6 +161,7 @@ const GetAllNotification = () => {
       hideProgressBar: true,
     });
   };
+
   useEffect(() => {
     getNotifications();
     console.log(notifications);
@@ -189,7 +194,7 @@ const GetAllNotification = () => {
                         info.Phone_Number,
                       "accept_order"
                     );
-                    updateNotificationFn(noti.id, "accepted_order_done");
+                    deleteNotificationFn(noti.id, "accepted_order_done");
                     updateOrderState(noti.order_id, 2);
                   }}
                   className="button_noti"
@@ -203,7 +208,7 @@ const GetAllNotification = () => {
                       "your order canceld from provider",
                       "canceld_order"
                     );
-                    updateNotificationFn(noti.id, "order_canceld_done");
+                    deleteNotificationFn(noti.id, "order_canceld_done");
                     updateOrderState(noti.order_id, 3);
                   }}
                   className="button_noti"
@@ -350,7 +355,8 @@ const GetAllNotification = () => {
                 <p>the provider canceld order</p>
                 <Button
                   onClick={() => {
-                    updateNotificationFn(noti.id, "finale_order-canceld");
+                    console.log(noti.id);
+                    // updateNotificationFn(noti.id, "finale_order-canceld");
                   }}
                   className="button_noti"
                 >

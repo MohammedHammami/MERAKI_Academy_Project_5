@@ -72,22 +72,16 @@ const CreatePost = () => {
       .catch((err) => {
         console.log(err);
       });
-      useEffect(() => {
-      setImage('')
-      }, [])
+      
       
   };
 
   return (
-    <div className="inpust-post">
+    <div className="inpust-postt">
       
       <MDBContainer fluid>
         <MDBCard
-          className={
-            mood === "darkMood"
-              ? "darkMood text-black m-5navbar"
-              : "lightMood text-black m-5navbar con"
-          }
+          className='text-black m-5navbar con'
           style={{ borderRadius: "25px"}}
         >
           <MDBCardBody>
@@ -99,20 +93,12 @@ const CreatePost = () => {
               >
                 <div className="d-flex flex-row align-items-center mb-4 ">
                   <MDBIcon fas icon="fas fa-heading me-3" size="lg"
-                  className={
-                    mood === "darkMood"
-                      ? "darkMood"
-                      : "lightMood"
-                  } />
+                  />
                   <MDBInput
                     label="Title"
                     id="form1"
                     type="text"
-                    className={
-                      mood === "darkMood"
-                        ? "darkMood w-100"
-                        : "lightMood w-100"
-                    }
+                    
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
@@ -122,17 +108,9 @@ const CreatePost = () => {
                   <MDBIcon fas 
                   icon="fas fa-highlighter me-3"
                    size="lg"
-                   className={
-                    mood === "darkMood"
-                      ? "darkMood"
-                      : "lightMood"
-                  } />
+                   />
                   <MDBInput
-                  className={
-                    mood === "darkMood"
-                      ? "darkMood w-100"
-                      : "lightMood w-100"
-                  }
+                  
                     label="Description"
                     id="form1"
                     type="text"
@@ -147,22 +125,14 @@ const CreatePost = () => {
                     fas
                     icon=" fas fa-money-bill-1-wave me-3"
                     size="lg"
-                    className={
-                      mood === "darkMood"
-                        ? "darkMood"
-                        : "lightMood"
-                    }
+                    
                   />
 
                   <MDBInput
                     label="Pricing"
                     id="form1"
                     type="text"
-                    className={
-                      mood === "darkMood"
-                        ? "darkMood w-100"
-                        : "lightMood w-100"
-                    }
+                    
                     
                     onChange={(e) => {
                       setPricing(e.target.value);
@@ -184,11 +154,7 @@ const CreatePost = () => {
                   }}
                 >
                   <MDBIcon fas icon="camera-retro me-3" size="lg" 
-                  className={
-                    mood === "darkMood"
-                      ? "darkMood"
-                      : "lightMood"
-                  }/>
+                  />
                   <button className="imgbtn" onClick={(e) => { fileInputRef.current.click()}}>
                     take image from your device
                     <br></br>
@@ -208,21 +174,14 @@ const CreatePost = () => {
                 </div>
                 )}
                 <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBBtn className={
-                      mood === "darkMood"
-                        ? "darkMood mb-4"
-                        : "lightMood mb-4"
-                    }size="lg" onClick={()=>{setImage(null)}}>undo</MDBBtn>
+                  
+                  <MDBBtn className='mb-4'size="lg" onClick={()=>{setImage(null)}}>undo</MDBBtn>
                 {" "}
-                <MDBBtn className={
-                      mood === "darkMood"
-                        ? "darkMood mb-4"
-                        : "lightMood mb-4"
-                    }size="lg" onClick={()=>{submitFn()
-                      navigate('/')}}>
+                <MDBBtn className='mb-4'size="lg" onClick={()=>{submitFn()
+                      navigate('/')}} style={{}}>
                   Submit
                 </MDBBtn></div>
-                <div>
+                <div> 
                 </div>
               </MDBCol>
             </MDBRow>

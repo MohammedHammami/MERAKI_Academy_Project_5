@@ -104,7 +104,7 @@ const CreateOrder = () => {
       });
   };
   return (
-    <div>
+    <div className="containe-create-order">
       <div className="inpust-post">
         <div className="container-div">
           <div className="user-card">
@@ -118,7 +118,7 @@ const CreateOrder = () => {
 
         <div  className="inputCreteOrder">
 
-        <MDBContainer className="p-2 my-2 flex-column w-40">
+        <MDBContainer className="p-2 my-2 flex-column w-40" >
           <Form>
             <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
               <label className="labelCreatOrder">Schedule a date with the service provider </label>
