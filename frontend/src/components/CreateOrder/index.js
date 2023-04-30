@@ -50,6 +50,13 @@ const CreateOrder = () => {
       hideProgressBar: true,
     });
   };
+  const falseNotify = () => {
+    toast.error("you need login fitst", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
+  };
   const errorNotify = () => {
     toast.error("please enter all required fildes");
   };
@@ -104,6 +111,10 @@ const CreateOrder = () => {
         }, 2000);
       })
       .catch((err) => {
+        falseNotify()
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
         console.log(err);
       });
   };
@@ -124,7 +135,7 @@ const CreateOrder = () => {
   };
   return (
     <div className="containe-create-order">
-      <div className="inpust-post">
+      <div className="inpust-post-1">
         <div className="container-div">
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
@@ -185,7 +196,7 @@ const CreateOrder = () => {
               } else {
                 handleShow();
               }
-              navigate("/Dashboard/provider");
+              // navigate("/Dashboard/provider");
             }}
           >
             Submit Order
