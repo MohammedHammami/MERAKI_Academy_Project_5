@@ -4,7 +4,6 @@
     grid-template-columns: 1fr 1fr 1fr;
     margin-right: 100px;
     margin-left: 3%;
-    /* background-color: rgb(244, 246, 249); */
 }
 .btn-pg{
     margin-bottom:100px ;
@@ -16,25 +15,12 @@
     margin-right: 50px;
     box-shadow:  2px 2px 2px 2px #dadada;
 }
-.car:hover{
-  /* box-shadow: 0 0px 0px #223d66; */
-}
-
-
-
-/* .imgecard:hover{
-  
-  height: 45vh;
-  width: 24vw;
-
-} */
 .img{
     width: 340px;
     height : 255px;
 }
 .img-fluid {
   border-radius: 20px;
-  /* background-color: #223d66; */
   height: 60vh;
   width: 100vw;
   filter: brightness(85%);
@@ -85,9 +71,7 @@ section {
 
 .section-bg {
   filter: brightness(130%);
-  /* background-image: linear-gradient(to bottom left, #223d66, #223d66); */
   background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
-  /* background: linear-gradient(to TOP, #2c3e55, #385075,#4e6384); */
 }
 
 .section-header {
@@ -123,7 +107,6 @@ section {
 .hero {
   width: 100%;
   background-size: cover;
-  /* position: relative; */
   min-height: 60vh;
   padding: 20px 0 60px 0;
 }
@@ -139,7 +122,6 @@ section {
   color: var(--color-primary);
 }
 .hero p {
-  /* color: #4f4f5a; */
   font-weight: 1000;
   margin-bottom: 30px;
   color: #223d66;
@@ -168,7 +150,6 @@ section {
   font-size: 16px;
   transition: 0.5s;
   margin-left: 25px;
-  /* color: var(--font-secondary); */
   font-weight: 600;
   color: white;
 }
@@ -182,8 +163,6 @@ section {
 }
 
 .hero .btn-watch-video:hover {
-  /* color: var(--color-primary); */
-  /* color: black; */
   background: #3872bd;
   box-shadow: 0 0px 8px #135ec0;
   border-radius: 40px;

@@ -122,9 +122,7 @@ const getAllPosts = (req, res) => {
     .query(queryStringForCount)
     .then((result) => {
       const count = parseInt(result.rows[0].count);
-      console.log(count);
       const totalPages = Math.ceil(count / limit);
-      console.log(totalPages);
       pool
         .query(queryString, placeholder)
         .then((result) => {

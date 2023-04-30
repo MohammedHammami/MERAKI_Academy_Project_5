@@ -61,7 +61,6 @@ const CreatePost = () => {
   const errorNotify = () => {
     toast.error("please enter all required fildes");
   };
-
   const submitFn = () => {
     axios
       .post(
@@ -79,18 +78,12 @@ const CreatePost = () => {
       .catch((err) => {
         console.log(err);
       });
-      
   };
 
   return (
-
     <div className="inpust-post">
       <MDBContainer fluid>
-        <MDBCard
-          
-
-          style={{ borderRadius: "25px"}}
-        >
+        <MDBCard style={{ borderRadius: "25px" }}>
           <MDBCardBody className="bodyOfCreatOrder">
             <MDBRow>
               <MDBCol
@@ -98,31 +91,22 @@ const CreatePost = () => {
                 lg="6"
                 className="order-3 order-lg-1 d-flex flex-column align-items-center"
               >
-
                 <div className="d-flex flex-row align-items-center mb-4 ">
-                  <MDBIcon fas icon="fas fa-heading me-3" size="lg"
-
-                  />
+                  <MDBIcon fas icon="fas fa-heading me-3" size="lg" />
                   <MDBInput
                     label="Title"
                     id="form1"
                     type="text"
                     className="w-100"
-
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4 ">
-                  <MDBIcon fas 
-                  icon="fas fa-highlighter me-3"
-                   size="lg"
-                   />
+                  <MDBIcon fas icon="fas fa-highlighter me-3" size="lg" />
                   <MDBInput
-
-                  className="w-100"
-
+                    className="w-100"
                     label="Description"
                     id="form1"
                     type="text"
@@ -136,13 +120,11 @@ const CreatePost = () => {
                     fas
                     icon=" fas fa-money-bill-1-wave me-3"
                     size="lg"
-
                   />
                   <MDBInput
                     label="Pricing"
                     id="form1"
                     type="text"
-
                     onChange={(e) => {
                       setPricing(e.target.value);
                     }}
@@ -151,32 +133,10 @@ const CreatePost = () => {
                 {image ? (
                   <img src={url} className="img" />
                 ) : (
-                 <div className="d-flex flex-row align-items-center mb-4"
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                  }}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    setImage(e.dataTransfer.files[0]);
-                    uploadImage(e.dataTransfer.files[0]);
-                  }}
-                >
-                  <MDBIcon fas icon="camera-retro me-3" size="lg" 
-                  />
-                  <button className="imgbtn" onClick={(e) => { fileInputRef.current.click()}}>
-                    take image from your device
-                    <br></br>
-                    <MDBIcon fas size="lg" icon="plus-circle me-3" />
-                  </button>
-                  <MDBInput
-                    label=""
-                    id="form4"
-                    type="file"
-                    style={{ display: "none" }}
-                    ref={fileInputRef}
-                    onChange={(e) => {
-                      setImage(e.target.files[0]);
-                      uploadImage(e.target.files[0]);
+                  <div
+                    className="d-flex flex-row align-items-center mb-4"
+                    onDragOver={(e) => {
+                      e.preventDefault();
                     }}
                     onDrop={(e) => {
                       e.preventDefault();
@@ -184,6 +144,33 @@ const CreatePost = () => {
                       uploadImage(e.dataTransfer.files[0]);
                     }}
                   >
+                    <MDBIcon fas icon="camera-retro me-3" size="lg" />
+                    <button
+                      className="imgbtn"
+                      onClick={(e) => {
+                        fileInputRef.current.click();
+                      }}
+                    >
+                      take image from your device
+                      <br></br>
+                      <MDBIcon fas size="lg" icon="plus-circle me-3" />
+                    </button>
+                    <MDBInput
+                      label=""
+                      id="form4"
+                      type="file"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                        uploadImage(e.target.files[0]);
+                      }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setImage(e.dataTransfer.files[0]);
+                        uploadImage(e.dataTransfer.files[0]);
+                      }}
+                    />
                     <MDBIcon
                       fas
                       icon="camera-retro me-3"
@@ -214,14 +201,32 @@ const CreatePost = () => {
                   </div>
                 )}
                 <div className="d-flex flex-row align-items-center mb-4">
-
-                  <MDBBtn className="mb-4" size="lg" style={{color:'#223d66' ,backgroundColor:'whitesmoke'}} onClick={()=>{setImage(null)}}>undo</MDBBtn>
-                {" "}
-                <MDBBtn className="mb-4"size="lg"
-                style={{color:'#223d66' ,backgroundColor:'whitesmoke',marginLeft:'5px'}}  onClick={()=>{submitFn()
-                      navigate('/')}}>
-                  Submit
-                </MDBBtn></div>
+                  <MDBBtn
+                    className="mb-4"
+                    size="lg"
+                    style={{ color: "#223d66", backgroundColor: "whitesmoke" }}
+                    onClick={() => {
+                      setImage(null);
+                    }}
+                  >
+                    undo
+                  </MDBBtn>{" "}
+                  <MDBBtn
+                    className="mb-4"
+                    size="lg"
+                    style={{
+                      color: "#223d66",
+                      backgroundColor: "whitesmoke",
+                      marginLeft: "5px",
+                    }}
+                    onClick={() => {
+                      submitFn();
+                      navigate("/");
+                    }}
+                  >
+                    Submit
+                  </MDBBtn>
+                </div>
                 <div>
                   <MDBBtn
                     className={
@@ -243,7 +248,7 @@ const CreatePost = () => {
                       const value = title;
                       const desValue = description;
                       const price = pricing;
-                      const img = image
+                      const img = image;
                       if (!value.trim() || !desValue.trim() || !price.trim()) {
                         errorNotify();
                       } else {
@@ -253,7 +258,6 @@ const CreatePost = () => {
                   >
                     Submit
                   </MDBBtn>
-
                 </div>
               </MDBCol>
             </MDBRow>
@@ -261,25 +265,25 @@ const CreatePost = () => {
         </MDBCard>
 
         <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Are you sure you want to post</Modal.Title>
-        </Modal.Header>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button
-            variant="success"
-            onClick={(e) => {
-              handleClose();
-              submitFn();
-            }}
-          >
-            Confirm
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <ToastContainer/>
+          <Modal.Header closeButton>
+            <Modal.Title>Are you sure you want to post</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button
+              variant="success"
+              onClick={(e) => {
+                handleClose();
+                submitFn();
+              }}
+            >
+              Confirm
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <ToastContainer />
       </MDBContainer>
     </div>
   );

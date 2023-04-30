@@ -28,7 +28,7 @@ const Navbars = () => {
   const logout = () => {
     setIsLoading(true);
     setNotificationsCount(0);
-    navigate(`/login`)
+    navigate(`/login`);
     dispatch(setLogout());
   };
   const state = useSelector((state) => {
@@ -43,51 +43,21 @@ const Navbars = () => {
     };
   });
   const mood = state.mood;
-  
+
   const [notificationsCount, setNotificationsCount] = useState(
     state.noNotification
   );
 
   let newTheme = moodstate ? "lightMood" : "darkMood";
-
-  // const getNotifications = () => {
-  //   axios
-  //     .get(`http://localhost:5000/notifications`, {
-  //       headers: {
-  //         Authorization: state.token,
-  //       },
-
-  //     })
-  //     .then((result) => {
-  //       fillterNoti(result.data.notification);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // const fillterNoti = (array) => {
-  //   let a = 0;
-  //   for (let i = 0; i < array.length; i++) {
-  //     if (
-  //       array[i].status == "create_order" ||
-  //       array[i].status == "accept_order" ||
-  //       array[i].status == "accepted_order" ||
-  //       array[i].status == "canceld_order" ||
-  //       array[i].status == "order_canceld"
-  //     ) {
-  //       a++;
-  //     }
-  //   }
-  //   dispatch(setNotification(a));
-  // };
-  useEffect(() => {
-    // getNotifications();
-  }, []);
   return (
-    < >
-      <div  className={
-      mood === "darkMood" ? "darkMood navBar-container" : "lightMood navBar-container"
-    }>
+    <>
+      <div
+        className={
+          mood === "darkMood"
+            ? "darkMood navBar-container"
+            : "lightMood navBar-container"
+        }
+      >
         <Navbar collapseOnSelect expand="lg" className="background-navbar">
           <Navbar.Brand style={{ marginLeft: "5%" }}>
             <h3
@@ -111,42 +81,26 @@ const Navbars = () => {
             id="responsive-navbar-nav"
             style={{ justifyContent: "flex-end" }}
           >
-            <Nav >
+            <Nav>
               {state.isLoggedIn ? (
                 <>
-                <div>
-              {/* <input
-                type="checkbox"
-                className="checkbox"
-                id="checkbox"
-                onChange={() => {
-                  setMoodstate(!moodstate);
-                  dispatch(changeMood(newTheme));
-                }}
-              />
-              <label htmlFor="checkbox" className="checkbox-label">
-                <i className="fas fa-moon"></i>
-                <i className="fas fa-sun"></i>
-                <span className="ball"></span>
-              </label> */}
-              </div>
+                  <div></div>
                   <Nav.Link
-                  style={{
-                    fontSize: "18px",
-                    marginLeft: "-30%",
-                    color: "white",
-                  }}
+                    style={{
+                      fontSize: "18px",
+                      marginLeft: "-30%",
+                      color: "white",
+                    }}
                     onClick={() => {
                       navigate(`/`);
                     }}
                     className="each-navbar"
-                    
                   >
                     Home{" "}
                   </Nav.Link>
 
                   <Nav.Link
-                    style={{ fontSize: "18px",color: "white" }}
+                    style={{ fontSize: "18px", color: "white" }}
                     className="each-navbar"
                     onClick={() => {
                       navigate("/support");
@@ -236,7 +190,6 @@ const Navbars = () => {
                 </>
               ) : (
                 <>
-
                   <Nav.Link
                     style={{
                       fontSize: "18px",
@@ -292,7 +245,6 @@ const Navbars = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
-
     </>
   );
 };

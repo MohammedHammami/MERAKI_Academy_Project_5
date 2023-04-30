@@ -152,7 +152,6 @@ const getInfoUser = (req, res) => {
 };
 const getInfoUserById = (req, res) => {
   const id = req.body.userId;
-  console.log(req.body.userId);
   const query = `SELECT * FROM users WHERE id = ${id}`;
   pool
     .query(query)

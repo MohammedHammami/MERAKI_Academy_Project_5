@@ -124,9 +124,6 @@ useEffect(() => {
       return () => clearTimeout();
     }
   };
-  const tologin = () => {
-    // navigate("/login");
-  };
   return (
     <div>
       <div>{isLoading && <Spinner />}</div>
@@ -227,7 +224,6 @@ useEffect(() => {
                       style={{ display: "none" }}
                       ref={fileInputRef}
                       onChange={(e) => {
-                        // console.log(e.target.files[0]);
                         setImage(e.target.files[0]);
                         uploadImage2(e.target.files[0]);
                       }}
