@@ -15,7 +15,10 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { ToastContainer, toast } from "react-toastify";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 const CreatePost = () => {
   const fileInputRef = useRef();
   const uploadImage = async (i) => {
@@ -50,9 +53,16 @@ const CreatePost = () => {
   const [description, setDescription] = useState("");
   const [pricing, setPricing] = useState("");
   const [image, setImage] = useState(" ");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const errorNotify = () => {
+    toast.error("please enter all required fildes");
+  };
 
   const submitFn = () => {
-
     axios
       .post(
         `http://localhost:5000/posts`,
@@ -208,7 +218,17 @@ const CreatePost = () => {
                       mood === "darkMood" ? "darkMood mb-4" : "lightMood mb-4"
                     }
                     size="lg"
-                    onClick={submitFn}
+                    onClick={(e) => {
+                      const value = title;
+                      const desValue = description;
+                      const price = pricing;
+                      const img = image
+                      if (!value.trim() || !desValue.trim() || !price.trim()) {
+                        errorNotify();
+                      } else {
+                        handleShow();
+                      }
+                    }}
                   >
                     Submit
                   </MDBBtn>
@@ -217,6 +237,27 @@ const CreatePost = () => {
             </MDBRow>
           </MDBCardBody>
         </MDBCard>
+
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure you want to post</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="success"
+            onClick={(e) => {
+              handleClose();
+              submitFn();
+            }}
+          >
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <ToastContainer/>
       </MDBContainer>
     </div>
   );
