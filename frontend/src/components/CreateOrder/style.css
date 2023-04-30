@@ -1,6 +1,6 @@
 .inpust-post{
     display: grid;
-    grid-template-columns: 50% 50% ;
+    grid-template-columns: 60% 40% ;
     padding-top: 3%;
 }
 .container-div{
@@ -56,13 +56,19 @@
     color: aliceblue;
 }
 .inputCreteOrder{
-    display:inline-block;
+    /* display:inline-block; */
     /* background-color: red; */
-    width: 85%;
+    width: 100%;
     /* margin-top: 5%; */
     /* margin: 5%; */
+    text-align: left;
+    color: #223d66;
+    font-weight: 600;
 }
 .labelCreatOrder{
     font-family: "Poppins", sans-serif;
     margin-bottom: 1vh;
+}
+.btnSubmitOrder{
+    margin-left: 16vw;
 }

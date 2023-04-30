@@ -21,12 +21,12 @@
 }
 
 .each-navbar :hover{
- /*background-color: #1e194f*/
+ background-color: white;
   border-radius: 20px;
   color: var(--words);
 }
 .navBar-container:hover{
-  color:#223d66;
+  /* color:#223d66; */
 
 }
 .for-the-dot,.the-L-letter {

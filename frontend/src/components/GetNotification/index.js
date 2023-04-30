@@ -15,16 +15,17 @@ const GetAllNotification = () => {
   const [smShow, setSmShow] = useState(false);
   const [description, setDescription] = useState("");
   const [rate, setRate] = useState(0)
-  const{token,userInfo,userId,notifications} = useSelector((state) => {
+  const{token,userInfo,userId,notifications,userpostId} = useSelector((state) => {
     // console.log(state.noti.notification);
     return {
       token: state.auth.token,
       userInfo: state.auth.userInfo,
       userId:state.auth.userId,
-      notifications:state.noti.notification
+      notifications:state.noti.notification,
+      userpostId: state.comments.userpostId,
     };
   });
-  console.log(notifications);
+  console.log(userpostId);
   // const [notifications, setNotifications] = useState(state.notifications);
 
     const getNotifications = ()=>{
@@ -205,7 +206,7 @@ const GetAllNotification = () => {
                          <Button
                            size="sm"
                            onClick={() => {
-                             CreateComment(userId);
+                             CreateComment(userpostId);
                              RateFn(rate,noti.receiver_user_id,noti.order_id,noti.id)
                            }}
                          >

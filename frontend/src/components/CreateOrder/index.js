@@ -125,12 +125,9 @@ const CreateOrder = () => {
               <MDBInput
                 type="date"
                 placeholder="Enter Title"
-                className="inputCreteOrder"
                 onChange={(e) => {
                   setSchedule_date(e.target.value);
-
-                  }}
-                  style={{textAlign:"center",width:'40vw'}} 
+                  }}                 
               />
             </Form.Group>
             <br></br>
@@ -146,9 +143,11 @@ const CreateOrder = () => {
                 }}
               />
             </Form.Group>
-          </Form></MDBContainer>
+          </Form>
+          </MDBContainer>
           <MDBBtn
             size="lg"
+            className="btnSubmitOrder"
             wrapperclass="mb-4 mt-4"
             onClick={(e) => {
               submitFn();
