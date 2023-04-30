@@ -160,8 +160,6 @@ const UserPosts = () => {
               </Modal.Footer>
             </Modal>
 
-
-                {/********************************************* */}
             <Modal show={deleteshow} onHide={handleDeleteClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Are sure you want to delete this post</Modal.Title>

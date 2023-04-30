@@ -88,7 +88,14 @@ const Footer = () => {
             </div>
 
             <div className="col-lg-3 col-7 footer-links">
-              <h4>Contact Us</h4>
+              <h4><a className="cursor"
+              
+                    onClick={() => {
+                      navigate(`/support`);
+                    }}
+                  >
+                    Contact Us
+                  </a></h4>
               <p>
                 Amman, N 02
                 <br />
