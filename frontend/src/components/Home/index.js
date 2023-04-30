@@ -19,12 +19,16 @@ import {
 const Home = () => {
   const [page, setPage] = useState(1);
   const limit = 6;
+
   const navigate = useNavigate();
+
   const getAllPosts = (page, limit) => {
     axios
       .get(`http://localhost:5000/posts?page=${page}&limit=${limit}`)
       .then((res) => {
-        dispatch(setPost(res.data.posts));
+        setTimeout(() => {
+          dispatch(setPost(res.data.posts));
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
@@ -95,19 +99,6 @@ const Home = () => {
           </div>
         </section>
       </header>
-      <div>
-        <Button>
-          {Array.from(
-            { length: state.totalPages },
-            (_, index) => index + 1
-          ).map((page) => (
-            <Button key={page} onClick={() => getAllPosts(page)}>
-              {page}
-            </Button>
-          ))}
-        </Button>
-      </div>
-
       <div className="container1">
         {state.posts.map((post, i) => {
           return (
@@ -134,6 +125,22 @@ const Home = () => {
           );
         })}
       </div>
+      <MDBBtn
+        onClick={() => {
+          setPage(page - 1);
+          getAllPosts(page, limit);
+        }} style={{marginBottom:"20px", marginTop:"20px"}}
+      >
+        prev
+      </MDBBtn>
+      <MDBBtn
+        onClick={() => {
+          setPage(page + 1);
+          getAllPosts(page, limit);
+        }} style={{marginLeft:"20px",marginBottom:"20px",marginTop:"20px"}}
+      >
+        Next
+      </MDBBtn>
     </>
   );
 };
