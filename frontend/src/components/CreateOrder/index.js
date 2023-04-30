@@ -57,9 +57,8 @@ const CreateOrder = () => {
   };
 
   const errorNotify = () => {
-    toast.error("Login Failed");
+    toast.error("please enter all required fildes");
   };
-
 
   const sendSmsNotifaction = () => {
     axios
@@ -104,7 +103,7 @@ const CreateOrder = () => {
       )
       .then((result) => {
         // console.log(result.data.order[0]);
-        successNotify()
+        successNotify();
         createNotivication(
           result.data.order[0].id,
           result.data.order[0].order_desc,
@@ -112,7 +111,7 @@ const CreateOrder = () => {
         );
         sendSmsNotifaction();
         setTimeout(() => {
-            navigate("/");
+          navigate("/");
         }, 2000);
       })
       .catch((err) => {
@@ -122,10 +121,6 @@ const CreateOrder = () => {
   };
 
   const createNotivication = (order_id, order_desc, order_schedule) => {
-
-
-  
-
     let newTime = order_schedule.split("T").splice(0, 1);
     axios
       .post(`http://localhost:5000/notifications/${order_id}`, {
@@ -198,7 +193,13 @@ const CreateOrder = () => {
             className="btnSubmitOrder"
             wrapperclass="mb-4 mt-4"
             onClick={(e) => {
-              handleShow()
+              const value = schedule_date;
+              const desValue = order_desc;
+              if (!value.trim() || !desValue.trim()) {
+                errorNotify();
+              } else {
+                handleShow();
+              }
             }}
           >
             Submit Order
@@ -208,25 +209,25 @@ const CreateOrder = () => {
       <div>{timer && <Comments value={userId} />}</div>
 
       <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Are you sure you want to confirm this</Modal.Title>
-          </Modal.Header>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button
-              variant="success"
-              onClick={(e) => {
-                handleClose();
-                submitFn();
-              }}
-            >
-              Confirm
-            </Button>
-          </Modal.Footer>
-        </Modal>
-        <ToastContainer/>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure you want to confirm this</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="success"
+            onClick={(e) => {
+              handleClose();
+              submitFn();
+            }}
+          >
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };
