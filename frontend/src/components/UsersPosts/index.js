@@ -18,7 +18,7 @@ import {
 import "./index.css"
 const UserPosts = () => {
   const [show, setShow] = useState(false);
-  const [deleteshow, setDeleteShow] = useState(false);
+  const [deleteshow, setDeleteshow] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("")
 
@@ -26,8 +26,8 @@ const UserPosts = () => {
   const handleShow = () => setShow(true);
 
 
-  const handleDeleteClose = () => setShow(false);
-  const handleDeleteShow = () => setShow(true);
+  const handleDeleteClose = () => setDeleteshow(false);
+  const handleDeleteShow = () => setDeleteshow(true);
 
   const state = useSelector((state) => {
     return {
@@ -110,7 +110,6 @@ const UserPosts = () => {
                 <MDBBtn 
                   onClick={(e) => {
                     handleDeleteShow()
-                    
                   }}
                 >
                   delete post
@@ -128,7 +127,7 @@ const UserPosts = () => {
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
-                
+
               </Modal.Header>
               <Modal.Body>
                 <Form.Control
@@ -160,25 +159,26 @@ const UserPosts = () => {
               </Modal.Footer>
             </Modal>
 
-            <Modal show={show} onHide={handleClose}>
+
+                {/********************************************* */}
+            <Modal show={deleteshow} onHide={handleDeleteClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>are sure you want to dete this post</Modal.Title>
                 
               </Modal.Header>
               <Modal.Body>
-                
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={handleDeleteClose}>
                   Close
                 </Button>
                 <Button variant="primary" onClick={
                     (e)=>{
                         handleDeleteClose()
-                        deleteSelectedPost(post.id);
+                        deleteSelectedPost(post.id)
                     }
                 }>
-                  Delete
+                  Save Changes
                 </Button>
               </Modal.Footer>
             </Modal>

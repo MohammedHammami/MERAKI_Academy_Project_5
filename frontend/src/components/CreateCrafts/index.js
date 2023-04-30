@@ -35,6 +35,7 @@ const CreateCraft = () => {
 
   const submitFn = () => {
     console.log(craft);
+    console.log(state.userId);
     axios
       .put(
         `http://localhost:5000/crafts/${state.userId}`,
