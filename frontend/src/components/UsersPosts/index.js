@@ -163,22 +163,19 @@ const UserPosts = () => {
                 {/********************************************* */}
             <Modal show={deleteshow} onHide={handleDeleteClose}>
               <Modal.Header closeButton>
-                <Modal.Title>are sure you want to dete this post</Modal.Title>
-                
+                <Modal.Title>Are sure you want to delete this post</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
-              </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleDeleteClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={
+                <Button variant="danger" onClick={
                     (e)=>{
                         handleDeleteClose()
                         deleteSelectedPost(post.id)
                     }
                 }>
-                  Save Changes
+                  Delete
                 </Button>
               </Modal.Footer>
             </Modal>
