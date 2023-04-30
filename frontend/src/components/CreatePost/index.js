@@ -83,7 +83,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="inpust-post" >
+    <div className="inpust-post2" >
       <MDBContainer fluid>
         <MDBCard
           
