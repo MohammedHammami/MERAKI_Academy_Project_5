@@ -1,27 +1,91 @@
 import "./style.css"
 
 const Support = () => {
-    return (
-        <div className="about-us-container">
-            <header className="header1">
-                <h1 className="h1">Support</h1>
-                <div class="content">
-                    <div>
-                    <p className="p1">{`We hope that you do not encounter any problems, but you can contact us if you encounter any problem on the site`}</p>
-                    <p className="p1">{`to contact us you can send email on:`}</p>
-                    <li className="contect-us">Mohammed@taslee7.com</li>
-                    <li className="contect-us">Ahmad@taslee7.com</li>
-                    <li className="contect-us">Omar@taslee7.com</li>
-                    <li className="contect-us">Anas@taslee7.com</li>
-                    <br/><p className="p1">{`or you can call us on:`}</p>
-                    <li className="contect-us">+9620799999999</li>
-                    <li className="contect-us">+9620788888888</li>
-                    <li className="contect-us">+9620777777777</li>
-                    </div>
-                    <img className="img1" src="https://i.pinimg.com/564x/2a/94/e3/2a94e33f7afe6600fe9c97eda3a386b3.jpg"/>
+    return (   
+        <section id="contact" className="contact" style={{paddingTop:"40px"}}>
+
+        <div className="container" data-aos="fade-up" style={{paddingTop:"0"}}>
+  
+          <header className="section-header">
+            <p>Contact Us</p>
+          </header>
+  
+          <div className="row gy-4">
+  
+            <div className="col-lg-6">
+  
+              <div className="row gy-4">
+                <div className="col-md-6">
+                  <div className="info-box">
+                    <i className="bi bi-geo-alt"></i>
+                    <h3>Address</h3>
+                    <p>A108 Ali Hussien Street,<br/>Amman, Jubieha 11943</p>
+                  </div>
                 </div>
-            </header>
+                <div className="col-md-6">
+                  <div className="info-box">
+                    <i className="bi bi-telephone"></i>
+                    <h3>Call Us</h3>
+                    <p>+962 77777777<br/>+962 88888888</p>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="info-box">
+                    <i className="bi bi-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>creativeminds@taslee7.com<br/>contact@taslee7.com</p>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="info-box">
+                    <i className="bi bi-clock"></i>
+                    <h3>Open Hours</h3>
+                    <p>Sunday - Thursday<br/>9:00AM - 05:00PM</p>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+  
+            <div className="col-lg-6">
+              <form action="forms/contact.php" method="post" className="php-email-form">
+                <div className="row gy-4">
+  
+                  <div className="col-md-6">
+                    <input type="text" name="name" className="form-control" placeholder="Your Name" required/>
+                  </div>
+  
+                  <div className="col-md-6 ">
+                    <input type="email" className="form-control" name="email" placeholder="Your Email" required/>
+                  </div>
+  
+                  <div className="col-md-12">
+                    <input type="text" className="form-control" name="subject" placeholder="Subject" required/>
+                  </div>
+  
+                  <div className="col-md-12">
+                    <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  </div>
+  
+                  <div className="col-md-12 text-center">
+                    <div className="loading">Loading</div>
+                    <div className="error-message"></div>
+                    <div className="sent-message">Your message has been sent. Thank you!</div>
+  
+                    <button type="submit">Send Message</button>
+                  </div>
+  
+                </div>
+              </form>
+  
+            </div>
+  
+          </div>
+  
         </div>
+  
+      </section>
+       
     )
 }
 export default Support

@@ -5,3 +5,8 @@
     width: 23.5vw;
     height: 40vh;
 }
+.container-user-posts{
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns: 45% 45%
+}

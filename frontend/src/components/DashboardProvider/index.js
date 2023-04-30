@@ -2,7 +2,7 @@ import "./style.css";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";//
 import { useNavigate } from "react-router-dom";
-import { BsBorderWidth ,BsFilePost,BsFillHouseGearFill,BsFillBellFill,BsFillPlusSquareFill} from 'react-icons/bs';
+import { BsBorderWidth ,BsFilePost,BsFillHouseGearFill,BsFillBellFill,BsFillPlusSquareFill,BsFillBarChartFill} from 'react-icons/bs';
 import UpdateProfile from "../UpdateProfile";
 import GetAllNotification from "../GetNotification";
 import GraphDashboard from "../GraphDashboard";
@@ -18,10 +18,11 @@ const DashboardProvider = () => {
   const [toMyOrderR, setToMyOrderR] = useState(false)
   const [toCreatePost, setToCreatePost] = useState(false)
   const [toDashboard, setToDashboard] = useState(false)
+  // const [isCraft,setIsCraft] = useState(false)
 
   const navigate = useNavigate();
   const state = useSelector((state) => {
-    // console.log(state.auth.userInfo.craft_id);
+    console.log(state.auth.userInfo.craft_id);
     return {
       userId: state.auth.userId,
       token: state.auth.token,
@@ -29,6 +30,7 @@ const DashboardProvider = () => {
       mood: state.Mood.mood,
     };
   });
+  const [isCraft,setIsCraft] = useState(state.userInfo.craft_id)
   
   const account = () => {
     setToNotifications(false);setToMyOrderR(false);setToCreatePost(false);setToMyOrder(false);setToMyPosts(false);
@@ -50,20 +52,21 @@ const DashboardProvider = () => {
     if (!toDashboard){setToDashboard(true)}else{setToDashboard(false)}}
 
 
-
+  
     const myOrderR = () => {
       setToNotifications(false);setToCreatePost(false);setToAccount(false);setToAccount(false);setToDashboard(false);setToMyPosts(false)
       if (!toMyOrderR){setToMyOrderR(true)}else{setToMyOrderR(false)}}
-
+    
   return (
     <div className="container_dashboard_provider">
       
       <div className="menu">
         <ul className="ul-menu">MENU 
-          <li><button className="go_to" onClick={()=>{dashboard();}} disabled={toDashboard}><BsFillHouseGearFill style={{marginRight:"3%"}}/> Dashboard</button>
-          </li>
+        {state.userInfo.craft_id!=null&&
+          <li><button className="go_to" onClick={()=>{dashboard();}} disabled={toDashboard}><BsFillBarChartFill style={{marginRight:"3%"}}/> Dashboard</button>
+          </li>}
           <li>
-          <button className="go_to" onClick={()=>{Notification()} } disabled={toNotifications}><BsFillBellFill style={{marginRight:"3%"}}/> Notification</button>
+          <button className="go_to" onClick={()=>{Notification()} } disabled={toNotifications}><BsFillBellFill style={{marginRight:"3%"}}/> Notifications</button>
           </li>
           <li>
             {state.userInfo.craft_id!=null?
@@ -124,15 +127,18 @@ const DashboardProvider = () => {
             <ChartComponent1/></div>
         </div>
       </div> */}
+      <div className="testin-h">
       {toAccount&&<UpdateProfile/>}
       {toNotifications&&<GetAllNotification/>}
       {toCreatePost&&<CreatePost/>}
       {toMyOrder&&<GetAllOrders/>}
       {toMyPosts&&<UserPosts/>}
       {toMyOrderR&&<GetAllOrdersRequester/>}
-      
-      {(toAccount||toNotifications||toCreatePost||toMyOrder||toMyPosts||toMyOrderR)===false&&
+      {((toAccount||toNotifications||toCreatePost||toMyOrder||toMyPosts||toMyOrderR)!==true)&&
       <GraphDashboard/>}
+      
+      </div>
+      
     </div>
   );
 };

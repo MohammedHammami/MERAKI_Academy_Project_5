@@ -28,16 +28,17 @@ const Navbars = () => {
   const logout = () => {
     setIsLoading(true);
     setNotificationsCount(0);
-    navigate(`/`)
+    navigate(`/login`)
     dispatch(setLogout());
   };
   const state = useSelector((state) => {
+    console.log();
     return {
       isLoggedIn: state.auth.isLoggedIn,
       token: state.auth.token,
       user_image: state.auth.user_image,
       craft: state.auth.userInfo.craft_id,
-      noNotification: state.auth.noNoti,
+      noNotification: state.noti.counterNotification,
       mood: state.Mood.mood,
     };
   });
@@ -49,38 +50,38 @@ const Navbars = () => {
 
   let newTheme = moodstate ? "lightMood" : "darkMood";
 
-  const getNotifications = () => {
-    axios
-      .get(`http://localhost:5000/notifications`, {
-        headers: {
-          Authorization: state.token,
-        },
+  // const getNotifications = () => {
+  //   axios
+  //     .get(`http://localhost:5000/notifications`, {
+  //       headers: {
+  //         Authorization: state.token,
+  //       },
 
-      })
-      .then((result) => {
-        fillterNoti(result.data.notification);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const fillterNoti = (array) => {
-    let a = 0;
-    for (let i = 0; i < array.length; i++) {
-      if (
-        array[i].status == "create_order" ||
-        array[i].status == "accept_order" ||
-        array[i].status == "accepted_order" ||
-        array[i].status == "canceld_order" ||
-        array[i].status == "order_canceld"
-      ) {
-        a++;
-      }
-    }
-    dispatch(setNotification(a));
-  };
+  //     })
+  //     .then((result) => {
+  //       fillterNoti(result.data.notification);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // const fillterNoti = (array) => {
+  //   let a = 0;
+  //   for (let i = 0; i < array.length; i++) {
+  //     if (
+  //       array[i].status == "create_order" ||
+  //       array[i].status == "accept_order" ||
+  //       array[i].status == "accepted_order" ||
+  //       array[i].status == "canceld_order" ||
+  //       array[i].status == "order_canceld"
+  //     ) {
+  //       a++;
+  //     }
+  //   }
+  //   dispatch(setNotification(a));
+  // };
   useEffect(() => {
-    getNotifications();
+    // getNotifications();
   }, []);
   return (
     < >
@@ -175,7 +176,7 @@ const Navbars = () => {
                       style={{ color: "white", marginTop: "12px" }}
                     />
                     <span style={{ marginTop: "12px" }}>
-                      {localStorage.getItem("noNoti")}
+                      {state.noNotification}
                     </span>
                   </div>
                   <NavDropdown id="collasible-nav-dropdown">

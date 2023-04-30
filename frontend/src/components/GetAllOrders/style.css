@@ -8,6 +8,10 @@
     background-color: #c6c6c6;
     width: 33vw;
 }
+.all-orders-div{
+    width: 100%;
+    margin-left: 14%;
+}
 /* .cardOrderBody{
     margin: 5px;
     box-shadow: 0 2px 10px #2c6ec6;

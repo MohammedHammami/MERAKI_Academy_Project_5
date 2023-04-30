@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";//
 import Chart from "chart.js/auto";
+import UpdateProfile from "../UpdateProfile";
 
 
 const GraphDashboard = () =>{
@@ -19,6 +20,7 @@ const GraphDashboard = () =>{
       userInfo: state.auth.userInfo,
     };
   });
+  const [isCraft, setIsCraft] = useState(state.userInfo.craft_id)
     const getAllOrder = () =>{
     axios
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
@@ -125,6 +127,8 @@ const GraphDashboard = () =>{
         getRate()
         },[])
     return(
+        <div>
+        {isCraft!=null?
         <div className="body_container">
             <div className="order_info__cotainer_div">
             <div className="card_order_info colorin">
@@ -153,6 +157,7 @@ const GraphDashboard = () =>{
                 <h2 className="h2">Rate</h2>
                 <ChartComponent1/></div>
             </div>
+        </div>:<UpdateProfile/>}
         </div>
     )
 }
