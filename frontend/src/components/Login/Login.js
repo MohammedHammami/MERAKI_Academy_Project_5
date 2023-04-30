@@ -46,6 +46,7 @@ const Login = () => {
           Authorization: result.data.token
           }})
       .then((result)=>{
+        console.log(result);
         // fillterNoti(result.data.notification)
         dispatch(setCounterNotification(result.data.notification))
       })

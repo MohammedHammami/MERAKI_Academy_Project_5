@@ -91,11 +91,11 @@ const UserPosts = () => {
   }, []);
 
   return (
-    <div className="container1">
+    <div className="container-user-posts">
     { console.log(state.posts)}
       {state.posts.map((post, i) => {
         return (
-          <div key={i}>
+          <div key={i} className="change-hight-on-post">
             
             <MDBCard className="car">
                 <MDBCardImage className="imgecard2" src={post.post_image} position="top" alt="..." />
