@@ -126,6 +126,7 @@ const CreateOrder = () => {
               <MDBInput
                 type="date"
                 placeholder="Enter Title"
+                required
                 onChange={(e) => {
                   setSchedule_date(e.target.value);
                   }}                 
@@ -139,6 +140,7 @@ const CreateOrder = () => {
                 as="textarea"
                 rows={3}
                 placeholder="Enter description"
+                required
                 onChange={(e) => {
                   setOrder_desc(e.target.value);
                 }}
@@ -151,6 +153,7 @@ const CreateOrder = () => {
             className="btnSubmitOrder"
             wrapperclass="mb-4 mt-4"
             onClick={(e) => {
+              
               submitFn();
               navigate('/Dashboard/provider')
             }}
