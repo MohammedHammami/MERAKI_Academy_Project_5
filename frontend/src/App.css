@@ -1,23 +1,31 @@
+
+
 body{
     text-align: center;
    
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    
-    
+    font-family: Roboto, Helvetica, Arial, sans-serif;   
 }
+:root {
+    --a:#2a4d69;
+  --b:#d2d8e0;
+   --c:#bcc4d1;
+  --d:#a6b1c1;
+  --e:#909eb2;
+}
+
 .lightMood{
     --words:#223d66 ;
     --background:whitesmoke ;
-    background-color: var(--background);
+   
     color: var(--words);
 
 }
 
 .darkMood{
-    --words:pink ;
-    --background:black ;
+    --words:black  ;
+    --background: pink;
 
-    background-color: var(--background);
+   
     color: var(--words);
 
 }

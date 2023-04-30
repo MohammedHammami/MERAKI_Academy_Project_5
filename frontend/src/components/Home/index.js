@@ -37,22 +37,26 @@ const Home = () => {
   const state = useSelector((state) => {
     return {
       posts: state.post.posts,
+      mood: state.Mood.mood,
     };
   });
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
   };
-
+  const mood = state.mood;
   return (
     <>
       <header style={{ paddingLeft: 0 }}>
-
-      <section id="hero" class="hero d-flex align-items-center section-bg">
-    <div class="container">
+      
+      <section id="hero" className={
+      mood === "darkMood" ? "darkMood hero d-flex align-items-center section-bg" : "lightMood hero d-flex align-items-center section-bg"
+    }>
+    <div >
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
           <div style={{display:'flex'}}>
-        <h2 data-aos="fade-up" style={{color :'#08244f'}}>Maintenance </h2>
+        <h2 data-aos="fade-up" className={
+      mood === "darkMood" ? "darkMood " : "lightMood "} style={{color :'#08244f'}}>Maintenance </h2>
         {/* //223d66 */}
 <p style={{opacity:0}}>ss</p>
         <h2 data-aos="fade-up">is</h2>

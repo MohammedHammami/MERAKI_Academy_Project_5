@@ -51,7 +51,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [pricing, setPricing] = useState("");
-  const [image, setImage] = useState(" ");
+  const [image, setImage] = useState("");
   
 
   const submitFn = () => {
@@ -72,6 +72,10 @@ const CreatePost = () => {
       .catch((err) => {
         console.log(err);
       });
+      useEffect(() => {
+      setImage('')
+      }, [])
+      
   };
 
   return (
@@ -82,9 +86,9 @@ const CreatePost = () => {
           className={
             mood === "darkMood"
               ? "darkMood text-black m-5navbar"
-              : "lightMood text-black m-5navbar"
+              : "lightMood text-black m-5navbar con"
           }
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px"}}
         >
           <MDBCardBody>
             <MDBRow>
@@ -203,14 +207,13 @@ const CreatePost = () => {
                   />
                 </div>
                 )}
-                ============================
-                <div>
-                  
+                <div className="d-flex flex-row align-items-center mb-4">
                   <MDBBtn className={
                       mood === "darkMood"
                         ? "darkMood mb-4"
                         : "lightMood mb-4"
                     }size="lg" onClick={()=>{setImage(null)}}>undo</MDBBtn>
+                {" "}
                 <MDBBtn className={
                       mood === "darkMood"
                         ? "darkMood mb-4"
@@ -218,7 +221,8 @@ const CreatePost = () => {
                     }size="lg" onClick={()=>{submitFn()
                       navigate('/')}}>
                   Submit
-                </MDBBtn>
+                </MDBBtn></div>
+                <div>
                 </div>
               </MDBCol>
             </MDBRow>
