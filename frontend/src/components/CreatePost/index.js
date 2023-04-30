@@ -15,8 +15,10 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import {useNavigate} from 'react-router-dom'
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 const CreatePost = () => {
+  const navigate=useNavigate()
   const fileInputRef =useRef()
   const uploadImage = async (i) => {
     console.log(i);
@@ -213,7 +215,8 @@ const CreatePost = () => {
                       mood === "darkMood"
                         ? "darkMood mb-4"
                         : "lightMood mb-4"
-                    }size="lg" onClick={submitFn}>
+                    }size="lg" onClick={()=>{submitFn()
+                      navigate('/')}}>
                   Submit
                 </MDBBtn>
                 </div>

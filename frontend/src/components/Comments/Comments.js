@@ -118,7 +118,7 @@ const Comments = (s) => {
                         {/* <div style={{ display: "flex" }}> */}
                           <MDBCard className="mb-4 cardOrderBody">
                             <MDBCardBody>
-                        <div className="d-flex flex-row align-items-center">
+                        <div className="d-flex flex-row align-items-center comment2">
                         <MDBCardImage
                         src={comment.user_image}
                         alt="avatar"
@@ -126,15 +126,15 @@ const Comments = (s) => {
                         height="25"
                       />
                               
-                              <p className="small mb-0 ms-2">{comment.first_name}{" "}{comment.last_name} </p></div>
+                              <p className="small mb-0 ms-2 comment2">{comment.first_name}{" "}{comment.last_name} </p></div>
                       <Card.Title>
-                      <p className="small text-muted mb-0" style={{textAlign:'left'}}>
+                      <p className="small text-muted mb-0 comment2" style={{textAlign:'left'}}>
                                 {comment.created_on &&
                                   comment.created_on.split("").splice(0, 10)}
                               </p>
                         </Card.Title>
                 
-                                  <p>{comment.description}</p>
+                                  <p className="comment2" style={{color:'#0F1111'}}>{comment.description}</p>
                                   </MDBCardBody>
                                 </MDBCard>
                                   </div>
