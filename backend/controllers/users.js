@@ -71,6 +71,7 @@ const register = async (req, res) => {
                   message: `Valid login credentials`,
                   token,
                   user_image: result.rows[0].user_image,
+                  userId: result.rows[0].id,
                 });
               } else {
                 throw Error;
