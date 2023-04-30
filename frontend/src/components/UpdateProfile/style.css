@@ -11,7 +11,7 @@
 }
 
 .card-header-profile {
-  background-color: #0077b6;
+  background-color: #223d66;
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -51,7 +51,7 @@ small {
   color: #666;
 }
 .button-profile {
-  background-color: #0077b6;
+  background-color: #223d66;
   color: #fff;
   font-size: 1rem;
   padding: 10px 20px;
@@ -61,7 +61,7 @@ small {
   transition: background-color 0.3s ease;
 }
 .button-profile {
-  background-color: #005b8c;
+  background-color: #223d66;
 }
 
 .updateimg {
