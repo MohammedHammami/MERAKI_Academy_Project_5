@@ -42,7 +42,6 @@ const CreateCraft = () => {
   }, []);
 
   const submitFn = () => {
-    
     axios
       .put(
         `http://localhost:5000/crafts/${state.userId}`,
