@@ -114,23 +114,28 @@ const getAllPosts = (req, res) => {
 
   const queryString = `SELECT * FROM posts ORDER BY id ASC LIMIT $1 OFFSET $2`;
 
-  const queryStringForCount = `SELECT * FROM posts`;
+  const queryStringForCount = `SELECT COUNT(*) FROM posts`;
 
-  const placeholder =  [limit, offset]
+  const placeholder = [limit, offset];
 
   pool
     .query(queryStringForCount)
     .then((result) => {
       const count = parseInt(result.rows[0].count);
+      console.log(count);
       const totalPages = Math.ceil(count / limit);
-
+      console.log(totalPages);
       pool
         .query(queryString, placeholder)
         .then((result) => {
+          const posts = result.rows;
           res.status(200).json({
             success: true,
             massage: "all posts",
             posts: result.rows,
+            totalPages: totalPages,
+            currentPage: page,
+            posts,
           });
         })
         .catch((err) => {
@@ -141,17 +146,6 @@ const getAllPosts = (req, res) => {
           });
         });
     })
-    .catch();
-
-  pool
-    .query(queryString)
-    .then((result) => {
-      res.status(200).json({
-        success: true,
-        massage: "all posts",
-        posts: result.rows,
-      });
-    })
     .catch((err) => {
       res.status(500).json({
         success: false,
@@ -159,6 +153,23 @@ const getAllPosts = (req, res) => {
         error: err,
       });
     });
+
+  //   pool
+  //     .query(queryString)
+  //     .then((result) => {
+  //       res.status(200).json({
+  //         success: true,
+  //         massage: "all posts",
+  //         posts: result.rows,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({
+  //         success: false,
+  //         message: "Server error",
+  //         error: err,
+  //       });
+  //     });
 };
 
 module.exports = {

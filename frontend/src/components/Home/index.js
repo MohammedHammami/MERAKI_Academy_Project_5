@@ -36,6 +36,8 @@ const Home = () => {
   const state = useSelector((state) => {
     return {
       posts: state.post.posts,
+      totalPages: state.post.totalPages,
+      currentPage: state.post.currentPage,
     };
   });
   const toOrder = (id, user_id) => {
