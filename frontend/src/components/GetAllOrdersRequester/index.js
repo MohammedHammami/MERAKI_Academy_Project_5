@@ -5,6 +5,16 @@ import "axios";
 
 import "./style.css";
 import axios from "axios";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBInput,
+  MDBRow,
+} from "mdb-react-ui-kit";
 
 const GetAllOrdersRequester = () => {
   const dispatch = useDispatch();
@@ -36,21 +46,42 @@ const GetAllOrdersRequester = () => {
 
   return (
     <div className="all-orders-div">
-      {
-        orders.map((order,i)=>{
-          return(<div>
-            <Card.Body>
-              <h5>order number : {i+1}</h5>
-                <Card.Title>{order.order_desc}</Card.Title>
-                <Card.Title>{order.schedule_date}</Card.Title>
-                <Card.Title>state : {order.state_id===1&&"Pending"}
-                {order.state_id===2&&"Completed"}
-                {order.state_id===3&&"Canceled"}
-                </Card.Title>
-              </Card.Body>
-          </div>)
-        })
-      }
+      <MDBContainer className="mt-5" style={{ maxWidth: "1000px" }}>
+        <MDBRow className="justify-content-center">
+          <MDBCol md="8" lg="10">
+            <MDBCard
+              className="shadow-0 border"
+              // style={{ backgroundColor: "#" }}
+            >
+              <MDBCardBody className="">
+                {orders.map((order, i) => {
+                  return (
+                    <div key={order.id}>
+                      <MDBCard className="mb-4 cardOrderBody">
+                        <h5 className="cardOrderheader">
+                          order number : {i + 1}
+                        </h5>
+                        <MDBCardBody>
+                          <p>{order.order_desc}</p>
+                          <Card.Title>
+                            state : {order.state_id === 1 && "Pending"}
+                            {order.state_id === 2 && "Completed"}
+                            {order.state_id === 3 && "Canceled"}
+                          </Card.Title>
+                        </MDBCardBody>
+                        <Card.Title>
+                          {order.schedule_date &&
+                            order.schedule_date.split("").splice(0, 10)}
+                        </Card.Title>
+                      </MDBCard>
+                    </div>
+                  );
+                })}
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     </div>
   );
 };

@@ -101,7 +101,7 @@ const Home = () => {
           </div>
         </section>
       </header>
-      <div className="container1">
+      <div className="container1" style={{}}>
         {state.posts.map((post, i) => {
           return (
             <div key={i}>

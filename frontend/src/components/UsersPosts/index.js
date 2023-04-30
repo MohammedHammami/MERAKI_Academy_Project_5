@@ -96,7 +96,8 @@ const UserPosts = () => {
   }, []);
 
   return (
-    <div className="container-user-posts">
+    <div style={{marginLeft:"100px"}}>
+    <div className="container-user-posts1">
     { console.log(state.posts)}
       {state.posts.map((post, i) => {
         return (
@@ -180,6 +181,7 @@ const UserPosts = () => {
           </div>
         );
       })}
+    </div>
     </div>
   );
 };

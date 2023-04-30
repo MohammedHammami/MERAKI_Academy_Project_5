@@ -22,7 +22,7 @@ const DashboardProvider = () => {
 
   const navigate = useNavigate();
   const state = useSelector((state) => {
-    console.log(state.auth.userInfo.craft_id);
+    // console.log(state.auth.userInfo.craft_id);
     return {
       userId: state.auth.userId,
       token: state.auth.token,

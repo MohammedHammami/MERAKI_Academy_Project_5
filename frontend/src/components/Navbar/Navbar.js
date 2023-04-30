@@ -85,7 +85,6 @@ const Navbars = () => {
   }, []);
   return (
     < >
-   
       <div  className={
       mood === "darkMood" ? "darkMood navBar-container" : "lightMood navBar-container"
     }>

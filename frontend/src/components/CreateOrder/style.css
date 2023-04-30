@@ -1,4 +1,5 @@
 .inpust-post{
+    margin-left: -5%;
     display: grid;
     grid-template-columns: 60% 40% ;
     padding-top: 3%;
@@ -64,6 +65,7 @@
     text-align: left;
     color: #223d66;
     font-weight: 600;
+    /* margin-left: 0; */
 }
 .labelCreatOrder{
     font-family: "Poppins", sans-serif;
@@ -71,4 +73,7 @@
 }
 .btnSubmitOrder{
     margin-left: 16vw;
+}
+.containe-create-order{
+    margin-left: 0;
 }

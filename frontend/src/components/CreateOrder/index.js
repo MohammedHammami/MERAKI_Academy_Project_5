@@ -135,7 +135,7 @@ const CreateOrder = () => {
   };
 
   return (
-    <div>
+    <div className="containe-create-order">
       <div className="inpust-post">
         <div className="container-div">
           <div className="user-card">
@@ -146,7 +146,6 @@ const CreateOrder = () => {
             </div>
           </div>
         </div>
-
         <div className="inputCreteOrder">
           <MDBContainer className="p-2 my-2 flex-column w-40">
             <Form>
