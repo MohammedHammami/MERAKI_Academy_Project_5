@@ -85,7 +85,6 @@ const Navbars = () => {
   }, []);
   return (
     < >
-   
       <div  className={
       mood === "darkMood" ? "darkMood navBar-container" : "lightMood navBar-container"
     }>
@@ -179,16 +178,6 @@ const Navbars = () => {
                       {state.noNotification}
                     </span>
                   </div>
-                  <img
-                    src={state.user_image}
-                    alt="Profile Pic"
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                      marginRight: "20px",
-                    }}
-                  />
                   <NavDropdown id="collasible-nav-dropdown">
                     <NavDropdown.Item
                       onClick={() => {
@@ -234,7 +223,16 @@ const Navbars = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
 
-                  
+                  <img
+                    src={state.user_image}
+                    alt="Profile Pic"
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                      marginRight: "20px",
+                    }}
+                  />
                 </>
               ) : (
                 <>
