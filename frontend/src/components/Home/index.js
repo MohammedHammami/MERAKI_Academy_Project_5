@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setPost } from "../Redux/reducers/posts";
+import {setuserpostId}from "../Redux/reducers/comment"
 import {
   MDBCard,
   MDBCardBody,
@@ -112,13 +113,11 @@ const Home = () => {
                 />
                 <MDBCardBody>
                   <MDBCardTitle>{post.title}</MDBCardTitle>
-                  <MDBBtn
-                    onClick={() => {
-                      toOrder(post.id, post.user_id);
-                    }}
-                  >
-                    order now
-                  </MDBBtn>
+                  <MDBBtn onClick={()=>{
+                    toOrder(post.id, post.user_id);
+                    dispatch(setuserpostId(post.user_id))
+                  console.log(post.user_id);
+                  }}>order now</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </div>

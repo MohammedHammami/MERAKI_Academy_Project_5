@@ -153,23 +153,6 @@ const getAllPosts = (req, res) => {
         error: err,
       });
     });
-
-  //   pool
-  //     .query(queryString)
-  //     .then((result) => {
-  //       res.status(200).json({
-  //         success: true,
-  //         massage: "all posts",
-  //         posts: result.rows,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({
-  //         success: false,
-  //         message: "Server error",
-  //         error: err,
-  //       });
-  //     });
 };
 
 module.exports = {

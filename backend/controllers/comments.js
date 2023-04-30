@@ -24,10 +24,9 @@ const receiver_user_id =req.params.id
             })
         })
 }
-
 const getCommentsByUser = (req, res) =>{
     const userId = req.params.id
-    const queryString = `SELECT * FROM comments WHERE receiver_user_id = ${userId};`
+    const queryString = `SELECT u.first_name, u.last_name,u.user_image, c.description, c.requester_user_id, c.receiver_user_id, c.created_on FROM comments c INNER JOIN users u ON u.id = c.requester_user_id WHERE receiver_user_id = ${userId};`
     pool
         .query(queryString)
         .then((result)=>{

@@ -6,6 +6,7 @@ import {craftsSlice } from "./reducers/crafts";
 import {orderSlice } from "./reducers/order";
 import {commentSlice} from "./reducers/comment";
 import { MoodSlice } from "./reducers/mood";
+import { notiSlice } from "./reducers/noti";
 
 export default configureStore ({
     reducer :{
@@ -15,5 +16,6 @@ export default configureStore ({
         order: orderSlice.reducer,
         comments:commentSlice.reducer,
         Mood:MoodSlice.reducer,
+        noti : notiSlice.reducer,
     }
 })
