@@ -86,50 +86,36 @@ const CreatePost = () => {
     <div className="inpust-post">
       <MDBContainer fluid>
         <MDBCard
-          className={
-            mood === "darkMood"
-              ? "darkMood text-black m-5navbar"
-              : "lightMood text-black m-5navbar con"
-          }
+          
           style={{ borderRadius: "25px"}}
         >
-          <MDBCardBody>
+          <MDBCardBody className="bodyOfCreatOrder">
             <MDBRow>
               <MDBCol
                 md="10"
                 lg="6"
-                className="order-2 order-lg-1 d-flex flex-column align-items-center"
+                className="order-3 order-lg-1 d-flex flex-column align-items-center"
               >
-                <div className="d-flex flex-row align-items-center mb-4 ">
-                  <MDBIcon
-                    fas
-                    icon="fas fa-heading me-3"
-                    size="lg"
-                    className={mood === "darkMood" ? "darkMood" : "lightMood"}
+                <div className="d-flex  align-items-center mb-4 ">
+                  <MDBIcon fas icon="fas fa-heading me-4" size="lg"
                   />
                   <MDBInput
                     label="Title"
                     id="form1"
                     type="text"
-                    className={
-                      mood === "darkMood" ? "darkMood w-100" : "lightMood w-100"
-                    }
+                    className="w-100"
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4 ">
-                  <MDBIcon
-                    fas
-                    icon="fas fa-highlighter me-3"
-                    size="lg"
-                    className={mood === "darkMood" ? "darkMood" : "lightMood"}
-                  />
+                  <MDBIcon fas 
+                  icon="fas fa-highlighter me-3"
+                   size="lg"
+                   />
                   <MDBInput
-                    className={
-                      mood === "darkMood" ? "darkMood w-100" : "lightMood w-100"
-                    }
+                  className="w-100"
                     label="Description"
                     id="form1"
                     type="text"
@@ -143,16 +129,11 @@ const CreatePost = () => {
                     fas
                     icon=" fas fa-money-bill-1-wave me-3"
                     size="lg"
-                    className={mood === "darkMood" ? "darkMood" : "lightMood"}
                   />
-
                   <MDBInput
                     label="Pricing"
                     id="form1"
                     type="text"
-                    className={
-                      mood === "darkMood" ? "darkMood w-100" : "lightMood w-100"
-                    }
                     onChange={(e) => {
                       setPricing(e.target.value);
                     }}
@@ -161,10 +142,32 @@ const CreatePost = () => {
                 {image ? (
                   <img src={url} className="img" />
                 ) : (
-                  <div
-                    className="d-flex flex-row align-items-center mb-4"
-                    onDragOver={(e) => {
-                      e.preventDefault();
+                 <div className="d-flex flex-row align-items-center mb-4"
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setImage(e.dataTransfer.files[0]);
+                    uploadImage(e.dataTransfer.files[0]);
+                  }}
+                >
+                  <MDBIcon fas icon="camera-retro me-3" size="lg" 
+                  />
+                  <button className="imgbtn" onClick={(e) => { fileInputRef.current.click()}}>
+                    take image from your device
+                    <br></br>
+                    <MDBIcon fas size="lg" icon="plus-circle me-3" />
+                  </button>
+                  <MDBInput
+                    label=""
+                    id="form4"
+                    type="file"
+                    style={{ display: "none" }}
+                    ref={fileInputRef}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      uploadImage(e.target.files[0]);
                     }}
                     onDrop={(e) => {
                       e.preventDefault();
@@ -201,7 +204,14 @@ const CreatePost = () => {
                     />
                   </div>
                 )}
-                ============================
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBBtn className="mb-4" size="lg" style={{color:'#223d66' ,backgroundColor:'whitesmoke'}} onClick={()=>{setImage(null)}}>undo</MDBBtn>
+                {" "}
+                <MDBBtn className="mb-4"size="lg"
+                style={{color:'#223d66' ,backgroundColor:'whitesmoke',marginLeft:'5px'}}  onClick={()=>{submitFn()
+                      navigate('/')}}>
+                  Submit
+                </MDBBtn></div>
                 <div>
                   <MDBBtn
                     className={

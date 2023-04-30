@@ -7,8 +7,16 @@
 } */
 .inpust-post{
     margin-left: 30%;
+    color: #223d66;
     
 }
 .con{
     text-align: center;
+}
+.bodyOfCreatOrder{
+ /* background-color: red; */
+ margin-left:  9vw;
+ margin-right:0;
+ 
+ /* padding: 0; */
 }
