@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";//
 import Chart from "chart.js/auto";
+import UpdateProfile from "../UpdateProfile";
 
 
 const GraphDashboard = () =>{
@@ -19,6 +20,7 @@ const GraphDashboard = () =>{
       userInfo: state.auth.userInfo,
     };
   });
+  const [isCraft, setIsCraft] = useState(state.userInfo.craft_id)
     const getAllOrder = () =>{
     axios
     .get(`http://localhost:5000/orders/${state.userId}`, {headers: {Authorization: state.token}})
@@ -52,10 +54,10 @@ const GraphDashboard = () =>{
             {
             label: "",
             data: [orders.length,pending,completed,canceled],
-            backgroundColor: ["rgb(220,235,252)", "rgb(251, 175, 175)", "#c3e6e1", "rgb(211, 211, 255)"],
+            backgroundColor: ["blue", "rgb(170, 46, 37)", "#9ad219", "rgb(0, 0, 0)"],
             // borderColor: ["#36A2EB", "#FFCE56", "#FF6384", "#FFCE56", "#FF6384"],
             },
-        ],
+        ],		
         },
         options: { scales: { y: { beginAtZero: true } } },
     });
@@ -79,7 +81,7 @@ const GraphDashboard = () =>{
                 {
                 label: "no: rated",
                 data: coulmValue,
-                backgroundColor: ["green", "rgb(211, 211, 255)", "#c3e6e1", "rgb(251, 175, 175)", "rgb(68, 67, 67)"],
+                backgroundColor: ["red", "pink", "#c3e6e1", "green", "blue"],
                 borderColor: "rgba(255, 99, 132, 0.2)",
                 },
             ],
@@ -125,9 +127,11 @@ const GraphDashboard = () =>{
         getRate()
         },[])
     return(
+        <div>
+        {isCraft!=null?
         <div className="body_container">
             <div className="order_info__cotainer_div">
-            <div className="card_order_info">
+            <div className="card_order_info colorin">
                 <h5>Total Orders</h5>
                 <p className="number-order">{orders.length}</p>
             </div>
@@ -153,6 +157,7 @@ const GraphDashboard = () =>{
                 <h2 className="h2">Rate</h2>
                 <ChartComponent1/></div>
             </div>
+        </div>:<UpdateProfile/>}
         </div>
     )
 }

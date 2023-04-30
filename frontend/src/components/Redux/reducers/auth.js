@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: null || localStorage.getItem("token"),
+    token: '' || localStorage.getItem("token"),
     userId: null || localStorage.getItem("userId"),
     isLoggedIn: null|| localStorage.getItem("isLoggedIn"),
     user_image: null || localStorage.getItem("user_image"),
@@ -41,7 +41,6 @@ export const authSlice = createSlice({
       state.userId = null;
       state.isLoggedIn = false;
       state.user_image = null;
-      console.log("tesssssssssssssssst");
       localStorage.clear();
     },
     setUserInfo: (state, action) => {

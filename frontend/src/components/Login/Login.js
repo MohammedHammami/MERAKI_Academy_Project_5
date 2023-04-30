@@ -54,7 +54,7 @@ const Login = () => {
           .catch((err) => {
             console.log(err);
           });
-        console.log(result.data);
+
 
         dispatch(setLogin(result.data));
         dispatch(setUserInfo(result.data));

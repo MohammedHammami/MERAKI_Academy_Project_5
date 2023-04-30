@@ -28,9 +28,7 @@ const CreateOrder = () => {
   }, 1000);
 
   const location = useLocation();
-
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
@@ -200,6 +198,7 @@ const CreateOrder = () => {
               } else {
                 handleShow();
               }
+              navigate('/Dashboard/provider')
             }}
           >
             Submit Order

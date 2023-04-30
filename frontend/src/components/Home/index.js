@@ -43,14 +43,18 @@ const Home = () => {
   const state = useSelector((state) => {
     return {
       posts: state.post.posts,
+
+      mood: state.Mood.mood,
+
       totalPages: state.post.totalPages,
       currentPage: state.post.currentPage,
+
     };
   });
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
   };
-
+  const mood = state.mood;
   return (
     <>
       <header style={{ paddingLeft: 0 }}>

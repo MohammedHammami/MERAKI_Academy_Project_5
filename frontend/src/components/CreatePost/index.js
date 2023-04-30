@@ -79,6 +79,7 @@ const CreatePost = () => {
       .catch((err) => {
         console.log(err);
       });
+      
   };
 
   return (
@@ -88,9 +89,9 @@ const CreatePost = () => {
           className={
             mood === "darkMood"
               ? "darkMood text-black m-5navbar"
-              : "lightMood text-black m-5navbar"
+              : "lightMood text-black m-5navbar con"
           }
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px"}}
         >
           <MDBCardBody>
             <MDBRow>

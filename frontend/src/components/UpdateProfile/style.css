@@ -1,5 +1,6 @@
 
   .container-profile{
+	
 	height: 100vh;
 	margin-top: 3%;
 	margin-bottom: 10%;
@@ -74,7 +75,9 @@
 	background-color: #005b8c;
   }
   
-
+.updateimg{
+	margin-left: 8vw;
+}
   
   
   
