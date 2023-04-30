@@ -57,10 +57,6 @@ const GetAllOrders = () => {
                         <h5 className="cardOrderheader">
                           order number : {i + 1}
                         </h5>
-                        <Card.Title>
-                          {order.schedule_date &&
-                            order.schedule_date.split("").splice(0, 10)}
-                        </Card.Title>
                         <MDBCardBody>
                           <p>{order.order_desc}</p>
                           <Card.Title>
@@ -69,6 +65,10 @@ const GetAllOrders = () => {
                             {order.state_id === 3 && "Canceled"}
                           </Card.Title>
                         </MDBCardBody>
+                        <Card.Title>
+                          {order.schedule_date &&
+                            order.schedule_date.split("").splice(0, 10)}
+                        </Card.Title>
                       </MDBCard>
                     </div>
                   );
