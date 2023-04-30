@@ -112,9 +112,11 @@ const getAllPosts = (req, res) => {
   const limit = parseInt(req.query.limit);
   const offset = (page - 1) * limit;
 
-  const queryString = `SELECT * FROM posts`;
+  const queryString = `SELECT * FROM posts ORDER BY id ASC LIMIT $1 OFFSET $2`;
 
   const queryStringForCount = `SELECT * FROM posts`;
+
+  const placeholder =  [limit, offset]
 
   pool
     .query(queryStringForCount)
@@ -123,7 +125,7 @@ const getAllPosts = (req, res) => {
       const totalPages = Math.ceil(count / limit);
 
       pool
-        .query(queryString)
+        .query(queryString, placeholder)
         .then((result) => {
           res.status(200).json({
             success: true,
