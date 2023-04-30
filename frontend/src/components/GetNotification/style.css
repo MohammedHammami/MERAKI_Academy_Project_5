@@ -1,20 +1,4 @@
-/* .notification{
-    background-color: lightblue;
-    margin: 5%;
-}
-.display_flex{
-  display: flex;
-}
-.each_noti{
-  margin-left: 1%;
-  margin-bottom: 1%;
-}
-.rating {
-    font-size: 0;
-    display: inline-block;
-    position: relative;
-  }
-  */
+
   .star {
     display: inline-block;
     font-size: 1.5rem;
@@ -30,28 +14,12 @@
   .star:active  {
     color: #FFD700;
   } 
-  /* .star2:after {
-    color: #FFD700;
-  } 
-  .star3:after {
-    color: #FFD700;
-  } 
-  .star4:after {
-    color: #FFD700;
-  } 
-  .star5:after {
-    color: #FFD700;
-  }  */
-  
-  
-  
   .button_noti{
     background-color:#385075;
     color: white;
     border: none;
     border-radius: 10px;
     margin: 1%;
-    /* margin-left: 0; */
   }
   
   
@@ -68,9 +36,6 @@
   .noti-display{
     width: 80%;
     margin-left: 10%;
-    /* text-align: center;
-    width: 40%;
-    margin-left: 30%; */
     display: grid;
     grid-template-columns: 30% 30% 30%;
   }

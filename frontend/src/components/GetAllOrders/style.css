@@ -1,6 +1,5 @@
 .shadow-0{
     filter: brightness(110%);
-    /* background-image: linear-gradient(to right , #223d66, #5577aa, #4e5d74); */
     color: #223d66;
     font-size: 30px;
     font-family: Tahoma cursive;
@@ -12,11 +11,3 @@
     width: 100%;
     margin-left: 14%;
 }
-/* .cardOrderBody{
-    margin: 5px;
-    box-shadow: 0 2px 10px #2c6ec6;
-   
-} */
-/* .cardOrderheader{
-    margin:2vh;
-} */

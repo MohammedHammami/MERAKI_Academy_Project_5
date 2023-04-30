@@ -19,7 +19,6 @@ const GetAllNotification = () => {
   const [rate, setRate] = useState(0);
   const { token, userInfo, userId, notifications, userpostId } = useSelector(
     (state) => {
-      // console.log(state.noti.notification);
       return {
         token: state.auth.token,
         userInfo: state.auth.userInfo,
@@ -29,8 +28,6 @@ const GetAllNotification = () => {
       };
     }
   );
-  // const [notifications, setNotifications] = useState(state.notifications);
-
   const getNotifications = () => {
     axios
       .get(`http://localhost:5000/notifications`, {
@@ -39,7 +36,6 @@ const GetAllNotification = () => {
         },
       })
       .then((result) => {
-        // setNotifications(result.data.notification)
         dispatch(setNotification(result.data.notification));
       })
       .catch((err) => {
@@ -75,7 +71,6 @@ const GetAllNotification = () => {
       .delete(`http://localhost:5000/notifications/${id}`)
       .then((result) => {
         console.log(result);
-        // console.log(id);
         dispatch(cancelNotification(id));
       })
       .catch((err) => {
@@ -181,7 +176,6 @@ const GetAllNotification = () => {
               <div className="each-noti">
                <Toast>
                  <Toast.Header closeButton={false}>
-                  {/* { <img/>  background} */}
                   <strong className="me-auto">from: {userInfo.first_name} {userInfo.last_name}</strong>
                   </Toast.Header>
                   <Toast.Body>description:{description}</Toast.Body>
@@ -235,7 +229,6 @@ const GetAllNotification = () => {
           <div className="each-noti">
              <Toast>
                <Toast.Header closeButton={false}>
-                {/* { <img/>  background} */}
                 <strong className="me-auto">from: {userInfo.first_name} {userInfo.last_name}</strong>
                 </Toast.Header>
                 <Toast.Body>provider accepted order</Toast.Body>

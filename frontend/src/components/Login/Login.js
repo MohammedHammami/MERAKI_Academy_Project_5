@@ -20,7 +20,6 @@ import {
   setLoginGoogel,
   setUserInfoGoogle,
 } from "../Redux/reducers/auth";
-// import { Spinner } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import Spinner from "../Spinner/Spinner.js";
 import { setCounterNotification } from "../Redux/reducers/noti";
@@ -48,7 +47,6 @@ const Login = () => {
             },
           })
           .then((result) => {
-            // fillterNoti(result.data.notification)
             dispatch(setCounterNotification(result.data.notification));
           })
           .catch((err) => {
@@ -82,9 +80,6 @@ const Login = () => {
         return () => clearTimeout();
       });
   };
-  // const toHome = () => {
-  //   navigate("/");
-  // };
   const handleClickF = () => {
     toast.error("Login Failed");
   };
@@ -178,7 +173,6 @@ const Login = () => {
 
                       dispatch(setLoginGoogel(credentialResponse));
                       dispatch(setUserInfoGoogle(credentialResponse));
-                      // toHome()
                       navigate("/");
                     }}
                     onError={() => {

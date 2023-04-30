@@ -8,11 +8,8 @@ import axios from "axios";
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCol,
   MDBContainer,
-  MDBIcon,
-  MDBInput,
   MDBRow,
 } from "mdb-react-ui-kit";
 
@@ -51,7 +48,6 @@ const GetAllOrdersRequester = () => {
           <MDBCol md="8" lg="10">
             <MDBCard
               className="shadow-0 border"
-              // style={{ backgroundColor: "#" }}
             >
               <MDBCardBody className="">
                 {orders.map((order, i) => {

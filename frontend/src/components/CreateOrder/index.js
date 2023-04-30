@@ -28,7 +28,7 @@ const CreateOrder = () => {
   }, 1000);
 
   const location = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
@@ -40,12 +40,9 @@ const CreateOrder = () => {
   const [postInfo, setPostInfo] = useState({});
   const [userId, setUserId] = useState("");
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const navigate = useNavigate();
-
   const successNotify = () => {
     toast.success("order created Successfully", {
       position: "top-right",
@@ -53,11 +50,9 @@ const CreateOrder = () => {
       hideProgressBar: true,
     });
   };
-
   const errorNotify = () => {
     toast.error("please enter all required fildes");
   };
-
   const sendSmsNotifaction = () => {
     axios
       .post("http://localhost:5000/orders/sms", {
@@ -70,9 +65,7 @@ const CreateOrder = () => {
         console.log(err);
       });
   };
-
   const getPostById = () => {
-    // console.log(location);
     axios
       .get(`http://localhost:5000/posts/post/${location.state.id}`)
       .then((result) => {
@@ -87,7 +80,6 @@ const CreateOrder = () => {
   useEffect(() => {
     getPostById();
   }, []);
-
   const submitFn = () => {
     axios
       .post(
@@ -100,7 +92,6 @@ const CreateOrder = () => {
         }
       )
       .then((result) => {
-        // console.log(result.data.order[0]);
         successNotify();
         createNotivication(
           result.data.order[0].id,
@@ -113,11 +104,9 @@ const CreateOrder = () => {
         }, 2000);
       })
       .catch((err) => {
-        // errorNotify()
         console.log(err);
       });
   };
-
   const createNotivication = (order_id, order_desc, order_schedule) => {
     let newTime = order_schedule.split("T").splice(0, 1);
     axios
@@ -133,7 +122,6 @@ const CreateOrder = () => {
         console.log(err);
       });
   };
-
   return (
     <div className="containe-create-order">
       <div className="inpust-post">
@@ -197,7 +185,7 @@ const CreateOrder = () => {
               } else {
                 handleShow();
               }
-              navigate('/Dashboard/provider')
+              navigate("/Dashboard/provider");
             }}
           >
             Submit Order

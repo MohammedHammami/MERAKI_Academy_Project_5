@@ -1,13 +1,11 @@
 import React from "react";
 import axios from "axios";
 import "./index.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setPost } from "../Redux/reducers/posts";
-import {setuserpostId}from "../Redux/reducers/comment"
+import { setuserpostId } from "../Redux/reducers/comment";
 import {
   MDBCard,
   MDBCardBody,
@@ -63,7 +61,6 @@ const Home = () => {
                   <h2 data-aos="fade-up" style={{ color: "#08244f" }}>
                     Maintenance{" "}
                   </h2>
-                  {/* //223d66 */}
                   <p style={{ opacity: 0 }}>ss</p>
                   <h2 data-aos="fade-up">is</h2>
                 </div>
@@ -114,11 +111,15 @@ const Home = () => {
                 />
                 <MDBCardBody>
                   <MDBCardTitle>{post.title}</MDBCardTitle>
-                  <MDBBtn onClick={()=>{
-                    toOrder(post.id, post.user_id);
-                    dispatch(setuserpostId(post.user_id))
-                  console.log(post.user_id);
-                  }}>order now</MDBBtn>
+                  <MDBBtn
+                    onClick={() => {
+                      toOrder(post.id, post.user_id);
+                      dispatch(setuserpostId(post.user_id));
+                      console.log(post.user_id);
+                    }}
+                  >
+                    order now
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </div>
@@ -129,7 +130,8 @@ const Home = () => {
         onClick={() => {
           setPage(page - 1);
           getAllPosts(page, limit);
-        }} style={{marginBottom:"20px", marginTop:"20px"}}
+        }}
+        style={{ marginBottom: "20px", marginTop: "20px" }}
       >
         prev
       </MDBBtn>
@@ -137,7 +139,8 @@ const Home = () => {
         onClick={() => {
           setPage(page + 1);
           getAllPosts(page, limit);
-        }} style={{marginLeft:"20px",marginBottom:"20px",marginTop:"20px"}}
+        }}
+        style={{ marginLeft: "20px", marginBottom: "20px", marginTop: "20px" }}
       >
         Next
       </MDBBtn>

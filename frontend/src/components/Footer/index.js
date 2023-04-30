@@ -88,14 +88,16 @@ const Footer = () => {
             </div>
 
             <div className="col-lg-3 col-7 footer-links">
-              <h4><a className="cursor"
-              
-                    onClick={() => {
-                      navigate(`/support`);
-                    }}
-                  >
-                    Contact Us
-                  </a></h4>
+              <h4>
+                <a
+                  className="cursor"
+                  onClick={() => {
+                    navigate(`/support`);
+                  }}
+                >
+                  Contact Us
+                </a>
+              </h4>
               <p>
                 Amman, N 02
                 <br />
@@ -118,11 +120,6 @@ const Footer = () => {
             </strong>
           </div>
           <div className="credits">
-            {/* <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form:
-     https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ --> */}
             Designed by <a href="https://bootstrapmade.com/">Creative Minds</a>
           </div>
         </div>

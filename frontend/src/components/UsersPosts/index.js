@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { setMyPost, deletePost, updatePost } from "../Redux/reducers/posts";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
 import {
@@ -64,7 +63,6 @@ const UserPosts = () => {
       })
       .then((res) => {
         if (res.data.success === true) {
-          console.log(res);
           dispatch(deletePost(id));
         }
       })
@@ -98,7 +96,6 @@ const UserPosts = () => {
   return (
     <div style={{marginLeft:"100px"}}>
     <div className="container-user-posts1">
-    { console.log(state.posts)}
       {state.posts.map((post, i) => {
         return (
           <div key={i} className="change-hight-on-post">

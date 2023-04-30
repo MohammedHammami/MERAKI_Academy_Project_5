@@ -26,25 +26,19 @@ const Comments = (s) => {
       userpostId: state.comments.userpostId,
     };
   });
-  // console.log(state.userpostId);
   const [comments, setComments] = useState([]);
   const [description, setDescription] = useState("");
   const [userpostId, setUserpostId] = useState(state.userpostId);
-
-  const [update, setUpdate] = useState(false);
   const token = state.token;
   const userId = state.value;
-  const mood = state.mood;
   const user_image = state.user_image;
 
   const getComment = () => {
-    // console.log(state.pooster);
     axios
       .get(`http://localhost:5000/comments/${userpostId}`, {
         headers: { Authorization: state.token },
       })
       .then((result) => {
-        // console.log(result.data.result);
         setComments(result.data.result);
       })
       .catch((err) => {
@@ -100,44 +94,62 @@ const Comments = (s) => {
     getComment();
   }, []);
   return (
-    <div className="all-orders-div" style={{marginLeft:"0"}}>
-      <MDBContainer className="mt-5" style={{ width: "100%",textAlign:"center" }}>
+    <div className="all-orders-div" style={{ marginLeft: "0" }}>
+      <MDBContainer
+        className="mt-5"
+        style={{ width: "100%", textAlign: "center" }}
+      >
         <MDBRow className="justify-content-center">
           <MDBCol md="8" lg="6">
             <MDBCard
               className="shadow-0 border"
-              style={{ backgroundColor: "#c6c6c6",margin:"0",textAlign:"center",widows:"80%",marginLeft:"10%" }}
+              style={{
+                backgroundColor: "#c6c6c6",
+                margin: "0",
+                textAlign: "center",
+                widows: "80%",
+                marginLeft: "10%",
+              }}
             >
-              <MDBCardBody >
+              <MDBCardBody>
                 {comments.map((comment, i) => {
                   if (comment.description != "") {
                     return (
                       <div className="" key={i}>
-                    <div>
-                      
-                        {/* <div style={{ display: "flex" }}> */}
+                        <div>
                           <MDBCard className="mb-4 cardOrderBody">
                             <MDBCardBody>
-                        <div className="d-flex flex-row align-items-center comment2">
-                        <MDBCardImage
-                        src={comment.user_image}
-                        alt="avatar"
-                        width="25"
-                        height="25"
-                      />
-                              
-                              <p className="small mb-0 ms-2 comment2">{comment.first_name}{" "}{comment.last_name} </p></div>
-                      <Card.Title>
-                      <p className="small text-muted mb-0 comment2" style={{textAlign:'left'}}>
-                                {comment.created_on &&
-                                  comment.created_on.split("").splice(0, 10)}
+                              <div className="d-flex flex-row align-items-center comment2">
+                                <MDBCardImage
+                                  src={comment.user_image}
+                                  alt="avatar"
+                                  width="25"
+                                  height="25"
+                                />
+
+                                <p className="small mb-0 ms-2 comment2">
+                                  {comment.first_name} {comment.last_name}{" "}
+                                </p>
+                              </div>
+                              <Card.Title>
+                                <p
+                                  className="small text-muted mb-0 comment2"
+                                  style={{ textAlign: "left" }}
+                                >
+                                  {comment.created_on &&
+                                    comment.created_on.split("").splice(0, 10)}
+                                </p>
+                              </Card.Title>
+
+                              <p
+                                className="comment2"
+                                style={{ color: "#0F1111" }}
+                              >
+                                {comment.description}
                               </p>
-                        </Card.Title>
-                
-                                  <p className="comment2" style={{color:'#0F1111'}}>{comment.description}</p>
-                                  </MDBCardBody>
-                                </MDBCard>
-                                  </div>
+                            </MDBCardBody>
+                          </MDBCard>
+                        </div>
                       </div>
                     );
                   }
