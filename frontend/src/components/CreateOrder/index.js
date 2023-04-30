@@ -24,6 +24,7 @@ const CreateOrder = () => {
     }, 1000);
   const location = useLocation();
   const dispatch = useDispatch()
+  const navigate=useNavigate()
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
@@ -151,6 +152,7 @@ const CreateOrder = () => {
             wrapperclass="mb-4 mt-4"
             onClick={(e) => {
               submitFn();
+              navigate('/Dashboard/provider')
             }}
           >
             Submit Order

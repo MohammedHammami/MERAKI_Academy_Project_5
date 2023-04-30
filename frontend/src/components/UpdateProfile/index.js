@@ -111,7 +111,7 @@ return(
                   <img src={url} className="img" />
                 ) : (
                   <div
-                    className="d-flex flex-row align-items-center mb-4"
+                    className="d-flex flex-row align-items-center mb-4 updateimg"
                     onDragOver={(e) => {
                       e.preventDefault();
                     }}

@@ -27,6 +27,7 @@ const DashboardProvider = () => {
       userId: state.auth.userId,
       token: state.auth.token,
       userInfo: state.auth.userInfo,
+      mood: state.Mood.mood,
     };
   });
   const [isCraft,setIsCraft] = useState(state.userInfo.craft_id)

@@ -116,7 +116,7 @@ const Navbars = () => {
               {state.isLoggedIn ? (
                 <>
                 <div>
-              <input
+              {/* <input
                 type="checkbox"
                 className="checkbox"
                 id="checkbox"
@@ -129,7 +129,7 @@ const Navbars = () => {
                 <i className="fas fa-moon"></i>
                 <i className="fas fa-sun"></i>
                 <span className="ball"></span>
-              </label>
+              </label> */}
               </div>
                   <Nav.Link
                   style={{
