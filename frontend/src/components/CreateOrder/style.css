@@ -1,7 +1,7 @@
 .inpust-post {
-  margin-left: -5%;
+  /* margin-left: -5%; */
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 60% 33%;
   padding-top: 3%;
 }
 .container-div {
