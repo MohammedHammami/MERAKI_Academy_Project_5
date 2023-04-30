@@ -18,8 +18,10 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import { useNavigate } from "react-router-dom";
+ 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const fileInputRef = useRef();
   const uploadImage = async (i) => {
     console.log(i);
@@ -225,6 +227,7 @@ const CreatePost = () => {
                         errorNotify();
                       } else {
                         handleShow();
+                        navigate('/')
                       }
                     }}
                   >

@@ -184,8 +184,8 @@ const CreateOrder = () => {
                 errorNotify();
               } else {
                 handleShow();
+                navigate("/Dashboard/provider");
               }
-              navigate("/Dashboard/provider");
             }}
           >
             Submit Order
