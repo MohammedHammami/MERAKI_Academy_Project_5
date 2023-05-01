@@ -59,7 +59,7 @@ const Navbars = () => {
         }
       >
         <Navbar collapseOnSelect expand="lg" className="background-navbar">
-          <Navbar.Brand style={{ marginLeft: "5%" }}>
+          <Navbar.Brand style={{ marginLeft: "2%" }}>
             <h3
               className="header-logo"
               style={{
@@ -73,13 +73,14 @@ const Navbars = () => {
                 navigate("/");
               }}
             >
+              {/* <img className="imgLogoNew" src="./media/Screenshot_7.png" ></img> */}
               Tas<h3 className="the-L-letter">L</h3>ee7
               <span className="for-the-dot">.</span>
             </h3>{" "}
           </Navbar.Brand>
           <Navbar.Collapse
             id="responsive-navbar-nav"
-            style={{ justifyContent: "flex-end" }}
+            style={{ justifyContent: "flex-end" ,marginTop:'-5vh'}}
           >
             <Nav>
               {state.isLoggedIn ? (

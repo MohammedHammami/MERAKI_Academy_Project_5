@@ -171,8 +171,24 @@ section {
 .hero .btn-watch-video:hover i {
   color: rgba(206, 18, 18, 0.8);
 }
+.nameInPost{
+  text-align: left;
+  padding: 3px;
+  color: #223d66;
+  /* font-size: 22px; */
+}
+.userImgeInPost{
+  border-radius: 50%;
+  background-color: #223d66;
+  margin-right: 1vh;
+
+}
+.HeaderCard{
+  padding: 1vh  1vh  1vh  1vh;
+
+}
 .imgecard {
-  width: 23.5vw;
+  width: 24.1vw;
   height: 40vh;
 }
 @media (max-width: 640px) {

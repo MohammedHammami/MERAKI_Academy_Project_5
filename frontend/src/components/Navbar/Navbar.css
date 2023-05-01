@@ -1,6 +1,13 @@
 .navBar-container{
   background-color:var(--words);
   color: white;
+  height: 8.2vh;
+}
+.imgLogoNew{
+  height: 16vh;
+  width: 7vw;
+  margin-top: -5vh;
+  opacity: 20;
 }
 .leeft-margin-search{
   margin-left: 25vw;
@@ -36,6 +43,7 @@
 .header-logo:hover{
   cursor: pointer;
 }
+
 .the-L-letter{
   font-size:35px;
 }

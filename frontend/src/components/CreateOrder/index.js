@@ -12,7 +12,7 @@ import {
   MDBCheckbox,
   MDBBtn,
   MDBIcon,
-  MDBTextArea,
+  MDBCardImage,
   MDBFile,
 } from "mdb-react-ui-kit";
 import Button from "react-bootstrap/Button";
@@ -74,15 +74,17 @@ const CreateOrder = () => {
       });
   };
   const getPostById = () => {
+    console.log(location.state);
     axios
       .get(`http://localhost:5000/posts/post/${location.state.id}`)
       .then((result) => {
         setUserId(result.data.posts[0].user_id);
         setPostInfo(result.data.posts[0]);
+        console.log(result.data.posts);
         dispatch(setPooster(result.data.posts[0].user_id));
       })
       .catch((err) => {
-        console.log("err");
+        console.log("err:",err);
       });
   };
   useEffect(() => {
@@ -141,6 +143,7 @@ const CreateOrder = () => {
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
             <div>
+            
               <h2>{postInfo.title}</h2>
               <p>{postInfo.description}</p>
             </div>
