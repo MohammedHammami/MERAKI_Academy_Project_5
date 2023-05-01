@@ -17,7 +17,9 @@ import {
 
 const Home = () => {
   const [page, setPage] = useState(1);
-  const limit = 6;
+  const [browse, setBrowse] = useState(false);
+  const [limit, setLimit] = useState(6);
+  
 
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const Home = () => {
   };
   useEffect(() => {
     getAllPosts(page, limit);
-  }, []);
+  }, [limit]);
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -52,6 +54,7 @@ const Home = () => {
   const mood = state.mood;
   return (
     <>
+    {!browse ? <>
       <header style={{ paddingLeft: 0 }}>
         <section id="hero" class="hero d-flex align-items-center section-bg">
           <div class="container">
@@ -73,8 +76,12 @@ const Home = () => {
                   A well-trained army of craftsmen is ready to serve you
                 </p>
                 <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
-                  <a href="#book-a-table" className="btn-book-a-table">
-                    Book an Appointment
+                  <a href="#book-a-table" className="btn-book-a-table" onClick={()=>{
+                    setBrowse(true)
+                    setLimit(9)
+                    getAllPosts(page,limit)
+                  }}>
+                    Browse
                   </a>
                   <a
                     href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
@@ -97,7 +104,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-      </header>
+      </header></>:<></> }
       <div className="container1" style={{}}>
         {state.posts.map((post, i) => {
           return (
