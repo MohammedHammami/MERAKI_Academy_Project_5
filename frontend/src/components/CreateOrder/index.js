@@ -32,9 +32,10 @@ const CreateOrder = () => {
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
+      userInfo: state.auth.userInfo,
     };
   });
-
+  const [isCraft, setIsCraft] = useState(state.userInfo.craft_id)
   const [schedule_date, setSchedule_date] = useState("");
   const [order_desc, setOrder_desc] = useState("");
   const [postInfo, setPostInfo] = useState({});
@@ -157,7 +158,9 @@ const CreateOrder = () => {
                 </label>
 
                 <MDBInput
-                  type="date"
+                  type="datetime-local"
+                  min="2023-05"
+                   max="2023-06-14T00:00"
                   placeholder="Enter Title"
                   onChange={(e) => {
                     setSchedule_date(e.target.value);
@@ -193,9 +196,14 @@ const CreateOrder = () => {
               const desValue = order_desc;
               if (!value.trim() || !desValue.trim()) {
                 errorNotify();
-              } else {
+              } else if(isCraft){
                 handleShow();
                 navigate("/Dashboard/provider");
+                submitFn();
+              }else{
+                handleShow();
+                navigate("/");
+                submitFn();
               }
             }}
           >

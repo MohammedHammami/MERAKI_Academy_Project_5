@@ -1,4 +1,3 @@
-const { query } = require("express");
 const pool = require("../models/db");
 
 const createNewPost = (req, res) => {
