@@ -63,9 +63,10 @@ const Home = () => {
             >
               <div class="container">
                 <div class="row justify-content-between gy-5">
-                  <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                    <div style={{ display: "flex" }}>
-                      <h2 data-aos="fade-up" style={{ color: "#08244f" }}>
+                  <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-left align-items-center align-items-lg-start text-center text-lg-start">
+                    <div style={{ display: "flex"  }}>
+                      <h2 data-aos="fade-up" style={{ color: "#08244f" ,}}>
+                      {/* color:'#121A72' */}
                         Maintenance{" "}
                       </h2>
                       <p style={{ opacity: 0 }}>ss</p>
@@ -75,6 +76,7 @@ const Home = () => {
                     <p
                       data-aos="fade-up"
                       data-aos-delay="100"
+                      // style={{ color: "#223d66" }}
                       style={{ color: "white" }}
                     >
                       A well-trained army of craftsmen is ready to serve you
@@ -107,7 +109,7 @@ const Home = () => {
                   <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
                     <img
                       src="https://buildinglinkau.com.au/wp-content/uploads/2021/09/AdobeStock_263924753-min-scaled.jpeg"
-                      // src="./media/Screenshot_2.png"
+                      // src="../media/Screenshot_3.png"
                       class="img-fluid"
                       alt=""
                       data-aos="zoom-out"
@@ -122,11 +124,12 @@ const Home = () => {
       ) : (
         <></>
       )}
-      <div className="container1" style={{}}>
+      <div className="container1">
         {state.posts.map((post, i) => {
           return (
             <div key={i}>
               <MDBCard className="car">
+                <MDBCardTitle>
                 <div className="d-flex flex-row align-items-center HeaderCard">
                   <MDBCardImage
                     src={post.user_image}
@@ -139,6 +142,8 @@ const Home = () => {
                     {post.first_name} {post.last_name}
                   </h2>
                 </div>
+                </MDBCardTitle>
+                <hr></hr>
                 <MDBCardImage
                   className="imgecard"
                   src={post.post_image}
@@ -146,7 +151,8 @@ const Home = () => {
                   alt="..."
                 />
                 <MDBCardBody>
-                  <MDBCardTitle>{post.title}</MDBCardTitle>
+                  <MDBCardText>{post.title}</MDBCardText>
+                  <MDBCardText>{post.pricing} $/h</MDBCardText>
                   <MDBBtn
                     onClick={() => {
                       toOrder(post.id, post.user_id);

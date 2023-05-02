@@ -59,7 +59,7 @@ const Navbars = () => {
         }
       >
         <Navbar collapseOnSelect expand="lg" className="background-navbar">
-          <Navbar.Brand style={{ marginLeft: "2%" }}>
+          <Navbar.Brand style={{ marginLeft: "5%" }}>
             <h3
               className="header-logo"
               style={{
@@ -80,7 +80,7 @@ const Navbars = () => {
           </Navbar.Brand>
           <Navbar.Collapse
             id="responsive-navbar-nav"
-            style={{ justifyContent: "flex-end" ,marginTop:'-5vh'}}
+            style={{ justifyContent: "flex-end" ,marginTop:'-3vh'}}
           >
             <Nav>
               {state.isLoggedIn ? (
