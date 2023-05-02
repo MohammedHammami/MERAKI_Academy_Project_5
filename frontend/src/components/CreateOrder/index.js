@@ -12,7 +12,7 @@ import {
   MDBCheckbox,
   MDBBtn,
   MDBIcon,
-  MDBTextArea,
+  MDBCardImage,
   MDBFile,
 } from "mdb-react-ui-kit";
 import Button from "react-bootstrap/Button";
@@ -32,9 +32,10 @@ const CreateOrder = () => {
   const state = useSelector((state) => {
     return {
       token: state.auth.token,
+      userInfo: state.auth.userInfo,
     };
   });
-
+  const [isCraft, setIsCraft] = useState(state.userInfo.craft_id)
   const [schedule_date, setSchedule_date] = useState("");
   const [order_desc, setOrder_desc] = useState("");
   const [postInfo, setPostInfo] = useState({});
@@ -73,15 +74,17 @@ const CreateOrder = () => {
       });
   };
   const getPostById = () => {
+    console.log(location.state);
     axios
       .get(`http://localhost:5000/posts/post/${location.state.id}`)
       .then((result) => {
         setUserId(result.data.posts[0].user_id);
         setPostInfo(result.data.posts[0]);
+        console.log(result.data.posts);
         dispatch(setPooster(result.data.posts[0].user_id));
       })
       .catch((err) => {
-        console.log("err");
+        console.log("err:",err);
       });
   };
   useEffect(() => {
@@ -140,6 +143,7 @@ const CreateOrder = () => {
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
             <div>
+            
               <h2>{postInfo.title}</h2>
               <p>{postInfo.description}</p>
             </div>
@@ -157,7 +161,9 @@ const CreateOrder = () => {
                 </label>
 
                 <MDBInput
-                  type="date"
+                  type="datetime-local"
+                  min="2023-05"
+                   max="2023-06-14T00:00"
                   placeholder="Enter Title"
                   onChange={(e) => {
                     setSchedule_date(e.target.value);
@@ -193,9 +199,14 @@ const CreateOrder = () => {
               const desValue = order_desc;
               if (!value.trim() || !desValue.trim()) {
                 errorNotify();
-              } else {
+              } else if(isCraft){
                 handleShow();
                 navigate("/Dashboard/provider");
+                submitFn();
+              }else{
+                handleShow();
+                navigate("/");
+                submitFn();
               }
             }}
           >

@@ -72,6 +72,9 @@ section {
 .section-bg {
   filter: brightness(130%);
   background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
+
+  /* background-image: linear-gradient(to top, #121A72, #A58FFF, #223d66); */
+
 }
 
 .section-header {
@@ -139,11 +142,16 @@ section {
   color: #fff;
   background: #3872bd;
   box-shadow: 0 0px 0px #3872bd;
+  /* background: #121A72;
+  box-shadow: 0 0px 0px #3872bd; */
 }
 
 .hero .btn-book-a-table:hover {
   background: #3872bd;
   box-shadow: 0 8px 28px #3872bd;
+
+  /* background: #121A72;
+  box-shadow: 0 2px 20px white; */
 }
 
 .hero .btn-watch-video {
@@ -163,16 +171,44 @@ section {
 }
 
 .hero .btn-watch-video:hover {
-  background: #3872bd;
+  background: #223d66;
   box-shadow: 0 0px 8px #135ec0;
   border-radius: 40px;
+
+  /* background: #121A72;
+  box-shadow: 0 0px 8px white; */
+  
 }
 
 .hero .btn-watch-video:hover i {
   color: rgba(206, 18, 18, 0.8);
 }
+.nameInPost{
+  text-align: left;
+  padding: 3px;
+  color: #223d66;
+  /* font-size: 22px; */
+}
+.userImgeInPost{
+  border-radius: 50%;
+  background-color: #223d66;
+  margin-right: 1vh;
+
+}
+.HeaderCard{
+  padding: 0vh  0vh  0vh  1vh;
+  /* margin-top: 1px; */
+
+}
+hr {
+  margin: -8px 0 0;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: 0.9;
+}
 .imgecard {
-  width: 23.5vw;
+  width: 24.1vw;
   height: 40vh;
 }
 @media (max-width: 640px) {

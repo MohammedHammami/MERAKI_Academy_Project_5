@@ -4,7 +4,7 @@ import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { setPost } from "../Redux/reducers/posts";
+import posts, { setPost } from "../Redux/reducers/posts";
 import { setuserpostId } from "../Redux/reducers/comment";
 import {
   MDBCard,
@@ -17,25 +17,10 @@ import {
 
 const Home = () => {
   const [page, setPage] = useState(1);
-  const limit = 6;
+  const [browse, setBrowse] = useState(false);
+  const [limit, setLimit] = useState(6);
 
   const navigate = useNavigate();
-
-  const getAllPosts = (page, limit) => {
-    axios
-      .get(`http://localhost:5000/posts?page=${page}&limit=${limit}`)
-      .then((res) => {
-        setTimeout(() => {
-          dispatch(setPost(res.data.posts));
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  useEffect(() => {
-    getAllPosts(page, limit);
-  }, []);
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -46,63 +31,119 @@ const Home = () => {
       currentPage: state.post.currentPage,
     };
   });
+  const getAllPosts = (page, limit) => {
+    axios
+      .get(`http://localhost:5000/posts?page=${page}&limit=${limit}`)
+      .then((res) => {
+        setTimeout(() => {
+          dispatch(setPost(res.data.posts));
+          console.log(state.posts);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getAllPosts(page, limit);
+  }, [limit,page]);
+
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
   };
   const mood = state.mood;
   return (
     <>
-      <header style={{ paddingLeft: 0 }}>
-        <section id="hero" class="hero d-flex align-items-center section-bg">
-          <div class="container">
-            <div class="row justify-content-between gy-5">
-              <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                <div style={{ display: "flex" }}>
-                  <h2 data-aos="fade-up" style={{ color: "#08244f" }}>
-                    Maintenance{" "}
-                  </h2>
-                  <p style={{ opacity: 0 }}>ss</p>
-                  <h2 data-aos="fade-up">is</h2>
-                </div>
-                <h2 data-aos="fade-up"> Easier Than Before</h2>
-                <p
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                  style={{ color: "white" }}
-                >
-                  A well-trained army of craftsmen is ready to serve you
-                </p>
-                <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
-                  <a href="#book-a-table" className="btn-book-a-table">
-                    Book an Appointment
-                  </a>
-                  <a
-                    href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                    className="glightbox btn-watch-video d-flex align-items-center"
-                  >
-                    <i className="bi bi-play-circle"></i>
-                    <span>Watch Video</span>
-                  </a>
+      {!browse ? (
+        <>
+          <header style={{ paddingLeft: 0 }}>
+            <section
+              id="hero"
+              class="hero d-flex align-items-center section-bg"
+            >
+              <div class="container">
+                <div class="row justify-content-between gy-5">
+                  <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-left align-items-center align-items-lg-start text-center text-lg-start">
+                    <div style={{ display: "flex"  }}>
+                      <h2 data-aos="fade-up" style={{ color: "#08244f" ,}}>
+                      {/* color:'#121A72' */}
+                        Maintenance{" "}
+                      </h2>
+                      <p style={{ opacity: 0 }}>ss</p>
+                      <h2 data-aos="fade-up">is</h2>
+                    </div>
+                    <h2 data-aos="fade-up"> Easier Than Before</h2>
+                    <p
+                      data-aos="fade-up"
+                      data-aos-delay="100"
+                      // style={{ color: "#223d66" }}
+                      style={{ color: "white" }}
+                    >
+                      A well-trained army of craftsmen is ready to serve you
+                    </p>
+                    <div
+                      className="d-flex"
+                      data-aos="fade-up"
+                      data-aos-delay="200"
+                    >
+                      <a
+                        href="#book-a-table"
+                        className="btn-book-a-table"
+                        onClick={() => {
+                          setBrowse(true);
+                          setLimit(9);
+                          getAllPosts(page, limit);
+                        }}
+                      >
+                        Browse
+                      </a>
+                      <a
+                        href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+                        className="glightbox btn-watch-video d-flex align-items-center"
+                      >
+                        <i className="bi bi-play-circle"></i>
+                        <span>Watch Video</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                    <img
+                      src="https://buildinglinkau.com.au/wp-content/uploads/2021/09/AdobeStock_263924753-min-scaled.jpeg"
+                      // src="../media/Screenshot_3.png"
+                      class="img-fluid"
+                      alt=""
+                      data-aos="zoom-out"
+                      data-aos-delay="300"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
-                <img
-                  src="https://buildinglinkau.com.au/wp-content/uploads/2021/09/AdobeStock_263924753-min-scaled.jpeg"
-                  class="img-fluid"
-                  alt=""
-                  data-aos="zoom-out"
-                  data-aos-delay="300"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-      </header>
-      <div className="container1" style={{}}>
+            </section>
+          </header>
+        </>
+      ) : (
+        <></>
+      )}
+      <div className="container1">
         {state.posts.map((post, i) => {
           return (
             <div key={i}>
               <MDBCard className="car">
+                <MDBCardTitle>
+                <div className="d-flex flex-row align-items-center HeaderCard">
+                  <MDBCardImage
+                    src={post.user_image}
+                    alt="avatar"
+                    className="userImgeInPost"
+                    width="50"
+                    height="50"
+                  />
+                  <h2 className="nameInPost">
+                    {post.first_name} {post.last_name}
+                  </h2>
+                </div>
+                </MDBCardTitle>
+                <hr></hr>
                 <MDBCardImage
                   className="imgecard"
                   src={post.post_image}
@@ -110,7 +151,8 @@ const Home = () => {
                   alt="..."
                 />
                 <MDBCardBody>
-                  <MDBCardTitle>{post.title}</MDBCardTitle>
+                  <MDBCardText>{post.title}</MDBCardText>
+                  <MDBCardText>{post.pricing} $/h</MDBCardText>
                   <MDBBtn
                     onClick={() => {
                       toOrder(post.id, post.user_id);
