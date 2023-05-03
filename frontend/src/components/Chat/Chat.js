@@ -6,7 +6,7 @@ const Chat = () => {
  const [content, setContent] = useState("");
   const [output, setOutput] = useState("");
   const ChatNow = async () => {
-    const apiKey = "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";
+    const apiKey = "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";
     const requset = {
       model: "gpt-3.5-turbo",
       messages: [

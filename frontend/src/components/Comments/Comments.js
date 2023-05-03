@@ -111,12 +111,13 @@ const Comments = (s) => {
                 marginLeft: "10%",
               }}
             >
-              <MDBCardBody>
-                {comments.map((comment, i) => {
-                  if (comment.description != "") {
+              {/* { console.log(comments.length)} */}
+                {comments.length >0 && comments.map((comment, i) => {
+                  if (comments.length != 0) {
                     return (
                       <div className="" key={i}>
                         <div>
+                        <MDBCardBody>
                           <MDBCard className="mb-4 cardOrderBody">
                             <MDBCardBody>
                               <div className="d-flex flex-row align-items-center comment2">
@@ -149,12 +150,12 @@ const Comments = (s) => {
                               </p>
                             </MDBCardBody>
                           </MDBCard>
+              </MDBCardBody>
                         </div>
                       </div>
                     );
                   }
                 })}
-              </MDBCardBody>
             </MDBCard>
           </MDBCol>
         </MDBRow>

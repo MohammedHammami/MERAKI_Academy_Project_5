@@ -227,7 +227,9 @@ const CreatePost = () => {
                         errorNotify();
                       } else {
                         handleShow();
-                        // navigate('/')
+
+                        submitFn()
+                        navigate('/')
                       }
                     }}
                   >

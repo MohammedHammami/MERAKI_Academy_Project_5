@@ -1,4 +1,3 @@
-const { query } = require("express");
 const pool = require("../models/db");
 
 const createNewPost = (req, res) => {
@@ -47,6 +46,7 @@ const getPostsByuser = (req, res) => {
 };
 const getPostsById = (req, res) => {
   const post_id = req.params.post_id;
+  console.log(post_id);
   pool
     .query(`SELECT * FROM posts WHERE id = ${post_id}`)
     .then((result) => {
@@ -59,7 +59,7 @@ const getPostsById = (req, res) => {
     .catch((err) => {
       res.status(500).json({
         success: false,
-        message: "Server Error",
+        message: "Server Error*",
         err: err.message,
       });
     });
@@ -111,7 +111,7 @@ const getAllPosts = (req, res) => {
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
   const offset = (page - 1) * limit;
-
+const newQ=`SELECT u.first_name, u.last_name,u.user_image,p.user_id, p.description, p.pricing, p.title, p.created_on ,p.post_image ,p.id FROM posts p INNER JOIN users u ON u.id = p.user_id ORDER BY p.id ASC LIMIT $1 OFFSET $2`
   const queryString = `SELECT * FROM posts ORDER BY id ASC LIMIT $1 OFFSET $2`;
 
   const queryStringForCount = `SELECT COUNT(*) FROM posts`;
@@ -124,7 +124,7 @@ const getAllPosts = (req, res) => {
       const count = parseInt(result.rows[0].count);
       const totalPages = Math.ceil(count / limit);
       pool
-        .query(queryString, placeholder)
+        .query(newQ, placeholder)
         .then((result) => {
           const posts = result.rows;
           res.status(200).json({

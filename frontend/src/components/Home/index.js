@@ -4,7 +4,7 @@ import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { setPost } from "../Redux/reducers/posts";
+import posts, { setPost } from "../Redux/reducers/posts";
 import { setuserpostId } from "../Redux/reducers/comment";
 import {
   MDBCard,
@@ -17,10 +17,20 @@ import {
 
 const Home = () => {
   const [page, setPage] = useState(1);
-  const limit = 6;
+  const [browse, setBrowse] = useState(false);
+  const [limit, setLimit] = useState(6);
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      posts: state.post.posts,
+      mood: state.Mood.mood,
+      totalPages: state.post.totalPages,
+      currentPage: state.post.currentPage,
+    };
+  });
   const getAllPosts = (page, limit) => {
     
     axios
@@ -28,7 +38,9 @@ const Home = () => {
       .then((res) => {
           
           dispatch(setPost(res.data.posts));
-        
+
+        }, 1000);
+
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +48,8 @@ const Home = () => {
   };
   useEffect(() => {
     getAllPosts(page, limit);
-  }, []);
+  }, [limit,page]);
+
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -48,6 +61,7 @@ const Home = () => {
       language: state.auth.language
     };
   });
+
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
   };
@@ -159,12 +173,26 @@ const Home = () => {
         </section>
       </header> 
       }
-
       <div className="container1" style={{}}>
         {state.posts.map((post, i) => {
           return (
             <div key={i}>
               <MDBCard className="car">
+                <MDBCardTitle>
+                <div className="d-flex flex-row align-items-center HeaderCard">
+                  <MDBCardImage
+                    src={post.user_image}
+                    alt="avatar"
+                    className="userImgeInPost"
+                    width="50"
+                    height="50"
+                  />
+                  <h2 className="nameInPost">
+                    {post.first_name} {post.last_name}
+                  </h2>
+                </div>
+                </MDBCardTitle>
+                <hr></hr>
                 <MDBCardImage
                   className="imgecard"
                   src={post.post_image}
@@ -172,7 +200,8 @@ const Home = () => {
                   alt="..."
                 />
                 <MDBCardBody>
-                  <MDBCardTitle>{post.title}</MDBCardTitle>
+                  <MDBCardText>{post.title}</MDBCardText>
+                  <MDBCardText>{post.pricing} $/h</MDBCardText>
                   <MDBBtn
                     onClick={() => {
                       toOrder(post.id, post.user_id);

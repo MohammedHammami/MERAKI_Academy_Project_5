@@ -92,15 +92,15 @@ const Navbars = () => {
                 navigate("/");
               }}
             >
+              {/* <img className="imgLogoNew" src="./media/Screenshot_7.png" ></img> */}
               Tas<h3 className="the-L-letter">L</h3>ee7
               <span className="for-the-dot">.</span>
             </h3>{" "}
           </Navbar.Brand>
           <Navbar.Collapse
             id="responsive-navbar-nav"
-            style={{ justifyContent: "flex-end",
-            // marginRight:"3%" 
-          }}
+            style={{ justifyContent: "flex-end" ,marginTop:'-3vh'}}
+
           >
             <Nav>
               {state.isLoggedIn ? (

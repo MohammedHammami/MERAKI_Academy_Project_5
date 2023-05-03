@@ -17,6 +17,7 @@ const GetAllNotification = () => {
   const [smShow, setSmShow] = useState(false);
   const [description, setDescription] = useState("");
   const [rate, setRate] = useState(0);
+
   const { token, userInfo, userId, notifications, userpostId } = useSelector(
     (state) => {
       return {
@@ -28,6 +29,8 @@ const GetAllNotification = () => {
       };
     }
   );
+  const [isCraft, setIsCraft] = useState(userInfo.craft_id)
+console.log(isCraft);
   const getNotifications = () => {
     axios
       .get(`http://localhost:5000/notifications`, {
@@ -119,7 +122,8 @@ const GetAllNotification = () => {
           .then((result) => {
             deleteNotificationFn(idNoti, "order_end");
             setTimeout(() => {
-              navigate("/Dashboard/provider");
+              if(isCraft){navigate("/Dashboard/provider");}
+              else{ navigate("/");}
             }, 1000);
           })
           .catch((err) => {
