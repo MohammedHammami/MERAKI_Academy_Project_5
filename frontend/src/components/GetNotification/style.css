@@ -35,11 +35,16 @@
   }
   .noti-display{
     width: 80%;
-    margin-left: 10%;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
+    margin-left: -2%;
+    /* display: grid; */
+    /* grid-template-columns: 30% 30% 30%; */
   }
   .each-noti{
     margin: 2%;
   }
-  
+  .div-container-notif{
+    margin-left:"-35%";
+    margin-top:"-3%";
+    background-color:rgb(215, 214, 214);
+    border-radius:"20px"
+  }

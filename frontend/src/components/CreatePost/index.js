@@ -227,7 +227,7 @@ const CreatePost = () => {
                         errorNotify();
                       } else {
                         handleShow();
-                        navigate('/')
+                        // navigate('/')
                       }
                     }}
                   >

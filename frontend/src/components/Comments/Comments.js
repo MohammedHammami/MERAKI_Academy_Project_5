@@ -94,7 +94,7 @@ const Comments = (s) => {
     getComment();
   }, []);
   return (
-    <div className="all-orders-div" style={{ marginLeft: "0" }}>
+    <div className="all-orders-div" style={{ marginLeft: "0"}}>
       <MDBContainer
         className="mt-5"
         style={{ width: "100%", textAlign: "center" }}
@@ -127,7 +127,7 @@ const Comments = (s) => {
                                   height="25"
                                 />
 
-                                <p className="small mb-0 ms-2 comment2">
+                                <p className="small mb-0 ms-2 comment3">
                                   {comment.first_name} {comment.last_name}{" "}
                                 </p>
                               </div>

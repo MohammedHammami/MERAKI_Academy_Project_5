@@ -91,17 +91,13 @@
   /* right: 0; */
 margin-left: 85%;
 }
-.countainer-each-navbar{
-  /* background-color: red; */
-  display: flex;
-}
-.eache-navbar-1{
+.eache-navbar-1ar{
   color: white;
   font-weight: bold;
   border-radius: 20px;
   margin-bottom: -0%;
 }
-.eache-navbar-1:hover{
+.eache-navbar-1ar:hover{
   cursor: pointer;
  background-color: white;
  border-radius: 20prgb(228, 228, 228);

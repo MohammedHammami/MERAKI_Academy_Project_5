@@ -10,6 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
 import { changeMood } from "../Redux/reducers/mood";
+import { setLanguage } from "../Redux/reducers/auth";
 import {
   BsFillHouseGearFill,
   BsFillBarChartFill,
@@ -18,6 +19,7 @@ import {
   BsFillPlusCircleFill,
   BsBoxArrowInLeft,
 } from "react-icons/bs";
+import GetAllNotification from "../GetNotification";
 const Navbars = () => {
   const [moodstate, setMoodstate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +34,7 @@ const Navbars = () => {
     dispatch(setLogout());
   };
   const state = useSelector((state) => {
-    console.log();
+    console.log(state.noti.counterNotification);
     return {
       isLoggedIn: state.auth.isLoggedIn,
       token: state.auth.token,
@@ -49,6 +51,23 @@ const Navbars = () => {
   );
 
   let newTheme = moodstate ? "lightMood" : "darkMood";
+  const notificationsCountApi = ()=>{
+    axios
+          .get(`http://localhost:5000/notifications`, {
+            headers: {
+              Authorization: state.token,
+            },
+          })
+          .then((result) => {
+            dispatch(setCounterNotification(result.data.notification));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+  }
+  useEffect(()=>{
+    notificationsCountApi()
+  },[])
   return (
     <>
       <div
@@ -79,7 +98,9 @@ const Navbars = () => {
           </Navbar.Brand>
           <Navbar.Collapse
             id="responsive-navbar-nav"
-            style={{ justifyContent: "flex-end" }}
+            style={{ justifyContent: "flex-end",
+            // marginRight:"3%" 
+          }}
           >
             <Nav>
               {state.isLoggedIn ? (
@@ -96,7 +117,8 @@ const Navbars = () => {
                     }}
                     className="each-navbar"
                   >
-                    Home{" "}
+                    Home
+                    {/* Home{" "} */}
                   </Nav.Link>
 
                   <Nav.Link
@@ -117,6 +139,14 @@ const Navbars = () => {
                   >
                     About us{" "}
                   </Nav.Link>
+                  <NavDropdown  menuAlign="left" style={{color:"red"}}>
+                  {/* <NavDropdown.Item style={{justifyContent: "flex-end",marginLeft:"-25%",background: "none", border: "none"}}> */}
+                    
+                    <GetAllNotification/>
+                    
+                  {/* </NavDropdown.Item> */}
+
+                  </NavDropdown>
                   <div
                     style={{ color: "white" }}
                     onClick={() => {
@@ -128,11 +158,13 @@ const Navbars = () => {
                       color="gray"
                       style={{ color: "white", marginTop: "12px" }}
                     />
+                    
                     <span style={{ marginTop: "12px" }}>
                       {state.noNotification}
                     </span>
                   </div>
-                  <NavDropdown id="collasible-nav-dropdown">
+
+                  <NavDropdown menuAlign="center" id="collasible-nav-dropdown">
                     <NavDropdown.Item
                       onClick={() => {
                         navigate("/Dashboard/provider");
@@ -171,6 +203,7 @@ const Navbars = () => {
                         <BsFillPlusCircleFill /> Join us
                       </NavDropdown.Item>
                     )}
+                    
 
                     <NavDropdown.Item onClick={logout}>
                       <BsBoxArrowInLeft /> Logout
@@ -189,57 +222,30 @@ const Navbars = () => {
                   />
                 </>
               ) : (
-                <>
-                  <Nav.Link
-                    style={{
-                      fontSize: "18px",
-                      marginLeft: "-30%",
-                      color: "white",
-                    }}
-                    onClick={() => {
+                <div className="countainer-each-navbar">
+                  <p className="eache-navbar-1"onClick={() => {
                       navigate(`/`);
-                    }}
-                    className="each-navbar"
-                  >
-                    Home{" "}
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ fontSize: "18px", color: "white" }}
-                    onClick={() => {
+                    }}>Home</p>
+                  <p className="eache-navbar-1"style={{ opacity: 0 }}>ss</p>
+                  <p className="eache-navbar-1" onClick={() => {
                       navigate(`/register`);
-                    }}
-                    className="each-navbar"
-                  >
-                    Register{" "}
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ fontSize: "18px", color: "white" }}
-                    onClick={() => {
+                    }}>Register</p>
+                  <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
+                  <p className="eache-navbar-1" onClick={() => {
                       navigate(`/login`);
-                    }}
-                    className="each-navbar"
-                  >
-                    Login{" "}
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ fontSize: "18px", color: "white" }}
-                    className="each-navbar"
-                    onClick={() => {
+                    }}>login</p>
+                  <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
+                  <p className="eache-navbar-1"onClick={() => {
                       navigate("/support");
-                    }}
-                  >
-                    Support{" "}
-                  </Nav.Link>
-                  <Nav.Link
-                    style={{ fontSize: "18px", color: "white" }}
-                    onClick={() => {
+                    }}>support</p>
+                  <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
+                  <p className="eache-navbar-1"onClick={() => {
                       navigate(`/aboutus`);
-                    }}
-                    className="each-navbar about-us"
-                  >
-                    About us{" "}
-                  </Nav.Link>
-                </>
+                    }}>About us</p>
+                  <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
+                  <p className="eache-navbar-1"onClick={()=>{dispatch(setLanguage(true))}}>Arabic</p>
+                  <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>

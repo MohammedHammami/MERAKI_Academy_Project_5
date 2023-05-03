@@ -9,7 +9,8 @@ export const authSlice = createSlice({
     isLoggedIn: null|| localStorage.getItem("isLoggedIn"),
     user_image: null || localStorage.getItem("user_image"),
     userInfo: null || JSON.parse(localStorage.getItem("userInfo")) || {},
-    pooster : null || localStorage.getItem("pooster")
+    pooster : null || localStorage.getItem("pooster"),
+    language:  localStorage.getItem('language') || false
   },
   reducers: {
     setLogin: (state, action) => {
@@ -58,6 +59,10 @@ export const authSlice = createSlice({
       state.pooster = action.payload
       localStorage.setItem("pooster",state.pooster)
     },
+    setLanguage: (state, action) => {
+      state.language = action.payload;
+      localStorage.setItem("language",action.payload)
+    }
   },
 });
 export const {
@@ -67,7 +72,8 @@ export const {
   setLoginGoogel,
   setUserInfoGoogle,
   setNotification,
-  setPooster
+  setPooster,
+  setLanguage
 } = authSlice.actions;
 
 export default authSlice.reducer;
