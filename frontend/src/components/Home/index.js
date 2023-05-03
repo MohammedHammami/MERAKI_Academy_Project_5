@@ -129,21 +129,12 @@ const Home = () => {
           return (
             <div key={i}>
               <MDBCard className="car">
-                <MDBCardTitle>
-                <div className="d-flex flex-row align-items-center HeaderCard">
-                  <MDBCardImage
-                    src={post.user_image}
-                    alt="avatar"
-                    className="userImgeInPost"
-                    width="50"
-                    height="50"
-                  />
-                  <h2 className="nameInPost">
-                    {post.first_name} {post.last_name}
-                  </h2>
-                </div>
+                <MDBCardTitle>             
+                  <p className="titleInPost">{post.title}
+                  </p>
+                
                 </MDBCardTitle>
-                <hr></hr>
+                
                 <MDBCardImage
                   className="imgecard"
                   src={post.post_image}
@@ -151,7 +142,7 @@ const Home = () => {
                   alt="..."
                 />
                 <MDBCardBody>
-                  <MDBCardText>{post.title}</MDBCardText>
+                <MDBCardText className="nameCard"> {post.first_name} {post.last_name}</MDBCardText>              
                   <MDBCardText>{post.pricing} $/h</MDBCardText>
                   <MDBBtn
                     onClick={() => {

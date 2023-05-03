@@ -1,5 +1,5 @@
 .container1{
-    margin-top: 80px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-right: 100px;
@@ -72,9 +72,6 @@ section {
 .section-bg {
   filter: brightness(130%);
   background-image: linear-gradient(to top, #223d66, #5577aa, #bcc1c9);
-
-  /* background-image: linear-gradient(to top, #121A72, #A58FFF, #223d66); */
-
 }
 
 .section-header {
@@ -142,16 +139,11 @@ section {
   color: #fff;
   background: #3872bd;
   box-shadow: 0 0px 0px #3872bd;
-  /* background: #121A72;
-  box-shadow: 0 0px 0px #3872bd; */
 }
 
 .hero .btn-book-a-table:hover {
   background: #3872bd;
   box-shadow: 0 8px 28px #3872bd;
-
-  /* background: #121A72;
-  box-shadow: 0 2px 20px white; */
 }
 
 .hero .btn-watch-video {
@@ -183,11 +175,17 @@ section {
 .hero .btn-watch-video:hover i {
   color: rgba(206, 18, 18, 0.8);
 }
-.nameInPost{
-  text-align: left;
-  padding: 3px;
+.titleInPost{
+  padding-top:2vh;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  text-align: center;
   color: #223d66;
-  /* font-size: 22px; */
+}
+.nameCard{
+  text-align: left;
+  color: #223d66;
+  padding: 0;
 }
 .userImgeInPost{
   border-radius: 50%;
