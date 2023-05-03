@@ -138,7 +138,7 @@ const CreateOrder = () => {
   };
   return (
     <div className="containe-create-order" style={{paddingTop:60}}>
-      <div className="inpust-post-1">
+      <div className="inpust-post">
         <div className="container-div">
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
