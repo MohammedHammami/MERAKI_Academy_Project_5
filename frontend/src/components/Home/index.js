@@ -29,6 +29,7 @@ const Home = () => {
       mood: state.Mood.mood,
       totalPages: state.post.totalPages,
       currentPage: state.post.currentPage,
+      language: state.auth.language
     };
   });
   const getAllPosts = (page, limit) => {
@@ -39,7 +40,7 @@ const Home = () => {
           
           dispatch(setPost(res.data.posts));
 
-        }, 1000);
+        
 
       })
       .catch((err) => {
@@ -51,16 +52,7 @@ const Home = () => {
   }, [limit,page]);
 
 
-  const dispatch = useDispatch();
-  const state = useSelector((state) => {
-    return {
-      posts: state.post.posts,
-      mood: state.Mood.mood,
-      totalPages: state.post.totalPages,
-      currentPage: state.post.currentPage,
-      language: state.auth.language
-    };
-  });
+  
 
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
@@ -155,15 +147,15 @@ const Home = () => {
                 </div>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
-                {/* <img
-                  src={require('./2.PNG')}
+                <img
+                  src={require('./1.png')}
                   class="img-fluid"
                   alt=""
                   data-aos="zoom-out"
                   data-aos-delay="300"
-                /> */}
+                />
                 {/* <iframe src="https://giphy.com/embed/fgnHy6XLJRuVcu6dUa" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a ></a></p> */}
-                <iframe src="https://giphy.com/embed/F14BrsUdpzcc1wsSbV" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen style={{borderRadius:"50px"}}></iframe><p><a href="https://giphy.com/gifs/KLM-aviation-aircraft-klm-F14BrsUdpzcc1wsSbV"></a></p>
+                {/* <iframe src="https://giphy.com/embed/F14BrsUdpzcc1wsSbV" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen style={{borderRadius:"50px"}}></iframe><p><a href="https://giphy.com/gifs/KLM-aviation-aircraft-klm-F14BrsUdpzcc1wsSbV"></a></p> */}
                 {/* <iframe src="https://giphy.com/embed/BywAPqjtfmpKo" width="336" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/BywAPqjtfmpKo">via GIPHY</a></p> */}
                 {/* <iframe src="https://giphy.com/embed/bTs6KvyvPeDNxg2gam" width="480" height="432" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/revisione-assistenza-tecnica-macchine-utensili-bTs6KvyvPeDNxg2gam"></a></p> */}
                 {/* <iframe src="https://giphy.com/embed/hDlXTT0z0oQK59n3F8" width="480" height="399" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ShipleyEnergy-hvac-shipley-energy-shipleyenergy-hDlXTT0z0oQK59n3F8"></a></p> */}
