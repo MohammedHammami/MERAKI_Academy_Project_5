@@ -138,7 +138,7 @@ const CreateOrder = () => {
   };
   return (
     <div className="containe-create-order" style={{paddingTop:60}}>
-      <div className="inpust-post-1">
+      <div className="inpust-post">
         <div className="container-div">
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
@@ -201,6 +201,7 @@ const CreateOrder = () => {
                 errorNotify();
               } else if(isCraft){
                 handleShow();
+
                 navigate("/Dashboard/provider");
                 submitFn();
               }else{
@@ -218,7 +219,7 @@ const CreateOrder = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Are you sure you want to confirm this</Modal.Title>
+          <Modal.Title style={{textAlign:"left"}}>Are you sure you want to confirm this order</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

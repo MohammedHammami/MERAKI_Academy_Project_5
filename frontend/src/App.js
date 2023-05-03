@@ -20,10 +20,20 @@ import Support from "./components/Support";
 import UpdateProfile from "./components/UpdateProfile";
 import GraphDashboard from "./components/GraphDashboard";
 import GetAllOrdersRequester from "./components/GetAllOrdersRequester";
+import { useSelector } from "react-redux";
+import Navbarar from "./components/Navbarar/Navbar";
+import Footerar from "./components/Footerar";
 function App() {
+  const state = useSelector((state) => {
+    return {
+      language:state.auth.language
+    };
+  });
   return (
     <div className="App">
-      <Navbar />
+      {state.language?
+      <Navbarar/>:<Navbar />
+      }
       <Routes>
         <Route path="/Register" element={<Register />} />
         <Route path="/posts" element={<CreatePost />} />
@@ -45,7 +55,9 @@ function App() {
         <Route path="/update/profile" element={<UpdateProfile/>}/>
         <Route path="/dashboard/graph" element={<GraphDashboard/>}/>
       </Routes>
-      <Footer/>
+      {state.language?
+      <Footerar/>:<Footer/>
+      }
     </div>
   );
 }
