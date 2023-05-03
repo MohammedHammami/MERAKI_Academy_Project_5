@@ -168,7 +168,14 @@ console.log(isCraft);
     console.log(notifications);
   }, []);
   return (
-    <div>
+    <div style={{
+      marginTop:"-3%",
+      backgroundColor:"rgb(215, 214, 214)",
+      borderRadius:"20px",
+      width:"100%",
+      marginLeft:"-10%",
+      
+      }}>
       
       <div className="noti-display">
         {notifications?.map((noti, i) => {
@@ -221,12 +228,11 @@ console.log(isCraft);
               </div>
             );
           }
+
+
+
           
-        })}
-      </div>
-      <div className="noti-display">
-      {notifications?.map((noti, i) => {
-        if (noti.status === "accept_order") {
+      if (noti.status === "accept_order") {
           const value = noti.description.split(" ");
           console.log(noti.description);
           return (
@@ -345,11 +351,10 @@ console.log(isCraft);
             </div>
           );
         }
-      })}
-      </div>
-      <div className="noti-display">
-      {notifications?.map((noti, i) => {
-        if (noti.status === "canceld_order") {
+      
+
+      
+      if (noti.status === "canceld_order") {
           return (
           <div className="each-noti">
             <Toast>
@@ -372,8 +377,12 @@ console.log(isCraft);
           </div>
           );
         }
-      })}
+      
+          
+        })}
       </div>
+      
+      
       
     </div>
   );
