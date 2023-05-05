@@ -243,7 +243,7 @@ const Navbars = () => {
                       navigate(`/aboutus`);
                     }}>About us</p>
                   <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
-                  <p className="eache-navbar-1"onClick={()=>{dispatch(setLanguage(true))}}>Arabic</p>
+                  <p className="eache-navbar-1"onClick={()=>{dispatch(setLanguage("ar"))}}>Arabic</p>
                   <p className="eache-navbar-1" style={{ opacity: 0 }}>ss</p>
                 </div>
               )}

@@ -186,7 +186,7 @@ const Navbarar = () => {
                 </>
               ) : (
                 <div className="countainer-each-navbar">
-                  <p className="eache-navbar-1ar"onClick={()=>{dispatch(setLanguage(false))}}>الانجليزية</p>
+                  <p className="eache-navbar-1ar"onClick={()=>{dispatch(setLanguage("en"))}}>الانجليزية</p>
                   <p className="eache-navbar-1ar"style={{ opacity: 0 }}>ss</p>
                     <p className="eache-navbar-1ar"onClick={() => {
                       navigate(`/aboutus`);
