@@ -19,6 +19,7 @@ import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import Spinner from "../Spinner/Spinner.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 function Register() {
   const navigate = useNavigate();
   const fileInputRef = useRef();
@@ -34,6 +35,11 @@ function Register() {
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState("");
+  const state = useSelector((state) => {
+    return {
+      language: state.auth.language
+    };
+  });
   const uploadImage = (pas) => {
     console.log(image);
     const data = new FormData();
@@ -129,12 +135,218 @@ function Register() {
     });
   };
   return (
-    <>
+    <div style={{marginTop:"-3%"}}>
       <div>{isLoading && <Spinner />}</div>
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
           <MDBCardBody>
             <MDBRow>
+              {state.language=="ar"?<>
+              <MDBCol
+                md="10"
+                lg="6"
+                className="order-1 order-lg-2 d-flex align-items-center"
+              >
+                <MDBCardImage
+                  src="./media/Maintenance-bro.png"
+                  fluid
+                  style={{ height: "100vh" }}
+                />
+              </MDBCol>
+              <MDBCol
+                md="10"
+                lg="6"
+                className="order-2 d-flex flex-column align-items-center"
+              >
+                <p
+                  className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                  style={{ color: "#223d66" }}
+                >
+                  سجل الان
+                </p>
+
+                <div className="d-flex flex-row align-items-center mb-4 ">
+                  
+                  <MDBInput
+                    label="الاسم الأول"
+                    id="form1"
+                    type="text"
+                    className="w-100"
+                    style={{ textAlign: "right" }}
+                    onChange={(e) => {
+                      const name = e.target.value;
+                      setFirst_name(name);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="user me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%"}}
+                  />
+                </div>
+                <div className="d-flex flex-row align-items-center mb-4 ">
+                  
+                  <MDBInput
+                    style={{textAlign:"right"}}
+                    label="الاسم الأخير"
+                    id="form5 "
+                    type="text"
+                    className="w-100"
+                    onChange={(e) => {
+                      const name = e.target.value;
+                      setLast_name(name);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="user me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%" }}
+                  />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  
+                  <MDBInput
+                    label="الإيميل"
+                    id="form2"
+                    type="email"
+                    onChange={(e) => {
+                      const email = e.target.value;
+                      setEmail(email);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="envelope me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%" }}
+                  />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  
+                  <MDBInput
+                    label="كلمة المرور"
+                    id="form3"
+                    type="password"
+                    onChange={(e) => {
+                      const Password1 = e.target.value;
+                      setPassword1(Password1);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="lock me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%" }}
+                  />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  
+                  <MDBInput
+                    label="تأكيد كلمة المرور"
+                    id="form4"
+                    type="password"
+                    onChange={(e) => {
+                      const Password2 = e.target.value;
+                      setPassword2(Password2);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="key me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%" }}
+                  />
+                </div>
+                <div className="d-flex flex-row align-items-center mb-4">
+                  
+                  <MDBInput
+                    label="رقم الهاتف"
+                    id="form3"
+                    type="tel"
+                    onChange={(e) => {
+                      const phone = e.target.value;
+                      setPhone_no(phone);
+                    }}
+                  />
+                  <MDBIcon
+                    fas
+                    icon="phone-alt me-3"
+                    size="lg"
+                    style={{ color: "#223d66",marginLeft:"2%" }}
+                  />
+                </div>
+                {image ? (
+                  <img src={url} className="img" />
+                ) : (
+                  <div
+                    className="d-flex flex-row align-items-center mb-4"
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setImage(e.dataTransfer.files[0]);
+                      uploadImage2(e.dataTransfer.files[0]);
+                    }}
+                  >
+                    
+                    <button
+                      className="imgbtn"
+                      onClick={(e) => {
+                        fileInputRef.current.click();
+                      }}
+                    >
+                      قم بتحميل او وضع الصورة هنا
+                      <br></br>
+                      <MDBIcon fas size="lg" icon="plus-circle me-3" />
+                    </button>
+                    <MDBIcon
+                      fas
+                      icon="camera-retro me-3"
+                      size="lg"
+                      style={{ color: "#223d66",marginLeft:"2%" }}
+                    />
+                    <MDBInput
+                      label=""
+                      id="form4"
+                      type="file"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                        uploadImage2(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                )}
+                <div>
+                  <MDBBtn
+                    className="mb-4"
+                    size="lg"
+                    style={{ backgroundColor: "#223d66" }}
+                    onClick={() => {
+                      password1 !== password2 ? (
+                        setDone(!done)
+                      ) : (
+                        <>
+                          {setPassword(password1)}
+                          {uploadImage(password1)}
+                        </>
+                      );
+                    }}
+                  >
+                    التسجيل
+                  </MDBBtn>
+                  <ToastContainer />
+                </div>
+              </MDBCol>
+              
+              </>:<>
               <MDBCol
                 md="10"
                 lg="6"
@@ -329,11 +541,13 @@ function Register() {
                   style={{ height: "100vh" }}
                 />
               </MDBCol>
+              </>}
+              
             </MDBRow>
           </MDBCardBody>
         </MDBCard>
       </MDBContainer>
-    </>
+    </div>
   );
 }
 
