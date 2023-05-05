@@ -86,14 +86,25 @@ const Login = () => {
       });
   };
   const handleClickF = () => {
+    if (state.language=="ar") {
+    toast.error("فشلت عملية الدخول");
+  }else{
     toast.error("Login Failed");
+  }
   };
   const handleClickS = () => {
+    if (state.language=="ar") {
+      toast.success("تم الدخول بنجاح", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
+    }else{
     toast.success("Login Successfully", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: true,
-    });
+    });}
   };
 
   return (
@@ -146,7 +157,7 @@ const Login = () => {
                   size="lg"
                   onClick={handelLogin}
                 >
-                  التسجيل
+                  الدخول
                 </MDBBtn>
                 <ToastContainer />
               </div>

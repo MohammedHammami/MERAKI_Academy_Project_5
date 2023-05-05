@@ -17,6 +17,7 @@ import {
   BsFillPlusSquareFill,
   BsFillPlusCircleFill,
   BsBoxArrowInLeft,
+  BsSpellcheck
 } from "react-icons/bs";
 import GetAllNotification from "../GetNotification";
 import { setLanguage } from "../Redux/reducers/auth";
@@ -63,12 +64,11 @@ const Navbarar = () => {
         <Navbar collapseOnSelect expand="lg" className="background-navbar">
           <Navbar.Collapse
             id="responsive-navbar-nav"
-            style={{marginLeft:"3%"}}
+            style={{ marginLeft: "3%" }}
           >
             <Nav>
               {state.isLoggedIn ? (
                 <>
-                  
                   <img
                     src={state.user_image}
                     alt="Profile Pic"
@@ -79,48 +79,55 @@ const Navbarar = () => {
                       marginRight: "20px",
                     }}
                   />
-                  <NavDropdown menuAlign="center" id="collasible-nav-dropdown">
+                  <NavDropdown menuAlign="center" id="collasible-nav-dropdown" >
                     <NavDropdown.Item
                       onClick={() => {
                         navigate("/Dashboard/provider");
                       }}
+                      style={{textAlign:"right"}}
                     >
-                      <BsFillBarChartFill /> Dashboard
+                       لوحة المعلومات <BsFillBarChartFill />
                     </NavDropdown.Item>
                     <NavDropdown.Item
                       onClick={() => {
                         navigate("/update/profile");
                       }}
+                      style={{textAlign:"right"}}
                     >
-                      <BsFillHouseGearFill /> Account
+                      حسابي <BsFillHouseGearFill />
                     </NavDropdown.Item>
                     <NavDropdown.Item
                       onClick={() => {
                         navigate("/Chat");
                       }}
+                      style={{textAlign:"right"}}
                     >
-                      <BsChatDotsFill /> Chat AI
+                      محادثة ذكية <BsChatDotsFill />
                     </NavDropdown.Item>
                     {state.craft ? (
                       <NavDropdown.Item
                         onClick={() => {
                           navigate("/CreatePost");
                         }}
+                        style={{textAlign:"right"}}
                       >
-                        <BsFillPlusSquareFill /> Post an Ad
+                        إعلان جديد <BsFillPlusSquareFill />
                       </NavDropdown.Item>
                     ) : (
                       <NavDropdown.Item
                         onClick={() => {
                           navigate("/CreateCraft");
                         }}
+                        style={{textAlign:"right"}}
                       >
-                        <BsFillPlusCircleFill /> Join us
+                        انضم إلينا <BsFillPlusCircleFill />
                       </NavDropdown.Item>
                     )}
-
-                    <NavDropdown.Item onClick={logout}>
-                      <BsBoxArrowInLeft /> Logout
+                    <NavDropdown.Item onClick={()=>{dispatch(setLanguage("en"))}} style={{textAlign:"right"}}>
+                      الأنجليزية <BsSpellcheck />
+                    </NavDropdown.Item> 
+                    <NavDropdown.Item onClick={logout} style={{textAlign:"right"}}>
+                      تسجيل الخروج <BsBoxArrowInLeft />
                     </NavDropdown.Item>
                   </NavDropdown>
                   <div
@@ -134,15 +141,16 @@ const Navbarar = () => {
                       color="gray"
                       style={{ color: "white", marginTop: "12px" }}
                     />
-                    
+
                     <span style={{ marginTop: "12px" }}>
                       {state.noNotification}
                     </span>
                   </div>
-                  <NavDropdown  menuAlign="left">
-                    <NavDropdown.Item style={{justifyContent: "flex-end",marginLeft:"-25%"
-                  }}>
-                      <GetAllNotification/>
+                  <NavDropdown menuAlign="left">
+                    <NavDropdown.Item
+                      style={{ justifyContent: "flex-end", marginLeft: "-25%" }}
+                    >
+                      <GetAllNotification />
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link
@@ -163,58 +171,96 @@ const Navbarar = () => {
                   >
                     الدعم{" "}
                   </Nav.Link>
-                  <Nav.Link 
+                  <Nav.Link
                     style={{
                       fontSize: "18px",
                       marginLeft: "-30%",
                       color: "white",
-                      marginLeft:"0%"
+                      marginLeft: "0%",
                     }}
                     onClick={() => {
                       navigate(`/`);
                     }}
                     className="each-navbar"
                   >
-                   الصفحة
+                    الصفحة
                     {/* Home{" "} */}
                   </Nav.Link>
-
-                  
-                  
-
-                  
                 </>
               ) : (
                 <div className="countainer-each-navbar">
-                  <p className="eache-navbar-1ar"onClick={()=>{dispatch(setLanguage("en"))}}>الانجليزية</p>
-                  <p className="eache-navbar-1ar"style={{ opacity: 0 }}>ss</p>
-                    <p className="eache-navbar-1ar"onClick={() => {
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
+                      dispatch(setLanguage("en"));
+                    }}
+                  >
+                    الانجليزية
+                  </p>
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
                       navigate(`/aboutus`);
-                    }}>فريقنا</p>
-                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>ss</p>
-                  <p className="eache-navbar-1ar"onClick={() => {
+                    }}
+                  >
+                    فريقنا
+                  </p>
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
                       navigate("/support");
-                    }}>الدعم</p>
-                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>ss</p>
-                  <p className="eache-navbar-1ar" onClick={() => {
+                    }}
+                  >
+                    الدعم
+                  </p>
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
                       navigate(`/login`);
-                    }}>الدخول</p>
-                  
-                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>ss</p>
-                  <p className="eache-navbar-1ar" onClick={() => {
+                    }}
+                  >
+                    الدخول
+                  </p>
+
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
                       navigate(`/register`);
-                    }}>التسجيل</p>
-                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>ss</p>
-                  <p className="eache-navbar-1ar"onClick={() => {
+                    }}
+                  >
+                    التسجيل
+                  </p>
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
+                  <p
+                    className="eache-navbar-1ar"
+                    onClick={() => {
                       navigate(`/`);
-                    }}>الرئيسية</p>
-                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>ss</p>
+                    }}
+                  >
+                    الرئيسية
+                  </p>
+                  <p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>
                 </div>
               )}
             </Nav>
           </Navbar.Collapse>
-          <Navbar.Brand style={{ justifyContent: "flex-end", }}
-          >
+          <Navbar.Brand style={{ justifyContent: "flex-end" }}>
             <h3
               className="header-logo"
               style={{

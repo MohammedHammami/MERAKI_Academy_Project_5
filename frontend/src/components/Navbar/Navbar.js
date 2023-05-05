@@ -18,6 +18,7 @@ import {
   BsFillPlusSquareFill,
   BsFillPlusCircleFill,
   BsBoxArrowInLeft,
+  BsSpellcheck
 } from "react-icons/bs";
 import GetAllNotification from "../GetNotification";
 const Navbars = () => {
@@ -204,7 +205,9 @@ const Navbars = () => {
                       </NavDropdown.Item>
                     )}
                     
-
+                    <NavDropdown.Item onClick={()=>{dispatch(setLanguage("ar"))}} >
+                      <BsSpellcheck /> Arabic 
+                    </NavDropdown.Item>
                     <NavDropdown.Item onClick={logout}>
                       <BsBoxArrowInLeft /> Logout
                     </NavDropdown.Item>
