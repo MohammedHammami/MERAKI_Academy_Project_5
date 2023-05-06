@@ -19,7 +19,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import Comments from "../Comments/Comments";
-
 const CreateOrder = () => {
   const [timer, setTimer] = useState(false);
 
@@ -42,6 +41,8 @@ const CreateOrder = () => {
   const [userId, setUserId] = useState("");
   const [userPhoneNo, setUserPhoneNo] = useState("");
   const [show, setShow] = useState(false);
+  const [coulmValueRate,setCoulmValueRate] = useState([])
+  const [coulmNameRate,setCoulmNameRate] = useState([])
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
@@ -99,9 +100,36 @@ const CreateOrder = () => {
         console.log("err:",err);
       });
   };
+  const fillterRate = (array) =>{
+    let rate1 = 0;
+    let rate2 = 0;
+    let rate3 = 0;
+    let rate4 = 0;
+    let rate5 = 0;
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].rate === 5){rate5++}
+      if(array[i].rate === 4){rate4++}
+      if(array[i].rate === 3){rate3++}
+      if(array[i].rate === 2){rate2++}
+      if(array[i].rate === 1){rate1++}
+    }
+    setCoulmNameRate(["Very Poor","Poor","Fair","Good","Excellent"])
+    setCoulmValueRate([rate1,rate2,rate3,rate4,rate5])
+}
+  const getUserRate = ()=>{
+    axios
+      .get(`http://localhost:5000/review/post/${location.state.user_id}`)
+      .then((result) => {
+        fillterRate(result.data.Reviews)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   useEffect(() => {
     getuserInfoById();
     getPostById();
+    getUserRate();
   }, []);
   const submitFn = () => {
     axios
@@ -254,6 +282,7 @@ const CreateOrder = () => {
         </Modal.Footer>
       </Modal>
       <ToastContainer />
+      
     </div>
   );
 };

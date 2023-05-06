@@ -48,7 +48,7 @@ const GraphDashboard = () =>{
     useEffect(() => {
     const chartCanvas = chartRef.current.getContext("2d");
     const myChart = new Chart(chartCanvas, {
-        type: "bar", 
+        type: "bar",//bar
         data: {
         labels: ["Total Orders","Pending Orders","Accepted  Orders","Canceled  Orders"],
         datasets: [
@@ -56,6 +56,7 @@ const GraphDashboard = () =>{
             label: "",
             data: [orders.length,pending,completed,canceled],
             backgroundColor: ["blue", "rgb(170, 46, 37)", "#9ad219", "rgb(0, 0, 0)"],
+            
             },
         ],		
         },
