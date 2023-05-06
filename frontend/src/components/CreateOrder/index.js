@@ -40,6 +40,7 @@ const CreateOrder = () => {
   const [order_desc, setOrder_desc] = useState("");
   const [postInfo, setPostInfo] = useState({});
   const [userId, setUserId] = useState("");
+  const [userPhoneNo, setUserPhoneNo] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -87,7 +88,19 @@ const CreateOrder = () => {
         console.log("err:",err);
       });
   };
+  const getuserInfoById = () => {
+        axios
+      .get(`http://localhost:5000/users/phone/${location.state.user_id}`)
+      .then((result) => {
+        console.log(result.data.user[0].phone_no);
+        setUserPhoneNo(result.data.user[0].phone_no)
+      })
+      .catch((err) => {
+        console.log("err:",err);
+      });
+  };
   useEffect(() => {
+    getuserInfoById();
     getPostById();
   }, []);
   const submitFn = () => {
@@ -136,9 +149,13 @@ const CreateOrder = () => {
         console.log(err);
       });
   };
+  
   return (
     <div className="containe-create-order" style={{paddingTop:60}}>
-      <div className="inpust-post-1">
+      <button id="myButton1" onClick={()=>{
+        window.location.href = `https://api.whatsapp.com/send?phone=962${userPhoneNo}`;
+      }}></button>
+      <div className="inpust-post">
         <div className="container-div">
           <div className="user-card">
             <img className="image" src={postInfo.post_image} />
