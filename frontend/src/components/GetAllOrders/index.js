@@ -39,28 +39,29 @@ const GetAllOrders = () => {
 
   return (
     <div className="all-orders-div">
+      
       <MDBContainer className="mt-5" style={{ maxWidth: "1000px" }}>
         <MDBRow className="justify-content-center">
-          <MDBCol md="8" lg="10">
+          <MDBCol md="8" lg="8">
             <MDBCard
               className="shadow-0 border"
             >
               <MDBCardBody className="">
                 {orders.map((order, i) => {
                   return (
-                    <div key={order.id}>
-                      <MDBCard className="mb-4 cardOrderBody">
-                        <h5 className="cardOrderheader">
+                    <div key={order.id}className="allorder">
+                      <MDBCard className="mb-4 cardOrderBody allorder">
+                        <p className="cardOrderheader">
                           order number : {i + 1}
-                        </h5>
-                        <MDBCardBody>
+                        </p>
+                        
                           <p>{order.order_desc}</p>
-                          <Card.Title>
+                          <Card.Title className="state">
                             state : {order.state_id === 1 && "Pending"}
                             {order.state_id === 2 && "Completed"}
                             {order.state_id === 3 && "Canceled"}
                           </Card.Title>
-                        </MDBCardBody>
+                        
                         <Card.Title>
                           {order.schedule_date &&
                             order.schedule_date.split("").splice(0, 10)}
@@ -74,6 +75,7 @@ const GetAllOrders = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+
     </div>
   );
 };
