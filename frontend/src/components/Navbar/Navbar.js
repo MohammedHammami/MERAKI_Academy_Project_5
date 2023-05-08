@@ -58,7 +58,7 @@ const Navbars = () => {
             : "lightMood navBar-container"
         }
       >
-        <Navbar collapseOnSelect expand="sm" className="background-navbar">
+        <Navbar collapseOnSelect expand="lg" className="background-navbar">
           <Navbar.Brand style={{ marginLeft: "5%" }}>
             <h3
               className="header-logo"
