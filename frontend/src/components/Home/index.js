@@ -40,8 +40,6 @@ const Home = () => {
           
           dispatch(setPost(res.data.posts));
 
-        
-
       })
       .catch((err) => {
         console.log(err);
@@ -52,7 +50,6 @@ const Home = () => {
   }, [limit,page]);
 
 
-  
 
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
@@ -61,7 +58,7 @@ const Home = () => {
   return (
     <>
       {
-      state.language?
+      state.language == "ar"?
       <header style={{ paddingLeft: 0 }}>
   <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
@@ -148,17 +145,23 @@ const Home = () => {
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
                 <img
-                  src={require('./1.png')}
+
+                  // src={require('./2.PNG')}
+                  src={`https://i.pinimg.com/564x/41/4d/74/414d742178e86d68d0b3c167afc8babb.jpg`}
+
+                  //src={require('./1.png')}
+
                   class="img-fluid"
                   alt=""
                   data-aos="zoom-out"
                   data-aos-delay="300"
                 />
+
                 {/* <iframe src="https://giphy.com/embed/fgnHy6XLJRuVcu6dUa" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a ></a></p> */}
                 {/* <iframe src="https://giphy.com/embed/F14BrsUdpzcc1wsSbV" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen style={{borderRadius:"50px"}}></iframe><p><a href="https://giphy.com/gifs/KLM-aviation-aircraft-klm-F14BrsUdpzcc1wsSbV"></a></p> */}
                 {/* <iframe src="https://giphy.com/embed/BywAPqjtfmpKo" width="336" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/BywAPqjtfmpKo">via GIPHY</a></p> */}
+
                 {/* <iframe src="https://giphy.com/embed/bTs6KvyvPeDNxg2gam" width="480" height="432" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/revisione-assistenza-tecnica-macchine-utensili-bTs6KvyvPeDNxg2gam"></a></p> */}
-                {/* <iframe src="https://giphy.com/embed/hDlXTT0z0oQK59n3F8" width="480" height="399" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ShipleyEnergy-hvac-shipley-energy-shipleyenergy-hDlXTT0z0oQK59n3F8"></a></p> */}
               </div>
             </div>
           </div>
@@ -192,7 +195,7 @@ const Home = () => {
                       console.log(post.user_id);
                     }}
                   >
-                    {state.language?"اطلب الان":"order now"}
+                    {state.language == "ar"?"اطلب الان":"order now"}
                   </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
@@ -207,7 +210,7 @@ const Home = () => {
         }}
         style={{ marginBottom: "20px", marginTop: "20px" }}
       >
-        {state.language?"السابق":"prev"}
+        {state.language == "ar"?"السابق":"prev"}
       </MDBBtn>
       <MDBBtn
         onClick={() => {
@@ -216,7 +219,7 @@ const Home = () => {
         }}
         style={{ marginLeft: "20px", marginBottom: "20px", marginTop: "20px" }}
       >
-        {state.language?"التالي":"Next"}
+        {state.language == "ar"?"التالي":"Next"}
       </MDBBtn>
     </>
   );

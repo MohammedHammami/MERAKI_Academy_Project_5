@@ -33,6 +33,7 @@ const DashboardProvider = () => {
       token: state.auth.token,
       userInfo: state.auth.userInfo,
       mood: state.Mood.mood,
+      language: state.auth.language
     };
   });
   const [isCraft, setIsCraft] = useState(state.userInfo.craft_id);
@@ -130,7 +131,133 @@ const DashboardProvider = () => {
   };
 
   return (
-    <div className="container_dashboard_provider">
+    <div>
+      {state.language=="ar"?
+      <div className={state.language=="ar"?"container_dashboard_provider_ar":"container_dashboard_provider"}>
+        <div className="testin-h">
+          {toAccount && <UpdateProfile />}
+          {toNotifications && <GetAllNotification />}
+          {toCreatePost && <CreatePost />}
+          {toMyOrder && <GetAllOrders />}
+          {toMyPosts && <UserPosts />}
+          {toMyOrderR && <GetAllOrdersRequester />}
+          {(toAccount ||
+            toNotifications ||
+            toCreatePost ||
+            toMyOrder ||
+            toMyPosts ||
+            toMyOrderR) !== true && <GraphDashboard />}
+        </div>
+        <div className="menu">
+          <ul className="ul-menu" style={{textAlign:"right",marginRight:"5%"}}>
+            القائمة
+            
+            {state.userInfo.craft_id != null && (
+              <li style={{width:"87%"}}>
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    dashboard();
+                  }}
+                  disabled={toDashboard}
+                >
+                   لوحة المعلومات <BsFillBarChartFill  />
+                </button>
+              </li>
+            )}
+            <li style={{textAlign:"right"}}>
+              <button
+                className="go_to"
+                onClick={() => {
+                  Notification();
+                }}
+                disabled={toNotifications}
+              >
+                 الأشعارات <BsFillBellFill  />
+              </button>
+            </li>
+            <li>
+              {state.userInfo.craft_id != null ? (
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    createPost();
+                  }}
+                  disabled={toCreatePost}
+                >
+                  إعلان جديد <BsFillPlusSquareFill style={{ marginRight: "3%" }} />
+                </button>
+              ) : (
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    navigate("/CreateCraft");
+                  }}
+                >
+                  إنضم إلينا <BsFillPlusSquareFill/>
+                </button>
+              )}
+            </li>
+          </ul>
+          <ul className="ul-menu" style={{textAlign:"right",marginRight:"5%"}}>
+            الاعدادات
+            <li style={{width:"105%"}}>
+              <button
+                className="go_to"
+                onClick={() => {
+                  account();
+                }}
+                disabled={toAccount}
+              > حسابي <BsFillHouseGearFill/>
+              </button>
+            </li>
+          </ul>
+          <ul className="ul-menu" style={{textAlign:"right",marginRight:"5%"}}>
+            الأداء
+            <li style={{width:"105%"}}>
+              {state.userInfo.craft_id != null && (
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    myPosts();
+                  }}
+                  disabled={toMyPosts}
+                >
+                  إعلاناتي <BsFilePost />
+                </button>
+              )}
+            </li>
+            <li style={{width:"105%"}}>
+              {state.userInfo.craft_id != null ? (
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    myOrder();
+                  }}
+                  disabled={toMyOrder}
+                >
+                  الطلبات <BsBorderWidth/>
+                  
+                </button>
+              ) : (
+                <button
+                  className="go_to"
+                  onClick={() => {
+                    myOrderR();
+                  }}
+                  disabled={toMyOrderR}
+                >
+                  الطلبات <BsBorderWidth/>
+                </button>
+              )}
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+      :
+      <div className={state.language=="ar"?"container_dashboard_provider_ar":"container_dashboard_provider"}>
+
       <div className="menu">
         <ul className="ul-menu">
           MENU
@@ -263,6 +390,8 @@ const DashboardProvider = () => {
           toMyPosts ||
           toMyOrderR) !== true && <GraphDashboard />}
       </div>
+      </div>
+      }
     </div>
   );
 };

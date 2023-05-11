@@ -31,7 +31,7 @@ function App() {
   });
   return (
     <div className="App">
-      {state.language?
+      {state.language=="ar"?
       <Navbarar/>:<Navbar />
       }
       <Routes>
@@ -55,7 +55,7 @@ function App() {
         <Route path="/update/profile" element={<UpdateProfile/>}/>
         <Route path="/dashboard/graph" element={<GraphDashboard/>}/>
       </Routes>
-      {state.language?
+      {state.language=="ar"?
       <Footerar/>:<Footer/>
       }
     </div>

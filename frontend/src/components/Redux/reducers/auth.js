@@ -10,7 +10,7 @@ export const authSlice = createSlice({
     user_image: null || localStorage.getItem("user_image"),
     userInfo: null || JSON.parse(localStorage.getItem("userInfo")) || {},
     pooster : null || localStorage.getItem("pooster"),
-    language:  localStorage.getItem('language') || false
+    language:  localStorage.getItem('language') || null
   },
   reducers: {
     setLogin: (state, action) => {
@@ -61,7 +61,7 @@ export const authSlice = createSlice({
     },
     setLanguage: (state, action) => {
       state.language = action.payload;
-      localStorage.setItem("language",action.payload)
+      localStorage.setItem("language",state.language)
     }
   },
 });

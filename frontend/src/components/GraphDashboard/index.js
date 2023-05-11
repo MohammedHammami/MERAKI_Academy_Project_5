@@ -18,6 +18,7 @@ const GraphDashboard = () =>{
       userId: state.auth.userId,
       token: state.auth.token,
       userInfo: state.auth.userInfo,
+      language: state.auth.language
     };
   });
   const [isCraft, setIsCraft] = useState(state.userInfo.craft_id)
@@ -47,7 +48,7 @@ const GraphDashboard = () =>{
     useEffect(() => {
     const chartCanvas = chartRef.current.getContext("2d");
     const myChart = new Chart(chartCanvas, {
-        type: "bar", 
+        type: "bar",//bar
         data: {
         labels: ["Total Orders","Pending Orders","Accepted  Orders","Canceled  Orders"],
         datasets: [
@@ -55,6 +56,7 @@ const GraphDashboard = () =>{
             label: "",
             data: [orders.length,pending,completed,canceled],
             backgroundColor: ["blue", "rgb(170, 46, 37)", "#9ad219", "rgb(0, 0, 0)"],
+            
             },
         ],		
         },
@@ -95,6 +97,66 @@ const GraphDashboard = () =>{
 
         return <canvas ref={chartRef} />;
     };
+    const ChartComponent2 = (props) => {
+        const chartRef = useRef(null);
+        useEffect(() => {
+        const chartCanvas = chartRef.current.getContext("2d");
+        const myChart = new Chart(chartCanvas, {
+            type: "bar", 
+            data: {
+            labels: ["مجموع الطلبات","طلبات قيد الانتظار","الطلبات المنجزة","الطلبات الملغاة"],
+            datasets: [
+                {
+                label: "",
+                data: [orders.length,pending,completed,canceled],
+                backgroundColor: ["blue", "rgb(170, 46, 37)", "#9ad219", "rgb(0, 0, 0)"],
+                },
+            ],		
+            },
+            options: { scales: { y: { beginAtZero: true } } },
+        });
+    
+        return () => {
+            myChart.destroy();
+        };
+        }, [props]);
+    
+        return <canvas ref={chartRef} />;
+    };
+    const ChartComponent3 = (props) => {
+        const chartRef = useRef(null);
+        useEffect(() => {
+        const chartCanvas = chartRef.current.getContext("2d");
+        const myChart = new Chart(chartCanvas, {
+            type: "doughnut", 
+            data: {
+            labels: ["سي جدا","سيء","جيد","جيد جدا","ممتاز"],
+            datasets: [
+                {
+                label: "no: rated",
+                data: coulmValue,
+                backgroundColor: ["red", "pink", "#c3e6e1", "green", "blue"],
+                borderColor: "rgba(255, 99, 132, 0.2)",
+                },
+            ],
+            },
+            options: { scales: { y: { beginAtZero: true } } },
+        });
+
+        return () => {
+            myChart.destroy();
+        };
+        }, [props]);
+
+        return <canvas ref={chartRef} />;
+    };
+
+
+
+
+
+
+
     const fillterRate = (array) =>{
         let rate1 = 0;
         let rate2 = 0;
@@ -129,32 +191,74 @@ const GraphDashboard = () =>{
         <div>
         {isCraft!=null?
         <div className="body_container">
+
             <div className="order_info__cotainer_div">
-            <div className="card_order_info colorin">
-                <h5>Total Orders</h5>
-                <p className="number-order">{orders.length}</p>
-            </div>
-            <div className="card_order_info light-blue">
-                <h5>Pending Orders</h5>
-                <p className="number-order">{pending}</p>
-            </div>
-            <div className="card_order_info light-green">
-                <h5>Accepted Orders</h5>
-                <p className="number-order">{completed}</p>
-            </div>
-            <div className="card_order_info light-red">
-                <h5>Canceled Orders</h5>
-                <p className="number-order">{canceled}</p>
-            </div>
+            {state.language=="ar"?
+            <>
+                <div className="card_order_info light-red">
+                    <h5>الطلبات الملغاة</h5>
+                    <p className="number-order">{canceled}</p>
+                </div>
+                <div className="card_order_info light-green">
+                    <h5>الطلبات المنجزة</h5>
+                    <p className="number-order">{completed}</p>
+                </div>
+                <div className="card_order_info light-blue">
+                    <h5>طلبات قيد الانتظار</h5>
+                    <p className="number-order">{pending}</p>
+                </div>
+                <div className="card_order_info colorin">
+                    <h5>مجموع الطلبات</h5>
+                    <p className="number-order">{orders.length}</p>
+                </div>
+             </>:
+            
+            <>
+                <div className="card_order_info colorin">
+                    <h5>Total Orders</h5>
+                    <p className="number-order">{orders.length}</p>
+                </div>
+                <div className="card_order_info light-blue">
+                    <h5>Pending Orders</h5>
+                    <p className="number-order">{pending}</p>
+                </div>
+                <div className="card_order_info light-green">
+                    <h5>Accepted Orders</h5>
+                    <p className="number-order">{completed}</p>
+                </div>
+                <div className="card_order_info light-red">
+                    <h5>Canceled Orders</h5>
+                    <p className="number-order">{canceled}</p>
+                </div>
+            </>}
             </div>
             <hr className="hr2"/>
+
+
             <div className="display-flex ChartComponent-div">
-            <div className="ChartComponent">
-                <h2>Orders</h2>
-                <ChartComponent/></div>
-            <div className="ChartComponent ChartComponent1">
-                <h2 className="h2">Rate</h2>
-                <ChartComponent1/></div>
+                {state.language=="ar"?
+                <>
+                    <div className="ChartComponent">
+                        <h2>الطلبات</h2>
+                        <ChartComponent2/>
+                    </div>
+                    <div className="ChartComponent ChartComponent1">
+                        <h2 className="h2">التقيم</h2>
+                        <ChartComponent3/>
+                    </div>
+                </>:
+                <>
+                    <div className="ChartComponent">
+                        <h2>Orders</h2>
+                        <ChartComponent/>
+                    </div>
+                    <div className="ChartComponent ChartComponent1">
+                        <h2 className="h2">Rate</h2>
+                        <ChartComponent1/>
+                    </div>
+                </>}
+                
+           
             </div>
         </div>:<UpdateProfile/>}
         </div>

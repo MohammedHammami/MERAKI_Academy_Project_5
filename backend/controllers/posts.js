@@ -46,7 +46,6 @@ const getPostsByuser = (req, res) => {
 };
 const getPostsById = (req, res) => {
   const post_id = req.params.post_id;
-  console.log(post_id);
   pool
     .query(`SELECT * FROM posts WHERE id = ${post_id}`)
     .then((result) => {
