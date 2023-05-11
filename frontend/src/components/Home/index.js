@@ -39,6 +39,7 @@ const Home = () => {
       .then((res) => {
           
           dispatch(setPost(res.data.posts));
+
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +50,6 @@ const Home = () => {
   }, [limit,page]);
 
 
- 
 
   const toOrder = (id, user_id) => {
     navigate("/CreateOrder", { state: { id, user_id } });
@@ -145,13 +145,22 @@ const Home = () => {
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
                 <img
+
                   // src={require('./2.PNG')}
                   src={`https://i.pinimg.com/564x/41/4d/74/414d742178e86d68d0b3c167afc8babb.jpg`}
+
+                  //src={require('./1.png')}
+
                   class="img-fluid"
                   alt=""
                   data-aos="zoom-out"
                   data-aos-delay="300"
                 />
+
+                {/* <iframe src="https://giphy.com/embed/fgnHy6XLJRuVcu6dUa" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a ></a></p> */}
+                {/* <iframe src="https://giphy.com/embed/F14BrsUdpzcc1wsSbV" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen style={{borderRadius:"50px"}}></iframe><p><a href="https://giphy.com/gifs/KLM-aviation-aircraft-klm-F14BrsUdpzcc1wsSbV"></a></p> */}
+                {/* <iframe src="https://giphy.com/embed/BywAPqjtfmpKo" width="336" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/BywAPqjtfmpKo">via GIPHY</a></p> */}
+
                 {/* <iframe src="https://giphy.com/embed/bTs6KvyvPeDNxg2gam" width="480" height="432" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/revisione-assistenza-tecnica-macchine-utensili-bTs6KvyvPeDNxg2gam"></a></p> */}
               </div>
             </div>
@@ -164,21 +173,12 @@ const Home = () => {
           return (
             <div key={i}>
               <MDBCard className="car">
-                <MDBCardTitle>
-                <div className="d-flex flex-row align-items-center HeaderCard">
-                  <MDBCardImage
-                    src={post.user_image}
-                    alt="avatar"
-                    className="userImgeInPost"
-                    width="50"
-                    height="50"
-                  />
-                  <h2 className="nameInPost">
-                    {post.first_name} {post.last_name}
-                  </h2>
-                </div>
+                <MDBCardTitle>             
+                  <p className="titleInPost">{post.title}
+                  </p>
+                
                 </MDBCardTitle>
-                <hr></hr>
+                
                 <MDBCardImage
                   className="imgecard"
                   src={post.post_image}
@@ -186,7 +186,7 @@ const Home = () => {
                   alt="..."
                 />
                 <MDBCardBody>
-                  <MDBCardText>{post.title}</MDBCardText>
+                <MDBCardText className="nameCard"> {post.first_name} {post.last_name}</MDBCardText>              
                   <MDBCardText>{post.pricing} $/h</MDBCardText>
                   <MDBBtn
                     onClick={() => {
