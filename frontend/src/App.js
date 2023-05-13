@@ -23,6 +23,7 @@ import GetAllOrdersRequester from "./components/GetAllOrdersRequester";
 import { useSelector } from "react-redux";
 import Navbarar from "./components/Navbarar/Navbar";
 import Footerar from "./components/Footerar";
+import Notifications from "./components/Notifications";
 function App() {
   const state = useSelector((state) => {
     return {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/user/mypost" element={<UserPosts />} />
         <Route path="/Dashboard/provider" element={<DashboardProvider />} />
         <Route path="/getAllNotification" element={<GetAllNotification />} />
+        <Route path="/notifications" element={<Notifications/>} />
         <Route path="/orders" element={<GetAllOrders />} />
         <Route path="/myorder" element={<GetAllOrdersRequester />} />
         <Route path="/Update" element={<UpdateUser />} />
