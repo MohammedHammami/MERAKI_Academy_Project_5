@@ -205,6 +205,7 @@ console.log(isCraft);
                     );
                     deleteNotificationFn(noti.id, "accepted_order_done");
                     deleteNotificationFn(noti.order_id, 2);
+                    updateOrderState(noti.order_id,2)
                   }}
                   className="button_noti"
                 >
@@ -219,6 +220,8 @@ console.log(isCraft);
                     );
                     deleteNotificationFn(noti.id, "order_canceld_done");
                     deleteNotificationFn(noti.order_id, 3);
+                    updateOrderState(noti.order_id,3)
+
                   }}
                   className="button_noti"
                 >

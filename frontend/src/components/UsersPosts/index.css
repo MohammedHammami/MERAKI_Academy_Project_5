@@ -2,11 +2,18 @@
     width: 25%;
 }
 .imgecard2{
-    width: 23.5vw;
+    width: 25.5vw;
     height: 40vh;
 }
-.container-user-posts{
-    margin-left: 5%;
+.container-user-posts1{
+    margin-right: 13%;
     display: grid;
-    grid-template-columns: 45% 45%
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    
+}
+.btn_user_post{
+    display: flex;
+    gap: 5px;
 }
