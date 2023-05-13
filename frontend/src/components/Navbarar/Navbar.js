@@ -61,7 +61,7 @@ const Navbarar = () => {
             : "lightMood navBar-container"
         }
       >
-        <Navbar collapseOnSelect expand="lg" className="background-navbar">
+        <Navbar collapseOnSelect expand="lg" className="background-navbar" style={{boxShadow:"none"}}>
           <Navbar.Collapse
             id="responsive-navbar-nav"
             style={{ marginLeft: "3%" }}
@@ -141,18 +141,20 @@ const Navbarar = () => {
                       color="gray"
                       style={{ color: "white", marginTop: "12px" }}
                     />
-
-                    <span style={{ marginTop: "12px" }}>
-                      {state.noNotification}
-                    </span>
                   </div>
+                  <span >
+                      {state.noNotification}
+                  </span>
+                  {state.noNotification!=0?
                   <NavDropdown menuAlign="left">
                     <NavDropdown.Item
                       style={{ justifyContent: "flex-end", marginLeft: "-25%" }}
                     >
                       <GetAllNotification />
                     </NavDropdown.Item>
-                  </NavDropdown>
+                  </NavDropdown>:<p className="eache-navbar-1ar" style={{ opacity: 0 }}>
+                    ss
+                  </p>}
                   <Nav.Link
                     style={{ fontSize: "18px", color: "white" }}
                     onClick={() => {
@@ -183,7 +185,7 @@ const Navbarar = () => {
                     }}
                     className="each-navbar"
                   >
-                    الصفحة
+                    الرئيسية
                     {/* Home{" "} */}
                   </Nav.Link>
                 </>

@@ -35,7 +35,6 @@ const Navbars = () => {
     dispatch(setLogout());
   };
   const state = useSelector((state) => {
-    console.log(state.noti.counterNotification);
     return {
       isLoggedIn: state.auth.isLoggedIn,
       token: state.auth.token,
@@ -70,7 +69,7 @@ const Navbars = () => {
     notificationsCountApi()
   },[])
   return (
-    <>
+    <div className= "navBar-container">
       <div
         className={
           mood === "darkMood"
@@ -78,7 +77,7 @@ const Navbars = () => {
             : "lightMood navBar-container"
         }
       >
-        <Navbar collapseOnSelect expand="lg" className="background-navbar">
+        <Navbar collapseOnSelect expand="lg" className="background-navbar" style={{boxShadow:"none"}}>
           <Navbar.Brand style={{ marginLeft: "5%" }}>
             <h3
               className="header-logo"
@@ -140,7 +139,7 @@ const Navbars = () => {
                   >
                     About us{" "}
                   </Nav.Link>
-                  <NavDropdown  menuAlign="left" style={{color:"red"}}>
+                  <NavDropdown  menualign="left" style={{color:"red"}}>
                   {/* <NavDropdown.Item style={{justifyContent: "flex-end",marginLeft:"-25%",background: "none", border: "none"}}> */}
                     
                     <GetAllNotification/>
@@ -165,7 +164,7 @@ const Navbars = () => {
                     </span>
                   </div>
 
-                  <NavDropdown menuAlign="center" id="collasible-nav-dropdown">
+                  <NavDropdown menualign="center" id="collasible-nav-dropdown">
                     <NavDropdown.Item
                       onClick={() => {
                         navigate("/Dashboard/provider");
@@ -254,7 +253,7 @@ const Navbars = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
-    </>
+    </div>
   );
 };
 

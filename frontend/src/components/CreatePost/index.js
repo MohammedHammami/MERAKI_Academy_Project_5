@@ -87,10 +87,7 @@ const CreatePost = () => {
   return (
     <div className="inpust-post2" >
       <MDBContainer fluid>
-        <MDBCard
-          
-          style={{ borderRadius: "25px"}}
-        >
+        <MDBCard style={{ borderRadius: "25px"}} >
           <MDBCardBody className="bodyOfCreatOrder">
             <MDBRow>
               <MDBCol

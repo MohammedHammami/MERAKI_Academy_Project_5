@@ -13,6 +13,7 @@ const UpdateProfile = () => {
       token: state.auth.token,
       userInfo: state.auth.userInfo,
       image: state.auth.user_image,
+      language: state.auth.language
     };
   });
   const navigate = useNavigate();
@@ -83,8 +84,116 @@ const UpdateProfile = () => {
     <div className="container-profile">
       <div className="card-profile">
         <div className="card-header-profile">
-          <h1 className="header-title-profile">Personal Information</h1>
+          <h1 className="header-title-profile">{state.language=="ar"?"معلوماتي الشخصية":"Personal Information"}</h1>
         </div>
+        {state.language=="ar"?
+          <div className="card-body-profile" >
+            <form style={{textAlign:"right"}}>
+              <div className="form-group-profile">
+                <label htmlFor="firstName" className="label-profile" style={{textAlign:"right"}}>
+                  الاسم الاول{" "}
+                </label>
+                <input
+                  onChange={(e) => {
+                    setFirst_name(e.target.value);
+                  }}
+                  className="input-profile"
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder={first_name}
+                  required
+                  
+                />
+              </div>
+              <div className="form-group-profile">
+                <label htmlFor="lastName" className="label-profile" style={{textAlign:"right"}}>
+                  اسم العائلة{" "}
+                </label>
+                <input
+                  onChange={(e) => {
+                    setLast_name(e.target.value);
+                  }}
+                  className="input-profile"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder={last_name}
+                  required
+                />
+              </div>
+              <div className="form-group-profile">
+                <label htmlFor="phone" className="label-profile" style={{textAlign:"right"}}>
+                  رقم الهاتف{" "}
+                </label>
+                <input
+                  onChange={(e) => {
+                    setPhone_no(e.target.value);
+                  }}
+                  className="input-profile"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder={phone_no}
+                  required
+                />
+              </div>
+              <div className="form-group-profile">
+                <label htmlFor="image" className="label-profile" style={{textAlign:"right"}}>
+                  قم بتحميل صورة
+                </label>
+
+                {image ? (
+                  <img src={url} className="img" />
+                ) : (
+                  <div style={{marginLeft:"26%"}}
+                    className="d-flex flex-row align-items-center mb-4 updateimg"
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setImage(e.dataTransfer.files[0]);
+                      uploadImage2(e.dataTransfer.files[0]);
+                    }}
+                  >
+                    <MDBIcon fas icon="camera-retro me-3" size="lg" />
+                    <button
+                      className="imgbtn"
+                      onClick={(e) => {
+                        fileInputRef.current.click();
+                      }}
+                    >
+                      قم بتحميل الصورة هنا
+                      <br></br>
+                      <MDBIcon fas size="lg" icon="plus-circle me-3" />
+                    </button>
+                    <MDBInput
+                      label=""
+                      id="form4"
+                      type="file"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                        uploadImage2(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </form>
+            <button
+              onClick={() => {
+                updateFn(url);
+              }}
+              type="submit"
+              className="button-profile"
+            >
+              تأكيد المعلومات
+            </button>
+          </div>
+        :
         <div className="card-body-profile">
           <form>
             <div className="form-group-profile">
@@ -190,6 +299,7 @@ const UpdateProfile = () => {
             Submit
           </button>
         </div>
+        }
       </div>
     </div>
   );
