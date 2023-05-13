@@ -1,8 +1,9 @@
 .navBar-container{
-  background-color:var(--words);
-  color: white;
-  height: 8.99vh;
+  /* background-color:var(--words);
+  color: white; */
+  height: 10vh;
   /* background-image: linear-gradient(to bottom, #121A72, #06115C, #223d66); */
+  box-shadow:0;
 }
 .imgLogoNew{
   height: 16vh;
@@ -123,6 +124,12 @@ margin-left: 85%;
 }
 .eache-navbar-1:hover{
   background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.eache-navbarr:hover{
+  background-color: red;
+  color: red;
   border-radius: 4px;
   cursor: pointer;
 }
