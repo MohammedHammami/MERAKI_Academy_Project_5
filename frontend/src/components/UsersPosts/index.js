@@ -105,6 +105,7 @@ const UserPosts = () => {
                 <MDBCardBody>
                 <MDBCardTitle>{post.title}</MDBCardTitle>              
                 <MDBCardText>${" "}{post.pricing}</MDBCardText>
+                <div className="btn_user_post">
                 <MDBBtn 
                   onClick={(e) => {
                     handleDeleteShow()
@@ -119,7 +120,7 @@ const UserPosts = () => {
                   }}
                 >
                   update post
-                </MDBBtn>               
+                </MDBBtn> </div>              
               </MDBCardBody>
             </MDBCard>
             <Modal show={show} onHide={handleClose}>

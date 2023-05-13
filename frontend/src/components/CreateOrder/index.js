@@ -249,11 +249,11 @@ const CreateOrder = () => {
               } else if(isCraft){
                 handleShow();
 
-                navigate("/Dashboard/provider");
+                // navigate("/Dashboard/provider");
                 submitFn();
               }else{
                 handleShow();
-                navigate("/");
+                // navigate("/");
                 submitFn();
               }
             }}
