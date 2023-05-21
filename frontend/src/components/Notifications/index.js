@@ -264,6 +264,7 @@ const Notifications = () => {
                 setRate(0);
               }}
               className="me-2 button_noti"
+              style={{width:"14%"}}
             >
               Rate
             </Button>
