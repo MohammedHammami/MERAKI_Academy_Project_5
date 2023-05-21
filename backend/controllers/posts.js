@@ -152,6 +152,82 @@ const newQ=`SELECT u.first_name, u.last_name,u.user_image,p.user_id, p.descripti
     });
 };
 
+
+const getAllPostsByPricDesc = (req, res) => {
+  
+  pool
+    .query(`SELECT * FROM posts ORDER BY pricing DESC`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        mesasge: "get post",
+        posts: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error*",
+        err: err.message,
+      });
+    });
+};
+const getAllPostsByPricAsc = (req, res) => {
+  pool
+    .query(`SELECT * FROM posts ORDER BY pricing ASC`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        mesasge: "get post",
+        posts: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error*",
+        err: err.message,
+      });
+    });
+};
+const getAllPostsByDate = (req, res) => {
+  pool
+    .query(`SELECT * FROM posts ORDER BY created_on DESC`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        mesasge: "get post",
+        posts: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error*",
+        err: err.message,
+      });
+    });
+};
+const getAllPostsBySearch = (req, res) => {
+  const value = req.params.value;
+  pool
+    .query(`SELECT * FROM posts WHERE LOWER(title) LIKE LOWER('%${value}%')`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        mesasge: "get post",
+        posts: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error*",
+        err: err.message,
+      });
+    });
+};
+
 module.exports = {
   createNewPost,
   getPostsByuser,
@@ -159,4 +235,8 @@ module.exports = {
   deletePostById,
   getAllPosts,
   getPostsById,
+  getAllPostsByPricDesc,
+  getAllPostsByPricAsc,
+  getAllPostsByDate,
+  getAllPostsBySearch
 };
